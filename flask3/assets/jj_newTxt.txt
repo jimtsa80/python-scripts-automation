@@ -1,0 +1,157 @@
+//Filename:
+//Annotator:
+--  JJ.TXT
+
+
+#Adidas - Logo Combined
+LED Board
+Player Jersey
+Player Socks
+Spectator Apparel
+Static Board
+Training Apparel
+
+#Adidas - Text
+LED Board - Be Unstoppable
+LED Board - Copa
+LED Board - Leave Them in the Dust
+LED Board - NEMESIS
+LED Board - Play Flawless
+LED Board - PREDATOR
+LED Board - Strike On Instinct
+LED Board - Website
+
+#AT&T
+Bib Back
+LED Board
+Shirt Front
+Static Board
+TVGI
+TVGI Clock Wrap
+
+#Audi
+LED Board
+LED Board - Audi Sport
+LED Board - GOOOOAL
+LED Board - Official Vehicle of MLS
+LED Parapet
+Static Board
+TVGI
+TVGI - Clock Wrap
+TVGI - GOOOOAL
+TVGI - GOOOOALS Drive Progress
+
+#Band-Aid
+LED Board
+LED Board - Learn more at healthyessentials.com
+LED Board - Providing Access to Youth Girls Soccer Programming
+
+#BecauseSheCan
+LED Board
+LED Board - Learn more at healthyessentials.com
+LED Board - Providing Access to Youth Girls Soccer Programming
+
+#Coca-Cola
+LED Board
+LED Board - 50%
+Static Board
+Static Board - 50%
+
+#Continental
+LED Board
+LED Board - FOR WHAT you DO
+LED Board - Website
+Static Board
+TVGI - Analyst's Corner
+TVGI - Clock Wrap
+
+#Cutter
+LED Board
+LED Board - Mosquito Protection for the Entire Family
+LED Board - Proud Partner of the US NWT
+
+#Heineken
+LED Board
+LED Board - GREAT TASTE. ZERO ALCOHOL
+LED Parapet
+Static Board
+TVGI
+TVGI - Clock Wrap
+
+#Johnson & Johnson
+LED Board
+Static Board
+
+#Listerine
+LED Board
+LED Board - CHEW. SWISH. GO
+LED Board - Learn more at healthyessentials.com
+
+#Neutrogena
+LED Board
+LED Board - Learn more at healthyessentials.com
+
+#Powerade
+LED Board
+
+#TagHeuer - Logo Combined
+LED Board
+Static Board
+
+#TagHeuer - Logo
+Game Clock
+LED Board
+Referee Apparel
+Static Board
+Substitution Board
+
+#TagHeuer - Text
+LED Board
+Substitution Board
+
+#The Home Depot
+LED Board
+LED Board - Proud Sponsor
+Static Board
+Studio Panel
+
+#Thorne
+LED Board
+LED Board - Website
+Static Board
+
+#Tylenol
+LED Board
+LED Board - #BecauseSheCan
+LED Board - Learn more at healthyessentials.com
+
+#US Soccer
+Banner
+Bib Back
+Coach Apparel
+Leader's Armband
+LED Board
+LED Board - Website
+Player Jersey
+Player Shorts
+Referee Apparel
+Spectator Apparel
+Staff Apparel
+Static Board
+Training Apparel
+TVGI
+TVGI - Player
+
+#Volpi
+LED Board
+LED Board - American Crafted
+LED Board - Est. 1902
+LED Board - Official Protein of US Soccer
+LED Board - Website
+Static Board
+Static Board - Website
+
+#Zyrtec
+LED Board
+LED Board - Learn more at healthyessentials.com
+LED Board - Providing Access to Youth Girls Soccer Programming

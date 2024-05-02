@@ -1,0 +1,40 @@
+brand_location
+HSBC_Corner Post
+HSBC_Goal Post
+HSBC_Grass Sign 15m
+HSBC_LED Parapet
+HSBC_LED Sign
+HSBC_Media Backdrop
+HSBC_Static Board
+20180818_union_bledisloe_fox_anz_1900-irene-181120-1233-Video.csv
+brand_location
+HSBC_Grass Sign 15m
+HSBC_LED Sign
+HSBC_Static Board
+Australia_Argentina_15_09_18-Antonis-181120-1147-Video.csv
+brand_location
+HSBC_Grass Sign 15m
+HSBC_LED Sign
+HSBC_Media Backdrop
+HSBC_Static Board
+Australia_vs_Ireland_June_2018_Second_test-alexandrosB-181120-1722-Video.csv
+brand_location
+HSBC_Corner Post
+HSBC_Goal Post
+HSBC_Grass Sign 15m
+HSBC_LED Parapet
+HSBC_LED Sign
+HSBC_Media Backdrop
+HSBC_Static Board
+20180818_union_bledisloe_fox_anz_1900-irene-181120-1233-Video.csv
+brand_location
+HSBC_Grass Sign 15m
+HSBC_LED Sign
+HSBC_Static Board
+Australia_Argentina_15_09_18-Antonis-181120-1147-Video.csv
+brand_location
+HSBC_Grass Sign 15m
+HSBC_LED Sign
+HSBC_Media Backdrop
+HSBC_Static Board
+Australia_vs_Ireland_June_2018_Second_test-alexandrosB-181120-1722-Video.csv

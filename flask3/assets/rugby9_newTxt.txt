@@ -1,0 +1,176 @@
+//Filename:
+//Annotator:
+--  RUGBY9.TXT
+
+
+#Accor
+LED Parapet
+LED Parapet - LIVE LIMITLESS
+LED Sign
+LED Sign - LIVE LIMITLESS
+
+#Bankwest
+Giant Screen
+Giant Screen  
+LED Parapet
+LED Parapet - Bank Less
+LED Sign
+LED Sign - Bank Less
+Stadium Entrance
+Stadium Sign
+TVGI
+
+#Chemist Warehouse
+LED Parapet
+LED Parapet - GO Healthy
+LED Parapet - Telfast
+LED Sign
+LED Sign - GO Healthy
+LED Sign - Telfast
+
+#Coke
+LED Parapet
+LED Parapet - LOVE THE GAME
+LED Parapet - TASTE THE FEELING
+LED Sign
+LED Sign - LOVE THE GAME
+LED Sign - TASTE THE FEELING
+Player Jersey Sleeve
+Polo Shirt
+
+#DNSW
+Banner
+Grass Sign Halfway
+LED Parapet
+LED Sign
+Media Backdrop
+Presentation Podium
+Stage
+Tunel
+Tunnel
+Winner's Stage
+
+#Downer
+Accreditation Card
+Accreditation Card - Series Logo
+Ball
+Ball - Series Logo
+Ball Kid Apparel
+Card
+Card - Series Logo
+Corner Post
+Dugout
+Flag - Series Logo
+Giant Screen - Series Logo
+Goal Post
+Grass Sign 30m
+Grass Sign Halfway - Series Logo
+LED Parapet
+LED Parapet - Series Logo
+LED Sign
+LED Sign - Series Logo
+Media Backdrop
+Media Backdrop - Series Logo
+Monitor
+Player Jersey Front - Series Logo
+Player Jersey Sleeve
+Player Shorts Front - Series Logo
+Players Entrance - Series Logo
+Polo Shirt
+Polo Shirt - Series Logo
+Presentation Podium
+Presentation Podium - Series Logo
+Presenters Desk - Series Logo
+Referee Flag - Series Logo
+Referee Jersey Front - Series Logo
+Referee Shorts Front - Series Logo
+Shirt
+Shirt - Series Logo
+Spectator Apparel
+Spectator Apparel - Series Logo
+Stage
+Stage - Series Logo
+Stand
+Stand - Series Logo
+Static Board
+T-Shirt
+Trophy Stand - Series Logo
+Tunel
+Tunnel
+Tunnel - Series Logo
+TVGI
+TVGI - Series Logo
+Winner's Stage
+
+#Drinkwise
+LED Parapet
+LED Sign
+
+#Flight Centre
+Hospitality Tent
+LED Parapet
+LED Sign
+Player Jersey Sleeve
+Zeppelin
+
+#Gallagher
+Grass Sign 10m
+LED Parapet
+LED Parapet - CONFIDENCE
+LED Parapet - CONFIDENCE FOR FUTURE CHAMPIONS
+LED Parapet - Consulting
+LED Parapet - Insurance
+LED Parapet - Risk Management
+LED Parapet - The Gallagher Way
+LED Sign
+LED Sign - CONFIDENCE
+LED Sign - CONFIDENCE FOR FUTURE CHAMPIONS
+LED Sign - Consulting
+LED Sign - Insurance
+LED Sign - Risk Management
+LED Sign - The Gallagher Way
+Media Backdrop
+Presentation Podium
+Stage
+Tunel
+Tunnel
+
+#Irwin
+LED Parapet
+LED Parapet - QUICK-GRIP
+LED Sign
+LED Sign - QUICK-GRIP
+
+#Powerade
+Bottle
+Drinks Box
+Drinks Table
+Dugout Seat
+LED Parapet
+LED Parapet - ION4
+LED Sign
+LED Sign - ION4
+Towel
+
+#Telstra
+Giant Screen - BONUS TRY
+Giant Screen - Telstra 5G
+Grass Sign In Goal
+Grass Sign In Goal - Australia's first 5G
+LED Parapet
+LED Parapet - 5G
+LED Parapet - 5G now in selected areas
+LED Parapet - TRY
+LED Sign
+LED Sign -  5G
+LED Sign - 5G now in selected areas
+LED Sign - TRY
+
+#Youi
+LED Parapet
+LED Parapet - think youi
+LED Sign
+LED Sign - think youi
+Referee Jersey Back
+Referee Jersey Front
+Referee Shorts Back

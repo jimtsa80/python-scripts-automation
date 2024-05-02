@@ -1,0 +1,101 @@
+1300 Australia_Strapper Vest (front)
+1300 Australia_TVGI Text - Race Name
+1300 Australia_Winning Post Signage
+Antler_Home Straight Superscreen
+Antler_Saddle Cloth
+Antler_Strapper Vest (back)
+Antler_Strapper Vest (front)
+Antler_Trackside Signage
+Antler_TVGI Text - Race Name
+Antler_Winning Post Signage
+Chandler Macleod_Saddle Cloth
+Chandler Macleod_Trackside Signage
+Chandler Macleod_TVGI Text - Race Name
+Chandler Macleod_Winning Post Signage
+Crown Resorts_Mounting Yard Stalls
+Crown Resorts_Trackside Signage
+Crown Resorts_TVGI Text - Race Name
+Crown Resorts_Winning Post Signage
+Drummond Golf(Also mimatch & Big Swing)_Mounting Yard Signage
+Drummond Golf(Also mimatch & Big Swing)_Saddle Cloth
+Drummond Golf(Also mimatch & Big Swing)_Strapper Vest (back)
+Drummond Golf(Also mimatch & Big Swing)_Strapper Vest (Front)
+Drummond Golf(Also mimatch & Big Swing)_Trackside Signage
+Drummond Golf(Also mimatch & Big Swing)_TVGI Text - Race Name
+Drummond Golf(Also mimatch & Big Swing)_Winning Post Signage
+Inglis_Cap
+Inglis_Home Straight Superscreen
+Inglis_Mounting Yard Signage
+Inglis_Saddle Cloth
+Inglis_Trackside Signage
+Inglis_TVGI Text
+Inglis_Winning Post Signage
+Ladbrokes_A-Frame Signage
+Ladbrokes_Barrier Attendant Vest (back)
+Ladbrokes_Barrier Attendant Vest (front)
+Ladbrokes_Carpark Sign
+Ladbrokes_Flag
+Ladbrokes_Grandstand
+Ladbrokes_Grass Cover
+Ladbrokes_Home Straight Superscreen
+Ladbrokes_Media Backdrop
+Ladbrokes_Microphone
+Ladbrokes_Mounting Yard Signage
+Ladbrokes_Mounting Yard Signage Tier 2
+Ladbrokes_Mounting Yard Stalls
+Ladbrokes_Saddle Cloth
+Ladbrokes_Scale Board
+Ladbrokes_Starting Stalls Signage
+Ladbrokes_Strapper Vest (back)
+Ladbrokes_Strapper Vest (front)
+Ladbrokes_Track Railing
+Ladbrokes_Trackside Signage
+Ladbrokes_Trophy
+Ladbrokes_TVGI Logo
+Ladbrokes_TVGI Market Update
+Ladbrokes_TVGI Text - Race Name
+Ladbrokes_TVGI Website
+Ladbrokes_Winning Horse Rug
+Ladbrokes_Winning Post Signage
+McCafe_Mounting Yard Signage
+McCafe_Saddle Cloth
+McCafe_Strapper Vest (back)
+McCafe_Strapper Vest (front)
+McCafe_Trackside Signage
+McCafe_TVGI Text - Race Name
+McCafe_Winning Post Signage
+MSC Signs _Trackside Signage
+MSC Signs _TVGI Text - Race Name
+MSC Signs _Winning Post Signage
+PFD_Mounting Yard Signage
+PFD_Saddle Cloth
+PFD_Strapper Vest (front)
+PFD_Trackside Signage
+PFD_TVGI Text - Race Name
+PFD_Winning Post Signage
+Powerflo Solutions_Saddle Cloth
+Powerflo Solutions_Strapper Vest (back)
+Powerflo Solutions_Strapper Vest (front)
+Powerflo Solutions_TVGI Text - Race Name
+Powerflo Solutions_Winning Post Signage
+Schweppes_Mounting Yard Signage
+Schweppes_Saddle Cloth
+Schweppes_Strapper Vest (back)
+Schweppes_Strapper Vest (front)
+Schweppes_Trackside Signage
+Schweppes_TVGI Text - Race Name
+Schweppes_Winning Post Signage
+Seppelt Wines_Saddle Cloth
+Seppelt Wines_Trackside Signage
+Seppelt Wines_TVGI Text - Race Name
+Seppelt Wines_Winning Post Signage
+Strathmore Community Bendigo Bank_Home Straight Superscreen
+Strathmore Community Bendigo Bank_Mounting Yard Signage
+Strathmore Community Bendigo Bank_TVGI Text - Race Name
+Strathmore Community Bendigo Bank_Winning Post Signage
+Sweeney Estate Agents_Mounting Yard Signage
+Sweeney Estate Agents_TVGI Text - Race Name
+Sweeney Estate Agents_Winning Post Signage
+The Westin_Trackside Signage
+The Westin_TVGI Text - Race Name
+The Westin_Winning Post Signage

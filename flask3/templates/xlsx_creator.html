@@ -1,0 +1,102 @@
+{% include "header.html" %}
+
+	<form method=post action="" enctype=multipart/form-data>
+
+		<table>
+			<tr>
+				<td>
+					<div class="form-control-file">
+					  <h5>Choose Folder</h5>
+					  <input type="file" name="file[]" id="files" multiple="" webkitdirectory mozdirectory />
+					</div>
+				</td>
+			
+				<td>
+					<div class="form-control-file">
+					  <h5>Choose zip for press</h5>
+					  <input type=file name="pressZip" id="pressZip">
+					</div>
+				</td>
+			</tr>
+			<td>
+				<div class="form-control-file">
+					<table>
+						<th>
+					  		<h5>Which use?</h5>
+					  	</th>
+						<tr>
+					 		<td>
+								  <label for=multi>multi</label>
+								  <input type=radio name=use value=multi checked=checked>
+								  <label for=concat>concat</label>
+								  <input type=radio name=use value=concat>
+								  <label for=web>web</label>
+								  <input type=radio name=use value=web>
+							</td>
+					  	</tr>
+					  		
+
+					  	<tr>
+					  		<td>
+								  <label for=cam>cam</label>
+								  <input type=radio name=use value=cam>
+								  <label for=num_ph>num_ph</label>
+								  <input type=radio name=use value=num_ph>
+								  <label for=press>press</label>
+								  <input type=radio name=use value=press>
+							</td>
+						 </tr>
+						 <tr>
+							<td>
+								<label for=concat_multi>multiConcat</label>
+								<input type=radio name=use value=multic>
+								<label for=webvideos>webvideos</label>
+								<input type=radio name=use value=webvideos>
+								<label for=pressEva>pressEva</label>
+								<input type=radio name=use value=pressEva>
+						  </td>
+					   </tr>
+
+					  	<tr>
+					  		<td>
+							  	<div class="filename" id="filename" style="display:none">
+							  		<h5>Filename</h5>
+							  		<input type="text" name="filename" value=""><br>
+							  	</div>		
+							</td>
+						</tr>
+					  		
+					<table>
+				</div>
+			</td>
+
+			<tr>
+				<td>
+
+					<div class="form-group">
+					  <input class="btn btn-primary" type=submit name="action" value=Upload onclick="loading();">
+					  <div class="loading"></div>
+					</div>
+				</td>
+			</tr>
+
+		</table>
+	</form>
+		
+	<div class="flash">
+		<table>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			 {% for message in messages %}
+
+			  <tr>
+				 <td>{{ message }}</td>
+		 	   </tr>	
+			  {% endfor %}
+			{% endif %}
+		{% endwith %}
+	</table>
+	</div>
+</div>
+
+{% include "footer.html" %}

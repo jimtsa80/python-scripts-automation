@@ -1,0 +1,294 @@
+//Filename:
+//Annotator:
+--  CA_TVGI_TEST_7.TXT
+
+
+#Alinta Energy
+LED Sightscreen
+LED Sign
+Parapet
+Playing Kit, Arm
+Playing Kit, Chest
+Spectator Clothing
+Training Kit
+TVGI L-Frame - Get a great energy deal.Switch now.
+TVGI MILESTONE
+TVGI PLAYER OF THE DAY
+TVGI Telecast Sponsor
+Warm Up Bib
+
+#Asics
+LED Sign
+Playing Kit, Arm
+Playing Kit, Pants
+Spectator Clothing
+Training Kit
+Training Kit, Cap
+Warm Up Bib
+
+#Bet365.com
+Boundary Rope
+LED Sign
+LED Sign - Tel No.
+Parapet
+
+#Betta Home Living
+LED Sign
+LED Sign - Air Con
+LED Sign - Furniture
+LED Sign - Laundry
+LED Sign - Small Appliances
+Parapet
+Parapet - Air Con
+Parapet - Cooking
+Parapet - Dishwashers
+Parapet - Dryers
+Parapet - Electrical
+Parapet - Fridges
+Parapet - Furniture
+Parapet - TVs
+Parapet - Washers
+
+#BKT Tyres
+LED Sign
+LED Sign - #GROWINGTOGETHER
+
+#Branded
+Gloves
+Pads
+
+#Bunnings Warehouse
+TVGI L-Frame - Put your own spin on your D.I.Y Projects
+
+#Bupa
+LED Sign
+LED Sign - Dentists
+LED Sign - Health Insurance
+LED Sign - Overseas Visitors Cover
+LED Sign - Pet Insurance
+Training Kit
+
+#Canadian Club
+LED Sightscreen
+LED Sign
+
+#Chemist Warehouse
+TVGI L-Frame
+TVGI Telecast Sponsor
+
+#Classic
+Umpire Clothing
+
+#Commonwealth Bank
+Grass Sign
+LED Sightscreen
+LED Sign
+Parapet
+TVGI L-Frame - Supporting woman in cricket for over 20 years
+TVGI Telecast Sponsor
+
+#Cricket Australia
+Earphones
+Event Staff Clothing
+TVGI Intro
+TVGI LED Parapet
+TVGI LED Sign
+TVGI Website
+TVGI Website 
+TVGI Website - Shop
+TVGI Website - Tickets
+
+#Cricket Victoria
+TVGI Text
+
+#Cross River Rail
+Parapet
+Parapet - A train station for the Gabba
+
+#CUE
+TVGI Dressed By
+
+#Domain
+Giant Screen
+Grass Sign
+Grass Sign - Proudly property tragics.
+LED Sightscreen
+LED Sign
+LED Sign - End of Wicket Signage
+LED Sign - End of Wicket Signage - New listings, tools and data.
+LED Sign - New listings, tools and data.
+Scoreboard
+Stumps
+TVGI L-Frame - New listings,tools and data.Download the app.
+TVGI L-Frame - Series Logo
+TVGI Series Logo
+TVGI Series Text
+TVGI Stats
+TVGI Sweep Through - Series Logo
+TVGI Telecast Sponsor
+
+#Emirates
+Umpire Clothing
+
+#Forever New
+TVGI Dressed By
+
+#Fox Cricket
+LED Sign
+LED Sign - Ultra HD
+Studio
+
+#Gabba
+Viewing Room
+
+#Gatorade
+Bottle
+Cooler
+Drinks Box
+Drinks Break Clothing
+Drinks Case
+Drinks Table
+Players Entrance
+Towel
+
+#Gillette
+LED Sightscreen
+LED Sightscreen - SKINGUARD
+LED Sign
+LED Sign - SKINGUARD
+Parapet
+Spectator Clothing
+TVGI Analysis
+TVGI Analysis - SKINGUARD
+TVGI Ball Tracker
+TVGI Ball Tracker - SKINGUARD
+TVGI L-Frame - SKINGUARD DESIGNED TO STOP IRRITATION
+TVGI LED Parapet
+TVGI LED Parapet - SKINGUARD
+TVGI LED Sign
+TVGI LED Sign 
+TVGI LED Sign - SKINGUARD
+TVGI LED SignTVGI LED Sign
+TVGI Series Logo
+TVGI Telecast Sponsor
+TVGI Wagon Wheel
+TVGI Wagon Wheel - SKINGUARD
+VIP Seat
+
+#Gray-Nicolls
+Kid's Clothing
+
+#Harvey Norman
+TVGI Hotshot
+TVGI L-Frame - 5 DAY FRENZY.MUST END MONDAY 25th NOVEMBER
+TVGI Telecast Sponsor
+
+#ICON
+Grandstand
+
+#KFC
+LED Sightscreen
+LED Sightscreen - $10 POPCORN CHICKEN BUCKET
+LED Sign
+LED Sign - BUCKET WHY NOT?
+LED Sign - BUCKET. LET'S GET LOUDER
+LED Sign - LET'S GET LOUDER
+TVGI L-Frame - $10 POPCORN CHICKEN BUCKET
+TVGI L-Frame - $10 POPCORN CHICKEN BUCKET. NON-STOP POP!
+TVGI Telecast Sponsor
+
+#Kookaburra
+Stumps
+
+#Mastercard
+LED Sightscreen
+LED Sign
+
+#Masuri
+Playing Kit, Helmet
+
+#Movember
+Grass Sign
+LED Sightscreen
+TVGI Website - Donate Now
+
+#Qantas
+LED Sign
+Spectator Clothing
+
+#QUEENSLAND CRICKETERS' CLUB
+Viewing Room
+
+#Rebel
+TVGI L-Frame - Series Logo
+TVGI Series Logo
+
+#Seven Cricket
+TVGI Intro
+TVGI L-Frame - Channel Change
+TVGI L-Frame - Next Broadcast
+TVGI L-Frame - Social Media
+TVGI NEWS
+TVGI Next Broadcast
+TVGI Only On
+TVGI Social Media
+
+#Specsavers
+LED Sign
+LED Sign - The Test Experts
+TVGI
+TVGI DRS
+TVGI Grass Sign
+TVGI Telecast Sponsor
+
+#The Boundary Social
+Parapet
+TVGI Tickets
+
+#The Salvation Army
+TVGI Website
+
+#Toyota
+LED Sightscreen
+LED Sightscreen - CRICKET. OH WHAT A FEELING
+LED Sign
+LED Sign - CRICKET. OH WHAT A FEELING
+LED Sign - End of Wicket Signage
+LED Sign - End of Wicket Signage - 4
+Parapet
+TVGI L-Frame - Good for Cricket Building Better Communities
+TVGI OH WHAT A FEELING
+TVGI Stats
+
+#Unbranded
+TVGI 4
+TVGI 50
+TVGI Wickets
+
+#Victoria Bitter
+Spectator Clothing
+
+#Wagner
+TVGI L-Frame - Make life your greatest century with Wagner Vitamins
+TVGI Telecast Sponsor
+
+#Western Union
+LED Sightscreen
+LED Sign
+
+#Woolworths
+TVGI
+TVGI Donate
+TVGI L-Frame - Official partner of Woolworths Cricket Blast,for healthier fresh food kids.
+TVGI Telecast Sponsor - CRICKET BLAST
+
+#XXXX Gold
+LED Sightscreen
+LED Sightscreen - GOOD AS GOLD
+LED Sign
+
+#XXXX
+LED Sign
+ParapetAlinta EnergyTVGI L-Frame - GOOD AS GOLD
+TVGI Wicket
+TVGI WICKET REPLAY

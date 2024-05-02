@@ -1,0 +1,309 @@
+//Filename:
+//Annotator:
+--  FORMUALE.TXT
+
+
+#ABB
+Banner
+Barrier
+Cap
+Car Nose - Top
+Car Side
+Front Wheels
+Kit Front
+Media Backdrop
+Microphone
+Mid Car - Side
+Race Start
+Safety Car Bumper
+Shirt Front
+TVGI
+TVGI Leaderboard
+TVGI Text
+Trophy
+Trophy Presentation
+Videoboard
+Winner Card
+
+#Allianz
+Barrier
+Car Side
+Pits
+Race Start
+Safety Car Bonet
+
+#Audi Sport ABT Schaeffler
+Cap
+Car Tail
+Drivers Halo
+Front Wheels
+Garage Board
+Jacket
+Kit Back
+Kit Collar
+Kit Front
+Kit Sleeve
+Mid Car - Side
+Mid Car - Top
+Polo Back
+TVGI
+TVGI Text
+Team Room
+
+#BMW I Andretti Motorsport
+Car Nose - Top
+Car Side
+Car Tail - Side
+Drivers Halo
+Garage Board
+Helmet
+Jacket
+Kit Back
+Kit Front
+Polo Back
+Polo Front
+Shirt
+Shirt Back
+TVGI
+TVGI Text
+
+#BMW
+Barrier
+Car Nose - Top
+Car Side
+Jacket
+Kit Front
+Polo Back
+Safety Car Bonet
+
+#Bosch
+Barrier
+Front Wheels
+Race Start
+Safety Car Roof
+
+#CBX
+Barrier
+
+#DHL
+Barrier
+Kit Front
+Kit Sleeve
+Mid Car - Top
+Race Start
+
+#DS Techeetah
+Car Nose - Top
+Car Side
+Garage
+Garage Board
+Headset
+Helmet
+Jacket
+Kit Back
+Kit Front
+Kit Sleeve
+Mid Car - Side
+Pits
+Shirt
+Shirt Back
+TVGI
+TVGI Text
+Team Room
+
+#Enel X
+Barrier
+Mid Car - Side
+
+#Envision Virgin Racing
+Car Nose - Top
+Car Side
+Car Tail
+Car Top Nose
+Drivers Halo
+Headset
+Jacket
+Kit Back
+Kit Front
+Kit Sleeve
+Mid Car - Side
+Polo Front
+Polo Sleeve
+TVGI
+TVGI Text
+TVGI Text - Racers
+Team Room
+
+#Envision Virign Racing
+Car Top Nose
+
+#Geox Dragon
+Car Nose - Top
+Car Side
+Helmet
+Kit Front
+Kit Sleeve
+Polo Back
+TVGI
+TVGI Text
+
+#Hugo Boss
+Front Bumper
+Kit Front
+Kit Sleeve
+Mid Car - Side
+Polo Back
+Shirt Back
+Shirt Front
+
+#Julius Bar
+Barrier
+Car Nose - Top
+Car Side
+Flag
+Front Bumper
+Garage Wall
+Jacket
+Kit Front
+Mid Car - Side
+Polo Sleeve
+Race Start
+Safety Car Bumper
+Shirt
+
+#KKT
+Barrier
+
+#Mahindra Racing
+Cap
+Car Side
+Front Wheels
+Garage Board
+Headset
+Helmet
+Kit Front
+Mid Car - Side
+Shirt
+TVGI
+TVGI Text
+TVGI Text 
+
+#Mercedes Benz EQ
+Bumper
+Cap
+Car Nose - Top
+Drivers Halo
+Garage
+Garage Board
+Helmet
+Jacket
+Kit Front
+Shirt
+Shirt Back
+Shirt Front
+TVGI
+TVGI Text
+
+#Michelin
+Barrier
+Bumper - Side
+Cap
+Car Side
+Car Tail - Side
+Front Wheels
+Jacket
+Kit Front
+Kit Sleeve
+Race Start
+Wheels
+
+#Nio 333
+Car Side
+TVGI
+TVGI Text
+
+#Nissan E.Dams
+Cap
+Car Nose - Top
+Car Side
+Drivers Halo
+Helmet
+Kit Front
+Polo Front
+Shirt Front
+TVGI
+TVGI Text
+TVGI Text - Racers
+
+#PIF
+Barrier
+
+#Panasonic Jaguar Racing
+Cap
+Car Nose - Top
+Car Side
+Drivers Halo
+Garage Wall
+Headset
+Jacket
+Kit Back
+Kit Front
+Mid Car - Side
+Mid Car - Top
+Polo Front
+Shirt
+Shirt Back
+Shirt Front
+TVGI
+TVGI Text
+Umbrella
+
+#STC
+Barrier
+
+#Saudia
+Barrier
+Media Backdrop
+Race Start
+TVGI Text
+Trophy Presentation
+
+#TAG Heuer Porsche
+Car Nose - Side
+Car Nose - Top
+Car Side
+Drivers Halo
+Front Bumper
+Helmet
+Jacket
+Kit Back
+Kit Front
+Kit Sleeve
+Shirt Back
+TVGI
+TVGI Text
+Team Room
+
+#Tag Heuer
+Barrier
+Bumper
+Cap
+Car Nose - Top
+Drivers Halo
+Helmet
+Jacket
+Kit Front
+Kit Sleeve
+Mid Car -  Side
+Mid Car - Top
+Polo Sleeve
+Race Start
+Shirt Front
+Start Lights
+TVGI
+TVGI Leaderboard
+
+#Venturi Racing
+Helmet
+TVGI
+TVGI Text

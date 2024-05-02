@@ -1,0 +1,113 @@
+//Filename:
+//Annotator:
+--  CA_TVGI_TEST_FOX.TXT
+
+
+#Alinta Energy
+TVGI Intro
+TVGI Scoreline
+TVGI Viz - Get a great energy deal. Switch now.
+
+#Bet365.com
+TVGI - Website
+TVGI Intro
+TVGI Viz - Bet on the Cricket
+TVGI Viz - Gamble Responsibly
+
+#Bunnings Warehouse
+TVGI DRINKS BREAK
+TVGI Intro
+TVGI Lab Opening Sting
+TVGI Studio - THE LAB
+TVGI Transition Swipe
+TVGI Viz - Put your own spin on your D.I.Y. Projects
+
+#Cricket Australia
+TVGI Intro
+TVGI Website - Tickets
+TVGI Website - Tickets - BBL
+
+#Domain
+TVGI Series Logo
+TVGI Series Text
+TVGI Stumps
+
+#Fox Cricket
+TVGI Ball Tracker
+TVGI Grass Sign
+TVGI Intro
+TVGI Name Super
+TVGI Play On
+TVGI Studio
+TVGI Sweep Through
+TVGI Text
+TVGI Viz
+
+#Harvey Norman
+TVGI Highlights
+TVGI Intro
+
+#KFC
+TVGI Series Logo
+
+#Kookabura
+TVGI Stumps
+
+#Marsh
+TVGI Series Logo
+
+#Maytronics Dolphin
+TVGI Viz - Pool Cleaning made easy
+
+#McDonald's
+TVGI Intro
+TVGI Logo on Ticker
+TVGI Name Super - The Big Break
+TVGI Play Off - The Big Break
+TVGI Play On - The Big Break
+TVGI Scorecard
+TVGI Transition Swipe
+TVGI Viz - 30Days30Deals
+
+#Rebel
+TVGI Series Logo
+
+#Specsavers
+TVGI Giant Screen
+TVGI LED sightscreen
+TVGI LED Sign
+TVGI THIRD UMPIRE
+
+#The Boundary Social
+TVGI Tickets
+
+#Ticketek
+TVGI Text
+
+#Toyota
+TVGI Flying Fox
+TVGI Intro
+TVGI Name Super
+TVGI OWAF
+TVGI Viz - 5 DAY FRENZY-MUST END MONDAY 25TH NOVEMBER
+TVGI Viz - CRICKET.OH WHAT A FEELING
+
+#Unbranded
+TVGI 4
+TVGI 50
+TVGI DRS
+TVGI DRS TIMER
+TVGI Partnership
+TVGI SECOND SESSION
+TVGI TEA BREAK
+TVGI Wicket
+TVGI Wickets
+
+#Western Union
+TVGI Viz - Download the Western Union app to send money overseas.
+TVGI WICKETS RECAP
+
+#XXXX Gold
+TVGI 4
+TVGI Intro
+TVGI Viz - GOOD AS GOLD

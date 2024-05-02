@@ -1,0 +1,65 @@
+//Filename:
+//Annotator:
+--  OPTUS.TXT
+
+
+#Bankwest
+LED Parapet
+LED Parapet Behind Goal
+LED Sign
+LED Sign - Bank Less
+LED Sign Behind Goal
+LED Sign Behind Goal - Bank Less
+
+#Bendigo
+Grandstand Behind Goal
+
+#Optus
+AFL Banner - Yes
+Dressing Room
+Dressing Room - Yes
+LED Parapet
+LED Parapet - Yes
+LED Parapet Behind Goal
+LED Parapet Behind Goal - Yes
+LED Sign
+LED Sign - and great value
+LED Sign - Apple Music now on Optus
+LED Sign - Both is Better
+LED Sign - Get great coverage
+LED Sign - Get great coverage and great value
+LED Sign - Music
+LED Sign - Music Optus
+LED Sign - Website
+LED Sign - Yes
+LED Sign Behind Goal
+LED Sign Behind Goal - and great value
+LED Sign Behind Goal - Apple Music now on Optus
+LED Sign Behind Goal - Apple Music Now on Optus
+LED Sign Behind Goal - Both is Better
+LED Sign Behind Goal - Get great coverage
+LED Sign Behind Goal - Get great coverage and great value
+LED Sign Behind Goal - Music
+LED Sign Behind Goal - Music Optus
+LED Sign Behind Goal - Website
+LED Sign Behind Goal - Yes
+Player Jersey Back
+Player Shorts Front
+Stadium Sign - Optus Stadium
+Stadium Sign - Yes
+TVGI
+TVGI - Optus Stadium
+
+#Optus
+Ball
+External Signage - Optus Stadium
+Grass Sign
+Player Jersey Front
+Referee Apparel
+Referee Apparel - Yes
+Stadium Sign - Optus Stadium
+Stadium Sign - Yes
+Static Board
+Static Board - Yes
+TVGI
+TVGI Opener

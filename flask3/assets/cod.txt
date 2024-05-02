@@ -1,0 +1,65 @@
+COD World League_Banner
+COD World League_Giant Cheque
+COD World League_Jumbo Screen
+COD World League_Medal
+COD World League_Media Backdrop
+COD World League_Microphone
+COD World League_On-Screen Text
+COD World League_Player Backdrop
+COD World League_Player Desk
+COD World League_Player Shirt
+COD World League_Presenter Backdrop
+COD World League_Presenter Desk
+COD World League_Spectator Shirt
+COD World League_Studio
+COD World League_Trophy
+COD World League_Trophy Table
+COD World League_TVGI
+COD World League_TVGI - Schedule
+COD World League_TVGI - Transition
+PlayStation - COD World League_Banner - COD WL Composite Logo
+PlayStation - COD World League_Jumbo Screen - COD WL Composite Logo
+PlayStation - COD World League_LED Parapet - COD WL Composite Logo
+PlayStation - COD World League_Microphone - COD WL Composite Logo
+PlayStation - COD World League_On-Screen Text - COD WL Composite Logo
+PlayStation - COD World League_Player Backdrop - COD WL Composite Logo
+PlayStation - COD World League_Player Desk - COD WL Composite Logo
+PlayStation - COD World League_Player Shirt - COD WL Composite Logo
+PlayStation - COD World League_Presenter Backdrop - COD WL Composite Logo
+PlayStation - COD World League_Presenter Card - COD WL Composite Logo
+PlayStation - COD World League_Presenter Desk - COD WL Composite Logo
+PlayStation - COD World League_Presenter Desk - COD WL Composite Text
+PlayStation - COD World League_Promotion Item - COD WL Composite Logo
+PlayStation - COD World League_Spectator Card - COD WL Composite Logo
+PlayStation - COD World League_Studio - COD WL Composite Logo
+PlayStation - COD World League_Trophy - COD WL Composite Logo
+PlayStation - COD World League_Trophy Table - COD WL Composite Logo
+PlayStation - COD World League_TVGI - #CWLPS4 - COD WL Composite Text
+PlayStation - COD World League_TVGI - Bracket - COD WL Composite Logo
+PlayStation - COD World League_TVGI - COD WL Composite Logo
+PlayStation - COD World League_TVGI - COD WL Composite Text
+PlayStation - COD World League_TVGI - HOTMIC - COD WL Composite Logo
+PlayStation - COD World League_TVGI - Pool - COD WL Composite Logo
+PlayStation - COD World League_TVGI - Pools - COD WL Composite Logo
+PlayStation - COD World League_TVGI - Replay - COD WL Composite Logo
+PlayStation - COD World League_TVGI - Schedule - COD WL Composite Logo
+PlayStation - COD World League_TVGI - Team Graphic - COD WL Composite Logo
+PlayStation - COD World League_TVGI - Transition - COD WL Composite Logo
+PlayStation - COD World League_TVGI - Waiting Screen - COD WL Composite Logo
+PlayStation - COD World League_TVGI B Roll - COD WL Composite Logo
+PlayStation - COD World League_TVGI Bracket - COD WL Composite Logo
+PlayStation_Banner
+PlayStation_Cheer Stick
+PlayStation_Console
+PlayStation_Controller
+PlayStation_Jumbo Screen
+PlayStation_Microphone
+PlayStation_Player Backdrop
+PlayStation_Player Desk
+PlayStation_Presenter Backdrop
+PlayStation_Presenter Desk
+PlayStation_Spectator Cap
+PlayStation_Spectator Card
+PlayStation_TVGI
+PlayStation_TVGI - Shapes
+PlayStation_TVGI - Transition

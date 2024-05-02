@@ -1,0 +1,547 @@
+//Filename:
+//Annotator:
+--  CA_TEST.TXT
+
+
+#Alinta Energy
+Giant Screen
+Kid's Clothing
+LED Parapet
+LED Sightscreen
+LED Sign
+Media Backdrop
+Parapet
+Playing Kit, Arm
+Playing Kit, Back
+Playing Kit, Cap
+Playing Kit, Chest
+Playing Kit, Collar
+Playing Kit, Pants
+Polo Shirt
+Spectator Clothing
+Static Board
+Training Kit
+Training Kit, Cap
+Warm Up Bib
+
+#Asics
+Bag
+Jacket
+Kid's Clothing
+LED Sign
+Players Entrance
+Playing Kit, Arm
+Playing Kit, Cap
+Playing Kit, Chest
+Playing Kit, Pants
+Polo Shirt
+Spectator Clothing
+Training Kit
+Training Kit, Cap
+Warm Up Bib
+
+#Bet365.com
+Boundary Rope
+Grandstand
+LED Parapet
+LED Parapet - Tel No.
+LED Sign
+LED Sign - Tel No.
+Parapet
+
+#Betta Home Living
+LED Sign
+LED Sign - Air Con
+LED Sign - Furniture
+LED Sign - Laundry
+LED Sign - Small Appliances
+Parapet
+Parapet - Air Con
+Parapet - Cooking
+Parapet - Dishwashers
+Parapet - Dryers
+Parapet - Electrical
+Parapet - Fridges
+Parapet - Furniture
+Parapet - TVs
+Parapet - Washers
+Playing Kit, Chest
+Playing Kit, Pants
+Polo Shirt
+
+#BKT Tyres
+LED Sightscreen
+LED Sightscreen -  #GROWINGTOGETHER
+LED Sightscreen - AGRICULTURAL TIRES
+LED Sign
+LED Sign - #GROWINGTOGETHER
+LED Sign - AGRICULTURAL TIRES
+
+#Branded
+Bat
+Gloves
+Pads
+Playing Kit, Helmet
+
+#Bupa
+Jacket
+Laptop Sticker
+LED Sign
+LED Sign - Dentists
+LED Sign - Health Insurance
+LED Sign - Overseas Visitors Cover
+LED Sign - Pet Insurance
+Parapet
+Polo Shirt
+Training Kit
+Training Kit, Cap
+
+#Canadian Club
+LED Sightscreen
+LED Sign
+
+#Canberra
+LED Sign
+
+#Capital
+Grandstand
+
+#Classic
+Umpire Clothing
+
+#Commonwealth Bank
+Giant Screen
+Grandstand
+Grass Sign
+LED Parapet
+LED Sightscreen
+LED Sign
+LED Sign - End of Wicket Signage
+Parapet
+Playing Kit, Arm
+Playing Kit, Chest
+Spectator Clothing
+Static Board
+Static Board - End of Wicket Signage
+Stumps
+Training Kit
+Umpire Clothing
+
+#Comwire IT
+LED Parapet
+LED Parapet - WE GET IT
+LED Sign
+LED Sign - WE GET IT
+Parapet
+Parapet - WE GET IT
+
+#Cricket Australia
+Bag
+Deck
+Earphones
+Event Staff Clothing
+Flag
+Kid's Clothing
+Kid's Clothing - Blast
+Media Backdrop
+Media Backdrop - Website
+Microphone
+Polo Shirt
+Reporter Microphone
+Trophy Table
+Trophy Table - Series Logo
+Warm Up Bib
+
+#Cricket Live App
+Media Backdrop
+
+#Cricket.com.au
+Media Backdrop
+
+#Cross River Rail
+Parapet
+Parapet - A train station for the Gabba
+
+#CUA
+Playing Kit, Back
+Playing Kit, Chest
+Polo Shirt
+Spectator Clothing
+
+#Domain
+Giant Screen
+Giant Screen - New listings, tools and data.
+Grass Sign
+Grass Sign - Australia's home of property
+Grass Sign - Proudly property tragics.
+LED Sightscreen
+LED Sightscreen- Proudly property tragics.
+LED Sign
+LED Sign - End of Wicket Signage
+LED Sign - End of Wicket Signage - New listings, tools and data.
+LED Sign - New listings, tools and data.
+Media Backdrop
+Nets
+Playing Kit, Chest
+Presenters' Desk
+Presenters' Desk - Series Logo
+Scoreboard
+Stumps
+
+#Emirates
+LED Sign
+LED Sign - End of Wicket Signage
+Umpire Clothing
+
+#Extra
+Boundary Rope
+
+#Fox Cricket
+Camera Base
+Camera Cover
+Cameraman Clothing
+Event Staff Clothing
+Flying Fox Camera
+LED Sign
+LED Sign - Ultra HD
+Portable Camera
+Presenters' Desk
+Reporter Microphone
+Studio
+
+#Foxtel
+LED Sightscreen
+LED Sightscreen - foxtel movies Ultra HD
+LED Sightscreen - movies Ultra HD
+LED Sightscreen - Ultra HD
+LED Sign
+LED Sign - foxtel Ultra HD
+
+#Gabba
+Outdoor Signage
+Parapet
+Polo Shirt
+Viewing Room
+
+#Gatorade
+Bottle
+Cooler
+Drinks Box
+Drinks Break Clothing
+Drinks Case
+Drinks Table
+Event Staff Clothing
+Players Entrance
+Stadium Entrance
+Static Board
+Towel
+
+#Gillette
+Bolster
+Dugout - Series Logo
+Giant Cheque
+Giant Screen - Series Logo
+Grass Sign
+Grass Sign - SKINGUARD
+LED Parapet
+LED Parapet - SKINGUARD
+LED Sightscreen
+LED Sightscreen - Series Logo
+LED Sightscreen - SKINGUARD
+LED Sign
+LED Sign - End of Wicket Signage
+LED Sign - End of Wicket Signage - SKINGUARD
+LED Sign - SKINGUARD
+Media Backdrop
+Parapet
+Spectator Clothing
+Static Board - Gillette Venus
+Stumps
+Trophy Table - Series Logo
+VIP Seat
+Winners Stage - Series Logo
+
+#Gray-Nicolls
+Gloves
+Kid's Clothing
+
+#Haulmark
+Grandstand
+
+#Home World
+Polo Shirt
+
+#ICON
+Grandstand
+
+#Iconic
+Grandstand
+
+#iinet
+Parapet
+
+#Jurovich Surveying
+LED Parapet
+
+#Kennedy
+Parapet
+
+#KFC
+Grass Sign
+LED Sightscreen
+LED Sightscreen - $10 POPCORN CHICKEN BUCKET
+LED Sightscreen - $4.95 FILL UP
+LED Sightscreen - DOUBLE TENDER BURGER $4.95
+LED Sign
+LED Sign - BUCKET WHY NOT?
+LED Sign - BUCKET. LET'S GET LOUDER
+LED Sign - End of Wicket Signage - THE HCG
+LED Sign - LET'S GET LOUDER
+LED Sign - THE HCG
+Parapet
+Playing Kit, Chest
+Playing Kit, Pants
+Spectator Clothing
+Static Board - BUCKET WHY NOT?
+Stumps
+
+#Kookaburra
+Stumps
+
+#Ladbrokes
+Parapet
+
+#Majestic Athletics
+Playing Kit, Chest
+
+#Majestic
+Playing Kit, Pants
+Polo Shirt
+
+#Marsh
+LED Sightscreen
+Static Board
+Static Board - Insurance Broking
+Stumps
+
+#Mastercard
+Earphones
+Giant Screen
+LED Sightscreen
+LED Sign
+Parapet
+
+#Masuri
+Gloves
+Pads
+Playing Kit, Helmet
+Umpire, Helmet
+
+#Mazda
+Playing Kit, Cap
+Playing Kit, Chest
+Polo Shirt
+
+#Milo
+Kid's Clothing
+
+#Movember
+Grass Sign
+LED Sightscreen
+LED Sightscreen - WHATEVER YOU GROW WILL SAVE A BRO
+LED Sign
+LED Sign - Beat The Mo
+LED Sign - Website
+LED Sign - WHATEVER YOU GROW WILL SAVE A BRO
+
+#New Balance
+Bat
+Gloves
+LED Sign
+Pads
+
+#New Era
+Spectator Clothing
+
+#Nine Channel
+Spectator Microphone
+
+#NSW Government
+Playing Kit, Chest
+
+#Optus
+LED Sign - Yes
+Parapet
+Playing Kit, Chest
+Playing Kit, Chest - Yes
+
+#PEET
+Polo Shirt
+
+#PizzaHut
+Static Sign
+
+#Poppy
+Playing Kit, Arm
+
+#Pugg
+Nets
+
+#Qantas
+Kid's Clothing
+LED Sign
+Parapet
+Playing Kit, Arm
+Playing Kit, Cap
+Playing Kit, Chest
+Spectator Clothing
+Static Board
+
+#QUEENSLAND CRICKETERS' CLUB
+Grandstand
+Viewing Room
+
+#Rebel
+Grass Sign
+LED Sign - End of Wicket Signage
+Playing Kit, Arm
+Playing Kit, Arm - Series Logo
+Polo Shirt
+Static Board - End of Wicket Signage
+Stumps
+
+#Reiwa.com
+Polo Shirt
+
+#Right Hand
+Parapet
+
+#Robin Russel
+Grandstand
+
+#Seven Channel
+Pin
+Reporter Microphone
+Reporter Microphone - 7
+Reporter Microphone - Live And Free
+Reporter Pin
+
+#Sherriff
+Parapet
+
+#Specsavers
+Boundary Rope - The Test Experts
+Grass Sign
+LED Sign
+LED Sign - End of Wicket Signage
+LED Sign - Eyecare all-rounders
+LED Sign - The Test Experts
+Spectator Card
+Static Board
+Static Board - Eyecare all-rounders
+
+#Sportsbet
+Parapet
+
+#The Boundary Social
+Banner
+Deck
+Parapet
+Static Board
+
+#Toyota
+Feather Flag
+Giant Screen
+Grandstand
+LED Parapet
+LED Parapet - CRICKET. OH WHAT A FEELING
+LED Parapet - People
+LED Sightscreen
+LED Sightscreen - 4
+LED Sightscreen - 6
+LED Sightscreen - CRICKET. OH WHAT A FEELING
+LED Sightscreen - Good for Cricket
+LED Sign
+LED Sign - 4
+LED Sign - 6
+LED Sign - Building better communcations
+LED Sign - Building better communities
+LED Sign - CRICKET. OH WHAT A FEELING
+LED Sign - End of Wicket Signage
+LED Sign - End of Wicket Signage - 4
+LED Sign - Good for Cricket
+LED Sign - Good for it Cricket
+LED Sign - People
+Parapet
+Spectator Clothing
+Static Board
+Static Board - CRICKET. OH WHAT A FEELING
+
+#Transport for NSW
+Playing Kit, Back - WHAT'S YOUR PLAN B?
+Playing Kit, Chest - WHAT'S YOUR PLAN B?
+Training Kit - WHAT'S YOUR PLAN B?
+
+#Triple M
+Parapet
+
+#Victoria Bitter
+Giant Screen
+Kid's Clothing
+Parapet
+Spectator Clothing
+
+#Vincents
+Grandstand
+
+#Vodafone
+LED Sign
+Playing Kit, Chest
+
+#Western Union
+LED Sightscreen
+LED Sightscreen - Download our app.
+LED Sign
+
+#Westpac
+Parapet
+
+#Woodag
+Parapet
+
+#Woolworth's
+Bag - Blast
+Bolster
+Flag
+Kid's Clothing
+Kid's Clothing - Blast
+LED Sign - Website - PLAY CRICKET
+Pouffe
+Table
+
+#XXXX Gold
+Bar
+Giant Screen
+Giant Screen - Decision Pending
+Giant Screen - Umpire Decision
+LED Parapet
+LED Sightscreen
+LED Sightscreen - DRS CHALLENGE
+LED Sightscreen - Enjoy this drinks break
+LED Sightscreen - GOOD AS GOLD
+LED Sightscreen - THIRD UMPIRE
+LED Sign
+LED Sign - Drinks Break
+LED Sign - DRS CHALLENGE
+LED Sign - End of Wicket Signage
+LED Sign - End of Wicket Signage - DRS CHALLENGE
+LED Sign - THIRD UMPIRE
+Scoreboard
+Spectator Clothing
+
+#XXXX
+LED Parapet
+LED Sign
+Parapet
+Spectator Clothing
+Spectator ClothingAlinta Energy

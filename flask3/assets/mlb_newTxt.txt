@@ -1,0 +1,940 @@
+//Filename:
+//Annotator:
+--  MLB.TXT
+
+
+#Amazon
+Home Plate EVI
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+
+#Anheuser-Busch (Budweiser)
+1st Base Hard Signage
+1st Base LED Board
+1st Base Rotational
+3rd Base Hard Signage
+3rd Base LED Board
+3rd Base Rotational
+3rd Base Rotational - MLB
+Banner
+Center Field LED Board
+Dressing Room
+Home Plate EVI
+Home Plate EVI - MLB
+Home Plate Hard Signage
+Home Plate Rotational
+Left Field LED Board
+Left Field Stands Hard Signage
+Left Field Wall Hard Signage
+Left Foul Line Hard Signage
+Left Outfield Hard Signage
+Media Backdrop
+Network Presentation Graphics
+Outdoor Signage
+Right Field LED Board
+Right Field Stands Hard Signage
+Right Field Wall Hard Signage
+Right Foul Line Hard Signage
+Right Outfield Hard Signage
+Right Outfield LED Board
+Right Outfield Wall Hard Signage
+Special Structure Signage
+Stadium Entrance
+Store Signage
+Videoboard Signage
+
+#Apple
+Home Plate EVI
+Laptop
+Network Presentation Graphics
+
+#Bank of America
+1st Base Hard Signage
+1st Base LED Board
+1st Base LED Board - MLB
+1st Base Rotational
+3rd Base Hard Signage
+3rd Base LED Board
+3rd Base LED Board - MLB
+3rd Base Rotational
+Batter's Eye EVI
+Center Field Stands Hard Signage
+Center Field Wall Hard Signage
+Dugout Rails
+Dugout Roof
+Dugout Walls
+Home Plate EVI
+Home Plate EVI - MLB
+Home Plate Hard Signage
+Home Plate Rotational
+Left Field LED Board
+Left Field Wall Hard Signage
+Left Outfield Hard Signage
+Network Presentation Graphics - MLB
+Right Field LED Board
+Right Field Stands Hard Signage
+Right Field Wall Hard Signage
+Right Outfield Hard Signage
+Special Structure Signage
+Videoboard Signage
+
+#Barbasol
+Batter's Eye EVI
+Center Field Wall Hard Signage
+Home Plate EVI
+Home Plate EVI - MLB
+Home Plate Rotational
+Left Field Wall Hard Signage
+Network Presentation Graphics
+
+#Camping World
+1st Base LED Board - MLB
+1st Base LED Board - MLB 
+3rd Base Hard Signage
+Batter's Eye EVI
+Home Plate EVI
+
+#Church & Dwight - Arm & Hammer
+1st Base Hard Signage
+3rd Base Hard Signage
+Behind Cameras Hard Signage
+Left Outfield Hard Signage
+Left Outfiled Hard Signage
+Right Field Wall Hard Signage
+
+#Church & Dwight - OxiClean
+1st Base Hard Signage
+3rd Base Hard Signage
+Behind Cameras Hard Signage
+Dugout Fence Hard Signage
+Left Outfield Hard Signage
+Left Outfiled Hard Signage
+Right Field Wall Hard Signage
+
+#CLEAR
+3rd Base LED Board
+3rd Base LED Board - MLB
+
+#Coca-Cola
+3rd Base LED Board
+3rd Base LED Board - MLB
+3rd Base Rotational
+Center Field LED Board
+Center Field Stands Hard Signage
+Cups
+Fridge
+Home Plate EVI
+Home Plate EVI - MLB
+Left Field LED Board
+Left Field Stands Hard Signage
+Left Outfield Hard Signage
+Network Presentation Graphics
+Right Field LED Board
+Right Field Stands Hard Signage
+Right Field Wall Hard Signage
+Special Structure Signage
+Spectator Apparel
+Videoboard Signage
+
+#Doosan
+1st Base Hard Signage
+1st Base Hard Signage - MLB
+1st Base Rotational
+1st Base Rotational - MLB
+3rd Base Hard Signage
+3rd Base Hard Signage - MLB
+3rd Base Hard Signage - MLB ALDS
+3rd Base LED Board
+3rd Base Rotational - MLB
+Batter's Eye EVI
+Dugout Rails
+Dugout Rails - MLB
+Dugout Rails - MLB ALDS
+Dugout Roof
+Dugout Roof - MLB
+Dugout Roof - MLB ALDS
+Dugout Walls
+Dugout Walls - MLB ALDS
+Dugout Walls- MLB ALDS
+Home Plate EVI
+Home Plate EVI - MLB ALDS
+Home Plate Hard Signage
+Home Plate Hard Signage - MLB ALDS
+Home Plate Rotational
+Home Plate Rotational - MLB ALDS
+Homepate Rotational Lip
+Left Foul Line Hard Signage - MLB ALDS
+Media Backdrop - MLB NLDS
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+Network Presentation Graphics - MLB ALDS
+Right Field LED Board
+Right Field LED Board - MLB ALDS
+Right Field Wall Hard Signage - MLB ALDS
+Right Foul Line Hard Signage
+Right Foul Line Hard Signage - MLB ALDS
+Studio - MLB ALDS
+
+#DraftKings
+1st Base Hard Signage
+1st Base LED Board
+1st Base LED Board - MLB
+1st Base Rotational
+3rd Base Hard Signage
+3rd Base LED Board
+Home Plate EVI
+Home Plate Hard Signage
+Home Plate Outfield
+Home Plate Rotational
+Left Field LED Board
+Right Outfield Hard Signage
+Videoboard Signage
+
+#Evan Williams Bourbon
+3rd Base LED Board
+Home Plate EVI
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+Studio
+
+#Fanatics
+ Left Outfield Hard Signage
+1st Base Hard Signage
+1st Base Hard Signage - MLB
+1st Base LED Board
+1st base LED board
+1st Base Rotational
+1st Base Rotational - MLB
+3rd Base Hard Signage
+3rd Base Hard Signage - MLB
+3rd Base Rotational
+3rd Base Rotational - MLB
+Dugout Roof
+Home Plate EVI
+Home Plate EVI - MLB Shop w MC
+Home Plate Hard Signage
+Home Plate Rotational
+Left Field LED Board
+Left Field Stands Hard Signage
+Left Field Wall Hard Signage
+Left Foul Line Hard Signage
+Left Outfield Hard Signage
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+Network Presentation Graphics - MLB SHOP
+Network Presentation Graphics - MLB Shop w MC
+Right Field LED Board
+Right Field Stands Hard Signage
+Right Field Wall Hard Signage
+Right Outfield Hard Signage
+Uniforms - Jerseys
+
+#FS1
+ALCSGame4
+#Gatorade
+Bottles
+Caddies
+Candies
+Carriers
+Coolers
+Cups
+Dugout Signage
+Fridge
+Network Presentation Graphics
+Right Field Hard Signage
+Right Field LED Board
+Right Field Wall Hard Signage
+Right Field Wall LED Board
+Towels
+Trolley
+Videoboard Signage
+
+#GEICO
+1st Base Hard Signage
+1st Base Hard Signage - MLB
+1st Base LED Board
+1st Base LED Board - MLB
+1st Base LED Board - MLB ALCS
+1st Base Rotational
+1st Base Rotational - MLB
+3rd Base Hard Signage
+3rd Base Hard Signage - MLB
+3rd Base LED Board
+3rd Base LED Board - MLB ALCS
+3rd Base Rotational
+3rd Base Rotational - MLB
+Batter's Eye EVI
+Center Field LED Board
+Center Field Wall Hard Signage
+Centerfield Wall LED Board
+Dugout Rails
+Dugout Rails - MLB ALCS
+Dugout Rails - MLB NLCS
+Dugout Rails -MLB ALCS
+Dugout Roof
+Dugout Roof - MLB ALCS
+Dugout Roof - MLB NLCS
+Dugout Walls
+Dugout Walls - ALCS
+Dugout Walls - MLB ALCS
+Dugout Walls - MLB NLCS
+Home Plate EVI
+Home Plate Hard Signage
+Home Plate Hard Signage - MLB
+Home Plate Hard Signage - MLB ALCS
+Home Plate Rotational
+Home Plate Rotational - MLB
+Home Plate Rotational - MLB 
+Home Plate Rotational - MLB ALCS
+Left Field Stands Hard Signage
+Left Field Wall Hard Signage
+Left Field Wall Hard Signage - MLB ALCS
+Left Field Wall Hard Signage - MLB NLCS
+Left Foul Line Hard Signage - MLB ALCS
+Left Foul Line Hard Signage - MLB NLCS
+Left Outfield LED Board - MLB ALCS
+Media Backdrop - MLB NLCS
+Media Backdrop -MLB NLCS
+Network Presentation Graphics
+Network Presentation Graphics -  MLB ALCS
+Network Presentation Graphics - MLB
+Network Presentation Graphics - MLB ALCS
+Network Presentation Graphics - MLB NLCS
+Presenters Desk
+Right Field LED Board
+Right Field LED Board - MLB ALCS
+Right Field LED Board - MLB NLCS
+Right Field Wall Hard Signage
+Right Foul Line Hard Signage - MLB ALCS
+Right Foul Line Hard Signage - MLB NLCS
+Right Foul Line Hard Signage - NLCS
+Spectator Apparel
+Studio
+Studio - MLB ALCS
+Studio - MLB NLCS
+Trophy Tabe - MLB ALCS
+Trophy Table - MLB NLCS
+Videoboard Signage
+Videoboard Signage - MLB ALCS
+Videoboard Signage - MLB NLCS
+Videoboard Signage - NLCS
+
+#General Motors
+1st Base Hard Signage
+1st Base LED Board
+1st Base LED Board - MLB
+3rd Base Hard Signage
+3rd Base LED Board - MLB
+Caps
+Car
+Center Field LED Board
+Home Plate EVI
+Home Plate EVI - MLB
+Left Field Wall Hard Signage
+Left Outfield Hard Signage
+Merchandise
+Microphone
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+Right Field LED Board
+Right Field Wall Hard Signage
+Right Outfield Hard Signage
+Spectator Apparel
+Sticker
+Studio
+T-Shirt
+Uniforms - Jerseys
+Videoboard Signage
+
+#Google
+1st Base LED Board
+1st Base LED Board - MLB
+Batter's Eye EVI - MLB
+Home Plate EVI
+Home Plate EVI - MLB
+Home Plate Rotational - MLB
+Left Field LED Board
+Left Field LED Board - MLB
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+
+#Hankook Tire
+1st Base Hard Signage
+1st Base Rotational
+1st Base Rotational - MLB
+3rd Base Hard Signage
+3rd Base Rotational
+3rd Base Rotational - MLB
+Batter's Eye EVI
+Dugout Rails
+Dugout Rails - MLB
+Dugout Roof
+Dugout Roof - MLB
+Dugout Walls
+Dugout Walls - MLB
+Home Plate EVI
+Home Plate EVI - MLB
+Home Plate Hard Signage
+Home Plate Hard Signage - MLB
+Home Plate Hard Signage - Wild Card
+Home Plate Outfield - MLB
+Home Plate Rotational
+Home Plate Rotational - MLB
+Left Field LED Board - MLB
+Media Backdrop
+Media Backdrop - MLB
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+Network Presentation Graphics - MLB Wild Card
+Network Presentation Graphics - MLB WILD CARD
+Right Field LED Board - MLB Wild Card
+Right Field Wall Hard Signage
+Right Field Wall Hard Signage - MLB
+Studio - MLB
+
+#Kingsford
+Left Field LED Board
+Network Presentation Graphics
+Right Field LED Board
+
+#Majestic
+Hoodie
+Jacket
+Spectator Apparel
+Store
+T-Shirt
+Uniforms - Jerseys
+Uniforms - Pants
+
+#Mastercard
+1st Base Hard Signage
+1st Base LED Board
+1st Base LED Board - MLB
+1st Base Rotational
+1st Base Rotational - MLB
+3rd Base Hard Signage
+3rd Base Hard Signage - MLB
+3rd Base LED Board
+3rd Base Rotational
+Batter's Eye EVI
+Dugout Rails
+Home Plate EVI
+Home Plate EVI - MLB
+Home Plate Hard Signage
+Home Plate Hard Signage - MLB
+Home Plate Outfield
+Home Plate Rotational
+Left Field LED Board
+Left Outfield Hard Signage
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+Right Field LED Board
+Right Field LED Board - MLB
+Right Field Stands Hard Signage
+Special Structure Signage
+Special Structure Signage - MLB
+Spectator Card
+Videoboard Signage
+Videoboard Signage - MLB
+
+#MGM
+1st Base LED Board - MLB
+Dugout Rails
+Dugout Roof
+Home Plate EVI
+Home Plate Rotational
+Left Field Wall Hard Signage
+Network Presentation Graphics - MLB
+Network Presentation Graphics - MLB Postseason
+Right Field Wall Hard Signage
+Right Outfield Hard Signage
+Videoboard Signage
+
+#Michelob Ultra
+Home Plate EVI
+
+#Mitel
+1st Base LED Board
+3rd Base Rotational
+Batter's Eye EVI
+Bullpen Phones
+Center Field Wall Hard Signage
+Dugout Phones
+Dugout Phones - MLB
+Dugout Walls
+Home Plate EVI
+Home Plate EVI - MLB
+Home Plate Rotational
+Hoodie
+Jacket
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+Polo Shirt
+Right Field LED Board
+
+#MLB
+1st Base Hard Signage
+1st Base Hard Signage - @MLB
+1st Base Hard Signage - At Bat
+1st Base Hard Signage - MLB Network
+1st Base Hard Signage - MLB Shop
+1st Base Hard Signage - MLB Shop w MC
+1st Base Hard Signage - NLDS
+1st Base Hard Signage - Play Ball
+1st Base LED Board
+1st Base LED Board - ALDS
+1st Base LED Board - At Bat
+1st Base LED Board - Wild Card
+1st Base Rotational
+1st Base Rotational - At Bat
+1st Base Rotational - MLB Network
+1st Base Rotational - MLB Shop
+1st Base Rotational - MLB Shop w MC
+1st Base Rotational - Play Ball
+3rd Base Hard Signage
+3rd Base Hard Signage - @MLB
+3rd Base Hard Signage - At Bat
+3rd Base Hard Signage - MLB Network
+3rd Base Hard Signage - MLB Postseasan
+3rd Base Hard Signage - MLB Shop
+3rd Base Hard Signage - MLB Shop w MC
+3rd Base Hard Signage - NLDS
+3rd Base Hard Signage - Play Ball
+3rd Base LED Board
+3rd Base LED Board - ALDS
+3rd Base Rotational
+3rd Base Rotational - At Bat
+3rd Base Rotational - MLB Network
+3rd Base Rotational - MLB Shop
+3rd Base Rotational - Play Ball
+Bag
+Ball
+Ballpark Cam - MLB Network
+Banner
+Base - ALDS
+Base - NLCS
+Base - Wild Card
+Bat - ALCS
+Camera Cover
+Caps
+Carpet
+Carpet - MLB Network
+Carpet - Post Season
+Chair
+Chest Protector
+Collar
+Cup
+Dugout Phones
+Dugout Rails
+Dugout Rails - @MLB
+Dugout Rails - ALDS
+Dugout Rails - At Bat
+Dugout Rails - MLB Network
+Dugout Rails - MLB Shop
+Dugout Rails - NLCS
+Dugout Rails - NLDS
+Dugout Rails - Play Ball
+Dugout Rails - Wild Card
+Dugout Roof
+Dugout Roof - @MLB
+Dugout Roof - ALDS
+Dugout Roof - At Bat
+Dugout Roof - MLB Network
+Dugout Roof - MLB.com
+Dugout Roof - NLCS
+Dugout Roof - NLDS
+Dugout Roof - Play Ball
+Dugout Roof - Wild Card
+Dugout Walls
+Dugout Walls  - ALCS
+Dugout Walls - @MLB
+Dugout Walls - ALDS
+Dugout Walls - At Bat
+Dugout Walls - Ballpark
+Dugout Walls - MLB Network
+Dugout Walls - MLB.com
+Dugout Walls - NLCS
+Dugout Walls - NLDS
+Dugout Walls - Play Ball
+Dugout Walls - Wild Card
+Flag
+Glove
+Grass Signage
+Grass Signage - ALCS
+Grass Signage - ALDS
+Grass Signage - MLB ALCS
+Grass Signage - NLCS
+Grass Signage - NLDS
+Helmet Decal
+Home Plate EVI
+Home Plate EVI - ALCS
+Home Plate EVI - At Bat
+Home Plate EVI - Ballpark
+Home Plate EVI - MLB - Tonight
+Home Plate EVI - MLB Network
+Home Plate EVI - MLB Shop
+Home Plate EVI - MLB Shop w MC
+Home Plate EVI - MLB Tonight
+Home Plate EVI - MLB.com
+Home Plate EVI - MLB.TV
+Home Plate EVI - Play Ball
+Home Plate EVI - Post Season
+Home Plate EVI - RBI 19
+Home Plate Hard Signage
+Home Plate Hard Signage - ALDS
+Home Plate Hard Signage - At Bat
+Home Plate Hard Signage - MLB ALDS
+Home Plate Hard Signage - MLB Network
+Home Plate Hard Signage - NLDS
+Home Plate Hard Signage - Play Ball
+Home Plate Hard Signage - Wild Card
+Home Plate Outfield
+Home Plate Outfield - @MLB
+Home Plate Outfield - At Bat
+Home Plate Outfield - MLB Network
+Home Plate Outfield - MLB Shop w MC
+Home Plate Outfield - Play Ball
+Home Plate Outfield - Wild Card
+Home Plate Rotational
+Home Plate Rotational - ALCS
+Home Plate Rotational - ALDS
+Home Plate Rotational - At Bat
+Home Plate Rotational - MLB Network
+Home Plate Rotational - MLB.com
+Home Plate Rotational - Play Ball
+Home Plate Rotational - Post Season
+Hoodie
+Jacket
+Laptop Sticker
+Left Field LED Board
+Left Field LED Board - Ballpark
+Left Field LED Board - MLB Network
+Left Field Stands Hard Signage
+Left Field Wall Hard Signage
+Left Foul Line Hard Signage - MLB Network
+Left Outfield Hard Signage - At Bat
+Left Outfield LED Board
+Left Outfiled Hard Signage - MLB Network
+Media Backdrop
+Media Backdrop - @MLB
+Microphone
+Microphone - MLB Network
+Network Presentation Graphics
+Network Presentation Graphics - @MLB
+Network Presentation Graphics - ALCS
+Network Presentation Graphics - ALDS
+Network Presentation Graphics - At Bat
+Network Presentation Graphics - Ballpark
+Network Presentation Graphics - MLB ALCS
+Network Presentation Graphics - MLB Network
+Network Presentation Graphics - MLB Shop
+Network Presentation Graphics - MLB Shop w MC
+Network Presentation Graphics - MLB Tonight
+Network Presentation Graphics - MLB.com
+Network Presentation Graphics - MLB.TV
+Network Presentation Graphics - NLCS
+Network Presentation Graphics - NLDS
+Network Presentation Graphics - Play Ball
+Network Presentation Graphics - Post Season
+Network Presentation Graphics - RBI
+Network Presentation Graphics - RBI 19
+Network Presentation Graphics - Social Snapshot
+Network Presentation Graphics - Wild Card
+Polo Shirt
+Presenters Desk
+Promotion Item - NLCS
+Right Field LED Board
+Right Field LED Board - MLB Network
+Right Field LED Board - MLB NLCS
+Right Field LED Board - NLDS
+Right Field Wall Hard Signage
+Right Field Wall Hard Signage - MLB Network
+Right Foul Line Hard Signage
+Right Foul Line Hard Signage - MLB
+Right Outfield Hard Signage
+Right Outfield Wall Hard Signage
+Rubbish Bin
+Socks
+Special Structure Signage
+Spectator Apparel
+Spectator Apparel - Post Season
+Spectator Card
+Studio
+Studio - ALCS
+Studio - ALDS
+Studio - MLB Network
+Studio - MLB Tonight
+Studio - NLCS
+Studio - NLDS
+Studio - Post Season
+Studio - Postseason
+Studio - Wild Card
+Sweatband
+T-Shirt
+Tablet
+Ticket - NLCS
+Training Area
+Trophy
+Uniforms - Jerseys
+Uniforms - Jerseys - World Series
+Uniforms - Pants
+Videoboard Signage - ALDS
+Videoboard Signage - NLDS
+Videoboard Signage - Play Ball
+Videoboard Signage - Post Season
+
+#Netspend
+1st Base LED Board
+1st Base LED Board - MLB
+
+#New Era
+1st Base Hard Signage
+3rd Base Hard Signage
+Beanie
+Caps
+Center Outfield Hard Signage
+Cleats
+Collar
+Dugout Rails
+Dugout Roof
+Dugout Walls
+Home Plate EVI - MLB
+Home Plate Hard Signage
+Home Plate Rotational
+Home Plate Rotational - MLB
+Hoodie
+Left Field Wall Hard Signage
+Left Field Wall Hard Signage - MLB
+Left Foul Line Hard Signage
+Mask
+Outfield Hard Signage
+Right Field LED Board
+Right Field Wall Hard Signage
+Right Foul Line Hard Signage
+Spectator Apparel
+
+#Nike
+1st Base LED Board
+Caps
+Chest Protector
+Cleats
+Collar
+Glasses
+Glove
+Helmet Decal
+Hoodie
+Jacket
+Left Field LED Board
+Left Field Wall Hard Signage
+Pads
+Polo Shirt
+Right Field LED Board
+Spectator Apparel
+Sweatband
+T-Shirt
+Uniforms - Jerseys
+Uniforms - Pants
+Uniforms - Shorts
+Videoboard Signage
+
+#NTT
+Home Plate EVI - MLB
+
+#Old Dominion
+1st Base Hard Signage
+1st Base Rotational
+3rd Base Hard Signage
+Batter's Eye EVI
+Center Field LED Board
+Center Field Wall Hard Signage
+Home Plate EVI
+Home Plate Hard Signage
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+Right Field Wall Hard Signage
+
+#Papa John's
+Left Field LED Board
+Left Field Wall Hard Signage
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+Right Outfield Hard Signage
+
+#Roman
+1st Base Hard Signage - MLB
+1st Base Rotational
+1st Base Rotational - MLB
+1st Base Rotational - MLB1st Base Rotational - MLB
+3rd Base Rotational
+3rd Base Rotational - MLB
+Batter's Eye EVI
+Home Plate EVI
+Home Plate EVI - MLB
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+
+#Scotts
+1st Base Hard Signage
+1st Base Rotational
+3rd Base Hard Signage
+3rd Base LED Board
+Right Field LED Board
+
+#Snapple
+Home Plate EVI - MLB
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+
+#State Farm
+1st Base Hard Signage
+Left Field Stands Hard Signage
+Right Field Stands Hard Signage
+Right Field Wall Hard Signage
+Right Outfield Hard Signage
+
+#Supercuts
+1st Base LED Board
+1st Base LED Board - MLB
+1st Base Rotational
+3rd Base Hard Signage
+3rd Base LED Board
+3rd Base Rotational
+Home Plate EVI - MLB
+Left Field LED Board
+Network Presentation Graphics
+Right Outfield Hard Signage
+
+#T-Mobile
+1st Base Hard Signage
+1st Base LED Board
+1st Base Rotational
+1st Base Rotational - MLB
+3rd Base Hard Signage
+3rd Base LED Board
+3rd Base Rotational
+Center Field Stands Hard Signage
+Dugout Rails
+Dugout Roof
+Dugout Walls
+Home Plate EVI
+Home Plate EVI - MLB
+Home Plate Hard Signage
+Home Plate Hard Signage - MLB
+Home Plate Rotational
+Left Field LED Board
+Left Field Stands Hard Signage
+Left Field Wall Hard Signage
+Left Outfield Hard Signage
+Left Outfield Wall Hard Signage
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+Right Field LED Board
+Right Field Wall Hard Signage
+Right Field Wall LED Board
+Right Outfield Hard Signage
+Special Structure Signage
+Videoboard Signage
+
+#Taco Bell
+1st Base LED Board
+Home Plate EVI
+Network Presentation Graphics
+Upper Home Plate Static Sign
+
+#The Hartford
+1st Base LED Board - MLB
+3rd Base LED Board
+3rd Base LED Board - MLB
+Batter's Eye EVI
+Batter's Eye EVI - MLB
+Center Field Wall Hard Signage
+Dugout Fence Hard Signage
+Home Plate EVI
+Home Plate EVI - MLB
+Home Plate Hard Signage
+Home Plate Rotational
+Left Field LED Board
+Left Field Wall Hard Signage
+Left Outfield Hard Signage
+Right Field LED Board
+Right Field LED Board - MLB
+
+#Under Armour
+Caps
+Chest Protector
+Cleats
+Glasses
+Glove
+Headband
+Helmet Decal
+Pads
+Polo Shirt
+Spectator Apparel
+Sweatband
+T-Shirt
+
+#Utz
+1st Base Hard Signage
+1st Base Hard Signage - MLB NLDS
+1st Base LED Board - MLB
+1st Base Rotational
+1st Base Rotational - MLB
+3rd Base Hard Signage
+3rd Base Hard Signage - MLB 
+3rd Base Hard Signage - MLB NLDS
+3rd Base Rotational
+3rd Base Rotational - MLB
+Batter's Eye EVI
+Batter's Eye EVI - MLB
+Center Field LED Board - MLB
+Center Field Wall Hard Signage
+Center Field Wall Hard Signage - MLB
+Dugout Rails
+Dugout Rails - MLB
+Dugout Rails - MLB NLDS
+Dugout Roof
+Dugout Roof - MLB
+Dugout Roof - MLB NLDS
+Dugout Walls
+Dugout Walls - MLB NLDS
+Home Plate EVI
+Home Plate Hard Signage
+Home Plate Hard Signage - MLB
+Home Plate Hard Signage - MLB NLDS
+Home Plate Outfield
+Home Plate Outfield - MLB NLDS
+Home Plate Rotational
+Left Field LED Board
+Left Field LED Board - MLB
+Left Field LED Board - MLB NLDS
+Left Field Wall Hard Signage - MLB
+Media Backdrop
+Media Backdrop - MLB NLDS
+Network Presentation Graphics
+Network Presentation Graphics - MLB NLDS
+Right Field LED Board - MLB NLDS
+Studio
+Studio - MLB ALDS
+Studio - MLB NLDS
+Videoboard Signage
+
+#W.B. Mason
+3rd Base Hard Signage
+Left Field Wall Hard Signage
+Network Presentation Graphics
+Right Field Wall Hard Signage
+Videoboard Signage
+
+#YouTube TV
+1st Base LED Board - MLB
+Batter's Eye Evi
+Center Field Wall Hard Signage
+Home Plate EVI
+Home Plate EVI - MLB
+Home Plate EVI - MLB WORLD SERIES
+Home Plate EVI - MLB World Series
+Home Plate Hard Signage
+Network Presentation Graphics
+Network Presentation Graphics - MLB
+Network Presentation Graphics - MLB WORLD SERIES
+Studio - WORLD SERIES

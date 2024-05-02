@@ -1,0 +1,80 @@
+//Filename:
+//Annotator:
+--  TOKYO_MARATHON.TXT
+
+
+#Abbott World Marathon Majors
+Banner
+Barrier Side Board
+Distance Marker
+Media Backdrop
+Platform @ Starting Line
+Sponsorboard @ Start
+Static Board
+Table
+TVGI
+Water Station
+
+#Asics
+Banner
+Barrier Side Board
+Bib
+Cap
+Distance Marker
+Hoodie
+Jacket
+Media Backdrop
+Sponsorboard @ Finish
+Sponsorboard @ Half
+Sponsorboard @ Start
+Staff Apparel
+Static Board
+T-Shirt
+Water Station
+
+#Seiko
+Banner
+Barrier Side Board
+Clock
+Distance Marker
+Finish Line Clock
+Media Backdrop
+Sponsorboard @ Finish
+Sponsorboard @ Start
+Static Board
+Timecar
+TVGI
+TVGI - Clock
+
+#Starts Corporation
+Banner
+Barrier Side Board
+Company Headquarters
+Distance Marker
+Media Backdrop
+Running Number - Back
+Running Number - Front
+Sponsorboard @ Finish
+Sponsorboard @ Half
+Sponsorboard @ Start
+Static Board
+TVGI
+Water Station
+
+#Tokyo Metro
+Banner
+Barrier Side Board
+Distance Marker
+Finish Tape
+Media Backdrop
+Running Number - Back
+Running Number - Front
+Sponsorboard @ Finish
+Sponsorboard @ Half
+Sponsorboard @ Start
+Static Board
+Station Sign
+Station Signage
+Towel
+TVGI
+Water Station

@@ -1,0 +1,61 @@
+BMW Championship Logo_Caddy Vest
+BMW Championship Logo_Flag
+BMW Championship Logo_Giant Screen
+BMW Championship Logo_Grandstand Signage
+BMW Championship Logo_Group Board
+BMW Championship Logo_Leaderboard
+BMW Championship Logo_Media Backdrop
+BMW Championship Logo_Par/Distance Signage
+BMW Championship Logo_Presenters Desk
+BMW Championship Logo_Static Board
+BMW Championship Logo_TVGI
+BMW Championship Logo_Upper Stands
+BMW Championship Text_Caddy Vest
+BMW Championship Text_Car
+BMW Championship Text_Flag
+BMW Championship Text_Grandstand Signage
+BMW Championship Text_Group Board
+BMW Championship Text_Leaderboard
+BMW Championship Text_Par/Distance Signage
+BMW Championship Text_Presenters Desk
+BMW Championship Text_Static Board
+BMW Championship Text_Trophy
+BMW Championship Text_TVGI
+BMW Championship Text_TVGI Intro
+BMW Championship Text_TVGI Leaderboard
+BMW Championship Text_Upper Stands
+BMW Logo_Billboard
+BMW Logo_Caddy Vest
+BMW Logo_Flag
+BMW Logo_Giant Screen
+BMW Logo_Grandstand Signage
+BMW Logo_Group Board
+BMW Logo_Leaderboard
+BMW Logo_Media Backdrop
+BMW Logo_Par/Distance Signage
+BMW Logo_Players Area
+BMW Logo_Spectator Clothing
+BMW Logo_Stands Entrance
+BMW Logo_Static Board
+BMW Logo_Tee Marker
+BMW Logo_Trophy
+BMW Logo_TVGI
+BMW Logo_TVGI Leaderboard
+BMW Logo_Upper Stands
+BMW Text_Caddy Vest
+BMW Text_Flag
+BMW Text_Grandstand Signage
+BMW Text_Group Board
+BMW Text_Leaderboard
+BMW Text_Presenter Podium
+BMW Text_Presenters Desk
+BMW Text_Screen
+BMW Text_Static Board
+BMW Text_Tent
+BMW Text_TVGI
+BMW Text_Upper Stands
+Mastercard_Giant Screen
+Mastercard_TVGI
+Rolex_Clocks
+Rolex_Giant Screen
+Rolex_Teebox Board

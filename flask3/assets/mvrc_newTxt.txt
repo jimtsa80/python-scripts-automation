@@ -1,0 +1,137 @@
+//Filename:
+//Annotator:
+--  MVRC.TXT
+
+
+#1300 Australia
+Strapper Vest (front)
+TVGI Text - Race Name
+Winning Post Signage
+
+#Antler
+Home Straight Superscreen
+Saddle Cloth
+Strapper Vest (back)
+Strapper Vest (front)
+Trackside Signage
+TVGI Text - Race Name
+Winning Post Signage
+
+#Chandler Macleod
+Saddle Cloth
+Trackside Signage
+TVGI Text - Race Name
+Winning Post Signage
+
+#Crown Resorts
+Mounting Yard Stalls
+Trackside Signage
+TVGI Text - Race Name
+Winning Post Signage
+
+#Drummond Golf(Also mimatch & Big Swing)
+Mounting Yard Signage
+Saddle Cloth
+Strapper Vest (back)
+Strapper Vest (Front)
+Trackside Signage
+TVGI Text - Race Name
+Winning Post Signage
+
+#Inglis
+Cap
+Home Straight Superscreen
+Mounting Yard Signage
+Saddle Cloth
+Trackside Signage
+TVGI Text
+Winning Post Signage
+
+#Ladbrokes
+A-Frame Signage
+Barrier Attendant Vest (back)
+Barrier Attendant Vest (front)
+Carpark Sign
+Flag
+Grandstand
+Grass Cover
+Home Straight Superscreen
+Media Backdrop
+Microphone
+Mounting Yard Signage
+Mounting Yard Signage Tier 2
+Mounting Yard Stalls
+Saddle Cloth
+Scale Board
+Starting Stalls Signage
+Strapper Vest (back)
+Strapper Vest (front)
+Track Railing
+Trackside Signage
+Trophy
+TVGI Logo
+TVGI Market Update
+TVGI Text - Race Name
+TVGI Website
+Winning Horse Rug
+Winning Post Signage
+
+#McCafe
+Mounting Yard Signage
+Saddle Cloth
+Strapper Vest (back)
+Strapper Vest (front)
+Trackside Signage
+TVGI Text - Race Name
+Winning Post Signage
+
+#MSC Signs
+Trackside Signage
+TVGI Text - Race Name
+Winning Post Signage
+
+#PFD
+Mounting Yard Signage
+Saddle Cloth
+Strapper Vest (front)
+Trackside Signage
+TVGI Text - Race Name
+Winning Post Signage
+
+#Powerflo Solutions
+Saddle Cloth
+Strapper Vest (back)
+Strapper Vest (front)
+TVGI Text - Race Name
+Winning Post Signage
+
+#Schweppes
+Mounting Yard Signage
+Saddle Cloth
+Strapper Vest (back)
+Strapper Vest (front)
+Trackside Signage
+TVGI Text - Race Name
+Winning Post Signage
+
+#Seppelt Wines
+Saddle Cloth
+Trackside Signage
+TVGI Text - Race Name
+Winning Post Signage
+
+#Strathmore Community Bendigo Bank
+Home Straight Superscreen
+Mounting Yard Signage
+TVGI Text - Race Name
+Winning Post Signage
+
+#Sweeney Estate Agents
+Mounting Yard Signage
+TVGI Text - Race Name
+Winning Post Signage
+
+#The Westin
+Trackside Signage
+TVGI Text - Race Name
+Winning Post Signage

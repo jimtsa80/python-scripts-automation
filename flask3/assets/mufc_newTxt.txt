@@ -1,0 +1,147 @@
+//Filename:
+//Annotator:
+--  MUFC.TXT
+
+
+#Adidas
+Bib Front
+Coach Apparel
+Goalkeeper Gloves
+Goalkeeper Jersey Front
+LED Board
+LED Board (Null Brand)
+Mascot Clothing
+Media Backdrop
+Parapet
+Player Jersey Front
+Player Shorts Back
+Player Shorts Front
+Player Socks
+Seats
+Spectator Clothing
+Sports Bag
+Stadium Roof
+Static Board
+Tracksuit
+Training Jersey Front
+Traning Shorts Front
+Vomitory
+Weather Jacket
+
+#Aeroflot
+LED Board
+LED Board (Null Brand)
+Media Backdrop
+
+#Aon
+Bib Front
+Coach Apparel
+Goalkeeper Jersey Front
+LED Board
+Player Jersey Front
+Tracksuit
+Training Jersey Front
+Weather Jacket
+
+#Aperol Spritz
+LED Board
+
+#apollo
+LED Board
+LED Board (Null Brand)
+Media Backdrop
+
+#Casillero del Diablo
+LED Board
+LED Board (Null Brand)
+
+#Chevrolet
+Goalkeeper Jersey Front
+Kids Clothing
+LED Board
+LED Board (Null Brand)
+Mascot Clothing
+Media Backdrop
+Player Jersey Front
+Seat
+Spectator Clothing
+
+#Chivas
+LED Board
+LED Board (Null Brand)
+Media Backdrop
+
+#DHL
+LED Board
+LED Board (Null Brand)
+Media Backdrop
+
+#EA Sports
+Ball Stand
+Media Backdrop
+Referee Jacket
+Referee Jersey Sleeve
+Training Jersey Back
+Training Jersey Front
+TVGI
+
+#Gulf
+LED Board
+LED Board (Null Brand)
+
+#Kohler
+Goalkeeper Jersey  Sleeve
+Goalkeeper Jersey Sleeve
+LED Board
+LED Board (Null Brand)
+Mascot Clothing
+Media Backdrop
+Player Jersey Sleeve
+
+#Konami
+LED Board
+LED Board (Null Brand)
+
+#Marriott Bonvoy
+LED Board
+LED Board (Null Brand)
+Media Backdrop
+
+#Maui Jim
+LED Board
+LED Board (Null Brand)
+
+#Melitta
+LED Board
+LED Board (Null Brand)
+
+#Mlily
+LED Board
+LED Board (Null Brand)
+
+#Null
+LED Board (Null Brand)
+
+#Remington
+LED Board
+LED Board (Null Brand)
+
+#Swissquote
+LED Board
+LED Board (Null Brand)
+Media Backdrop
+
+#Tag Heuer
+LED Board
+LED Board (Null Brand)
+Substitution Board
+TVGI Wrap Clock
+
+#VisitMalta
+LED Board
+LED Board (Null Brand)
+
+#Yabo
+LED Board
+LED Board (Null Brand)
+Media Backdrop

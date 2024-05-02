@@ -1,0 +1,51 @@
+<!doctype html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="static/css.css">
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		 <title>i-sieve reports</title>
+		 <link rel="icon" href="http://i-sieve.ie/content/logo200_92.png">
+
+		  <script>
+
+				function loading(){
+					$(".loading").show();
+				}
+
+				$(document).ready(function(){
+					$('input[type="radio"]').click(function(){
+		        		 if($(this).attr("value")!=="concat"){
+	            			$("#filename").hide();
+	        			}
+	        			if($(this).attr("value")=="concat"){
+	            			$("#filename").show();
+
+	        			} 
+		   	 		});
+									
+
+		   	 	$(function() {
+					$( ".date_ex").datepicker({
+					dateFormat: 'dd/mm/yy',
+					changeMonth: false,
+					changeYear: false
+					});
+			 });});
+			</script>
+
+	</head>
+
+<body>
+	<div class="container">
+		<div class="topnav" id="nav">
+		    <a class="{% if page=='social' %}active{%endif %}" href="social_mention.html">mentions</a>
+		    <a class="{% if page=='xlsx' %}active{%endif %}" href="xlsx_creator.html">xlsx creator</a>
+		    <a class="{% if page=='report' %}active{%endif %}" href="report_creator.html" id='report'>social report creator</a>
+		    <a class="{% if page=='check_videos' %}active{%endif %}" href="check_week_videos.html" id='report'>check week videos - moirasies</a>
+		    <a class="{% if page=='report_to_db' %}active{%endif %}" href="report_to_db.html" id='report'>report to db</a>
+		</div>

@@ -1,0 +1,89 @@
+//Filename:20200202_AO_Day14_WF_1500
+//Annotator:jimtsa
+--  AMB.TXT
+
+
+#Adidas - Logo Combined
+Ball
+Ball Podium
+Coach Apparel
+Fan Apparel
+Hat
+Kids Apparel
+LED Board
+Player Bib
+Player Jersey Front
+Player Shorts Back
+PLayer Shorts Front
+Player Sock
+Referee Apparel
+Spectator Clothing
+Staff Apparel
+Static Board
+Training Shirt Front
+Video Screen Led
+
+#Adidas - Text
+LED Board - Play Flawless
+LED Board - BE UNSTOPPABLE
+LED Board - COPA
+LED Board - LEAVE THEM FOR DUST
+LED Board - LEAVE THEM IN THE DUST
+LED Board - NEMESIS
+LED Board - PLAY FLAWLESS
+LED Board - Predator
+LED Board - STRIKE ON INSTINCT
+LED Board - Website
+Static Board
+
+#American Family Insurance
+Coach Apparel
+Fan Apparel
+Kids Apparel
+LED Board
+LED Board - #DreamFearesly
+Player Jersey Front
+Spectator Clothing
+Staff Appare
+Staff Apparel
+Training Shirt Front
+
+#Mercedes-Benz - Logo
+LED Board
+Players Entrance
+Stadium Roof Screen
+Stadium Sign
+Static Board
+TVGI
+Vomitory
+
+#Mercedes-Benz - Text
+LED Board
+LED Board - Official Vehicle of Your Atlanda United
+LED Parapet - Official Vehicle of Your Atlanda United
+Parapet
+Stadium Roof Sign
+Stadium Sign
+Staff Apparel
+T-shirt
+Trophy
+
+#Piedmont Healthcare - Logo Combined
+LED Board
+TVGI
+TVGI - Clock Wrap
+
+#Piedmont Healthcare - Logo
+LED Board
+
+#Piedmont Healthcare - Text
+LED Board - Care is just a click away
+LED Board - Go online. Book with ease
+LED Board - Website
+
+#TagHeuer - Logo
+Referee Apparel
+Substitution Board
+
+#TagHeuer - Text
+Substitution Board

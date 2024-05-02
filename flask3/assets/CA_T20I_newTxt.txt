@@ -1,0 +1,468 @@
+//Filename:
+//Annotator:
+--  CA_T20I.TXT
+
+
+#Alinta Energy
+Giant Screen
+LED Parapet
+LED Sightscreen
+LED Sign
+Media Backdrop
+Parapet
+Playing Kit, Arm
+Playing Kit, Back
+Playing Kit, Cap
+Playing Kit, Chest
+Playing Kit, Collar
+Playing Kit, Pants
+Polo Shirt
+Spectator Clothing
+Static Board
+Training Kit
+Training Kit, Cap
+TVGI 50
+TVGI ENERGY HITS
+TVGI Intro
+TVGI Scoreline
+TVGI Viz - Get a great energy deal. Switch now.
+Warm Up Bib
+
+#Ashley & Martin
+TVGI Intro
+
+#Asics
+Jacket
+Kid's Clothing
+LED Sign
+Playing Kit, Arm
+Playing Kit, Cap
+Playing Kit, Chest
+Playing Kit, Pants
+Polo Shirt
+Spectator Clothing
+Training Kit
+Training Kit, Cap
+Warm Up Bib
+
+#Bet365.com
+Boundary Rope
+Grandstand
+LED Parapet
+LED Parapet - Tel No.
+LED Sign
+LED Sign - Tel No.
+Parapet
+TVGI - Website
+TVGI Intro
+TVGI Viz - Bet on the Cricket
+TVGI Viz - Gamble Responsibly
+
+#Betta Home Living
+LED Sign
+LED Sign - Air Con
+LED Sign - Furniture
+LED Sign - Laundry
+LED Sign - Small Appliances
+Parapet
+Parapet - Air Con
+Parapet - Cooking
+Parapet - Dryers
+Parapet - Electrical
+Parapet - Fridges
+Parapet - Furniture
+Parapet - TVs
+Parapet - Washers
+
+#BKT Tyres
+LED Sightscreen
+LED Sightscreen - AGRICULTURAL TIRES
+LED Sign
+LED Sign - #GROWINGTOGETHER
+LED Sign - AGRICULTURAL TIRES
+Led Sign - AGRICULTURAL TIRES
+
+#Branded
+Bat
+Gloves
+Pads
+Playing Kit, Helmet
+
+#Bunnings Warehouse
+TVGI Intro
+TVGI Lab Opening Sting
+TVGI Transition Swipe
+TVGI Viz - Put your own spin on your D.I.Y. Projects
+
+#Bupa
+Jacket
+Laptop Sticker
+LED Sign
+LED Sign - Dentists
+LED Sign - Health Insurance
+LED Sign - Overseas Visitors Cover
+LED Sign - Pet Insurance
+Training Kit
+Training Kit, Cap
+
+#Canberra
+LED Sign
+
+#Classic
+Umpire Clothing
+
+#Commonwealth Bank
+Grandstand
+Grass Sign
+LED Parapet
+LED Sightscreen
+LED Sign
+LED Sign - End of Wicket Signage
+Parapet
+Playing Kit, Arm
+Playing Kit, Chest
+Static Board
+Static Board - End of Wicket Signage
+Training Kit
+Umpire Clothing
+
+#Comwire IT
+LED Parapet
+LED Parapet - WE GET IT
+LED Sign
+LED Sign - WE GET IT
+Parapet
+Parapet - WE GET IT
+
+#Cricket Australia
+Bag
+Event Staff Clothing
+Kid's Clothing
+Kid's Clothing - Blast
+Media Backdrop
+Media Backdrop - Website
+Microphone
+Reporter Microphone
+Trophy Table
+Trophy Table - Series Logo
+TVGI Intro
+TVGI Sweep Through
+TVGI Website - Tickets
+
+#Cricket Live App
+Media Backdrop
+
+#Cross River Rail
+Parapet
+Parapet - A train station for the Gabba
+
+#Domain
+Giant Screen
+Grass Sign
+Grass Sign - Australia's home of property
+LED Sightscreen
+LED Sign
+LED Sign - End of Wicket Signage
+TVGI Viz - Series Logo
+
+#Emirates
+LED Sign
+LED Sign - End of Wicket Signage
+Umpire Clothing
+
+#Fox Cricket
+Camera Base
+Camera Cover
+Cameraman Clothing
+Presenters' Desk
+Reporter Microphone
+Studio
+TVGI Giant Screen
+TVGI Grass Sign
+TVGI Intro
+TVGI LED sightscreen
+TVGI Name Super
+TVGI Play On
+TVGI Players Entrance
+TVGI Sweep Through
+TVGI Text
+TVGI Viz
+TVGI WEATHER RADAR
+
+#Foxtel
+LED Sightscreen
+LED Sightscreen - foxtel movies Ultra HD
+LED Sightscreen - movies Ultra HD
+LED Sign
+LED Sign - foxtel Ultra HD
+
+#Gabba
+Viewing Room
+
+#Gatorade
+Bottle
+Cooler
+Drinks Box
+Drinks Break Clothing
+Drinks Case
+Event Staff Clothing
+Players Entrance
+Stadium Entrance
+Static Board
+Towel
+
+#Gillette
+Bolster
+Dugout - Series Logo
+Giant Cheque
+Giant Screen - Series Logo
+Grass Sign
+Grass Sign - SKINGUARD
+LED Parapet
+LED Parapet - SKINGUARD
+LED Sightscreen
+LED Sightscreen - Series Logo
+LED Sightscreen - SKINGUARD
+LED Sign
+LED Sign - End of Wicket Signage
+LED Sign - End of Wicket Signage - SKINGUARD
+LED Sign - SKINGUARD
+Media Backdrop
+Parapet
+Static Board - Gillette Venus
+Stumps
+Trophy Table - Series Logo
+TVGI Series Logo
+TVGI Series Text
+TVGI Stumps
+VIP Seat
+Winners Stage - Series Logo
+
+#Gray-Nicolls
+Gloves
+
+#Harvey Norman
+TVGI Highlights
+TVGI Intro
+TVGI Viz - DON'T GET CAUGHT OUT - HURRY IN
+
+#Haulmark
+Grandstand
+
+#Home World
+Polo Shirt
+
+#ICC T20 World Cup
+TVGI Logo
+TVGI Text
+TVGI Viz - WELCOME TO THE BIG DANCE
+
+#Iconic
+Grandstand
+
+#iinet
+Parapet
+
+#Kennedy
+Parapet
+
+#KFC
+Grass Sign
+LED Sightscreen
+LED Sightscreen - $10 POPCORN CHICKEN BUCKET
+LED Sightscreen - $4.95 FILL UP
+LED Sightscreen - DOUBLE TENDER BURGER $4.95
+LED Sign
+LED Sign - BUCKET WHY NOT?
+LED Sign - BUCKET. LET'S GET LOUDER
+LED Sign - End of Wicket Signage - THE HCG
+LED Sign - THE HCG
+Playing Kit, Chest
+Playing Kit, Pants
+Static Board - BUCKET WHY NOT?
+Stumps
+
+#Kookaburra
+Bat
+Gloves
+Pads
+Stumps
+
+#Ladbrokes
+Parapet
+
+#Majestic Athletics
+Playing Kit, Chest
+
+#Marsh
+TVGI Series Logo
+
+#Mastercard
+LED Sightscreen
+LED Sign
+Parapet
+
+#Masuri
+Gloves
+Pads
+Playing Kit, Helmet
+Umpire, Helmet
+
+#Maytronics Dolphin
+TVGI Dolphin Smart Play
+TVGI Intro
+TVGI Powerplay Highlights
+TVGI Viz - Pool Cleaning made easy
+
+#Mazda
+Playing Kit, Cap
+Playing Kit, Chest
+Polo Shirt
+
+#McDonald's
+TVGI Cricket on Fox - The Big Break
+TVGI Intro
+TVGI Match Summary
+TVGI Name Super - The Big Break
+TVGI Play Off - The Big Break
+TVGI Play On - The Big Break
+TVGI Scorecard - 30Days30Deals
+TVGI Transition Swipe
+TVGI Viz - 30Days30Deals
+
+#Movember
+TVGI Website
+
+#New Balance
+Bat
+Gloves
+Pads
+
+#Optus
+Parapet
+Playing Kit, Chest
+Playing Kit, Chest - Yes
+TVGI Viz
+
+#Poppy
+Playing Kit, Arm
+
+#Pugg
+Nets
+
+#Qantas
+LED Sign
+Parapet
+Playing Kit, Arm
+Playing Kit, Cap
+Playing Kit, Chest
+Spectator Clothing
+Static Board
+
+#Rebel
+Playing Kit, Arm - Series Logo
+Polo Shirt
+
+#RIGHT HAND
+Grandstand
+
+#Robin Russel
+Grandstand
+
+#Spartan
+Bat
+Gloves
+Pads
+
+#Specsavers
+LED Sign
+LED Sign - Eyecare all-rounders
+Static Board
+Static Board - Eyecare all-rounders
+
+#Sportsbet
+Parapet
+
+#The Boundary Social
+Parapet
+
+#Toyota
+Grandstand
+LED Parapet
+LED Parapet - CRICKET. OH WHAT A FEELING
+LED Parapet - People
+LED Sightscreen
+LED Sightscreen - 4
+LED Sightscreen - CRICKET. OH WHAT A FEELING
+LED Sightscreen - Cricket. Oh What A Feeling
+LED Sign
+LED Sign - 4
+LED Sign - 6
+LED Sign - CRICKET. OH WHAT A FEELING
+LED Sign - Cricket. Oh What A Feeling
+LED Sign - End of Wicket Signage
+LED Sign - End of Wicket Signage - 4
+Parapet
+Static Board
+Static Board - CRICKET. OH WHAT A FEELING
+TVGI Flying Fox
+TVGI Fox Rover
+TVGI Intro
+TVGI OWAF
+TVGI Player Mic
+TVGI Viz - CRICKET. OH WHAT A FEELING
+
+#Triple M
+Parapet
+
+#Unbranded
+TVGI 4
+TVGI 6
+TVGI DRS
+TVGI DRS TIMER
+TVGI THIRD UMPIRE
+TVGI Wicket
+TVGI Wickets
+
+#Victoria Bitter
+Parapet
+Spectator Clothing
+
+#Vincents
+Grandstand
+
+#Western Union
+LED Sightscreen
+LED Sign
+TVGI WICKETS RECAP
+
+#Westpac
+Parapet
+
+#Woolworth's
+Bolster
+Kid's Clothing - Blast
+Pouffe
+Table
+
+#XXXX Gold
+Giant Screen
+Giant Screen - Umpire Decision
+LED Parapet
+LED Sightscreen
+LED Sightscreen - DRS CHALLENGE
+LED Sightscreen - GOOD AS GOLD
+LED Sign
+LED Sign - DRS CHALLENGE
+LED Sign - End of Wicket Signage
+LED Sign - End of Wicket Signage - DRS CHALLENGE
+LED Sign - THIRD UMPIRE
+Scoreboard
+TVGI 4
+TVGI Intro
+TVGI IntroAlinta EnergyTVGI Viz - GOOD AS GOLD
+
+#XXXX
+LED Parapet
+LED Sign
+Parapet

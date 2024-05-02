@@ -1,0 +1,74 @@
+//Filename:
+//Annotator:
+--  COD
+
+
+#COD World League
+Giant Cheque
+Jumbo Screen
+Medal
+Media Backdrop
+Microphone
+On-Screen Text
+Player Backdrop
+Player Desk
+Player Shirt
+Presenter Backdrop
+Presenter Desk
+Spectator Shirt
+Studio
+Trophy
+Trophy Table
+TVGI
+TVGI - Schedule
+TVGI - Transition
+
+#PlayStation - COD World League
+Banner - COD WL Composite Logo
+Jumbo Screen - COD WL Composite Logo
+LED Parapet - COD WL Composite Logo
+Microphone - COD WL Composite Logo
+On-Screen Text - COD WL Composite Logo
+Player Backdrop - COD WL Composite Logo
+Player Desk - COD WL Composite Logo
+Player Shirt - COD WL Composite Logo
+Presenter Backdrop - COD WL Composite Logo
+Presenter Card - COD WL Composite Logo
+Presenter Desk - COD WL Composite Logo
+Presenter Desk - COD WL Composite Text
+Promotion Item - COD WL Composite Logo
+Spectator Card - COD WL Composite Logo
+Studio - COD WL Composite Logo
+Trophy - COD WL Composite Logo
+Trophy Table - COD WL Composite Logo
+TVGI - #CWLPS4 - COD WL Composite Text
+TVGI - Bracket - COD WL Composite Logo
+TVGI - COD WL Composite Logo
+TVGI - COD WL Composite Text
+TVGI - HOTMIC - COD WL Composite Logo
+TVGI - Pool - COD WL Composite Logo
+TVGI - Pools - COD WL Composite Logo
+TVGI - Replay - COD WL Composite Logo
+TVGI - Schedule - COD WL Composite Logo
+TVGI - Team Graphic - COD WL Composite Logo
+TVGI - Transition - COD WL Composite Logo
+TVGI - Waiting Screen - COD WL Composite Logo
+TVGI B Roll - COD WL Composite Logo
+TVGI Bracket - COD WL Composite Logo
+
+#PlayStation
+Banner
+Cheer Stick
+Console
+Controller
+Jumbo Screen
+Microphone
+Player Backdrop
+Player Desk
+Presenter Backdrop
+Presenter Desk
+Spectator Cap
+Spectator Card
+TVGI
+TVGI - Shapes
+TVGI - Transition

@@ -1,0 +1,182 @@
+//Filename:
+//Annotator:
+--  CA_TVGI.TXT
+
+
+#ahm
+TVGI L-Frame - Switch to ahm for flexible, affordable health insurance.
+TVGI Telecast Sponsor
+
+#Alinta Energy
+TVGI 50
+TVGI ENERGY HITS
+TVGI Intro
+TVGI Scoreline
+TVGI Viz - Get a great energy deal. Switch now.
+
+#Bet365
+TVGI - Website
+TVGI Intro
+TVGI Viz - Bet on the Cricket
+TVGI Viz - Gamble Responsibly
+
+#Bunnings Warehouse
+TVGI Intro
+TVGI L-Frame - Put your own spin on your D.I.Y. Projects
+TVGI Lab Opening Sting
+TVGI Telecast Sponsor
+TVGI The Lab - Stat
+TVGI Transition Swipe
+TVGI Viz - Put your own spin on your D.I.Y. Projects
+
+#Chemist Warehouse
+TVGI Telecast Sponsor
+
+#Cricket Australia
+TVGI Intro
+TVGI Sweep Through
+TVGI Text
+TVGI Website - bigbash.com.au
+TVGI Website - bigbash.com.au - Tickets - WBBL
+TVGI Website - Shop
+TVGI Website - Tickets
+
+#Cricket Live App
+TVGI
+
+#Domain
+TVGI L-Frame - Series Logo
+TVGI Viz - Series Logo
+
+#Forever New
+TVGI Dressed By
+
+#Fox Cricket
+TVGI Grass Sign
+TVGI Intro
+TVGI LED sightscreen
+TVGI Name Super
+TVGI Play On
+TVGI Players Entrance
+TVGI Sweep Through
+TVGI Viz
+
+#Gabba
+TVGI Text
+
+#Gillette
+TVGI Series Logo
+TVGI Series Text
+
+#Harvey Norman
+TVGI Ball Speed
+TVGI Ball Tracker
+TVGI Batting Strike Rate
+TVGI Highlights
+TVGI Intro
+TVGI L-Frame - DON'T GET CAUGHT OUT - HURRY IN STORE & ONLINE NOW
+TVGI LED Sign
+TVGI Telecast Sponsor
+TVGI Viz - DON'T GET CAUGHT OUT - HURRY IN
+
+#Huddle
+TVGI L-Frame - Bot-powered insurance.Always on,so you can switch off.
+TVGI Telecast Sponsor
+
+#ICC T20 World Cup
+TVGI Viz - WELCOME TO THE BIG DANCE
+
+#KFC
+TVGI L-Frame - NEW $4.95 FILL UP!HIT HUNGER FOR SIX.
+TVGI L-Frame - Series Logo
+TVGI MOST SIXES
+TVGI Telecast Sponsor
+
+#Kookabura
+TVGI Stumps
+
+#Maytronics Dolphin
+TVGI Dolphin Smart Play
+TVGI Intro
+TVGI Powerplay Highlights
+TVGI Viz - Pool Cleaning made easy
+
+#McDonald's
+TVGI Cricket on Fox - The Big Break
+TVGI Intro
+TVGI MOMENT OF THE SERIES
+TVGI Name Super - The Big Break
+TVGI Play Off - The Big Break
+TVGI Play On - The Big Break
+TVGI Scorecard - 30Days30Deals
+TVGI Transition Swipe
+TVGI Viz - 30Days30Deals
+
+#Microgenics
+TVGI Telecast Sponsor
+
+#My Cricket
+TVGI App
+
+#Optus
+TVGI Telecast Sponsor
+TVGI Viz
+
+#Peter Jackson
+TVGI Dressed By
+
+#Rebel
+TVGI L-Frame - Series Logo
+TVGI LED Sign - Series Logo
+TVGI Series Logo
+TVGI Series Logo - Player of The Match
+TVGI Series Logo - Tickets
+TVGI Stumps
+TVGI Sweep Through - Series Logo
+TVGI Wagon Wheel - Series Logo
+
+#Saba
+TVGI Dressed By
+
+#Seven Cricket
+TVGI Intro
+TVGI L-Frame - Next Broadcast
+TVGI L-Frame - Social Media
+TVGI Next Broadcast
+
+#Toyota
+TVGI Flying Fox
+TVGI Intro
+TVGI L-Frame - CRICKET.OH WHAT A FEELING
+TVGI OWAF
+TVGI Player Mic
+TVGI Telecast Sponsor
+TVGI Viz - CRICKET. OH WHAT A FEELING
+TVGI WICKET REPLAY
+
+#Unbranded
+TVGI 4
+TVGI 6
+TVGI DRS
+TVGI DRS TIMER
+TVGI THIRD UMPIRE
+TVGI Wicket
+TVGI Wickets
+
+#Western Union
+TVGI WICKETS RECAP
+
+#Women's Health
+TVGI L-Frame 
+
+#Woolworths
+TVGI CRICKET BLAST - Website
+TVGI INNINGS BREAK
+TVGI L-Frame - Official partner of Woolworths Cricket Blast,for healthier fresh food kids.
+TVGI Telecast Sponsor
+TVGI Telecast Sponsor - CRICKET BLAST
+
+#XXXX Gold
+TVGI 4
+TVGI Intro
+TVGI Viz - GOOG AS GOLD

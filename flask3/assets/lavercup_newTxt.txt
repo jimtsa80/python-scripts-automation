@@ -1,0 +1,192 @@
+//Filename:
+//Annotator:
+--  LAVERCUP.TXT
+
+
+#ATP
+Static Board East/West
+Towel Box
+TVGI - Static Board East/West
+TVGI - Towel Box
+
+#Barilla
+Digital Wall East West
+
+#Blick
+Digital Wall East/West
+Practice Court Tier 1 East West
+Tier 3
+
+#Credit Suisse
+Digital Wall East/West
+Digital Wall North/South
+Practice Court Tier 1 North South
+Tier 2
+Tier 3
+TVGI - Digital Wall East/West
+TVGI - Digital Wall North/South
+Vomitory
+
+#Geneva 2019
+Cap
+Court Decal
+Digital Wall East/West
+Digital Wall North/South
+Digital Wall North/South - Animation
+Dressing Room
+Flag
+Indoor Signage
+Lanyard
+Media Backdrop
+Outdoor Signage
+Players Corridor
+Players Entrance
+Static Board East West
+Static Board East/West
+Tier 2
+Tier 3 - Animation
+Towel
+TVGI
+TVGI - Court Decal
+TVGI - Static Board East/West
+
+#Henniez
+Digital Wall East/West
+Practice Court Tier 1 East West
+
+#Hirslanden
+Digital Wall East/West
+Practice Court Tier 1 East West
+
+#Jura
+Speed Serve
+
+#Laver Cup
+Apparel Ball Kid
+Apparel Line Judge
+Ball
+Banner
+Big Screen
+Big Screen - Lavercup.com
+Canister
+Cap
+Centre Screen
+Court Decal
+Digital Wall East/West
+Digital Wall East/West - Animation
+Digital Wall North/South
+Digital Wall North/South - Animation
+Dressing Room
+Flag
+Giant Ball
+Indoor Signage
+Jacket
+Lanyard
+Locker Room
+Media Backdrop
+Microphone
+Outdoor Signage
+Players Bench
+Players Corridor
+Players Entrance
+Practice Court Tier 1 North South
+Presenters Desk
+Presenters Desk - Screen
+Spectator Apparel
+Spectator Card
+Static Board East/West
+T-Shirt
+Tier 2
+Tier 2 - Animation
+Tier 3 - Animation
+Towel
+Towel Box
+Trophy
+Trophy Table
+TVGI
+TVGI - #LaverCup
+TVGI - Court Decal
+TVGI - Digital Wall North/South
+TVGI - Lavercup.com
+TVGI - Leaderboard
+TVGI - Score
+TVGI - Score #LaverCup
+TVGI - Score - Leaderboard
+TVGI - Score Lavercup.com
+TVGI - Static Board East/West
+TVGI Leaderboard
+TVGI Screen Flash
+TVGI Text
+Umpire Chair
+Videoboard
+Vomitory
+
+#Le Coq Sportif
+Apparel Ball Kid
+Apparel Line Judge
+
+#Le Matin Dimanche
+Practice Court Tier 1 East West
+
+#Mercedes-Benz
+Digital Wall East/West
+Digital Wall East/West - Animation
+Digital Wall North/South
+Digital Wall North/South - Animation
+Media Backdrop
+Net
+Tier 2
+Tier 3
+Tier 3 - Animation
+TVGI - Digital Wall East/West
+TVGI - Net
+Vomitory
+
+#Moet & Chandon
+Digital Wall East/West
+Glass
+Media Backdrop
+
+#Netjets
+Digital Wall East/West
+Speed Serve
+Vomitory
+
+#Rolex
+Digital Wall East/West
+Digital Wall East/West - Animation Green
+Digital Wall East/West - Animation White
+Digital Wall North/South
+Digital Wall North/South - Animation
+Digital Wall North/South - Animation White
+Green Clock
+Match Clock
+Media Backdrop
+Practice Court Tier 1 North South
+Tier 2
+Tier 3
+TVGI - Digital Wall East/West
+TVGI - Digital Wall North/South
+TVGI - Game Duration
+TVGI - Match Clock
+TVGI - Official Review
+Vomitory
+
+#Sunrise
+Digital Wall East/West
+Practice Court Tier 1 East West
+
+#TCL
+Digital Wall East/West
+Practice Court Tier 1 East West
+
+#TV24
+Digital Wall East/West
+Practice Court Tier 1 East West
+Tier 3
+Vomitory
+
+#Wilson
+Canister
+Digital Wall East/West
+Practice Court Tier 1 East West

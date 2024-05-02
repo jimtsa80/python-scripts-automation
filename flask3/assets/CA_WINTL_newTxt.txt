@@ -1,0 +1,191 @@
+//Filename:
+//Annotator:
+--  CA_WINTL.TXT
+
+
+#Adidas
+Bat
+Gloves
+
+#Alinta Energy
+Static Board
+
+#ANZ
+Playing Kit, Chest
+Playing Kit, Sleeve
+
+#Asics
+Hoodie
+Playing Kit, Cap
+Playing Kit, Chest
+Playing Kit, Pants
+Playing Kit, Sleeve
+Spectator Clothing
+Training Kit
+Training Kit, Cap
+
+#BLK
+Umpire Apparel
+
+#Bupa
+Static Board
+
+#Commonwealth Bank
+Gazebo - I WILL MAKE THEM ROAR
+Gazebo - Series Logo
+Gazebo - WATCH ME
+Giant Screen -Series Logo
+Grass Sign
+Hoodie
+Media Backdrop
+Microphone - Series Logo
+Playing Kit, Cap
+Playing Kit, Chest
+Playing Kit, Sleeve
+Spectator Clothing
+Static Board - End of Wicket Signage
+Stumps
+Training Kit
+Training Kit, Cap
+Trophy Stand
+TVGI 
+TVGI Intro
+TVGI L-Frame - Series Logo
+TVGI Series Logo
+TVGI Stumps
+TVGI Sweep Through - Series Logo
+
+#Cricket Australia
+Banner - I Will Be Hero To Millions Watch Me
+Banner - I Will Inspire A Nation Watch Me
+Banner - I Will Own This Game Watch Me
+Banner - I Will Tear Up The Norm Watch Me
+Banner - I Will Write History Watch Me
+Banner - Watch Me
+Media Backdrop
+Media Backdrop - LIVE
+Media Backdrop - Website
+Static Board - I Will Be Hero To Millions Watch Me
+Static Board - I Will Inspire A Nation Watch Me
+Static Board - I Will Own This Game Watch Me
+Static Board - I Will Tear Up The Norm Watch Me
+Static Board -I Will Write History Watch Me
+TVGI Live App
+TVGI Tickets
+TVGI Website
+
+#CUE
+TVGI
+
+#Domain
+Static Board
+TVGI Series Logo
+
+#Gatorade
+Drinks Box
+
+#Gillette
+Static Board - Venus
+
+#Gray-Nicolls
+Bat
+Gloves
+Pads
+
+#Harvey Norman
+TVGI
+TVGI Ball Speed
+TVGI End of Wicket Signage
+TVGI Intro
+TVGI L-Frame - 12 Big Days Of Deals
+TVGI Logo
+TVGI Wagon Wheel
+TVGI Wagon Wheel - with CA Logo
+
+#ICC T20 World Cup
+Static Board - Tickets On Sale
+
+#Kayo
+Static Board
+Static Board - Stream The Cricket
+
+#KFC
+Static Board
+Static Board - BUCKET. WHY NOT?
+TVGI Intro
+TVGI L-Frame - KFC DELIVERY? BUCKET, WHY NOT.
+TVGI L-Frame - Series Logo
+TVGI Wicket Replay
+
+#Kingsport
+Bat
+Gloves
+
+#Kookaburra
+Bat
+Gloves
+Pads
+Stumps
+
+#Masuri
+Playing Kit, Helmet
+
+#MRC
+TVGI L-Frame - Tickets
+
+#New Balance
+Bat
+Gloves
+Pads
+
+#NFL Game Pass
+TVGI L-Frame - Football Is Back
+
+#Peter Jackson
+TVGI
+
+#Qantas
+Static Board
+
+#Rebel
+TVGI L-Frame - Series Logo
+
+#Seven Cricket
+TVGI Intro
+TVGI L-Frame
+TVGI L-Frame - Next Broadcast
+TVGI L-Frame - Social Media
+TVGI Logo
+TVGI Social Media
+TVGI Telecast Sponsor
+
+#Seven
+Bib
+Microphone
+Microphone - LIVE AND FREE
+TVGI L-Frame - Next Broadcast
+
+#Specsavers
+Static Board
+Static Board - Eye Care All-Rounders
+
+#Stella Artois
+TVGI L-Frame
+
+#The Boundary Social
+TVGI Logo
+TVGI Tickets
+
+#Ticketek
+TVGI Text
+
+#Toyota
+Static Board
+Static Board - Oh What a Feeling!
+TVGI Intro
+TVGI L-Frame - Oh What a Feeling!
+TVGI Oh What a Feeling!
+
+#Woolworth's
+Gazebo - CRICKET BLAST
+Gazebo - PlayANZ

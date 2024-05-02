@@ -1,0 +1,98 @@
+//Filename:
+//Annotator:
+--  COLLEGEGAMEDAY.TXT
+
+
+#Coca-Cola
+Bottle
+Can
+Cans
+Cups
+Cups - Four Bottles Logo
+Flag
+Promotion Item
+Refresh Section - #Share a Coke
+Refresh Section - Circle Logo
+Refresh Section - Four Bottles
+Refresh Section - Lower
+Refresh Section - Lower Rail
+Refresh Section - Rear
+Refresh Section - Side
+Refresh Section - Side Bottle
+Refresh Section - Stair Top
+Refresh Section - Step
+Refresh Section - Top
+Refresh Section - Upper Rail
+Refresh Section - Zero Sugar
+Scoreboard
+Section Zero - Circle Logo
+Static Sign
+Tent
+TVGI
+TVGI - Countdown Clock
+TVGI - Zero Sugar
+
+#Home Depot
+Anchor Desk
+Anchor Desk - Combined Logo
+Banner
+Barricade Cover
+Barricade Cover - Combined Logo
+Bus
+Bus - Combined Logo
+Bus - Gameday Tradition
+Camera cover
+Cheer Card
+Cheer Card - Combined Logo
+Demo Field - Combined Logo
+Demo Field Board
+Demo Field Board - Combined Logo
+Drums - Combined Logo
+Drums - Compined Logo
+Feather Flag
+Gloves
+Hard Hat
+Hard Hat - Combined Logo
+Hospitality Tent
+Jumbotron - LED
+Jumbotron - LED - Combined Logo
+Jumbotron - Rear - Combined Logo
+Jumbotron - Static
+Jumbotron - Static - Combined Logo
+Polo Shirt - Combined Logo
+Promotion Item - Combined Logo
+Refresh Section - Rear Combined Logo
+Stage - Combined Logo
+Static Sign
+Static Sign - Combined Logo
+Static Sign - Tailgate
+Studio - Combined Logo
+Studio LED Screen - Combined Logo
+Tailgate - Static sign
+Tent
+Tent - Combined Logo
+Trailer - Combined Logo
+TVGI
+TVGI - Combined Logo
+TVGI - Countdown - Combined Logo
+TVGI - Tailgate
+TVGI - Text
+
+#PizzaHut
+Fan Apparel
+Fan cam
+Pizza Board
+Pizza Box
+Static Sign
+Tent
+TVGI
+TVGI - Gameday Traditions
+
+#Traeger
+Apparel
+Grill
+
+#Wheels Up
+Plane
+TVGI - Logo
+TVGI - Text

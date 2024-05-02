@@ -1,0 +1,86 @@
+{% include "header.html" %}
+
+	<form method=post enctype=multipart/form-data>
+
+		<table>
+
+				<tr>
+					<td>
+						<div class="form-control-file">
+						  <h5>Upload Article File</h5>
+						  <input type=file name=article><br>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="form-control-file">
+						  <h5>Upload photo_csv File</h5>
+						  <input type=file name=photocsv><br>
+						</div>
+					</td>
+					<td>
+						<div class="form-control-file">
+						  <h5>Upload zip File</h5>
+						  <input type=file name=zipfile><br>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="form-control-file">
+						  <h5>Delimiter</h5>
+						  <label for=comma>comma</label>
+						  <input type=radio name=delimiter value=comma checked=checked>
+						  <label for=semi>semi</label>
+						  <input type=radio name=delimiter value=semi>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<div class="form-control-file">
+						  <h5>Upload Export Ontology File</h5>
+						  <input type=file name=ont><br>
+						</div>
+					</td>
+				</tr>
+
+				<td>
+
+					<div class="form-group">
+					  <input class="btn btn-primary" type=submit value=Upload onclick="loading();">
+					  <div class="loading"></div>
+					</div>
+				</td>
+			</tr>
+
+		</table>
+	</form>
+		
+	<div class="flash">
+		
+		<table>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			 
+			  {% for message in messages %}
+
+			  <tr>
+				 <td>{{ message }}</td>
+
+		 	   </tr>	
+			  {% endfor %}
+			{% endif %}
+		{% endwith %}
+	</table>
+	</div>
+
+</div>
+
+
+{% include "footer.html" %}
+</body>

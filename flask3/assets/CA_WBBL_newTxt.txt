@@ -1,0 +1,298 @@
+//Filename:
+//Annotator:
+--  CA_WBBL.TXT
+
+#Asics
+Kid's Clothing
+Playing Kit, Arm
+Playing Kit, Cap
+Training Kit
+
+#Barnardos Australia
+Playing Kit, Arm
+
+#Betta Home Living
+Gazebo
+LED Sign
+LED Sign - Air Con
+LED Sign - Furniture
+LED Sign - Laundry
+LED Sign - Small Appliances
+Playing Kit, Cap
+Playing Kit, Chest
+Playing Kit, Pants
+Spectator Clothing
+Training Kit
+
+#BLK
+Umpire Clothing
+
+#BOUNCE Inc
+Banner
+Feather Flag
+Trampoline
+
+#Brand47
+Playing Kit, Cap
+
+#Branded
+Bat
+Gloves
+Pads
+
+
+#Cadbury
+Playing Kit, Arm
+Playing Kit, Chest
+
+#Canon Foods
+Banner
+LED Sign
+LED Sign - Fresh, Healthy, Quick & Easy Family Meals
+Media Backdrop
+Playing Kit, Back
+Playing Kit, Chest
+
+#Carsales.com.au
+LED Parapet
+Playing Kit, Chest
+
+#Clubcentral
+Static Board
+
+#Commonwealth Bank
+End of Wicket Signage
+Grass Sign
+LED Sign
+Playing Kit, Cap
+Training Kit
+Umpire Clothing
+
+
+#CUA
+Banner
+Billboard
+Gazebo
+Grass Sign
+LED Sign
+LED Sign - BANKING INSURANCE
+Parapet
+Playing Kit, Back
+Playing Kit, Chest
+Playing Kit, Pants
+Spectator Clothing
+Training Kit
+
+#Extra
+LED Sign
+
+#Fox Cricket
+
+#Harvey Norman
+
+#Holman
+Media Backdrop
+Playing Kit, Cap
+Playing Kit, Helmet
+Playing Kit, Pants
+
+#HomeWorld
+Jacket
+LED Sign
+LED Sign - Website
+Playing Kit, Chest
+Playing Kit, Pants
+
+#Hurstville Private Hospital
+Static Board
+
+#ICC T20 World Cup
+Gazebo
+Giant Ball
+LED Sign
+LED Sign - TICKETS ON SALE
+LED Sign - WELCOME TO THE BIG DANCE
+
+#iinet
+Playing Kit, Cap
+Playing Kit, Chest
+Playing Kit, Helmet
+Polo Shirt
+Spectator Clothing
+Training Kit
+Training Kit, Cap
+
+#KFC
+Banner - Series Logo
+Kid's Clothing - Series Logo
+Parapet
+Spectator Clothing
+
+#Kingsgrovesports
+Static Board
+
+#Kleenheat
+Banner
+LED Sign
+Media Backdrop
+Playing Kit, Chest
+Training Kit
+
+#Kookaburra
+Stumps
+
+#Majestic Athletic
+Jacket
+Playing Kit, Back
+Playing Kit, Chest
+Playing Kit, Pants
+Polo Shirt
+Spectator Clothing
+Training Kit
+
+#Mars
+Playing Kit, Chest
+
+#Masuri
+Playing Kit, Helmet
+
+#Mazda
+Banner
+Jacket
+LED Sign
+LED Sign - Car
+LED Sign - DRIVING IS BELIEVING
+LED Sign - NEXT-GEN MAZDA 3
+Playing Kit, Cap
+Playing Kit, Chest
+Playing Kit, Helmet
+
+#McDonald's
+
+#MyState
+Playing Kit, Chest
+
+#National Storage
+Gazebo
+Gazebo - Tailored Storage Solutions
+
+#Nature's Gift
+LED Sign
+Playing Kit, Back
+
+#New Era
+Playing Kit, Cap
+
+#NSO
+Garbage Bin
+
+#Nylex
+Playing Kit, Cap
+
+#Peet
+Playing Kit, Arm
+
+#People's Choice Credit Union
+Playing Kit, Back
+Playing Kit, Pants
+Training Kit
+
+#Priceline Pharmacy
+Banner
+BannerBanner
+Grass Sign
+LED Sign
+Media Backdrop
+Parapet
+Playing Kit, Chest
+Training Kit
+
+#Rebel
+Banner
+Banner - Series Logo
+End of Wicket Signage
+Gazebo - Series Logo
+Giant Screen - Series Logo
+Grass Sign
+LED Sightscreen - Series Logo
+LED Sign
+LED Sign - Series Logo
+Media Backdrop - Series Logo
+Net - Series Logo
+Parapet
+Player of the Match Card - Series Logo
+Playing Kit, Arm
+Playing Kit, Arm - Series Logo
+Playing Kit, Cap - Series Logo
+Playing Kit, Chest
+Playing Kit, Helmet
+Playing Kit, Helmet - Series Logo
+Playing Kit, Pants - Series Logo
+Reporter Microphone - Series Logo
+Stumps
+Training Kit
+Trampoline - Series Logo
+Trophy Table - Series logo
+Umbrella - Series Logo
+Winners Stage - Series Logo
+
+#Ring.com
+Playing Kit, Back
+
+#Seven Cricket
+Reporter Microphone - 7
+Reporter Microphone - Live and Free
+
+#Statewide Super
+LED Sign
+Playing Kit, Chest
+
+#Sydney Water
+Drinks Box
+
+#TAC
+LED Sign
+LED Sign - Think twice before you drink then drive
+LED Sign - TOWARDS ZERO
+Playing Kit, Back
+
+#Toyo Tires
+Playing Kit, Chest
+Polo Shirt
+Training Kit, Cap
+
+#Toyota
+Flag
+Static Board
+
+#Unbranded
+
+#Village Roadshow Theme Parks
+Playing Kit, Cap
+Playing Kit, Helmet
+
+#Vodafone
+Banner
+Bolster
+LED Sign
+Playing Kit, Arm
+Playing Kit, Cap
+Playing Kit, Chest
+Playing Kit, Helmet
+Training Kit
+Warm Up Bib
+
+#WBBL05
+Banner - #WATCHME
+Flamethrower
+Giant Screen
+Inflatable
+Trampoline - #WATCHME
+Gazebo
+Umpire Clothing
+
+#Woolworths
+Chair
+Gazebo
+Kid's Clothing - CRICKET BLAST
+Pouffe

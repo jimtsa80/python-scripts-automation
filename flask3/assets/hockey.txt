@@ -1,0 +1,50 @@
+Audi_Shirt Sleeve
+Audi_Shorts Front
+Audi_Spectator Apparel
+Audi_Static Board
+Belfius_Ball
+Belfius_Banner
+Belfius_Benchmark
+Belfius_Coach Apparel
+Belfius_Dugout
+Belfius_Inner Goal
+Belfius_Jacket
+Belfius_Lanyard
+Belfius_Lanyard Dio
+Belfius_LED Board
+Belfius_Media Backdrop
+Belfius_Pitch Mat
+Belfius_Players Entrance
+Belfius_Referee Apparel
+Belfius_Shirt Collar
+Belfius_Shirt Front
+Belfius_Shorts Back
+Belfius_Spectator Apparel
+Belfius_Static Board
+Belfius_Trophy
+Belfius_TVGI
+Belfius_VAR Studio
+Belfius_Viewing Room
+Belfius_Vomitory
+Belfius_Winners Stage
+Candriam_Coach Apparel
+Candriam_Dugout
+Candriam_LED Board
+Candriam_Media Backdrop
+Candriam_Pitch Mat
+Candriam_Shirt Collar
+Candriam_Shirt Front
+Candriam_Shorts Back
+Candriam_Spectator Apparel
+Candriam_Static Board
+Coca Cola_Flag
+Coca Cola_Fridge
+Coca Cola_LED Board
+Coca Cola_Spectator Apparel
+Lotto_Dugout
+Lotto_LED Board
+Lotto_Media Backdrop
+Lotto_Shirt Side
+Lotto_Spectator Apparel
+Lotto_Static Board
+Lotto_Vomitory

@@ -1,0 +1,85 @@
+{% include "header.html" %}
+
+	<form method=post enctype=multipart/form-data>
+		<table>
+			<tr>
+				<td>
+					<div class="form-group">
+						<h5>From</h5>
+						<input class="date_ex" type="text" name="date1" id="date_ex1">
+					</div>
+				</td>
+			</tr>
+				<tr>
+					<td>
+						<div class="form-group">
+							<h5>To</h5>
+							<input class="date_ex" type="text" name="date2" id="date_ex2">
+						</div>
+
+					</td>
+				</tr>
+				<tr>
+					<td>
+
+						<div class="form-group">
+							<input class="btn btn-primary" type=submit value="Start Checking" onclick="loading();">
+							<div class="loading"></div>
+						</div>
+					</td>
+				</tr>
+
+		</table>
+
+	
+	<div class="moirasies">
+		
+		<table>
+
+		<h5>Moirasies</h5>
+		
+		<tr>
+			<td>
+				<h5>Start</h5>
+				<input type="number" name="start" id="start">
+			</td>
+			<td>
+				<h5>End</h5>
+				<input type="number" name="stop" id="stop">
+			</td>
+			<td>
+				<h5>Atoma</h5>
+				<input type="number" name="atoma" id="atoma">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="form-group">
+					<input class="btn btn-primary" type=submit value="Moirase">
+				</div>
+			</td>
+		</tr>
+				
+		
+		</table>
+	</div>
+
+	</form>
+		
+	<div class="flash">
+		<table>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			 {% for message in messages %}
+
+				<tr>
+				 <td>{{ message }}</td>
+		 		 </tr>	
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+	</table>
+	</div>
+</div>
+
+{% include "footer.html" %}

@@ -1,0 +1,521 @@
+//Filename:
+//Annotator:
+--  ECB_COUNTIES.TXT
+
+
+#1st Central Insurance
+Lighting Pole
+Perimeter Board
+Scoreboard
+Upper Tier
+
+#Ageas
+Player Shirt Sleeve
+
+#AO
+Hoodie
+Perimeter Board
+Perimeter Board - We 've Got Over 7.000 Electricals, Delivered 7 Days A Week
+Player Shirt Front
+
+#ARK Build
+Player Shirt Sleeve
+
+#Aston Martin
+Player Cap
+Player Shirt Collar
+
+#Barretts
+Hoodie
+Perimeter Board
+
+#Birmingham Airport
+Player Shirt Back
+Upper Tier
+
+#Birmingham City University (BCU)
+Upper Tier
+Upper Tier - Ambitious At Heart
+
+#Blackfinch
+Player Shirt Front
+
+#Boundless
+Giant Screen
+Perimeter Board
+Player Shirt Back
+Player Shirt Collar
+Player Shirt Front
+Player Shirt Sleeve
+RoofBoundless
+#Brockhurst Limousin
+Perimeter Board
+Player Shirt Back
+Player Shirt Collar
+
+#Brooks Macdonald
+Perimeter Board
+Player Shirt Back
+Player Shirt Collar
+
+#Brown Shipley
+Perimeter Board
+
+#C&C
+Perimeter Board
+
+#Canterbury
+Player Shirt Front
+
+#Cloudfm
+Jacket
+LED Perimeter Board
+Perimeter Board
+Player Entrance
+Player Shirt Back
+Player Shirt Collar
+Spectator Clothing
+Upper Tier
+Upper Tier - Website
+
+#CMG
+Perimeter Board
+Player Shirt Sleeve
+
+#Cow Corner
+Canopy
+Giant Screen
+Perimeter Board
+Scoreboard
+Upper Tier
+
+#D and B Scaffolding
+Player Cap
+Player Shirt Front
+Player Shirt Sleeve
+Spectator Clothing
+
+#Discoverleeks
+Perimeter Board - Website
+Player Shirt Sleeve
+
+#EBC Group
+Media Centre
+Perimeter Board
+Player Shirt Collar
+
+#Emirates
+Flag
+Flag - FLY BETTER
+Perimeter Board
+Perimeter Board - FLY BETTER
+Player Shirt Back
+Player Shirt Collar
+Player Shirt Front
+Player Shirt Sleeve
+Spectator Clothing
+Upper Tier
+Upper Tier - FLY BETTER
+Viewing Room
+
+#Fischer
+Player Shirt Back
+
+#Gem
+Perimeter Board
+Player Shirt Back
+
+#Glal.uk
+Perimeter Board
+Player Shirt Back
+
+#Heart Radio
+Perimeter Board
+Perimeter Board - TURN UP THE FEEL GOOD!
+
+#Heineken/Foster's
+Flag
+Upper Tier
+
+#Hill Dickinson
+Perimeter Board
+Perimeter Board - Website
+
+#Hilton Garden Inn
+Perimeter Board
+Perimeter Board - Website
+
+#Hilton
+Player Shirt Front
+
+#Hunter Selection
+Player Shirt Front
+Spectator Clothing
+
+#Icebreaker
+Player Shirt Back
+Player Shirt Sleeve
+
+#JMAN Group
+Perimeter Board
+Player Shirt Back
+Player Shirt Front
+
+#John Pye Property
+Perimeter Board
+Perimeter Board - John Pye Auctions
+Player Shirt Front
+Spectator Apparel
+Upper Tier
+Upper Tier - John Pye Auctions
+
+#Kia
+Boundary Rope
+Dugout
+Dugout - Series Logo
+ECB Arc
+Giant Screen
+Lanyard - Series Logo
+Media Backdrop
+Media Backdrop - Series Logo
+On-Screen Graphics
+On-Screen Graphics - Series Logo
+On-Screen Graphics - Series Text
+Parapet
+Perimeter Board
+Pitch Mat
+Player Shirt Sleeve
+Player Shirt Sleeve - Series Logo
+Portable Table - Series Logo
+Studio - Series Logo
+Stumps
+Stumps - KIA Super League
+T-Shirt
+Triangle Sign
+Trophy
+Trophy Table - Series Logo
+TVGI Wagon Weel
+Upper Tier
+Winners Stage - Series Logo
+
+#Kingspan
+Perimeter Board
+Player Shirt Collar
+Player Shirt Front
+
+#Kukri
+Hoodie
+Perimeter Board
+Perimeter Board - Website
+Player Cap
+Player Shirt Front
+Training Clothing
+
+#Manchester Evening News
+Perimeter Board
+
+#Marston's Pedigree
+Grandstand
+Upper Tier
+
+#Masuri
+Player Cap
+Player Helmet
+Player Pants
+Player Shirt Front
+Upper Tier
+
+#Mazaars
+Player Shirt Front
+
+#Mem Saab
+Perimeter Board
+Player Shirt Back
+
+#MiPost
+Perimeter Board
+Perimeter Board - Website
+Player Shirt Front
+
+#MJ Baker
+Perimeter Board
+Perimeter Board - Tel.No
+ScoreboardMolson Coors (Carling)
+#Natwest
+Perimeter Board
+Perimeter Board - Cricket Has No Boundaries
+Perimeter Board - Logo
+Spectator Clothing
+
+#Nelsons
+Player Shirt Back
+
+#Palletower
+Perimeter Board
+
+#Parafix
+Perimeter Board
+Player Shirt Back
+Player Shirt Collar
+Player Shirt Front
+Player Shirt Sleeve
+
+#Pattonair
+Perimeter Board
+Perimeter Board - Keep The World Flying
+Perimeter Board - The Pattonair County Ground
+Player Shirt Sleeve
+Upper Tier
+Upper Tier - Keep The World Flying
+Upper Tier - The Pattonair County Ground
+
+#Rotec Hydraulics
+Perimeter Board
+Player Shirt Front
+Scoreboard
+
+#Royal London
+Boundary Rope
+Boundary Rope - INVESTMENTS
+Boundary Rope - LIFE INSURANCE
+Boundary Rope - Logo
+Boundary Rope - PENSIONS
+ECB Arc
+ECB Arc - Logo
+Giant Screen
+Giant Screen - Logo
+Giant Screen - Series Logo
+On-Screen Graphics - Series Logo
+On-Screen Graphics - Series Text
+Pitch Mat
+Pitch Mat - Logo
+Player Shirt Sleeve
+Player Shirt Sleeve - Logo
+Stumps
+Stumps - Logo
+TVGI Stumps
+TVGI Stumps - Logo
+Umpire Jacket Back
+Umpire Jacket Back - Logo
+Umpire Jacket Front - Serie Logo
+Umpire Jacket Sleeve - Series Logo
+
+#SA Group
+Perimeter Board
+Player Shirt Back
+
+#Scrivens
+Perimeter Board
+Player Shirt Back
+Upper Tier
+Upper Tier - Opticians
+Upper Tier - Opticians|Hearing Care
+Upper Tier - Opticians|Size Up Every Short Ball With
+
+#SCS
+Player Shirt Collar
+Player Shirt Sleeve
+Scoreboard
+Warm Up Bib
+
+#Seetec
+Hoodie
+Spectator Clothing
+Training Clothing
+
+#Selco Builders Warehouse
+Perimeter Board
+Player Cap
+Player Shirt Front
+Spectator Clothing
+Upper Tier
+
+#Shire Beds
+Player Shirt Back
+Player Shirt Sleeve
+
+#Showcase Cinemas
+Flag
+Perimeter Board
+Player Shirt Front
+
+#Showcase
+Player Shirt Front
+
+#Siniat
+Player Shirt Sleeve
+Upper Tier
+Upper Tier - Shaping The Way People Build
+
+#Specsavers
+Boundary Rope
+ECB Arc
+Flag - Series Logo
+Media Backdrop
+Media Backdrop - Series Logo
+On-Screen Graphics
+On-Screen Graphics - Series Logo
+On-Screen Graphics - Series Text
+Perimeter Board
+Pitch Mat
+Player Shirt Sleeve
+Spectator Clothing
+Stumps
+Stumps - Logo
+Trophy
+TVGI
+TVGI LED Perimeter Board
+TVGI Stumps
+Umpire Jacket Back
+Umpire Jacket Back - Series Logo
+Umpire Jacket Sleeve
+Upper Tier
+Winners Stage - Series Logo
+
+#Spitfire - Shepherd Neame
+Grandstand
+Grandstand - The Lager Of Britain
+Lighting Pole
+Mascot Clothing
+Perimeter Board
+Perimeter Board - Official Beer Of Kent Cricket
+Player Shirt Back
+Player Shirt Collar
+Player Shirt Front
+Player Shirt Shoulder
+Player Shirt Sleeve
+Scoreboard
+Spectator Clothing
+Umbrella
+Upper Tier
+
+#Stowford Press
+Perimeter Board
+
+#T3 Signs
+Perimeter Board
+Player Shirt Sleeve
+
+#Thomas Cook Sport
+Perimeter Board
+Perimeter Board - Website
+
+#Toshiba
+Media Centre
+Spectator Clothing
+Upper Tier
+
+#Towergate
+Player Shirt Sleeve
+
+#trentbridge.co.uk
+Perimeter Board
+Player Shirt Back
+Spectator Apparel
+Upper Tier
+
+#Tribute
+Perimeter Board
+Perimeter Board - KNOWS NO BOUNDARIES
+Perimeter Board - QUALITY SPEAKS FOR ITSELF
+Player Shirt Back
+Upper Tier
+Upper Tier - KNOWS NO BOUNDARIES
+
+#UA92
+Perimeter Board
+Perimeter Board - UNLOCK YOUR GREATNESS
+Upper Tier - UNLOCK YOUR GREATNESS
+
+#University of Derby
+Perimeter Board
+Player Shirt Back
+Training Clothing
+
+#Upton Steel
+Player Shirt Front
+
+#Utilita
+Player Shirt Back
+
+#Virtus
+Player Shirt Collar
+
+#Vitality
+Banner
+Boundary Rope
+Boundary Rope - HEALTH INSURANCE
+Boundary Rope - INVESTMENTS
+Boundary Rope - LIFE INSURANCE
+Carpet - Series Logo
+Dugout
+Dugout - Series Logo
+Dugout - Social Media
+ECB Arc
+ECB Arc - HEALTH INSURANCE
+ECB Arc - INVESTMENTS
+ECB Arc - LIFE INSURANCE
+Giant Screen
+Giant Screen - Dog
+Giant Screen - Series logo
+Giant Screen - Series Logo
+Kid Clothing - Series Logo
+LED Perimeter Board
+LED Perimeter Board - Null
+LED Perimeter Board - Series Logo
+Medals
+Media Backdrop
+Media Backdrop - Series Logo
+Media Backdrop - Social Media
+On-Screen Graphics - Series Logo
+On-Screen Graphics - Series Text
+Pitch Mat
+Pitch Mat - Dog
+Pitch Mat - HEALTH INSURANCE
+Pitch Mat - INVESTMENTS
+Pitch Mat - LIFE INSURANCE
+Pitch Mat - LIFE INSURANCE - INVESTMENTS
+Player Of The Match Award
+Player Of The Match Award - Series Logo
+Player Shirt Sleeve
+Portable Table - Series Logo
+Runway
+Sightscreen
+Sightscreen - Dog
+Sightscreen - HEALTH INSURANCE
+Spectator Card
+Spectator Card - Dog
+Studio - Series Logo
+Stumps
+Stumps - HEALTH INSURANCE
+Stumps - INVESTMENTS
+Stumps - LIFE INSURANCE
+Trophy
+Trophy Table
+TVGI - Series Logo
+TVGI - Series Text
+TVGI Stumps
+TVGI Stumps - HEALTH INSURANCE
+TVGI Stumps - INVESTMENTS
+TVGI Stumps - LIFE INSURANCE
+TVGI Wagon Weel - Series Logo
+Umpire Jacket Back
+Umpire Jacket Front - Series Logo
+Umpire Jacket Sleeve - Series Logo
+Winners Stage
+Winners Stage - Series Logo
+
+#Woodland Group
+Player Cap
+Player Shirt Back
+Player Shirt Collar
+Player Shirt Front
+Player Shirt Sleeve
+
+#WW Martin
+Grandstand
+Perimeter Board
+Player Shirt Back
+Player Shirt Collar
+Player Shirt Front
+Player Shirt Sleeve

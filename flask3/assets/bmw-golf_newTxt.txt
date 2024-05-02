@@ -1,0 +1,77 @@
+//Filename:
+//Annotator:
+--  BMW-GOLF.TXT
+
+
+#BMW Championship Logo
+Caddy Vest
+Flag
+Giant Screen
+Grandstand Signage
+Group Board
+Leaderboard
+Media Backdrop
+Par/Distance Signage
+Presenters Desk
+Static Board
+TVGI
+Upper Stands
+
+#BMW Championship Text
+Caddy Vest
+Car
+Flag
+Grandstand Signage
+Group Board
+Leaderboard
+Par/Distance Signage
+Presenters Desk
+Static Board
+Trophy
+TVGI
+TVGI Intro
+TVGI Leaderboard
+Upper Stands
+
+#BMW Logo
+Billboard
+Caddy Vest
+Flag
+Giant Screen
+Grandstand Signage
+Group Board
+Leaderboard
+Media Backdrop
+Par/Distance Signage
+Players Area
+Spectator Clothing
+Stands Entrance
+Static Board
+Tee Marker
+Trophy
+TVGI
+TVGI Leaderboard
+Upper Stands
+
+#BMW Text
+Caddy Vest
+Flag
+Grandstand Signage
+Group Board
+Leaderboard
+Presenter Podium
+Presenters Desk
+Screen
+Static Board
+Tent
+TVGI
+Upper Stands
+
+#Mastercard
+Giant Screen
+TVGI
+
+#Rolex
+Clocks
+Giant Screen
+Teebox Board

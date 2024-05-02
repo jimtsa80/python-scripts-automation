@@ -1,0 +1,84 @@
+//Filename:
+//Annotator:
+--  CHICAGO_MARATHON.TXT
+
+
+#Abbott - WMM Logo
+Banner
+Barricade Cover
+Clock
+Finish Line Board
+Finish Line Roof
+Finish Line Tower
+Finish Line Tunnel
+Presenter Stand
+Refresh Station
+Registration Office
+Runner Bib
+Safety Vehicle
+Starting Line Tower
+Street Sticker
+Tent
+World Record Card
+
+#Abbott
+Barricade Cover
+Finish Line Board
+
+#Advocate
+Barricade Cover
+Fence - Cheer Zone
+TVGI Logo
+
+#American Airlines
+Barricade Cover
+
+#Bank of America - CM Logo
+Banner
+Barricade Cover
+Cap
+Clock
+Finish Line Banner
+Finish Line Board
+Finish Line Roof
+Finish Line Tower
+Finish Line Tunnel
+Jacket
+Media Backdrop
+Microphone
+Presenter Stand
+Reporter Bib
+Runner Bib
+Safety Vehicle
+Starting Line Banner
+Starting Line Tower
+Street Sticker
+Studio
+T-Shirt
+Towel
+TVGI
+TVGI Logo
+TVGI Text
+World Record Card
+
+#Bank of America
+Barricade Cover
+Finish Line Board
+Finish Line Tape
+Flag
+TVGI
+TVGI Text
+
+#Biofreeze
+Barricade Cover
+
+#McDonald's
+TVGI
+
+#Molex
+Barricade Cover
+Finish Line Board
+
+#Tata Consultancy Services
+Barricade Cover
+Finish Line Board

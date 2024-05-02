@@ -1,0 +1,466 @@
+AAMI_800m Mark Signage
+AAMI_A-frame Signage
+AAMI_Barrier Attendant Vest (back)
+AAMI_Barrier Attendant Vest (front)
+AAMI_Cap
+AAMI_Flag
+AAMI_Lawn Umbrella
+AAMI_Lucky Club 
+AAMI_Mounting Yard Gate
+AAMI_Mounting Yard Grass Signage
+AAMI_Mounting Yard Signage
+AAMI_Outdoor Signage
+AAMI_Presentation Lectern
+AAMI_Saddle Cloth
+AAMI_Stage
+AAMI_Starting Stalls Signage
+AAMI_Strapper Vest (back)
+AAMI_Strapper Vest (front)
+AAMI_Superscreen LED
+AAMI_Superscreen LED - LUCKY YOU'RE WITH AAMI
+AAMI_Track Railing
+AAMI_Trophy Table
+AAMI_TVGI Intro - AAMI Victoria Derby Day
+AAMI_TVGI Logo
+AAMI_TVGI Logo - AAMI Victoria Derby Day
+AAMI_TVGI Text
+AAMI_TVGI Text - AAMI Victoria Derby Day
+AAMI_TVGI Text - Race Name
+AAMI_Umbrella
+AAMI_Winning Horse Rug
+AAMI_Winning Post Signage
+Antler_Fashion on the Field Marquee Backdrop
+Birdcage_TVGI Text
+Bora_TVGI Logo
+Bumble_A-frame Signage
+Bumble_Marquee Indoor Wall
+Bumble_Marquee Outdoor Wall
+Bumble_Mounting Yard Signage
+Bumble_Presentation Lectern
+Bumble_Saddle Cloth
+Bumble_Starting Stalls Signage
+Bumble_Strapper Vest (front)
+Bumble_TVGI Logo - Make the first move
+Bumble_TVGI Text
+Bumble_TVGI Text - Race Name
+Bumble_Umbrella
+Bumble_Winning Horse Rug
+Bumble_Winning Post Signage
+Canadian Club_Indoor Signage
+Carpet Call_TVGI Intro
+Colliers_Umbrella
+Coolmore_A-frame Signage
+Coolmore_Giant Screen
+Coolmore_Mounting Yard Signage
+Coolmore_Saddle Cloth
+Coolmore_Starting Stalls Signage
+Coolmore_Strapper Vest (front)
+Coolmore_TVGI Logo
+Coolmore_TVGI Text - Race Name
+Coolmore_Winning Horse Rug
+Coolmore_Winning Post Signage
+Crown_Marquee Outdoor Wall
+Crown_Outdoor Signage
+Crown_Umbrella
+Darley_A-frame Signage
+Darley_Mounting Yard Signage
+Darley_Presentation Lectern
+Darley_Saddle Cloth
+Darley_Starting Stalls Signage
+Darley_Strapper Vest (back)
+Darley_Strapper Vest (front)
+Darley_Superscreen LED
+Darley_TVGI Logo
+Darley_TVGI Text
+Darley_TVGI Text - Race Name
+Darley_Winning Horse Rug
+Darley_Winning Post Signage
+DrinkWise_Superscreen LED
+DrinkWise_Superscreen LED - You won't miss a moment.
+Ducale_Umbrella
+Emirates_Polo Shirt
+Emirates_Umbrella
+EZR_Saddle Cloth
+Flemington_Lawn Umbrella
+Flemington_Mounting Yard Gate
+Flemington_Mounting Yard Signage
+Flemington_Mounting Yard Stalls
+Flemington_Outdoor Signage
+Flemington_Presentation Lectern
+Flemington_Saddle Cloth
+Flemington_Starting Stalls Signage
+Flemington_Steward Room
+Flemington_Strapper Vest (back)
+Flemington_Strapper Vest (front)
+Flemington_Superscreen LED
+Flemington_Track Railing
+Flemington_Trackside Signage
+Flemington_TVGI Text
+Flemington_TVGI Wining Post Signage
+Flemington_Umbrella
+Flemington_Winner Sash
+Flemington_Winning Horse Rug
+Flemington_Winning Post Arch
+Flemington_Winning Post Signage
+Furphy_800m Mark Signage
+Furphy_A-frame Signage
+Furphy_Barrier Attendant Vest (front)
+Furphy_Cup
+Furphy_Lawn Umbrella
+Furphy_Mounting Yard Grass Signage
+Furphy_Mounting Yard Signage
+Furphy_Outdoor Signage
+Furphy_Presentation Lectern
+Furphy_Saddle Cloth
+Furphy_Starting Stalls Signage
+Furphy_Strapper Vest (back)
+Furphy_Strapper Vest (front)
+Furphy_Superscreen LED
+Furphy_Trackside Signage
+Furphy_TVGI Logo
+Furphy_TVGI Text
+Furphy_TVGI Text - Race Name
+Furphy_Umbrella
+Furphy_Winning Horse Rug
+Furphy_Winning Post Signage
+G. H. Mumm_A-frame Signage
+G. H. Mumm_Marquee Indoor Wall
+G. H. Mumm_Marquee Outdoor Wall
+G. H. Mumm_Mounting Yard Signage
+G. H. Mumm_Outdoor Signage
+G. H. Mumm_Presentation Lectern
+G. H. Mumm_Saddle Cloth
+G. H. Mumm_Starting Stalls Signage
+G. H. Mumm_Strapper Vest (back)
+G. H. Mumm_Strapper Vest (front)
+G. H. Mumm_TVGI Logo
+G. H. Mumm_TVGI Logo - G.H. Mumm, the forward-looking champagne house since 1827
+G. H. Mumm_TVGI Text
+G. H. Mumm_TVGI Text - Race Name
+G. H. Mumm_Winning Horse Rug
+G. H. Mumm_Winning Post Signage
+Galileo_Umbrella
+Grinders Coffee Roasters_800m Mark Signage
+Grinders Coffee Roasters_A-frame Signage
+Grinders Coffee Roasters_Mounting Yard Signage
+Grinders Coffee Roasters_Outdoor Signage
+Grinders Coffee Roasters_Presentation Lectern
+Grinders Coffee Roasters_Saddle Cloth
+Grinders Coffee Roasters_Starting Stalls Signage
+Grinders Coffee Roasters_Strapper Vest (front)
+Grinders Coffee Roasters_TVGI Logo
+Grinders Coffee Roasters_TVGI Text
+Grinders Coffee Roasters_TVGI Text - Race Name
+Grinders Coffee Roasters_Winning Horse Rug
+Grinders Coffee Roasters_Winning Post Signage
+Harvey Norman _TVGI Intro
+Harvey Norman_TVGI Intro
+Harvey Norman_TVGI Logo
+Heineken_Bottle
+Heineken_Outdoor Signage
+Herald Sun_800m Mark Signage
+Herald Sun_A-frame Signage
+Herald Sun_Marquee Outdoor Wall
+Hyland Race Colours_Jacket
+Jim Beam Black_A-frame Signage
+Jim Beam Black_Bar
+Jim Beam Black_Bottle
+Jim Beam Black_Cap
+Jim Beam Black_Lawn Umbrella
+Jim Beam Black_Mounting Yard Signage
+Jim Beam Black_Outdoor Signage
+Jim Beam Black_Saddle Cloth
+Jim Beam Black_Starting Stalls Signage
+Jim Beam Black_Strapper Vest (back)
+Jim Beam Black_Strapper Vest (front)
+Jim Beam Black_TVGI Logo - From the World's No. 1 Bourbon
+Jim Beam Black_TVGI Text - Race Name
+Jim Beam Black_Winning Horse Rug
+Jim Beam Black_Winning Post Signage
+Kennedy_800m Mark Signage
+Kennedy_A-frame Signage
+Kennedy_Barrier Attendant Vest (back)
+Kennedy_Barrier Attendant Vest (front)
+Kennedy_Clocktower Signage
+Kennedy_Fashion on the Field Marquee Backdrop
+Kennedy_Flag
+Kennedy_Leaflet
+Kennedy_Mounting Yard Gate
+Kennedy_Mounting Yard Grass Signage
+Kennedy_Mounting Yard Signage
+Kennedy_Outdoor Signage
+Kennedy_Presentation Lectern
+Kennedy_Presentation Stage Backdrop
+Kennedy_Saddle Cloth
+Kennedy_Starting Stalls Signage
+Kennedy_Strapper Vest (back)
+Kennedy_Strapper Vest (front)
+Kennedy_Superscreen LED
+Kennedy_Superscreen LED - WATCHES & JEWELLERY
+Kennedy_Trophy Table
+Kennedy_TVGI - HISTORIC MOMENTS IN TIME
+Kennedy_TVGI Clock
+Kennedy_TVGI Intro - KENNEDY OAKS DAY
+Kennedy_TVGI Logo
+Kennedy_TVGI Logo - HISTORIC MOMENTS IN TIME
+Kennedy_TVGI Text
+Kennedy_TVGI Text - KENNEDY OAKS DAY
+Kennedy_TVGI Text - Race Name
+Kennedy_Umbrella
+Kennedy_Winning Horse Rug
+Kennedy_Winning Post Signage
+Lexus_2000m Mark Signage
+Lexus_800m Mark Signage
+Lexus_A-frame Signage
+Lexus_Banner
+Lexus_Barrier Attendant Vest (back)
+Lexus_Barrier Attendant Vest (front)
+Lexus_Cap
+Lexus_Car Badge
+Lexus_Clocktower Signage
+Lexus_Design Pavillion Wall Internal
+Lexus_Fashion on the Field Marquee Backdrop
+Lexus_Giant Cheque
+Lexus_Giant Cheque - Melbourne Cup Tour
+Lexus_Indoor Signage
+Lexus_Jockey Cap
+Lexus_Lawn Umbrella
+Lexus_Leaderboard
+Lexus_Marquee Indoor Wall
+Lexus_Marquee Outdoor Wall
+Lexus_Media Backdrop
+Lexus_Mounting Yard Gate
+Lexus_Mounting Yard Grass Signage
+Lexus_Mounting Yard Signage
+Lexus_Mounting Yard Stalls
+Lexus_Outdoor Signage
+Lexus_Presentation Lectern
+Lexus_Presentation Microphone Stand
+Lexus_Presentation Stage Backdrop
+Lexus_Saddle Cloth
+Lexus_Sash
+Lexus_Stand
+Lexus_Starting Stalls Signage
+Lexus_Strapper Vest (back)
+Lexus_Strapper Vest (front)
+Lexus_Superscreen LED
+Lexus_Superscreen LED - THE NEW LEXUS RX
+Lexus_Trackside Signage
+Lexus_Trophy
+Lexus_Trophy Table
+Lexus_TVGI Intro
+Lexus_TVGI Intro - MELBOURNE CUP DAY
+Lexus_TVGI Logo
+Lexus_TVGI Logo - WELCOME TO THE LEXUS MELBOURNE CUP
+Lexus_TVGI Text
+Lexus_TVGI Text - Race Name
+Lexus_Umbrella
+Lexus_Winning Horse Rug
+Lexus_Winning Horse Sash
+Lexus_Winning Post Signage
+LG_TVGI Intro
+LG_TVGI Logo
+Lindsay Park_Umbrella
+McDonald's_800m Mark Signage
+McDonald's_A-frame Signage
+McDonald's_Mounting Yard Signage
+McDonald's_Saddle Cloth
+McDonald's_Starting Stalls Signage
+McDonald's_Strapper Vest (back)
+McDonald's_Strapper Vest (front)
+McDonald's_Superscreen LED
+McDonald's_Superscreen LED - Download the mymacca's app
+McDonald's_Superscreen LED - McDonald's app for daily deals
+McDonald's_TVGI Logo - I'm Lovin'it
+McDonald's_Winning Horse Rug
+McDonald's_Winning Post Signage
+Melbourne (City - not Melbourne Cup)_A-frame Signage
+Melbourne Cup Carnival_800m Mark Signage
+Melbourne Cup Carnival_Fashion on the Field Marquee Backdrop
+Melbourne Cup Carnival_Fashion on the Field Winner Sash
+Melbourne Cup Carnival_Marquee Outdoor Wall
+Melbourne Cup Carnival_Outdoor Signage
+Melbourne Cup Carnival_Presentation Lectern
+Melbourne Cup Carnival_Strapper Vest (back)
+Melbourne Cup Carnival_Studio
+Melbourne Cup Carnival_Trophy
+Melbourne Cup Carnival_TVGI Intro
+Melbourne Cup Carnival_TVGI Logo
+Melbourne Cup Carnival_TVGI Text
+Melbourne Cup Carnival_TVGI Text - Race Name
+Melbourne Cup Carnival_Winning Horse Rug
+Melbourne_Outdoor Signage
+Mercedes-Benz_Jockey Silk
+Mercedes-Benz_Umbrella
+Mitsubishi Motors_Umbrella
+MSS Security_A-frame Signage
+MSS Security_Leaflet
+MSS Security_Mounting Yard Signage
+MSS Security_Presentation Lectern
+MSS Security_Saddle Cloth
+MSS Security_Security Guard Clothing
+MSS Security_Starting Stalls Signage
+MSS Security_Strapper Vest (front)
+MSS Security_TVGI Logo
+MSS Security_TVGI Text - Race Name
+MSS Security_Winning Horse Rug
+MSS Security_Winning Post Signage
+MYER_800m Mark Signage
+MYER_Fashion on the Field Card
+MYER_Fashion on the Field Marquee Backdrop
+MYER_Fashion on the Field Winner Sash
+MYER_Lawn Umbrella
+MYER_Marquee Indoor Wall
+MYER_Marquee Outdoor Wall
+MYER_Mounting Yard Grass Signage
+MYER_Outdoor Signage
+MYER_Superscreen LED
+MYER_TVGI Intro
+MYER_TVGI Logo
+MYER_TVGI Text
+Network 10_800m Mark Signage
+Network 10_A-frame Signage
+Network 10_Cameraman Vest
+Network 10_Fashion on the Field Marquee Backdrop
+Network 10_Indoor Signage
+Network 10_Jacket
+Network 10_Marquee Indoor Wall
+Network 10_Mounting Yard Grass Signage
+Network 10_Mounting Yard Signage
+Network 10_Outdoor Signage
+Network 10_Reporter Microphone
+Network 10_Reporter Microphone - NEWS FIRST
+Network 10_Saddle Cloth
+Network 10_Starting Stalls Signage
+Network 10_Strapper Vest (back)
+Network 10_Strapper Vest (front)
+Network 10_Studio
+Network 10_Trackside Signage
+Network 10_TV Screen
+Network 10_TVGI Intro
+Network 10_TVGI Logo
+Network 10_TVGI Text
+Network 10_TVGI Text - Race Name
+Network 10_Umbrella
+Network 10_Winning Horse Rug
+Network 10_Winning Post Signage
+Oliver ST_Outdoor Signage
+Park Real Estate_Umbrella
+POLYTRACK_800m Mark Signage
+POLYTRACK_Saddle Cloth
+POLYTRACK_Strapper Vest (front)
+POLYTRACK_TVGI Text - Race Name
+Puma_Umbrella
+RACING.COM_Reporter Microphone
+Racing.com_TVGI Logo
+RACING.COM_TVGI Logo
+RSN_Trackside Signage
+Schweppes_800m Mark Signage
+Schweppes_A-frame Signage
+Schweppes_Lawn Umbrella
+Schweppes_Mounting Yard Signage
+Schweppes_Saddle Cloth
+Schweppes_Starting Stalls Signage
+Schweppes_Strapper Vest (front)
+Schweppes_TVGI Logo
+Schweppes_TVGI Text
+Schweppes_TVGI Text - Race Name
+Schweppes_Winning Horse Rug
+Schweppes_Winning Post Signage
+Seppelt Wines_800m Mark Signage
+Seppelt Wines_Marquee Outdoor Wall
+Seppelt Wines_Mounting Yard Grass Signage
+Seppelt Wines_Superscreen LED
+Seppelt Wines_Superscreen LED - BEST IN GLASS
+Seppelt Wines_Superscreen LED - UNEARTH GREATNESS
+Seppelt Wines_Trackside Signage
+Sofitel_Fashion on the Field Marquee Backdrop
+Streets_Cooler
+TAB_2000m Mark Signage
+TAB_800m Mark Signage
+TAB_A-frame Signage
+TAB_Fashion on the Field Marquee Backdrop
+TAB_GA Kiosk
+TAB_Indoor Signage
+TAB_Marquee Indoor Wall
+TAB_Mounting Yard Signage
+TAB_Outdoor Signage
+TAB_Presentation Lectern
+TAB_Reporter Microphone
+TAB_Reporter Pin
+TAB_Saddle Cloth
+TAB_Starting Stalls Signage
+TAB_Strapper Vest (back)
+TAB_Strapper Vest (front)
+TAB_Superscreen LED - DOWNLOAD THE TAB APP
+TAB_Superscreen LED - LONG MAY WE PLAY
+TAB_Track Distance Markers
+TAB_Trackside Signage
+TAB_TVGI Intro
+TAB_TVGI Logo
+TAB_TVGI Logo - LONG MAY WE PLAY
+TAB_TVGI Text
+TAB_TVGI Text - Long MAY WE PLAY
+TAB_TVGI Text - Race Name
+TAB_Umbrella
+TAB_Winning Horse Rug
+TAB_Winning Post Signage
+Tabcorp_Outdoor Signage
+Tabcorp_TVGI Text
+TCL_800m Mark Signage
+TCL_A-frame Signage
+TCL_Fashion on the Field Marquee Backdrop
+TCL_Mounting Yard Signage
+TCL_Outdoor Signage
+TCL_Presentation Lectern
+TCL_Saddle Cloth
+TCL_Starting Stalls Signage
+TCL_Strapper Vest (back)
+TCL_Strapper Vest (front)
+TCL_Trackside Signage
+TCL_TVGI Logo
+TCL_TVGI Text - Race Name
+TCL_Winning Post Signage
+The Carbine Club_TVGI Text - Race Name
+The Hong Kong Jockey Club_Mounting Yard Signage
+The Hong Kong Jockey Club_Saddle Cloth
+The Hong Kong Jockey Club_Strapper Vest (back)
+The Hong Kong Jockey Club_Strapper Vest (front)
+The Hong Kong Jockey Club_TVGI Text - Race Name
+The Hong Kong Jockey Club_Winning Post Signage
+The Park_Outdoor Signage
+Twitter_Mounting Yard Signage
+Twitter_TVGI Logo
+Twitter_TVGI Text - Race Name
+Twitter_Winning Horse Rug
+Twitter_Winning Post Signage
+Victoria Racing Club_Giant Cheque
+Victoria Racing Club_Jacket
+Victoria Racing Club_Jockey Silk
+Victoria Racing Club_Lawn Umbrella
+Victoria Racing Club_Leaflet
+Victoria Racing Club_Marquee Indoor Wall
+Victoria Racing Club_Mounting Yard Gate
+Victoria Racing Club_Mounting Yard Grass Signage
+Victoria Racing Club_Mounting Yard Signage
+Victoria Racing Club_Mounting Yard Stalls
+Victoria Racing Club_Outdoor Signage
+Victoria Racing Club_Presentation Lectern
+Victoria Racing Club_Roof
+Victoria Racing Club_Stables
+Victoria Racing Club_Starting Stalls Signage
+Victoria Racing Club_Steward Room
+Victoria Racing Club_Strapper Vest (back)
+Victoria Racing Club_Strapper Vest (front)
+Victoria Racing Club_Trackside Signage
+Victoria Racing Club_TVGI Intro
+Victoria Racing Club_TVGI Logo
+Victoria Racing Club_TVGI Text
+Victoria Racing Club_TVGI Wining Post Signage
+Victoria Racing Club_Umbrella
+Victoria Racing Club_Winning Horse Rug
+Wilson Medic One_Van
+X UK_Polo Shirt
+Zyrtec_TVGI Intro
+Zyrtec_TVGI Logo
+Zyrtec_TVGI Logo - NO HAYFEVER TABLET WORKS FASTER

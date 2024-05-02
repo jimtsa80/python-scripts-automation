@@ -1,0 +1,369 @@
+//Filename:
+//Annotator:
+--  US_OPEN.TXT
+
+
+#American Express
+Backwall Corner Signage
+Broadcaster  Activation
+Cup
+Lanyard
+Lower Ring Signage
+Outdoor Signage
+Player Chair
+Sidewall Signage
+Store
+Studio Table
+TVGI
+TVGI - Backwall Corner Signage
+TVGI - Sidewall Signage
+TVGI - Upper Ring Signage
+Upper Ring Signage
+
+#ATP
+Lower Ring Signage
+Upper Ring Signage
+
+#Bermuda
+Lower Ring Signage
+Sidewall
+Sidewall Signage
+TVGI - Sidewall Signage
+Upper Ring Signage
+
+#Chase
+Backwall Signage
+Backwall Signage - Full
+Backwall Signage - Logo Graphic
+Lanyard
+Lanyard - Full
+Lanyard - Logo Graphic
+Line Judge Box
+Line Judge Box - Full
+Line Judge Box - Logo Graphic
+Lower Ring Signage
+Net - Logo Graphic
+Outdoor Signage
+Outdoor Signage - Full
+Outdoor Signage - Logo Graphic
+Roof
+Roof - Full
+Roof - Logo Graphic
+Spectator Apparel - Logo Graphic
+Store - Full
+TVGI
+TVGI - Backwall Signage
+TVGI - Backwall Signage - Full
+TVGI - Backwall Signage - Logo Graphic
+TVGI - Chase Review
+TVGI - Line Judge Box - Full
+TVGI - Upper Ring Signage
+Upper Ring Signage
+
+#Deloitte
+Backwall Signage - Practice Court
+Lower Ring Signage
+Sidewall Signage
+TVGI - Lower Ring Signage
+TVGI - Sidewall Signage
+TVGI - Sisewall Signage
+Upper Ring Signage
+
+#Emirates
+Backwall Signage
+Lower Ring Signage
+Sidewall Signage
+Spectator Apparel
+Store
+TVGI
+TVGI - Backwall Signage
+TVGI - Lower Ring Signage
+Upper Ring Signage
+Videoboard
+
+#Espn
+Camera Cover
+Canopy
+Lower Ring Signage
+Microphone
+Presenter Apparel
+Racquet Cover
+Set Backdrop
+TVGI
+TVGI - Schedule
+TVGI - Score
+
+#Evian
+Lower Ring Signage
+TVGI - Upper Ring Signage
+Upper Ring Signage
+Water Bottle
+Water Cooler
+
+#Heineken
+Backwall Corner Signage
+Beer Can
+Beer Faucet
+Canopy
+Stool
+
+#IBM
+Backwall Signage
+Digital Display
+Flag
+Lower Ring Signage
+Mobile Phone
+Radar Signage
+Scoreboard
+Sidewall Signage
+TVGI
+TVGI - Radar Signage
+TVGI - Schedule
+TVGI - Score
+Upper Ring Led Signage
+Upper Ring LED Signage
+Upper Ring Signage
+Videoboard
+
+#IHG Hotels & Resorts
+Lower Ring Signage
+Sidewall Signage
+Store
+TVGI - Lower Ring Signage
+TVGI - Sidewall Signage
+Upper Ring Signage
+
+#JP Morgan
+Backwall Signage
+Line Judge Box
+Lower Ring Signage
+Sidewall Signage - YOU INVEST by JP Morgan
+Spectator Apparel
+TVGI - Backwall Signage
+TVGI - Line Judge Box
+TVGI - Sidewall Signage - YOU INVEST by JP Morgan
+TVGI - Upper Ring Signage
+Upper Ring Signage
+
+#Kim Crawford
+TVGI
+
+#Lavazza
+Apron
+Coffee Cutting Machine
+Store
+
+#Mercedes-Benz
+Lower Ring Signage
+Net Signage - Logo Graphic
+Outdoor Signage
+Sidewall Signage
+Spectator Apparel
+Store
+TVGI
+TVGI - Lower Ring Signage
+TVGI - Lower Ring Signage 
+TVGI - Net Signage - Logo Graphic
+TVGI - Sidewall Signage
+Upper Ring Signage
+Videoboard
+
+#Net Generation
+Barricade Cover
+Barrier Cover
+Kids Apparel
+Sidewall Signage
+
+#Polo Ralph Lauren
+Apparel Ball Kid - Logo Graphic
+Apparel Ball Kid Back - Logo Graphic
+Apparel Hat - Logo Graphic
+Apparel Line Judge - Logo Graphic
+Apparel Line Judge Back - Logo Graphic
+Event Staff - Logo Graphic
+Line Judge Box
+Line Judge Box - Logo Graphic
+Lower Ring Signage
+Player Backseat - Logo Graphic
+Player Chair Base
+Spectator Apparel
+Spectator Apparel - Logo Graphic
+Store
+Towel
+TVGI - Player Backseat - Logo Graphic
+TVGI - Player Chair Base
+TVGI - Upper Ring Signage
+Umbrella - Inner
+Umpire Apparel
+Upper Ring Signage
+Videoboard
+
+#Powerade
+Coolers
+
+#Predictive Analysis
+Net Judge Box
+Serve Clock
+TVGI - Net Judge Box
+Umpire Chair Canopy - Base
+
+#Rolex
+Backwall Signage
+Backwall Signage 
+Clock Signage
+Exit Sign
+Outdoor Stadium - Clock
+Outdoor Stadium Signage - Big Clock
+TVGI
+TVGI - Clock Signage
+Videoboard
+
+#Spectrum
+Lower Ring Signage
+Sidewall Signage
+TVGI - Lower Ring Signage
+TVGI - Sidewall Signage
+TVGI - Umpire Chair
+Umpire Chair
+Umpire Chair Canopy - Base
+Umpire Microphone
+Upper Ring Signage
+
+#Ticketmaster
+Lower Ring Signage
+TVGI
+TVGI - Upper Ring Signage
+Upper Ring Signage
+Videoboard
+
+#UnitedHealthcare
+Sidewall Signage
+
+#US Open
+Accreditation Card
+Accreditation Card - US Open
+Apparel Ball Kid - US Open
+Apparel Line Judge - US Open
+Backwall Signage - Practice Court - US Open
+Backwall Signage - Practice Court - usopen.org
+Backwall Signage - US Open
+Backwall Signage - US Open 50 Years
+Backwall Signage - usopen.org
+Bag - US Open
+Ball - Ball only
+Ball - US Open
+Banner - #USOpen
+Banner - US Open
+Barricade Cover
+Broadcaster  Activation - US Open
+Cameraman Apparel
+Canister
+Canopy
+Chair - US Open
+Cocktail Glass
+Cup
+Event Staff Apparel - US Open
+Fence - US Open
+Flag - US Open
+Giant Ball - Ball only
+Giant Ball - US Open
+Lanyard - US Open
+Lanyard - usopen.org
+Lower Ring Signage - #USOpen
+Lower Ring Signage - Ball only
+Lower Ring Signage - usopen.org
+Magazine - US Open
+Media Backdrop - US Open
+Media Backdrop - US Open 50 Years
+Media Backdrop - usopen.org
+Medic Apparel - US Open
+Microphone - Logo - AAKD
+Microphone - US Open
+Mobile Phone - US Open
+Mug
+Outdoor Signage - #USOPEN
+Outdoor Signage - Louis Armstrong Stadium
+Outdoor Signage - US Open
+Outdoor Signage Arthur Ashe Stadium
+Plastic Bag
+Player Corridor
+Player Corridor - US Open
+Players Entrance  - US Open
+Presenter Card - Logo - AAKD
+Promotion Item
+Racquet Cover - US Open
+Racquet Service Room - US Open
+Scoreboard - US Open
+Serve Clock - US Open
+Set Backdrop
+Set Backdrop - US Open
+Sign
+Spectator Apparel
+Spectator Apparel - US Open
+Stadium Entrance
+Stadium Signage - Arthur Ashe
+Stadium Signage - Louis Armstrong
+Store - US Open
+Studio Backdrop
+Studio Table - US Open
+Ticket
+Towel
+Towel - US Open
+Trophy Table - US Open
+TVGI - Backwall Signage - US Open
+TVGI - Backwall Signage - US Open 50 Years
+TVGI - Backwall Signage - usopen.org
+TVGI - Lower Ring Signage - usopen.org
+TVGI - Match Stats - US Open
+TVGI - Match Update - US Open
+TVGI - Match Update - US Open 50 Years
+TVGI - Schedule - US Open
+TVGI - Score - US Open
+TVGI - Upper Ring Signage - usopen.org
+TVGI - US Open
+TVGI - usopen.org
+TVGI - usopenshop.org
+TVGI - Weather Forecast - US Open
+TVGI - Website - AAKD
+TVGI Arthur Ashe Stadium
+TVGI Grandstand
+TVGI Louis Armstrong Stadium
+Umbrella - Inner - US Open
+Umbrella - Outter - US Open
+Umpire Apparel
+Umpire Chair Canopy - Top
+Upper Ring Signage - #USOpen
+Upper Ring Signage - US Open
+Upper Ring Signage - usopen.org
+Upper Ring Signage LED - US Open
+Videoboard - US Open
+Wall Board - US Open
+Water Bottle
+
+#USTA
+Backwall Signage
+Outdoor Signage
+Sidewall Signage
+TVGI
+
+#Wilson
+Ball - Full
+Ball Bag - Full
+Ball Case
+Ball Cooler - Full
+Canister - Full
+Coach  Apparel - W
+Coach Apparel - Full
+Giant Ball - Full
+Player Racquet - W
+Presenter Apparel - W
+Racquet Bag - Full
+Racquet Bag - W
+Racquet Service Machine - Full
+Racquet Service Room - W
+Spectator Apparel
+Store
+Umbrella - Outer
+
+#WTA
+Lower Ring Signage

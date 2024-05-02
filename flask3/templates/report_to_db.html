@@ -1,0 +1,62 @@
+{% include "header.html" %}
+
+	<form method=post enctype=multipart/form-data>
+
+		<table>
+			
+			<tr>
+				<td>
+					<div class="form-control-file">
+					  <h5>Choose Folder</h5>
+					  <input type="file" name="file[]" id="files" multiple="" webkitdirectory mozdirectory />
+					</div>
+				</td>
+			</tr>
+
+		<tr>
+			<td>
+				<h5>project</h5>
+				<input type="text" name="project" id="project">
+			</td>
+			<td>
+				<h5>brand</h5>
+				<input type="text" name="brand" id="brand">
+			</td>
+
+		</tr>
+
+			<tr>
+				<td>
+					<div class="form-group">
+					  <input class="btn btn-primary" type=submit value=Upload onclick="loading();">
+					  <div class="loading"></div>
+					</div>
+				</td>
+			</tr>
+
+		</table>
+	</form>
+		
+	<div class="flash">
+		
+		<table>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			 
+			  {% for message in messages %}
+
+			  <tr>
+				 <td>{{ message }}</td>
+
+		 	   </tr>	
+			  {% endfor %}
+			{% endif %}
+		{% endwith %}
+	</table>
+	</div>
+
+</div>
+
+
+{% include "footer.html" %}
+</body>

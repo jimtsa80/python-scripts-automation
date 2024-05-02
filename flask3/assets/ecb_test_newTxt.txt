@@ -1,0 +1,303 @@
+//Filename:
+//Annotator:
+--  ECB_TEST
+
+
+#All Stars Cricket
+Flag
+Hoodie
+Kid's Clothing
+LED Perimeter Board
+LED Perimeter Board - Null
+Polo Shirt
+
+#AO
+Upper Tier
+Upper Tier - AO Let's Go!
+Upper Tier - The AO Stand
+
+#Asics
+Hoodie
+Jacket
+Kit Bag
+Pants
+Playing Kit, Chest
+Playing Kit, Pants
+Playing Kit, Sleeve
+Polo Shirt
+Spectator Clothing
+Training Kit
+Training Kit, Cap
+Warm-Up Bib
+
+#Birmingham City University (BCU)
+Upper Tier
+Upper Tier - AMBITIOUS AT HEART
+Upper Tier - Logo
+
+#Brown Shipley
+Upper Tier
+
+#Bupa
+Hoodie
+Laptop Stickers
+Training Kit
+Training Kit, Cap
+
+#C&C Insurance
+Grandstand
+Upper Tier
+Upper Tier - INSURANCE BROKERS
+
+#Emirates
+LED Perimeter Board
+LED Perimeter Board - Null
+Media Centre
+Media Centre - FLY BETTER
+On-screen Graphics
+On-screen Graphics - Series Text
+Umpire Apparel
+Upper Tier
+Upper Tier - FLY BETTER
+
+#Greene King
+Grandstand
+LED Perimeter Board
+LED Perimeter Board - Null
+Secondary Level Boards
+Upper Tier
+Upper Tier - OFFICIAL BEER OF ENGLAND CRICKET
+Upper Tier - Time Well Spent
+
+#Hardys
+LED Perimeter Board
+LED Perimeter Board - Null
+Secondary Level Boards
+Sightscreen
+Sightscreen - A DROP TO ENJOY
+Sightscreen - THE ONLY AUSSIE TO APPLAUD
+Triangle Sign
+Upper Tier
+
+#Hilton Graden Inn
+On-screen Graphics
+
+#J.P. Morgan
+Hover Cover
+LED Perimeter Board
+LED Perimeter Board - Null
+Sightscreen
+Upper Tier
+
+#JM Finn
+Grandstand
+Upper Tier
+
+#Kia
+Balcony
+Bedser Stand
+Cap
+Grandstand
+Grandstand Roof
+LED Perimeter Board
+LED Perimeter Board - Null
+On-screen Graphics
+On-screen Graphics - Series Text
+Parapet
+Scoreboard
+Secondary Level Board
+Sightscreen
+Stadium Entrance
+Stadium Sign
+Test Shirt Collar
+Triangle Sign
+Upper Tier
+
+#Kukri
+Upper Tier
+
+#Marston's Pedigree
+Spectator Clothing
+Upper Tier
+
+#Marston's/61 Deep
+LED Perimeter Board
+Upper Tier
+
+#NatWest
+Banner
+Bib
+Bib - Logo
+Hoodie - Logo
+Kid's Clothing - Logo
+LED Perimeter Board
+LED Perimeter Board - Logo
+LED Perimeter Board - Null
+Limited Overs Shirt Front
+Limited Overs Shirt Front - Logo
+Limited Overs Shirt Sleeve - Logo
+Media Backdrop - Logo
+On-screen Graphics
+On-screen Graphics - Series Logo
+Perimeter Board - Logo
+Polo Shirt
+Polo Shirt - Logo
+Sightscreen
+Sightscreen - Join in at #NoBoundaries
+Sightscreen - Logo
+Spectator Cards - Logo
+Spectator Clothing
+Spectator Clothing - Logo
+Test Shirt Front
+Test Shirt Front - Logo
+Test Shirt Sleeve
+Test Shirt Sleeve - Logo
+Training Apparel
+Training Apparel - Logo
+Training Cap
+Training Cap - Logo
+Warm-Up Bib
+
+#New Balance
+Bag
+Bat
+Bib
+Gloves
+Hoodie
+LED Perimeter Board
+LED Perimeter Board - Logo
+LED Perimeter Board - Null
+Limited Overs Cap
+Limited Overs Shirt Sleeve
+Limited Overs Trousers
+Pads
+Pants
+Polo Shirt
+Shoes
+Spectator Clothing
+Test Cap
+Test Shirt Sleeve
+Test Trousers
+Training Apparel
+Training Cap
+
+#OCS
+LED Perimeter Board
+Upper Tier
+
+#Qantas
+Hoodie
+Playing Kit, Chest
+Playing Kit, Sleeve
+Polo Shirt
+Training Cap
+Training Kit
+Training kit, Cap
+Training Kit, Cap
+Warm-Up Bib
+
+#Rubicon
+LED Perimeter Board
+LED Perimeter Board - Null
+Secondary Level Boards
+Secondary Level Boards - Exotic Drinks
+Sightscreen
+Sightscreen - Exotic Drinks
+Triangle Sign
+Triangle Sign - Exotic Drinks
+Upper Tier
+Upper Tier - Exotic Drinks
+
+#Specsavers
+Boundary Rope
+Boundary Rope - The Test Experts
+Boundary Rope - TheTest Experts
+Dugout - Series Logo
+Giant Screen
+Giant Screen - Series Logo
+Giant Screen - The Test Experts
+Jacket
+LED ECB Arc
+LED Perimeter Board
+LED Perimeter Board - Null
+Media Backdrop
+Media Backdrop - Series Logo
+On-screen Graphics
+On-screen Graphics - Series Logo
+On-screen Graphics - Series Text
+Pitch Mat
+Pitch Mat - The Test Experts
+Pitch Mat - TheTest Experts
+Scoreboard
+Scoreboard - The Test Experts
+Secondary Level Board
+Secondary Level Boards
+Sightscreen
+Sightscreen - The Test Experts
+Spectator Clothing
+Stumps
+Stumps - Logo
+Stumps - The Test Experts
+TVGI Giant Screen
+TVGI LED Perimeter Board
+TVGI Sightscreen
+TVGI Stumps
+TVGI Stumps - The Test Experts
+TVGI Upper tier
+Upper Tier
+Upper Tier - The Test Experts
+
+#Strathmore
+Water Bottle
+Water Cooler
+
+#Thomas Cook Sport
+Deck
+Deck - WE GET YOU CLOSER TO THE ACTION
+Grandstand
+LED Perimeter Board
+Media Centre
+Media Centre - SAY YOU WERE THERE!
+Upper Tier
+Upper Tier - #SayYouWereThere
+Upper Tier - Website
+
+#UA92
+Giant Screen
+Media Centre
+Media Centre - Website
+Stairs
+Stairs - UNLOCK YOUR GREATNESS
+Stairs - Website
+Upper Tier
+Upper Tier - UNLOCK YOUR GREATNESS
+Upper Tier - Website
+
+#Vitality
+Bat
+Boundary Rope - HEALTH INSURANCE
+Jacket
+LED Perimeter Board
+LED Perimeter Board - Null
+On-screen Graphics - Series Text
+Sightscreen
+Sightscreen - Dog
+Sightscreen - HEALTH INSURANCE
+Sightscreen - Vitality Health Insurance rewards you for being active
+Spectator Cards
+
+#We Are England Cricket
+Banner
+Bib
+Carpet
+Entrance Carpet
+Giant Screen
+LED Perimeter Board
+Photographer Clothing
+
+#William Hill
+Grandstand
+Scoreboard
+Stairs
+Stairs - Website
+Upper Tier
