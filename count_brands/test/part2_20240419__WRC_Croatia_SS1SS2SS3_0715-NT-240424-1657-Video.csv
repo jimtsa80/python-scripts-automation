@@ -1,0 +1,744 @@
+Brand	Location	Time the brand is at screen	Duration	Screen Location	Screen Size %	Total Hits	Average Hits	Sequence Frame Number
+WRC	TVGI - WRC.com	08:53:03	5	E	0.459	5	1	5883
+Hyundai	Firesuit Driver	08:54:23	2	A	0.419	2	1	5963
+Hyundai	Helmet Driver	08:54:23	2	B	1.873	2	1	5963
+PIRELLI	Firesuit Driver	08:54:23	2	D	0.240	2	1	5963
+Ford	TVGI	08:53:03	108	E	0.112	216	2	5883
+Hyundai	TVGI	08:53:03	108	B	0.166	432	4	5883
+Skoda	TVGI	08:53:03	108	B	0.095	216	2	5883
+Toyota	TVGI	08:53:03	108	B	0.130	540	5	5883
+WRC	TVGI	08:53:01	110	A	0.485	112	1.018	5881
+Ford	TVGI	08:54:52	66	E	0.112	132	2	5992
+Hyundai	Firesuit Driver	08:55:50	8	A	0.419	8	1	6050
+Hyundai	Helmet Driver	08:55:50	8	B	1.873	8	1	6050
+Hyundai	TVGI	08:54:52	66	B	0.166	264	4	5992
+PIRELLI	Firesuit Driver	08:55:50	8	D	0.240	8	1	6050
+Skoda	TVGI	08:54:52	66	B	0.095	132	2	5992
+WRC	TVGI - WRC.com	08:55:56	2	E	0.459	2	1	6056
+Toyota	Helmet Driver	08:56:03	2	B	3.084	2	1	6063
+WRC	TVGI - WRC.com	08:56:03	3	E	0.459	3	1	6063
+Toyota	Helmet Driver	08:57:37	2	B	3.084	2	1	6157
+Ford	TVGI	08:56:03	105	E	0.112	210	2	6063
+Hyundai	TVGI	08:56:03	105	B	0.166	420	4	6063
+Skoda	TVGI	08:56:03	105	B	0.095	210	2	6063
+Toyota	TVGI	08:54:52	180	B	0.338	868	4.822	5992
+Red Bull	Helmet Driver	08:57:53	3	A	1.438	6	2	6173
+Ford	TVGI	08:57:53	38	E	0.112	76	2	6173
+Hyundai	TVGI	08:57:53	38	B	0.166	152	4	6173
+Skoda	TVGI	08:57:53	38	B	0.095	76	2	6173
+Toyota	TVGI	08:57:53	38	B	0.130	190	5	6173
+Toyota	Helmet Driver	08:58:36	4	B	3.084	4	1	6216
+Ford	TVGI	08:58:32	40	E	0.112	80	2	6212
+Hyundai	TVGI	08:58:32	40	B	0.166	160	4	6212
+Skoda	TVGI	08:58:32	40	B	0.095	80	2	6212
+Toyota	Helmet Driver	08:59:02	10	B	3.084	10	1	6242
+Toyota	TVGI	08:58:32	40	B	0.130	200	5	6212
+WRC	TVGI - WRC.com	08:59:04	8	E	0.459	8	1	6244
+Red Bull	Helmet Driver	08:59:14	2	A	1.438	4	2	6254
+WRC	TVGI - WRC.com	09:01:58	11	E	0.459	11	1	6418
+Red Bull	Helmet Driver	09:01:54	18	A	1.438	36	2	6414
+Toyota	Car 17	09:02:20	1	A	64.986	1	1	6440
+Red Bull	Helmet Driver	09:02:21	7	A	1.438	14	2	6441
+Red Bull	Helmet Driver	09:02:30	4	A	1.438	4	1	6450
+WRC	Microphone	09:02:38	11	E	0.816	11	1	6458
+Red Bull	Helmet Driver	09:02:59	3	A	1.438	3	1	6479
+WRC	Microphone	09:02:59	7	E	0.816	7	1	6479
+Ford	TVGI	08:59:14	233	E	0.112	466	2	6254
+Hyundai	TVGI	08:59:14	233	B	0.166	932	4	6254
+Skoda	TVGI	08:59:14	233	B	0.095	466	2	6254
+Toyota	TVGI	08:59:14	233	B	0.130	1165	5	6254
+Hyundai	Helmet Driver	09:03:14	3	B	1.873	3	1	6494
+Hyundai	Steering Wheel	09:03:14	3	A	0.623	3	1	6494
+Hyundai	TVGI	09:03:08	57	D	0.166	216	3.789	6488
+Skoda	TVGI	09:03:14	51	B	0.095	102	2	6494
+Toyota	TVGI	09:03:14	51	B	0.130	255	5	6494
+Ford	TVGI	09:03:14	55	E	0.358	110	2	6494
+Red Bull	Helmet Driver	09:04:10	2	A	1.438	2	1	6550
+Ford	TVGI	09:04:10	25	E	0.112	50	2	6550
+Hyundai	TVGI	09:04:10	25	B	0.166	100	4	6550
+Skoda	TVGI	09:04:10	25	B	0.095	50	2	6550
+Toyota	TVGI	09:04:10	25	B	0.130	125	5	6550
+WRC	TVGI	08:54:52	583	E	0.485	585	1.003	5992
+Hyundai	Helmet Driver	09:04:40	1	B	1.873	1	1	6580
+WRC	TVGI - WRC.com	09:05:12	9	E	0.459	9	1	6612
+Hyundai	Helmet Driver	09:05:34	8	B	1.873	8	1	6634
+Hyundai	Helmet Driver	09:05:45	5	B	1.873	5	1	6645
+WRC	Microphone	09:05:58	13	D	0.816	13	1	6658
+WRC	Microphone	09:06:17	7	D	0.816	7	1	6677
+Ford	TVGI	09:04:37	119	E	0.112	238	2	6577
+Hyundai	TVGI	09:04:37	119	B	0.166	476	4	6577
+Skoda	TVGI	09:04:37	119	B	0.095	238	2	6577
+Toyota	TVGI	09:04:37	119	B	0.130	595	5	6577
+Red Bull	Helmet Driver	09:06:37	2	A	1.438	2	1	6697
+Ford	TVGI	09:06:37	102	E	0.112	204	2	6697
+Hyundai	TVGI	09:06:37	102	B	0.166	408	4	6697
+Red Bull	Helmet Driver	09:08:06	13	A	1.438	13	1	6786
+Skoda	TVGI	09:06:37	102	B	0.095	204	2	6697
+Toyota	TVGI	09:06:37	102	B	0.130	510	5	6697
+WRC	TVGI - WRC.com	09:08:11	8	E	0.459	8	1	6791
+Ford	TVGI	09:08:25	77	E	0.112	154	2	6805
+Hyundai	TVGI	09:08:25	77	B	0.166	308	4	6805
+Skoda	TVGI	09:08:25	77	B	0.095	154	2	6805
+Toyota	TVGI	09:08:25	77	B	0.130	385	5	6805
+WRC	TVGI	09:04:36	306	A	0.485	308	1.007	6576
+Ford	TVGI	09:09:43	37	E	0.112	74	2	6883
+Hyundai	TVGI	09:09:43	37	B	0.166	148	4	6883
+Skoda	TVGI	09:09:43	37	B	0.095	74	2	6883
+Toyota	TVGI	09:09:43	37	B	0.130	185	5	6883
+WRC	TVGI - WRC.com	09:10:16	4	E	0.459	4	1	6916
+WRC	TVGI - WRC.com	09:10:21	5	E	0.459	5	1	6921
+Ford	TVGI	09:10:21	25	E	0.112	50	2	6921
+Hyundai	TVGI	09:10:21	25	B	0.166	100	4	6921
+Skoda	TVGI	09:10:21	25	B	0.095	50	2	6921
+Toyota	TVGI	09:10:21	25	B	0.130	125	5	6921
+Ford	TVGI	09:10:47	4	E	0.112	8	2	6947
+Hyundai	TVGI	09:10:47	4	B	0.166	16	4	6947
+Toyota	TVGI	09:10:47	4	B	0.130	20	5	6947
+WRC	TVGI - WRC.com	09:12:15	10	E	0.459	10	1	7035
+Ford	TVGI	09:10:58	90	E	0.112	180	2	6958
+Skoda	TVGI	09:10:47	101	B	0.095	195	1.931	6947
+Toyota	TVGI	09:10:58	90	B	0.130	450	5	6958
+Hyundai	TVGI	09:10:58	95	B	0.358	365	3.842	6958
+Ford	TVGI	09:12:34	66	E	0.112	132	2	7054
+Hyundai	TVGI	09:12:34	66	B	0.166	264	4	7054
+Toyota	TVGI	09:12:34	66	B	0.130	330	5	7054
+Ford	TVGI	09:13:45	25	E	0.112	50	2	7125
+Hyundai	TVGI	09:13:45	25	B	0.166	100	4	7125
+Skoda	TVGI	09:12:34	96	B	0.095	187	1.948	7054
+Toyota	TVGI	09:13:45	25	B	0.130	125	5	7125
+WRC	TVGI - WRC.com	09:14:26	10	E	0.459	10	1	7166
+Ford	TVGI	09:14:11	35	E	0.112	70	2	7151
+Hyundai	TVGI	09:14:11	35	B	0.166	140	4	7151
+Skoda	TVGI	09:14:11	35	B	0.095	70	2	7151
+Toyota	TVGI	09:14:11	35	B	0.130	175	5	7151
+Ford	TVGI	09:14:47	31	E	0.112	62	2	7187
+Hyundai	TVGI	09:14:47	31	B	0.166	124	4	7187
+Skoda	TVGI	09:14:47	31	B	0.095	62	2	7187
+Toyota	TVGI	09:14:47	31	B	0.130	155	5	7187
+WRC	TVGI	09:09:43	335	E	0.485	339	1.012	6883
+Ford	TVGI	09:15:19	7	E	0.112	14	2	7219
+Hyundai	TVGI	09:15:19	7	B	0.166	28	4	7219
+Skoda	TVGI	09:15:19	7	B	0.095	14	2	7219
+Ford	TVGI	09:15:31	47	E	0.112	94	2	7231
+Hyundai	TVGI	09:15:31	47	B	0.166	188	4	7231
+Skoda	TVGI	09:15:31	47	B	0.095	94	2	7231
+Toyota	TVGI	09:15:19	59	B	0.130	275	4.661	7219
+WRC	TVGI - Text	09:16:24	7	D	0.354	7	1	7284
+Ford	TVGI	09:16:20	15	E	0.112	30	2	7280
+Hyundai	TVGI	09:16:20	15	B	0.166	60	4	7280
+Skoda	TVGI	09:16:19	16	D	0.095	31	1.938	7279
+Toyota	TVGI	09:16:20	15	B	0.130	75	5	7280
+WRC	TVGI - WRC.com	09:16:23	12	E	0.459	12	1	7283
+Ford	TVGI	09:16:39	50	E	0.112	100	2	7299
+Hyundai	TVGI	09:16:39	50	B	0.166	200	4	7299
+Skoda	TVGI	09:16:39	50	B	0.095	100	2	7299
+Toyota	TVGI	09:16:39	50	B	0.130	250	5	7299
+Ford	TVGI	09:17:30	14	E	0.112	28	2	7350
+Hyundai	TVGI	09:17:30	14	B	0.166	56	4	7350
+Skoda	TVGI	09:17:30	14	B	0.095	28	2	7350
+Toyota	TVGI	09:17:30	14	B	0.130	70	5	7350
+WRC	TVGI	09:15:19	145	E	0.485	147	1.014	7219
+WRC	TVGI - Text	09:18:06	18	D	0.354	18	1	7386
+WRC	TVGI - WRC.com	09:18:17	10	E	0.459	10	1	7397
+Ford	TVGI	09:17:45	43	E	0.112	86	2	7365
+Hyundai	TVGI	09:17:45	43	B	0.166	172	4	7365
+Skoda	TVGI	09:17:45	43	B	0.095	86	2	7365
+Toyota	TVGI	09:17:45	43	B	0.130	215	5	7365
+WRC	TVGI - Text	09:18:44	13	D	0.354	13	1	7424
+WRC	TVGI - Text	09:19:43	12	D	0.354	12	1	7483
+WRC	TVGI - WRC.com	09:20:14	10	E	0.459	10	1	7514
+Ford	TVGI	09:18:29	120	E	0.112	240	2	7409
+Hyundai	TVGI	09:18:29	120	B	0.166	480	4	7409
+Skoda	TVGI	09:18:29	120	B	0.095	240	2	7409
+Toyota	TVGI	09:18:29	120	B	0.130	600	5	7409
+WRC	TVGI - Text	09:20:00	33	D	0.354	33	1	7500
+Ford	TVGI	09:21:23	29	D	0.358	44	1.517	7583
+Hyundai	TVGI	09:21:23	29	D	0.358	73	2.517	7583
+Skoda	TVGI	09:21:24	28	D	0.366	42	1.500	7584
+Toyota	TVGI	09:21:23	29	C	0.338	87	3	7583
+WRC	TVGI - #WRC	09:21:23	29	E	0.215	29	1	7583
+WRC	TVGI - Text	09:21:23	29	C	0.354	29	1	7583
+WRC	TVGI - WRC.com	09:21:24	28	D	0.459	28	1	7584
+Ford	TVGI	09:21:55	47	C	0.358	94	2	7615
+Hyundai	TVGI	09:21:55	47	D	0.358	141	3	7615
+Toyota	TVGI	09:21:55	47	C	0.338	141	3	7615
+WRC	TVGI - Text	09:21:55	47	C	0.354	47	1	7615
+WRC	TVGI - WRC.com	09:21:55	47	D	0.459	47	1	7615
+WRC	TVGI - #WRC	09:21:55	53	E	0.373	53	1	7615
+Hyundai	Team Sportswear (Non Kit)	09:22:51	82	B	0.575	82	1	7671
+WRC	Microphone	09:22:51	82	A	0.816	164	2	7671
+Ford	TVGI	09:24:09	18	B	0.112	36	2	7749
+Hyundai	TVGI	09:24:09	18	B	0.166	54	3	7749
+Toyota	TVGI	09:24:09	18	B	0.130	54	3	7749
+Hyundai	Team Sportswear (Non Kit)	09:24:41	58	B	0.575	58	1	7781
+WRC	Microphone	09:24:41	58	A	0.816	116	2	7781
+Toyota	TVGI	09:25:42	6	D	0.338	6	1	7842
+Hyundai	Team Sportswear (Non Kit)	09:25:59	39	B	0.575	39	1	7859
+WRC	Microphone	09:25:59	39	A	0.816	78	2	7859
+Hyundai	Team Sportswear (Non Kit)	09:26:54	60	B	0.575	60	1	7914
+WRC	Microphone	09:26:54	60	A	0.816	120	2	7914
+WRC	TVGI	09:17:45	610	E	0.485	687	1.126	7365
+Hyundai	Team Sportswear (Non Kit)	09:32:15	55	B	0.575	55	1	8235
+WRC	Microphone	09:32:15	63	A	0.816	118	1.873	8235
+WRC	Non Team Sportswear Others	09:33:10	8	A	0.575	8	1	8290
+WRC	Microphone	09:33:32	21	A	0.816	21	1	8312
+WRC	Non Team Sportswear Others	09:33:32	21	A	0.575	21	1	8312
+WRC	Microphone	09:33:56	21	A	0.816	21	1	8336
+WRC	Non Team Sportswear Others	09:33:56	21	A	0.575	21	1	8336
+WRC	TVGI - #WRCLIVE	09:34:36	37	D	0.215	37	1	8376
+Hyundai	Team Sportswear (Non Kit)	09:34:22	62	B	0.575	62	1	8362
+WRC	Microphone	09:34:22	62	A	0.816	124	2	8362
+Hyundai	Team Sportswear (Non Kit)	09:35:58	7	B	0.575	7	1	8458
+WRC	Microphone	09:35:58	7	A	0.816	14	2	8458
+PIRELLI	Static Board Any Other	09:36:13	27	D	3.501	27	1	8473
+WRC	TVGI - #WRCLIVE	09:35:24	84	D	0.215	84	1	8424
+Hyundai	Team Sportswear (Non Kit)	09:36:51	58	B	0.575	58	1	8511
+WRC	Microphone	09:36:51	58	A	0.816	116	2	8511
+WRC	TVGI - Text	09:37:50	7	B	0.354	7	1	8570
+WRC	TVGI - WRC.com	09:37:51	6	E	0.459	6	1	8571
+WRC	TVGI - #WRCLIVE	09:37:59	25	E	0.215	25	1	8579
+WRC	TVGI - WRC.com	09:37:59	25	D	0.459	25	1	8579
+PIRELLI	Static Board Any Other	09:38:35	16	D	3.501	16	1	8615
+WRC	TVGI - #WRCLIVE	09:39:02	20	E	0.215	20	1	8642
+WRC	TVGI - WRC.com	09:39:02	20	D	0.459	20	1	8642
+Hyundai	TVGI	09:39:27	5	D	0.358	9	1.800	8667
+Hyundai	Firesuit Driver	09:39:33	11	A	0.419	11	1	8673
+Hyundai	Helmet Driver	09:39:33	11	B	1.873	11	1	8673
+PIRELLI	Firesuit Driver	09:39:33	11	D	0.240	11	1	8673
+WRC	TVGI - WRC.com	09:39:40	4	E	0.459	4	1	8680
+Ford	TVGI	09:39:44	52	B	0.112	104	2	8684
+Hyundai	TVGI	09:39:34	62	D	0.166	166	2.677	8674
+Skoda	TVGI	09:39:44	52	B	0.158	104	2	8684
+Toyota	TVGI	09:39:44	52	E	0.130	260	5	8684
+WRC	TVGI	09:31:54	522	E	0.485	575	1.102	8214
+Hyundai	Helmet Driver	09:40:43	9	B	1.873	9	1	8743
+Ford	TVGI	09:40:37	86	B	0.112	172	2	8737
+Hyundai	TVGI	09:40:37	86	E	0.166	258	3	8737
+Skoda	TVGI	09:40:37	86	B	0.158	172	2	8737
+Toyota	TVGI	09:40:37	86	E	0.130	430	5	8737
+WRC	TVGI	09:40:37	86	E	0.485	86	1	8737
+WOLF	Static Board Any Other	09:42:09	2	A	1.025	2	1	8829
+Asahi Kasei	Gallows Race Course	09:42:11	10	A	0.163	10	1	8831
+Asahi Kasei	Static Board Any Other	09:42:11	10	A	1.929	10	1	8831
+Castore	Gallows Race Course	09:42:11	10	A	0.152	10	1	8831
+Forum8	Gallows Race Course	09:42:11	10	A	1.693	10	1	8831
+P1	Gallows Race Course	09:42:11	10	A	0.164	10	1	8831
+PIRELLI	Gallows Race Course	09:42:11	10	A	0.215	10	1	8831
+WOLF	Gallows Race Course	09:42:11	10	A	0.144	10	1	8831
+PIRELLI	Static Board Any Other	09:42:24	2	D	3.501	2	1	8844
+WOLF	Static Board Any Other	09:42:26	6	A	1.025	6	1	8846
+Asahi Kasei	Gallows Race Course	09:42:36	4	A	0.163	4	1	8856
+Forum8	Gallows Race Course	09:42:36	4	C	1.693	4	1	8856
+P1	Gallows Race Course	09:42:36	4	A	0.164	4	1	8856
+PIRELLI	Gallows Race Course	09:42:36	4	A	0.215	4	1	8856
+WOLF	Gallows Race Course	09:42:36	4	A	0.144	4	1	8856
+WRC	Static Board Any Other	09:42:36	4	A	1.108	4	1	8856
+P1	Static Board Any Other	09:42:43	5	D	8.006	5	1	8863
+Hyundai	Helmet Driver	09:42:48	2	B	1.873	2	1	8868
+Ford	TVGI	09:42:04	57	B	0.112	114	2	8824
+Hyundai	TVGI	09:42:04	57	E	0.166	171	3	8824
+Skoda	TVGI	09:42:04	57	B	0.158	114	2	8824
+Red Bull	Helmet Driver	09:43:11	2	A	1.438	2	1	8891
+Hyundai	Helmet Driver	09:45:04	1	B	1.873	1	1	9004
+Ford	TVGI	09:43:11	154	B	0.112	308	2	8891
+Hyundai	Firesuit Driver	09:45:42	3	A	0.419	3	1	9042
+Hyundai	Helmet Driver	09:45:34	11	A	1.873	11	1	9034
+Hyundai	TVGI	09:43:11	154	E	0.166	462	3	8891
+PIRELLI	Firesuit Driver	09:45:42	3	D	0.240	3	1	9042
+Skoda	TVGI	09:43:11	154	B	0.158	308	2	8891
+Toyota	TVGI	09:42:04	221	E	0.130	1075	4.864	8824
+WRC	TVGI - WRC.com	09:45:39	6	E	0.459	6	1	9039
+WRC	TVGI - WRC.com	09:45:47	2	E	0.459	2	1	9047
+PIRELLI	Static Board Any Other	09:45:47	7	D	3.501	7	1	9047
+WOLF	Static Board Any Other	09:45:55	3	A	1.025	3	1	9055
+Asahi Kasei	Gallows Race Course	09:45:58	9	A	0.163	9	1	9058
+Asahi Kasei	Static Board Any Other	09:45:58	9	A	1.929	9	1	9058
+Castore	Gallows Race Course	09:45:58	9	A	0.152	9	1	9058
+Forum8	Gallows Race Course	09:45:58	9	A	1.693	9	1	9058
+P1	Gallows Race Course	09:45:58	9	A	0.164	9	1	9058
+PIRELLI	Gallows Race Course	09:45:58	9	A	0.215	9	1	9058
+WOLF	Gallows Race Course	09:45:58	9	A	0.144	9	1	9058
+PIRELLI	Static Board Any Other	09:46:10	3	D	3.501	3	1	9070
+WOLF	Static Board Any Other	09:46:13	6	A	1.025	6	1	9073
+Forum8	Static Board Any Other	09:46:21	3	A	0.733	3	1	9081
+Asahi Kasei	Gallows Race Course	09:46:24	2	A	0.163	2	1	9084
+Forum8	Gallows Race Course	09:46:24	2	A	1.693	2	1	9084
+P1	Gallows Race Course	09:46:24	2	A	0.164	2	1	9084
+PIRELLI	Gallows Race Course	09:46:24	2	A	0.215	2	1	9084
+WOLF	Gallows Race Course	09:46:24	2	A	0.144	2	1	9084
+WRC	Static Board Any Other	09:46:24	2	A	1.108	2	1	9084
+P1	Static Board Any Other	09:46:29	3	D	8.006	3	1	9089
+Red Bull	Helmet Driver	09:46:32	3	A	1.438	3	1	9092
+Hyundai	TVGI	09:45:47	57	E	0.166	171	3	9047
+Skoda	TVGI	09:45:47	57	B	0.158	114	2	9047
+Toyota	TVGI	09:45:47	57	E	0.130	285	5	9047
+Red Bull	Helmet Driver	09:46:49	2	A	1.438	2	1	9109
+Ford	TVGI	09:45:47	143	B	0.112	286	2	9047
+Hyundai	TVGI	09:46:49	81	E	0.166	243	3	9109
+Skoda	TVGI	09:46:49	81	B	0.158	162	2	9109
+Toyota	TVGI	09:46:49	81	E	0.130	405	5	9109
+Red Bull	Helmet Driver	09:48:11	3	A	1.438	3	1	9191
+Ford	TVGI	09:48:11	39	B	0.112	78	2	9191
+Hyundai	TVGI	09:48:11	39	E	0.166	117	3	9191
+Red Bull	Helmet Driver	09:48:38	12	A	1.438	12	1	9218
+Skoda	TVGI	09:48:11	39	B	0.158	78	2	9191
+Toyota	TVGI	09:48:11	39	E	0.130	195	5	9191
+WRC	TVGI - WRC.com	09:48:42	8	E	0.459	8	1	9222
+WRC	TVGI - WRC.com	09:48:51	1	E	0.459	1	1	9231
+PIRELLI	Static Board Any Other	09:48:51	6	D	3.501	6	1	9231
+WOLF	Static Board Any Other	09:48:59	3	A	1.025	3	1	9239
+Asahi Kasei	Gallows Race Course	09:49:02	10	A	0.163	10	1	9242
+Asahi Kasei	Static Board Any Other	09:49:02	10	A	1.929	10	1	9242
+Castore	Gallows Race Course	09:49:02	10	A	0.152	10	1	9242
+Ford	Car Bonnet	09:49:11	1	A	0.439	1	1	9251
+Ford	Car Front Grill	09:49:11	1	A	1.315	1	1	9251
+Forum8	Gallows Race Course	09:49:02	10	A	1.693	10	1	9242
+P1	Gallows Race Course	09:49:02	10	A	0.164	10	1	9242
+PIRELLI	Gallows Race Course	09:49:02	10	A	0.215	10	1	9242
+WOLF	Gallows Race Course	09:49:02	10	A	0.144	10	1	9242
+PIRELLI	Static Board Any Other	09:49:15	2	D	3.501	2	1	9255
+WOLF	Static Board Any Other	09:49:22	1	A	1.025	1	1	9262
+Ford	Car Bonnet	09:49:21	3	A	0.439	3	1	9261
+Ford	Car Front Grill	09:49:21	3	A	1.315	3	1	9261
+Forum8	Static Board Any Other	09:49:26	2	A	0.733	2	1	9266
+Asahi Kasei	Gallows Race Course	09:49:28	3	A	0.163	3	1	9268
+Forum8	Gallows Race Course	09:49:28	3	A	1.693	3	1	9268
+P1	Gallows Race Course	09:49:28	3	A	0.164	3	1	9268
+PIRELLI	Gallows Race Course	09:49:28	3	A	0.215	3	1	9268
+WOLF	Gallows Race Course	09:49:28	3	A	0.144	3	1	9268
+WRC	Static Board Any Other	09:49:28	3	A	1.108	3	1	9268
+P1	Static Board Any Other	09:49:33	4	D	8.006	4	1	9273
+Red Bull	Helmet Driver	09:49:37	4	A	1.438	4	1	9277
+Ford	TVGI	09:48:51	57	B	0.112	114	2	9231
+Skoda	TVGI	09:48:51	57	B	0.158	114	2	9231
+Toyota	TVGI	09:48:51	57	E	0.130	285	5	9231
+Hyundai	Firesuit Driver	09:49:53	2	A	0.419	2	1	9293
+Hyundai	Helmet Driver	09:49:53	2	B	1.873	2	1	9293
+PIRELLI	Firesuit Driver	09:49:53	2	D	0.240	2	1	9293
+Ford	TVGI	09:49:53	73	B	0.112	146	2	9293
+Hyundai	TVGI	09:48:51	135	E	0.166	400	2.963	9231
+Skoda	TVGI	09:49:53	73	B	0.158	146	2	9293
+Toyota	TVGI	09:49:53	73	E	0.130	365	5	9293
+Red Bull	Helmet Driver	09:51:07	3	A	1.438	3	1	9367
+Ford	TVGI	09:51:07	45	B	0.112	90	2	9367
+Hyundai	TVGI	09:51:07	45	E	0.166	135	3	9367
+Red Bull	Helmet Driver	09:51:42	10	A	1.438	10	1	9402
+Skoda	TVGI	09:51:07	45	B	0.158	90	2	9367
+Toyota	TVGI	09:51:07	45	E	0.130	225	5	9367
+WRC	TVGI - WRC.com	09:51:46	6	E	0.459	6	1	9406
+WRC	TVGI - WRC.com	09:51:53	3	E	0.459	3	1	9413
+PIRELLI	Static Board Any Other	09:51:53	4	D	3.501	4	1	9413
+PIRELLI	Static Board Any Other	09:51:58	1	D	3.501	1	1	9418
+WOLF	Static Board Any Other	09:52:01	3	A	1.025	3	1	9421
+Asahi Kasei	Static Board Any Other	09:52:04	7	A	1.929	7	1	9424
+Asahi Kasei	Gallows Race Course	09:52:04	8	A	0.163	8	1	9424
+Castore	Gallows Race Course	09:52:04	8	A	0.152	8	1	9424
+Forum8	Gallows Race Course	09:52:04	8	A	1.693	8	1	9424
+P1	Gallows Race Course	09:52:04	8	A	0.164	8	1	9424
+PIRELLI	Gallows Race Course	09:52:04	8	A	0.215	8	1	9424
+WOLF	Gallows Race Course	09:52:04	8	A	0.144	8	1	9424
+Asahi Kasei	Static Board Any Other	09:52:12	1	A	1.929	1	1	9432
+PIRELLI	Static Board Any Other	09:52:16	2	D	3.501	2	1	9436
+WOLF	Static Board Any Other	09:52:18	7	D	1.025	7	1	9438
+Forum8	Static Board Any Other	09:52:27	3	A	0.733	3	1	9447
+Asahi Kasei	Gallows Race Course	09:52:30	2	A	0.163	2	1	9450
+Castore	Gallows Race Course	09:52:30	2	A	0.152	2	1	9450
+Forum8	Gallows Race Course	09:52:30	2	A	1.693	2	1	9450
+P1	Gallows Race Course	09:52:30	2	A	0.164	2	1	9450
+PIRELLI	Gallows Race Course	09:52:30	2	A	0.215	2	1	9450
+WOLF	Gallows Race Course	09:52:30	2	A	0.144	2	1	9450
+WRC	Static Board Any Other	09:52:30	2	A	1.108	2	1	9450
+P1	Static Board Any Other	09:52:35	4	D	8.006	4	1	9455
+Hyundai	Firesuit Driver	09:52:39	4	A	0.419	4	1	9459
+Hyundai	Helmet Driver	09:52:39	4	B	1.873	4	1	9459
+PIRELLI	Firesuit Driver	09:52:39	4	D	0.240	4	1	9459
+Ford	TVGI	09:51:53	59	B	0.112	118	2	9413
+Hyundai	TVGI	09:51:53	59	E	0.166	177	3	9413
+Skoda	TVGI	09:51:53	59	B	0.158	118	2	9413
+Toyota	TVGI	09:51:53	59	E	0.130	295	5	9413
+WRC	In Car	09:52:43	9	A	0.579	9	1	9463
+Toyota	Helmet Driver	09:52:58	1	B	3.084	1	1	9478
+Ford	TVGI	09:52:58	73	B	0.112	146	2	9478
+Hyundai	TVGI	09:52:58	73	E	0.166	219	3	9478
+PIRELLI	Static Board Any Other	09:54:10	1	D	3.501	1	1	9550
+Skoda	TVGI	09:52:58	73	B	0.158	146	2	9478
+Toyota	TVGI	09:52:53	78	D	0.130	375	4.808	9473
+Hyundai	Firesuit Driver	09:54:12	3	A	0.419	3	1	9552
+Hyundai	Helmet Driver	09:54:12	3	B	1.873	3	1	9552
+PIRELLI	Firesuit Driver	09:54:12	3	D	0.240	3	1	9552
+WRC	In Car	09:54:15	30	A	0.589	30	1	9555
+Hyundai	Firesuit Driver	09:54:45	12	A	0.419	12	1	9585
+PIRELLI	Firesuit Driver	09:54:45	12	D	0.240	12	1	9585
+Ford	TVGI	09:54:12	50	B	0.112	100	2	9552
+Hyundai	Helmet Driver	09:54:45	17	B	1.873	17	1	9585
+Hyundai	TVGI	09:54:12	50	E	0.166	150	3	9552
+Skoda	TVGI	09:54:12	50	B	0.158	100	2	9552
+Toyota	TVGI	09:54:12	50	E	0.130	250	5	9552
+WRC	TVGI - WRC.com	09:54:51	11	E	0.459	11	1	9591
+PIRELLI	Static Board Any Other	09:55:03	7	D	3.501	7	1	9603
+WOLF	Static Board Any Other	09:55:12	3	A	1.025	3	1	9612
+Asahi Kasei	Static Board Any Other	09:55:15	7	A	1.929	7	1	9615
+Asahi Kasei	Gallows Race Course	09:55:15	9	A	0.163	9	1	9615
+Asahi Kasei	Static Board Any Other	09:55:23	1	A	1.929	1	1	9623
+Castore	Gallows Race Course	09:55:15	9	A	0.152	9	1	9615
+Forum8	Gallows Race Course	09:55:15	9	A	1.693	9	1	9615
+P1	Gallows Race Course	09:55:15	9	A	0.164	9	1	9615
+PIRELLI	Gallows Race Course	09:55:15	9	A	0.215	9	1	9615
+WOLF	Gallows Race Course	09:55:15	9	A	0.144	9	1	9615
+PIRELLI	Static Board Any Other	09:55:27	2	D	3.501	2	1	9627
+Forum8	Static Board Any Other	09:55:38	2	A	0.733	2	1	9638
+Asahi Kasei	Gallows Race Course	09:55:40	4	A	0.163	4	1	9640
+Castore	Gallows Race Course	09:55:40	4	A	0.152	4	1	9640
+Forum8	Gallows Race Course	09:55:40	4	A	1.693	4	1	9640
+P1	Gallows Race Course	09:55:40	4	A	0.164	4	1	9640
+PIRELLI	Gallows Race Course	09:55:40	4	A	0.215	4	1	9640
+WOLF	Gallows Race Course	09:55:40	4	A	0.144	4	1	9640
+WRC	Static Board Any Other	09:55:40	4	A	1.108	4	1	9640
+P1	Static Board Any Other	09:55:47	3	D	8.006	3	1	9647
+Toyota	Helmet Driver	09:55:50	3	B	3.084	3	1	9650
+Ford	TVGI	09:55:03	58	B	0.112	116	2	9603
+Hyundai	TVGI	09:55:03	58	E	0.166	174	3	9603
+Skoda	TVGI	09:55:03	58	B	0.158	116	2	9603
+Toyota	TVGI	09:55:03	63	E	0.338	300	4.762	9603
+Ford	TVGI	09:56:07	61	B	0.112	122	2	9667
+Hyundai	TVGI	09:56:07	61	E	0.166	183	3	9667
+Skoda	TVGI	09:56:07	61	B	0.158	122	2	9667
+Toyota	TVGI	09:56:07	61	E	0.130	305	5	9667
+Toyota	Helmet Driver	09:57:09	5	B	3.084	5	1	9729
+Ford	TVGI	09:57:09	50	B	0.112	100	2	9729
+Hyundai	TVGI	09:57:09	50	E	0.166	150	3	9729
+Skoda	TVGI	09:57:09	50	B	0.158	100	2	9729
+Toyota	Helmet Driver	09:57:48	11	B	3.084	11	1	9768
+Toyota	TVGI	09:57:09	50	E	0.130	250	5	9729
+WRC	TVGI - WRC.com	09:57:54	5	E	0.459	5	1	9774
+PIRELLI	Static Board Any Other	09:58:01	4	D	3.501	4	1	9781
+WRC	TVGI - WRC.com	09:58:01	4	E	0.459	4	1	9781
+WOLF	Static Board Any Other	09:58:08	2	B	1.025	2	1	9788
+Asahi Kasei	Gallows Race Course	09:58:10	9	A	0.163	9	1	9790
+Asahi Kasei	Static Board Any Other	09:58:10	9	A	1.929	9	1	9790
+Castore	Gallows Race Course	09:58:10	9	A	0.152	9	1	9790
+Forum8	Gallows Race Course	09:58:10	9	A	1.693	9	1	9790
+P1	Gallows Race Course	09:58:10	9	A	0.164	9	1	9790
+PIRELLI	Gallows Race Course	09:58:10	9	A	0.215	9	1	9790
+WOLF	Gallows Race Course	09:58:10	9	A	0.144	9	1	9790
+PIRELLI	Static Board Any Other	09:58:22	3	D	3.501	3	1	9802
+WOLF	Static Board Any Other	09:58:25	6	D	1.025	6	1	9805
+Asahi Kasei	Gallows Race Course	09:58:35	3	A	0.163	3	1	9815
+EA Sports	Static Board Any Other	09:58:35	3	D	0.373	3	1	9815
+Forum8	Gallows Race Course	09:58:35	3	A	1.693	3	1	9815
+P1	Gallows Race Course	09:58:35	3	A	0.164	3	1	9815
+PIRELLI	Gallows Race Course	09:58:35	3	A	0.215	3	1	9815
+WOLF	Gallows Race Course	09:58:35	3	A	0.144	3	1	9815
+WRC	Static Board Any Other	09:58:35	3	A	1.108	3	1	9815
+P1	Static Board Any Other	09:58:41	3	D	8.006	3	1	9821
+Red Bull	Helmet Driver	09:58:44	2	A	1.438	2	1	9824
+Red Bull	Helmet Driver	09:59:18	3	A	1.438	3	1	9858
+Red Bull	Helmet Driver	09:59:38	4	A	1.438	8	2	9878
+Red Bull	Helmet Driver	10:00:18	3	A	1.438	6	2	9918
+Ford	TVGI	09:58:01	169	B	0.112	338	2	9781
+Skoda	TVGI	09:58:01	169	B	0.158	338	2	9781
+Toyota	Helmet Driver	10:00:37	13	B	3.084	26	2	9937
+Toyota	TVGI	09:58:01	169	E	0.130	845	5	9781
+WRC	TVGI - WRC.com	10:00:42	8	E	0.459	8	1	9942
+Hyundai	TVGI	09:58:01	175	E	0.358	519	2.966	9781
+PIRELLI	Static Board Any Other	10:00:59	8	D	3.501	8	1	9959
+WOLF	Static Board Any Other	10:01:09	3	A	1.025	3	1	9969
+Asahi Kasei	Gallows Race Course	10:01:12	9	A	0.163	9	1	9972
+Asahi Kasei	Static Board Any Other	10:01:12	9	A	1.929	9	1	9972
+Castore	Gallows Race Course	10:01:12	9	A	0.152	9	1	9972
+Forum8	Gallows Race Course	10:01:12	9	A	1.693	9	1	9972
+P1	Gallows Race Course	10:01:12	9	A	0.164	9	1	9972
+PIRELLI	Gallows Race Course	10:01:12	9	A	0.215	9	1	9972
+WOLF	Gallows Race Course	10:01:12	9	A	0.144	9	1	9972
+PIRELLI	Static Board Any Other	10:01:24	3	D	3.501	3	1	9984
+Forum8	Static Board Any Other	10:01:35	2	A	0.733	2	1	9995
+Asahi Kasei	Gallows Race Course	10:01:37	4	A	0.163	4	1	9997
+EA Sports	Static Board Any Other	10:01:37	4	D	0.256	4	1	9997
+Forum8	Gallows Race Course	10:01:37	4	A	1.693	4	1	9997
+P1	Gallows Race Course	10:01:37	4	A	0.164	4	1	9997
+PIRELLI	Gallows Race Course	10:01:37	4	A	0.215	4	1	9997
+WOLF	Gallows Race Course	10:01:37	4	A	0.144	4	1	9997
+WRC	Static Board Any Other	10:01:37	4	D	1.108	4	1	9997
+P1	Static Board Any Other	10:01:43	4	D	8.006	4	1	10003
+Hyundai	Steering Wheel	10:01:47	3	A	0.734	3	1	10007
+Hyundai	TVGI	10:00:57	62	E	0.166	186	3	9957
+Skoda	TVGI	10:00:57	62	B	0.158	124	2	9957
+Toyota	TVGI	10:00:57	62	E	0.130	310	5	9957
+Ford	TVGI	10:00:57	96	B	0.112	192	2	9957
+Hyundai	TVGI	10:02:04	29	E	0.166	87	3	10024
+Skoda	TVGI	10:02:04	29	B	0.158	58	2	10024
+Toyota	TVGI	10:02:04	29	E	0.130	145	5	10024
+Ford	TVGI	10:02:35	90	B	0.112	180	2	10055
+Hyundai	TVGI	10:02:35	90	E	0.166	270	3	10055
+Skoda	TVGI	10:02:35	90	B	0.158	180	2	10055
+Toyota	TVGI	10:02:35	90	E	0.130	450	5	10055
+WRC	TVGI - WRC.com	10:03:56	9	E	0.459	9	1	10136
+PIRELLI	Static Board Any Other	10:04:06	6	D	3.501	6	1	10146
+Ford	Car Bonnet	10:04:13	2	A	0.439	2	1	10153
+Ford	Car Front Grill	10:04:13	2	A	1.315	2	1	10153
+WOLF	Static Board Any Other	10:04:16	3	A	1.025	3	1	10156
+Asahi Kasei	Gallows Race Course	10:04:19	9	A	0.163	9	1	10159
+Asahi Kasei	Static Board Any Other	10:04:19	9	A	1.929	9	1	10159
+Castore	Gallows Race Course	10:04:19	9	A	0.152	9	1	10159
+Forum8	Gallows Race Course	10:04:19	9	A	1.693	9	1	10159
+P1	Gallows Race Course	10:04:19	9	A	0.164	9	1	10159
+PIRELLI	Gallows Race Course	10:04:19	9	A	0.215	9	1	10159
+WOLF	Gallows Race Course	10:04:19	9	A	0.144	9	1	10159
+Ford	Car Bonnet	10:04:28	1	A	0.439	1	1	10168
+Ford	Car Front Grill	10:04:28	1	A	1.315	1	1	10168
+PIRELLI	Static Board Any Other	10:04:31	3	D	3.501	3	1	10171
+WOLF	Static Board Any Other	10:04:34	6	D	1.025	6	1	10174
+Ford	Car Bonnet	10:04:40	1	A	0.439	1	1	10180
+Ford	Car Front Grill	10:04:40	1	A	1.315	1	1	10180
+Forum8	Static Board Any Other	10:04:42	3	A	0.733	3	1	10182
+WRC	Static Board Any Other	10:04:45	2	D	1.108	2	1	10185
+Asahi Kasei	Gallows Race Course	10:04:45	3	A	0.163	3	1	10185
+Castore	Gallows Race Course	10:04:45	3	A	0.152	3	1	10185
+EA Sports	Static Board Any Other	10:04:45	3	D	0.256	3	1	10185
+Forum8	Gallows Race Course	10:04:45	3	A	1.693	3	1	10185
+P1	Gallows Race Course	10:04:45	3	A	0.164	3	1	10185
+PIRELLI	Gallows Race Course	10:04:45	3	A	0.215	3	1	10185
+WOLF	Gallows Race Course	10:04:45	3	A	0.144	3	1	10185
+Ford	Car Bonnet	10:04:48	1	A	0.439	1	1	10188
+Ford	Car Front Grill	10:04:48	1	A	1.315	1	1	10188
+P1	Static Board Any Other	10:04:51	4	D	8.006	4	1	10191
+Red Bull	Helmet Driver	10:04:55	3	A	1.438	3	1	10195
+Ford	TVGI	10:04:06	61	B	0.112	122	2	10146
+Hyundai	TVGI	10:04:06	61	E	0.166	183	3	10146
+Skoda	TVGI	10:04:06	61	B	0.158	122	2	10146
+Toyota	TVGI	10:04:06	61	E	0.130	305	5	10146
+Ford	TVGI	10:05:20	15	B	0.112	30	2	10220
+Hyundai	TVGI	10:05:20	15	E	0.166	45	3	10220
+Skoda	TVGI	10:05:20	15	B	0.158	30	2	10220
+Toyota	TVGI	10:05:20	15	E	0.130	75	5	10220
+Ford	TVGI	10:05:36	90	B	0.112	180	2	10236
+Hyundai	TVGI	10:05:36	90	E	0.166	270	3	10236
+Red Bull	Helmet Driver	10:06:54	12	A	1.438	12	1	10314
+Skoda	TVGI	10:05:36	90	B	0.158	180	2	10236
+Toyota	TVGI	10:05:36	90	E	0.130	450	5	10236
+WRC	TVGI - WRC.com	10:07:02	4	E	0.459	4	1	10322
+WRC	TVGI - WRC.com	10:07:07	5	E	0.459	5	1	10327
+PIRELLI	Static Board Any Other	10:07:07	7	D	3.501	7	1	10327
+WOLF	Static Board Any Other	10:07:16	3	A	1.025	3	1	10336
+Asahi Kasei	Gallows Race Course	10:07:19	9	A	0.163	9	1	10339
+Castore	Gallows Race Course	10:07:19	9	A	0.152	9	1	10339
+Forum8	Gallows Race Course	10:07:19	9	A	1.693	9	1	10339
+P1	Gallows Race Course	10:07:19	9	A	0.164	9	1	10339
+PIRELLI	Gallows Race Course	10:07:19	9	A	0.215	9	1	10339
+WOLF	Gallows Race Course	10:07:19	9	A	0.144	9	1	10339
+Asahi Kasei	Static Board Any Other	10:07:19	10	A	1.929	10	1	10339
+PIRELLI	Static Board Any Other	10:07:31	4	D	3.501	4	1	10351
+Asahi Kasei	Gallows Race Course	10:07:46	3	A	0.163	3	1	10366
+EA Sports	Static Board Any Other	10:07:46	3	D	0.256	3	1	10366
+Forum8	Gallows Race Course	10:07:46	3	A	1.693	3	1	10366
+P1	Gallows Race Course	10:07:46	3	A	0.164	3	1	10366
+PIRELLI	Gallows Race Course	10:07:46	3	A	0.215	3	1	10366
+WOLF	Gallows Race Course	10:07:46	3	A	0.144	3	1	10366
+WRC	Static Board Any Other	10:07:46	3	D	1.108	3	1	10366
+P1	Static Board Any Other	10:07:51	7	D	8.006	7	1	10371
+Ford	TVGI	10:07:07	119	B	0.112	238	2	10327
+Hyundai	TVGI	10:07:07	119	E	0.166	357	3	10327
+Toyota	TVGI	10:07:07	119	E	0.130	595	5	10327
+WRC	TVGI - WRC.com	10:09:03	3	E	0.459	3	1	10443
+PIRELLI	Static Board Any Other	10:09:17	7	D	3.501	7	1	10457
+WOLF	Static Board Any Other	10:09:26	2	B	1.025	2	1	10466
+WRC	TVGI - Text	10:09:18	16	D	0.354	16	1	10458
+Asahi Kasei	Static Board Any Other	10:09:30	7	A	1.929	7	1	10470
+Asahi Kasei	Gallows Race Course	10:09:30	9	A	0.163	9	1	10470
+Castore	Gallows Race Course	10:09:30	9	A	0.152	9	1	10470
+Forum8	Gallows Race Course	10:09:30	9	A	1.693	9	1	10470
+P1	Gallows Race Course	10:09:30	9	A	0.164	9	1	10470
+PIRELLI	Gallows Race Course	10:09:30	9	A	0.215	9	1	10470
+WOLF	Gallows Race Course	10:09:30	9	A	0.144	9	1	10470
+PIRELLI	Static Board Any Other	10:09:42	1	D	3.501	1	1	10482
+WOLF	Static Board Any Other	10:09:45	3	A	1.025	3	1	10485
+Forum8	Static Board Any Other	10:09:54	2	A	0.733	2	1	10494
+Asahi Kasei	Gallows Race Course	10:09:56	3	A	0.163	3	1	10496
+EA Sports	Static Board Any Other	10:09:56	3	D	0.256	3	1	10496
+Forum8	Gallows Race Course	10:09:56	3	A	1.693	3	1	10496
+P1	Gallows Race Course	10:09:56	3	A	0.164	3	1	10496
+PIRELLI	Gallows Race Course	10:09:56	3	A	0.215	3	1	10496
+WOLF	Gallows Race Course	10:09:56	3	A	0.144	3	1	10496
+WRC	Static Board Any Other	10:09:56	3	D	1.108	3	1	10496
+P1	Static Board Any Other	10:10:01	5	D	8.006	5	1	10501
+WRC	TVGI - Text	10:10:52	17	D	0.354	17	1	10552
+Ford	TVGI	10:09:13	118	B	0.112	236	2	10453
+Skoda	TVGI	10:07:07	244	B	0.158	481	1.971	10327
+Toyota	TVGI	10:09:13	118	E	0.130	590	5	10453
+WRC	TVGI - WRC.com	10:11:06	5	E	0.459	5	1	10566
+PIRELLI	Static Board Any Other	10:11:19	6	D	3.501	6	1	10579
+WOLF	Static Board Any Other	10:11:27	5	A	1.025	5	1	10587
+Asahi Kasei	Static Board Any Other	10:11:32	6	A	1.929	6	1	10592
+Asahi Kasei	Gallows Race Course	10:11:32	8	A	0.163	8	1	10592
+Castore	Gallows Race Course	10:11:32	8	A	0.152	8	1	10592
+Forum8	Gallows Race Course	10:11:32	8	A	1.693	8	1	10592
+P1	Gallows Race Course	10:11:32	8	A	0.164	8	1	10592
+PIRELLI	Gallows Race Course	10:11:32	8	A	0.215	8	1	10592
+WOLF	Gallows Race Course	10:11:32	8	A	0.144	8	1	10592
+PIRELLI	Static Board Any Other	10:11:44	2	D	3.501	2	1	10604
+WOLF	Static Board Any Other	10:11:52	1	A	1.025	1	1	10612
+Forum8	Static Board Any Other	10:11:56	2	A	0.733	2	1	10616
+Asahi Kasei	Gallows Race Course	10:11:58	3	A	0.163	3	1	10618
+EA Sports	Static Board Any Other	10:11:58	3	D	0.256	3	1	10618
+PIRELLI	Gallows Race Course	10:11:58	3	A	0.215	3	1	10618
+WOLF	Gallows Race Course	10:11:58	3	A	0.144	3	1	10618
+WRC	Static Board Any Other	10:11:58	3	D	1.108	3	1	10618
+Forum8	Gallows Race Course	10:11:58	4	A	1.693	4	1	10618
+P1	Gallows Race Course	10:11:58	4	A	0.164	4	1	10618
+P1	Static Board Any Other	10:12:04	5	D	8.006	5	1	10624
+Ford	TVGI	10:11:16	120	B	0.112	240	2	10576
+Hyundai	TVGI	10:09:13	243	E	0.166	719	2.959	10453
+Toyota	TVGI	10:11:16	120	E	0.130	600	5	10576
+WRC	TVGI - WRC.com	10:13:14	2	E	0.459	2	1	10694
+WRC	TVGI - WRC.com	10:13:21	3	E	0.459	3	1	10701
+PIRELLI	Static Board Any Other	10:13:21	10	D	3.501	10	1	10701
+WRC	TVGI - Text	10:13:26	9	D	0.354	9	1	10706
+WOLF	Static Board Any Other	10:13:32	4	A	1.025	4	1	10712
+Asahi Kasei	Static Board Any Other	10:13:36	6	A	1.929	6	1	10716
+Asahi Kasei	Gallows Race Course	10:13:36	9	A	0.163	9	1	10716
+Castore	Gallows Race Course	10:13:36	9	A	0.152	9	1	10716
+Forum8	Gallows Race Course	10:13:36	9	A	1.693	9	1	10716
+P1	Gallows Race Course	10:13:36	9	A	0.164	9	1	10716
+PIRELLI	Gallows Race Course	10:13:36	9	A	0.215	9	1	10716
+WOLF	Gallows Race Course	10:13:36	9	A	0.144	9	1	10716
+Asahi Kasei	Static Board Any Other	10:13:45	1	A	1.929	1	1	10725
+PIRELLI	Static Board Any Other	10:13:49	3	D	3.501	3	1	10729
+WOLF	Static Board Any Other	10:13:52	6	A	1.025	6	1	10732
+Forum8	Static Board Any Other	10:14:00	3	A	0.733	3	1	10740
+Asahi Kasei	Gallows Race Course	10:14:03	3	A	0.163	3	1	10743
+Forum8	Gallows Race Course	10:14:03	3	A	1.693	3	1	10743
+P1	Gallows Race Course	10:14:03	3	A	0.164	3	1	10743
+PIRELLI	Gallows Race Course	10:14:03	3	A	0.215	3	1	10743
+WOLF	Gallows Race Course	10:14:03	3	A	0.144	3	1	10743
+EA Sports	Static Board Any Other	10:14:03	4	D	0.256	4	1	10743
+WRC	Static Board Any Other	10:14:03	4	D	1.108	4	1	10743
+P1	Static Board Any Other	10:14:09	4	D	8.006	4	1	10749
+WRC	TVGI - Text	10:14:57	17	D	0.354	17	1	10797
+Ford	TVGI	10:13:21	115	B	0.112	230	2	10701
+Hyundai	TVGI	10:13:21	115	E	0.166	345	3	10701
+Skoda	TVGI	10:11:16	240	B	0.158	475	1.979	10576
+WRC	TVGI - WRC.com	10:15:10	6	E	0.459	6	1	10810
+Toyota	TVGI	10:13:21	119	E	0.338	579	4.866	10701
+PIRELLI	Static Board Any Other	10:15:23	7	D	3.501	7	1	10823
+WOLF	Static Board Any Other	10:15:32	3	A	1.025	3	1	10832
+Asahi Kasei	Gallows Race Course	10:15:35	10	A	0.163	10	1	10835
+Castore	Gallows Race Course	10:15:35	10	A	0.152	10	1	10835
+Forum8	Gallows Race Course	10:15:35	10	A	1.693	10	1	10835
+Forum8	Static Board Any Other	10:15:35	10	A	0.733	10	1	10835
+P1	Gallows Race Course	10:15:35	10	A	0.164	10	1	10835
+PIRELLI	Gallows Race Course	10:15:35	10	A	0.215	10	1	10835
+WOLF	Gallows Race Course	10:15:35	10	A	0.144	10	1	10835
+PIRELLI	Static Board Any Other	10:15:48	3	D	3.501	3	1	10848
+Asahi Kasei	Gallows Race Course	10:16:02	4	A	0.163	4	1	10862
+EA Sports	Static Board Any Other	10:16:02	4	D	0.256	4	1	10862
+Forum8	Gallows Race Course	10:16:02	4	A	1.693	4	1	10862
+P1	Gallows Race Course	10:16:02	4	A	0.164	4	1	10862
+PIRELLI	Gallows Race Course	10:16:02	4	A	0.215	4	1	10862
+WOLF	Gallows Race Course	10:16:02	4	A	0.144	4	1	10862
+WRC	Static Board Any Other	10:16:02	4	D	1.108	4	1	10862
+P1	Static Board Any Other	10:16:08	4	D	8.006	4	1	10868
+WRC	TVGI - Text	10:17:02	12	D	0.354	12	1	10922
+Ford	TVGI	10:15:21	115	B	0.112	230	2	10821
+Hyundai	TVGI	10:15:21	115	E	0.166	345	3	10821
+Skoda	TVGI	10:15:21	115	B	0.158	230	2	10821
+Toyota	TVGI	10:15:21	115	E	0.130	575	5	10821
+WRC	TVGI - WRC.com	10:17:13	3	E	0.459	3	1	10933
+WRC	TVGI - WRC.com	10:17:22	1	E	0.459	1	1	10942
+PIRELLI	Static Board Any Other	10:17:27	5	D	3.501	5	1	10947
+WOLF	Static Board Any Other	10:17:34	4	A	1.025	4	1	10954
+Asahi Kasei	Gallows Race Course	10:17:38	9	A	0.163	9	1	10958
+Asahi Kasei	Static Board Any Other	10:17:38	9	A	1.929	9	1	10958
+Castore	Gallows Race Course	10:17:38	9	A	0.152	9	1	10958
+Forum8	Gallows Race Course	10:17:38	9	A	1.693	9	1	10958
+P1	Gallows Race Course	10:17:38	9	A	0.164	9	1	10958
+PIRELLI	Gallows Race Course	10:17:38	9	A	0.215	9	1	10958
+WOLF	Gallows Race Course	10:17:38	9	A	0.144	9	1	10958
+PIRELLI	Static Board Any Other	10:17:49	3	D	3.501	3	1	10969
+WOLF	Static Board Any Other	10:17:52	3	D	1.025	3	1	10972
+Forum8	Static Board Any Other	10:18:00	3	A	0.733	3	1	10980
+Asahi Kasei	Gallows Race Course	10:18:03	4	A	0.163	4	1	10983
+EA Sports	Static Board Any Other	10:18:03	4	D	0.256	4	1	10983
+Forum8	Gallows Race Course	10:18:03	4	A	1.693	4	1	10983
+P1	Gallows Race Course	10:18:03	4	A	0.164	4	1	10983
+PIRELLI	Gallows Race Course	10:18:03	4	A	0.215	4	1	10983
+WOLF	Gallows Race Course	10:18:03	4	A	0.144	4	1	10983
+WRC	Static Board Any Other	10:18:03	4	D	1.108	4	1	10983
+WRC	TVGI - Text	10:17:50	17	D	0.354	17	1	10970
+P1	Static Board Any Other	10:18:10	3	D	8.006	3	1	10990
+WRC	TVGI - Text	10:18:52	24	D	0.354	24	1	11032
+WRC	TVGI - WRC.com	10:19:06	10	E	0.459	10	1	11046
+Ford	TVGI	10:17:22	119	B	0.112	238	2	10942
+Hyundai	TVGI	10:17:22	119	E	0.166	357	3	10942
+Skoda	TVGI	10:17:22	119	B	0.158	238	2	10942
+Toyota	TVGI	10:17:22	124	E	0.338	600	4.839	10942
+PIRELLI	Static Board Any Other	10:19:30	8	D	3.501	8	1	11070
+WRC	TVGI - Text	10:19:31	8	D	0.354	8	1	11071
+WOLF	Static Board Any Other	10:19:40	4	A	1.025	4	1	11080
+Asahi Kasei	Static Board Any Other	10:19:44	6	A	1.929	6	1	11084
+Asahi Kasei	Gallows Race Course	10:19:44	9	A	0.163	9	1	11084
+Asahi Kasei	Static Board Any Other	10:19:52	1	A	1.929	1	1	11092
+Castore	Gallows Race Course	10:19:44	9	A	0.152	9	1	11084
+Forum8	Gallows Race Course	10:19:44	9	A	1.693	9	1	11084
+P1	Gallows Race Course	10:19:44	9	A	0.164	9	1	11084
+PIRELLI	Gallows Race Course	10:19:44	9	A	0.215	9	1	11084
+WOLF	Gallows Race Course	10:19:44	9	A	0.144	9	1	11084
+PIRELLI	Static Board Any Other	10:19:56	3	D	3.501	3	1	11096
+WOLF	Static Board Any Other	10:20:05	2	E	4.979	2	1	11105
+Forum8	Static Board Any Other	10:20:08	3	A	0.733	3	1	11108
+Asahi Kasei	Gallows Race Course	10:20:11	3	A	0.163	3	1	11111
+EA Sports	Static Board Any Other	10:20:11	3	D	0.256	3	1	11111
+Forum8	Gallows Race Course	10:20:11	3	A	1.693	3	1	11111
+P1	Gallows Race Course	10:20:11	3	A	0.164	3	1	11111
+PIRELLI	Gallows Race Course	10:20:11	3	A	0.215	3	1	11111
+WOLF	Gallows Race Course	10:20:11	3	A	0.144	3	1	11111
+WRC	Static Board Any Other	10:20:11	3	D	1.108	3	1	11111
+P1	Static Board Any Other	10:20:17	5	D	8.006	5	1	11117
+WRC	TVGI - Text	10:20:24	10	C	0.354	10	1	11124
+Ford	TVGI	10:19:27	93	B	0.112	186	2	11067
+Hyundai	TVGI	10:19:27	93	E	0.166	279	3	11067
+Skoda	TVGI	10:19:27	93	B	0.158	186	2	11067
+Toyota	TVGI	10:19:27	93	E	0.130	465	5	11067
+Ford	TVGI	10:21:07	32	C	0.358	64	2	11167
+Hyundai	TVGI	10:21:07	32	D	0.358	96	3	11167
+Skoda	TVGI	10:21:28	11	D	0.366	11	1	11188
+Toyota	TVGI	10:21:07	32	C	0.338	96	3	11167
+WRC	TVGI - #WRCLIVE	10:21:07	32	E	0.215	32	1	11167
+WRC	TVGI - Text	10:21:07	32	C	0.354	32	1	11167
+WRC	TVGI - WRC.com	10:21:07	32	D	0.459	32	1	11167
+Ford	TVGI	10:21:43	28	C	0.358	56	2	11203
+Hyundai	TVGI	10:21:43	28	D	0.358	84	3	11203
+Toyota	TVGI	10:21:43	28	C	0.338	84	3	11203
+WRC	TVGI - Text	10:21:42	29	C	0.354	29	1	11202
+WRC	TVGI - WRC.com	10:21:43	28	D	0.459	28	1	11203
+WRC	TVGI - #WRCLIVE	10:21:43	44	E	0.215	51	1.159	11203
+PIRELLI	Interview Backdrops (non pitch) Mixed Zone	10:22:27	21	A	0.310	21	1	11247
+WOLF	Interview Backdrops (non pitch) Mixed Zone	10:22:27	21	A	0.299	21	1	11247
+WRC	Interview Backdrops (non pitch) Mixed Zone	10:22:27	21	B	4.846	21	1	11247
+WRC	Non Team Sportswear Others	10:22:27	21	D	0.917	21	1	11247
+Hyundai	Firesuit Driver	10:22:48	2	D	0.358	4	2	11268
+Hyundai	TVGI	10:22:59	6	D	0.358	6	1	11279
+Hyundai	Firesuit Driver	10:23:05	3	D	1.318	3	1	11285
+WRC	Microphone	10:22:50	18	E	0.816	18	1	11270
+Hyundai	Firesuit Driver	10:23:13	8	D	2.274	8	1	11293
+WRC	Microphone	10:23:17	4	C	0.816	4	1	11297
+Hyundai	Firesuit Driver	10:23:22	10	A	2.274	10	1	11302
+Hyundai	Firesuit Driver	10:23:33	26	A	2.274	26	1	11313
+Hyundai	Helmet Driver	10:23:48	11	B	1.873	11	1	11328
+Hyundai	Firesuit Driver	10:24:01	1	A	0.419	1	1	11341
+Hyundai	Helmet Driver	10:24:01	4	B	1.873	4	1	11341
+PIRELLI	Interview Backdrops (non pitch) Mixed Zone	10:24:43	60	A	0.310	60	1	11383
+WOLF	Interview Backdrops (non pitch) Mixed Zone	10:24:43	60	A	0.299	60	1	11383
+WRC	Interview Backdrops (non pitch) Mixed Zone	10:24:43	60	A	4.846	120	2	11383
+WRC	Non Team Sportswear Others	10:24:43	60	D	0.917	60	1	11383
+PIRELLI	Firesuit Driver	10:25:43	4	A	0.240	4	1	11443
+Ford	TVGI	10:26:06	5	D	0.358	5	1	11466
+PIRELLI	Firesuit Driver	10:26:25	2	D	0.240	2	1	11485
+WRC	Microphone	10:25:46	41	E	0.816	41	1	11446
+PIRELLI	Interview Backdrops (non pitch) Mixed Zone	10:27:29	29	A	0.310	29	1	11549
+WOLF	Interview Backdrops (non pitch) Mixed Zone	10:27:29	29	A	0.299	29	1	11549
+WRC	Interview Backdrops (non pitch) Mixed Zone	10:27:29	29	B	4.846	58	2	11549
+WRC	Non Team Sportswear Others	10:27:29	29	D	0.917	29	1	11549
+WRC	TVGI	09:42:04	2770	E	0.485	2845	1.027	8824
+WRC	Microphone	10:28:19	96	A	0.816	96	1	11599
+WRC	Non Team Sportswear Others	10:28:19	96	A	0.575	96	1	11599
+WRC	TVGI	10:28:15	100	E	0.485	100	1	11595

@@ -1,0 +1,602 @@
+Brand	Location	Time the brand is at screen	Duration	Screen Location	Screen Size %	Total Hits	Average Hits	Sequence Frame Number
+WRC	TVGI	07:15:39	3	A	20.739	3	1	39
+PIRELLI	Car Rear Bumper	07:15:45	1	A	1.643	1	1	45
+Red Bull	Car Rear Bumper	07:15:45	1	A	2.548	1	1	45
+Ford	Car Bonnet	07:15:58	1	A	1.787	1	1	58
+Ford	Car Front Windscreen	07:15:58	1	B	0.869	1	1	58
+PIRELLI	Car Front Bumper	07:15:58	1	D	0.671	1	1	58
+Red Bull	Car Bonnet	07:15:58	1	A	2.683	1	1	58
+Red Bull	Car Door	07:15:58	1	A	2.599	1	1	58
+Toyota	Car 33	07:15:59	1	A	48.496	1	1	59
+Toyota	Car 33	07:16:01	1	A	18.919	1	1	61
+Toyota	Car Front Windscreen	07:16:01	1	C	1.650	1	1	61
+WRC	TVGI	07:16:02	1	A	5.254	1	1	62
+Toyota	Car 33	07:16:07	2	A	10.365	2	1	67
+Red Bull	Car Door	07:16:09	1	A	2.599	1	1	69
+Toyota	Car 33	07:16:12	1	A	7.388	1	1	72
+Toyota	Car 33	07:16:15	1	A	7.388	1	1	75
+Hyundai	Car Door	07:16:16	1	D	2.277	1	1	76
+Toyota	Car 33	07:16:18	1	A	18.919	1	1	78
+PIRELLI	Car Rear Bumper	07:16:20	1	D	1.643	1	1	80
+Toyota	Car 33	07:16:20	1	A	16.470	1	1	80
+PIRELLI	Car Rear Bumper	07:16:22	1	C	1.643	1	1	82
+PIRELLI	Firesuit Driver	07:16:22	1	B	0.887	1	1	82
+Toyota	Firesuit Driver	07:16:22	1	A	1.598	1	1	82
+Hyundai	Car Door	07:16:23	1	D	2.277	1	1	83
+Red Bull	Helmet Driver	07:16:25	1	C	1.613	1	1	85
+Toyota	Car 18	07:16:26	1	A	6.946	1	1	86
+Ford	Car Bonnet	07:16:27	1	A	1.787	1	1	87
+Ford	Car Front Windscreen	07:16:27	1	A	0.869	1	1	87
+Red Bull	Car Door	07:16:27	1	A	2.599	1	1	87
+Toyota	Car 33	07:16:29	1	A	18.919	1	1	89
+Hyundai	Car 8	07:16:30	1	A	23.834	1	1	90
+Hyundai	Car Front Windscreen	07:16:30	1	C	1.784	1	1	90
+PIRELLI	Car Front Bumper	07:16:30	1	D	0.671	1	1	90
+WRC	Car Front Windscreen	07:16:30	1	C	1.118	1	1	90
+WOLF	Gallows Race Course	07:16:33	1	B	0.909	1	1	93
+WRC	Gallows Race Course	07:16:33	1	E	0.681	1	1	93
+WRC	Non Team Sportswear Others	07:16:38	2	A	0.875	2	1	98
+Hyundai	Staff Aparel	07:16:40	34	A	1.004	34	1	100
+WRC	Microphone	07:16:40	35	A	0.815	104	2.971	100
+Hyundai	Staff Aparel	07:17:40	1	A	1.004	1	1	160
+Hyundai	Staff Aparel	07:17:42	68	A	1.004	68	1	162
+WRC	Microphone	07:17:38	72	A	0.815	144	2	158
+Ford	TVGI	07:18:51	32	C	0.322	64	2	231
+Hyundai	TVGI	07:18:51	32	C	0.579	96	3	231
+Skoda	TVGI	07:18:51	32	D	0.447	64	2	231
+Toyota	TVGI	07:18:51	32	D	0.509	128	4	231
+WRC	TVGI	07:18:50	33	B	1.546	33	1	230
+WRC	TVGI - WRC.com	07:18:51	32	D	0.865	32	1	231
+Hyundai	Staff Aparel	07:19:23	40	A	1.004	40	1	263
+WRC	Microphone	07:19:23	40	A	0.815	120	3	263
+Toyota	Firesuit Driver	07:20:03	4	A	1.129	4	1	303
+Toyota	Firesuit Driver	07:20:18	4	A	1.598	4	1	318
+Asahi Kasei	Car A Post	07:20:22	7	A	1.105	7	1	322
+Toyota	Car Front Windscreen	07:20:24	5	A	1.650	5	1	324
+Toyota	Firesuit Driver	07:20:29	2	C	1.598	2	1	329
+Toyota	Car 33	07:20:03	30	A	28.050	30	1	303
+Toyota	Firesuit Driver	07:20:33	1	D	1.598	1	1	333
+PIRELLI	Firesuit Driver	07:20:33	2	D	0.887	2	1	333
+Asahi Kasei	Car A Post	07:20:35	8	A	1.293	8	1	335
+Toyota	Car Front Windscreen	07:20:35	13	B	1.650	13	1	335
+PIRELLI	Car Front Bumper	07:20:47	4	E	0.671	4	1	347
+PIRELLI	Car Front Bumper	07:21:01	2	E	0.671	2	1	361
+Toyota	Car Door	07:20:59	8	D	5.867	8	1	359
+PIRELLI	Car Rear Bumper	07:21:12	6	D	0.757	6	1	372
+Toyota	Car 33	07:20:35	43	A	37.359	43	1	335
+PIRELLI	Car Rear Bumper	07:21:24	4	A	1.643	8	2	384
+Red Bull	Car Door	07:21:27	1	E	2.599	1	1	387
+Red Bull	Car Roof	07:21:27	6	A	12.340	6	1	387
+Red Bull	Helmet Driver	07:21:28	5	A	1.270	5	1	388
+Ford	Car Rear Wing	07:21:33	4	D	1.897	4	1	393
+PIRELLI	Firesuit Driver	07:21:41	4	A	0.887	4	1	401
+Red Bull	Car Roof	07:21:36	10	E	7.903	10	1	396
+Red Bull	Firesuit Driver	07:21:32	14	A	1.613	14	1	392
+Ford	Car 16	07:21:24	30	A	23.955	30	1	384
+Ford	Car Bonnet	07:21:50	4	E	1.787	4	1	410
+Ford	Car Front Windscreen	07:21:47	7	E	0.869	7	1	407
+Red Bull	Car Bonnet	07:21:50	4	A	2.683	4	1	410
+Red Bull	Car Door	07:21:48	6	D	6.415	6	1	408
+Red Bull	Helmet Driver	07:21:45	9	B	1.613	18	2	405
+Ford	TVGI	07:21:55	17	A	0.565	34	2	415
+Hyundai	TVGI	07:21:55	17	A	0.725	102	6	415
+WRC	TVGI	07:21:54	18	B	1.546	18	1	414
+WRC	TVGI - WRC.com	07:21:55	17	D	0.865	17	1	415
+Ford	Firesuit Driver	07:22:14	1	A	1.174	1	1	434
+Ford	Car Front Windscreen	07:22:16	4	B	0.869	4	1	436
+Red Bull	Car Door	07:22:15	5	E	2.599	5	1	435
+Red Bull	Firesuit Driver	07:22:18	3	A	1.318	3	1	438
+Ford	Car 16	07:22:16	8	E	7.844	8	1	436
+PIRELLI	Firesuit Driver	07:22:22	2	E	0.512	4	2	442
+Red Bull	Firesuit Driver	07:22:22	2	D	1.318	4	2	442
+Ford	Firesuit Driver	07:22:21	10	D	2.648	10	1	441
+Toyota	Car Door	07:22:28	9	A	2.277	9	1	448
+PIRELLI	Car Front Bumper	07:22:35	3	E	0.671	3	1	455
+Ford	Firesuit Driver	07:22:42	1	A	1.174	1	1	462
+Red Bull	Firesuit Driver	07:22:45	1	A	1.318	1	1	465
+Toyota	Car 33	07:22:43	4	B	10.728	4	1	463
+Ford	Firesuit Driver	07:22:47	2	A	1.174	2	1	467
+PIRELLI	Firesuit Driver	07:22:47	2	D	0.512	2	1	467
+Ford	Car Bonnet	07:22:49	4	E	1.271	4	1	469
+PIRELLI	Car Front Bumper	07:22:49	4	E	0.671	4	1	469
+Red Bull	Car Bonnet	07:22:48	5	E	2.622	5	1	468
+Ford	Car 16	07:22:47	7	A	14.627	7	1	467
+Red Bull	Car Door	07:22:47	7	E	2.599	7	1	467
+Ford	Car 16	07:22:55	15	A	20.834	15	1	475
+Ford	Firesuit Driver	07:23:08	2	A	1.174	2	1	488
+PIRELLI	Car Front Bumper	07:22:57	13	E	0.671	13	1	477
+Red Bull	Firesuit Driver	07:22:55	15	A	1.318	15	1	475
+WRC	Non Team Sportswear Others	07:23:36	5	A	0.815	5	1	516
+Hyundai	Non Team Sportswear Others	07:23:41	15	A	1.004	15	1	521
+WRC	Microphone	07:23:36	20	A	0.815	35	1.750	516
+PIRELLI	Car Front Bumper	07:23:56	14	D	0.671	14	1	536
+PIRELLI	Firesuit Driver	07:23:56	16	A	0.512	16	1	536
+Ford	Car Front Windscreen	07:24:12	1	C	2.889	1	1	552
+Red Bull	Car Door	07:23:56	17	B	2.599	17	1	536
+Ford	Firesuit Driver	07:23:56	19	A	1.174	19	1	536
+Ford	Car Rear Wing	07:24:13	5	A	1.486	5	1	553
+Red Bull	Helmet Driver	07:24:19	7	C	0.949	7	1	559
+PIRELLI	Firesuit Driver	07:24:15	21	E	0.512	21	1	555
+Toyota	Car 33	07:24:12	24	B	8.284	24	1	552
+Toyota	Car Door	07:24:18	18	E	2.277	36	2	558
+Toyota	Car Front Windscreen	07:24:22	14	A	1.650	14	1	562
+Toyota	Firesuit Driver	07:24:22	14	A	1.598	14	1	562
+Ford	Firesuit Driver	07:24:36	8	A	1.174	8	1	576
+PIRELLI	Firesuit Driver	07:24:37	7	A	0.512	7	1	577
+Ford	Car 16	07:23:56	51	C	19.900	51	1	536
+Ford	Car Rear Wing	07:24:44	3	C	2.206	3	1	584
+Toyota	Car 33	07:24:44	3	B	14.227	3	1	584
+Toyota	Car 33	07:24:48	2	B	7.119	2	1	588
+Ford	Car Front Windscreen	07:24:49	5	A	0.869	5	1	589
+Ford	Car Rear Wing	07:24:48	6	C	2.206	6	1	588
+Red Bull	Helmet Driver	07:24:49	5	C	0.949	5	1	589
+Ford	Firesuit Driver	07:24:54	9	A	1.174	9	1	594
+Red Bull	Helmet Driver	07:25:03	5	B	1.384	9	1.800	603
+Ford	Car 16	07:24:48	22	A	23.411	22	1	588
+Ford	Car Rear Wing	07:25:05	5	A	2.206	5	1	605
+Toyota	Car Door	07:25:10	11	E	2.277	11	1	610
+Ford	Firesuit Driver	07:25:10	19	D	1.174	19	1	610
+Toyota	Car Front Windscreen	07:25:10	19	A	1.650	19	1	610
+PIRELLI	Firesuit Driver	07:25:10	20	D	0.512	20	1	610
+Toyota	Car Bonnet	07:25:10	20	A	2.139	20	1	610
+Toyota	Car Door	07:25:22	8	E	2.277	8	1	622
+Ford	Car 16	07:25:29	5	D	22.607	5	1	629
+Ford	Car Front Windscreen	07:25:30	4	D	0.869	4	1	630
+Red Bull	Car Door	07:25:30	4	D	2.599	4	1	630
+Red Bull	Helmet Driver	07:25:33	1	C	0.949	1	1	633
+PIRELLI	Car Front Bumper	07:25:42	3	A	0.671	3	1	642
+Toyota	Car Bonnet	07:25:37	12	A	1.423	12	1	637
+Toyota	Car Door	07:25:44	5	A	2.277	5	1	644
+Toyota	Car Front Windscreen	07:25:44	7	A	3.075	7	1	644
+Red Bull	Helmet Driver	07:25:49	9	A	0.949	9	1	649
+Asahi Kasei	Car A Post	07:25:58	2	A	2.416	2	1	658
+Toyota	Car 33	07:25:07	53	B	57.453	53	1	607
+Toyota	Car Door	07:25:58	2	A	10.380	2	1	658
+Toyota	Car 33	07:26:01	1	A	4.475	1	1	661
+Ford	Car 16	07:26:01	5	A	4.731	5	1	661
+Hyundai	Non Team Sportswear Others	07:26:06	16	A	1.004	16	1	666
+WRC	Microphone	07:26:06	16	A	0.815	32	2	666
+Hyundai	Firesuit Driver	07:26:25	5	D	1.202	10	2	685
+Hyundai	Helmet Driver	07:26:25	5	B	1.102	10	2	685
+PIRELLI	Firesuit Driver	07:26:25	5	A	0.692	5	1	685
+Hyundai	Non Team Sportswear Others	07:26:30	11	A	1.004	11	1	690
+WRC	Microphone	07:26:30	11	A	0.815	22	2	690
+Hyundai	Firesuit Driver	07:26:41	2	A	1.202	4	2	701
+Hyundai	Helmet Driver	07:26:41	2	B	1.102	2	1	701
+PIRELLI	Firesuit Driver	07:26:41	2	A	0.692	4	2	701
+Hyundai	Non Team Sportswear Others	07:26:43	2	A	1.004	2	1	703
+WRC	Microphone	07:26:43	2	A	0.815	2	1	703
+Hyundai	Car Front Windscreen	07:26:52	1	A	1.784	1	1	712
+Hyundai	Car Rear Wing	07:26:54	1	A	1.784	1	1	714
+WRC	TVGI	07:27:01	7	B	1.546	7	1	721
+WRC	TVGI - WRC.com	07:27:01	7	E	0.865	7	1	721
+WRC	TVGI	07:27:09	33	C	1.546	33	1	729
+WRC	TVGI - #WRCLIVE	07:27:09	33	D	0.865	33	1	729
+WRC	TVGI - WRC.com	07:27:09	33	D	0.865	33	1	729
+Asahi Kasei	Car A Post	07:27:42	2	A	2.416	2	1	762
+Toyota	Car Front Windscreen	07:27:42	2	C	1.650	2	1	762
+Toyota	Firesuit Driver	07:27:44	3	E	1.598	3	1	764
+PIRELLI	Firesuit Driver	07:27:44	4	A	0.887	6	1.500	764
+Toyota	Car 33	07:27:42	6	A	30.704	6	1	762
+Toyota	Car Front Windscreen	07:27:47	1	A	1.650	1	1	767
+Toyota	Firesuit Driver	07:27:48	1	A	1.598	1	1	768
+PIRELLI	Car Front Bumper	07:27:50	1	E	0.671	1	1	770
+PIRELLI	Firesuit Driver	07:27:53	1	D	0.887	1	1	773
+Toyota	Car 33	07:27:49	5	A	22.388	5	1	769
+Toyota	Car Bonnet	07:27:49	5	A	2.139	5	1	769
+Toyota	Car Door	07:27:54	4	E	3.344	4	1	774
+Toyota	Firesuit Driver	07:27:51	7	A	1.598	7	1	771
+Asahi Kasei	Car A Post	07:27:55	4	D	2.416	4	1	775
+Toyota	Car 17	07:27:54	5	A	47.588	5	1	774
+Toyota	Car Front Windscreen	07:27:58	1	C	1.650	1	1	778
+WRC	TVGI	07:27:59	26	B	1.546	26	1	779
+WRC	TVGI - #WRCLIVE	07:27:59	26	E	0.865	26	1	779
+WRC	TVGI - WRC.com	07:27:59	26	D	0.865	26	1	779
+PIRELLI	Firesuit Driver	07:28:25	7	A	0.887	7	1	805
+Toyota	Car 17	07:28:25	7	A	63.578	7	1	805
+Toyota	Car Front Windscreen	07:28:25	7	B	3.634	7	1	805
+Hyundai	Car 11	07:28:32	1	A	12.307	1	1	812
+Hyundai	Car Door	07:28:32	1	A	0.922	1	1	812
+Hyundai	Car Front Windscreen	07:28:32	1	A	1.784	1	1	812
+WRC	Car Front Windscreen	07:28:32	1	A	1.118	1	1	812
+Hyundai	TVGI - Text	07:28:32	4	B	1.757	5	1.250	812
+Hyundai	Firesuit Driver	07:28:33	7	A	1.202	14	2	813
+Hyundai	Helmet Driver	07:28:36	4	B	1.102	8	2	816
+PIRELLI	Firesuit Driver	07:28:36	4	E	0.692	12	3	816
+WRC	TVGI - WRC.com	07:28:47	5	E	0.865	5	1	827
+Hyundai	Firesuit Driver	07:28:52	2	A	1.202	4	2	832
+Hyundai	Helmet Driver	07:28:52	2	B	1.102	4	2	832
+PIRELLI	Firesuit Driver	07:28:52	2	E	0.692	4	2	832
+Asahi Kasei	Car A Post	07:29:49	7	E	1.153	7	1	889
+Hyundai	TVGI	07:28:42	74	D	0.827	74	1	822
+Toyota	Car 17	07:29:46	10	E	3.523	10	1	886
+Asahi Kasei	Car A Post	07:29:57	6	E	1.153	6	1	897
+Asahi Kasei	Car A Post	07:30:06	2	E	1.105	2	1	906
+Toyota	Car 17	07:29:57	25	E	3.523	25	1	897
+Hyundai	Helmet Driver	07:30:59	4	A	1.102	4	1	959
+PIRELLI	Firesuit Driver	07:30:59	4	E	0.692	8	2	959
+Hyundai	TVGI	07:29:57	86	D	0.827	86	1	897
+Asahi Kasei	Car Front Windscreen	07:31:25	1	A	0.692	1	1	985
+PIRELLI	Car Front Bumper	07:31:25	1	A	0.671	1	1	985
+Toyota	Firesuit Driver	07:31:27	1	A	1.598	2	2	987
+PIRELLI	Firesuit Driver	07:31:27	4	A	0.887	4	1	987
+Toyota	Car Bonnet	07:31:25	6	A	0.751	6	1	985
+Toyota	Car Door	07:31:25	6	A	1.131	6	1	985
+Toyota	TVGI - Text	07:31:25	6	B	1.269	12	2	985
+PIRELLI	Car Rear Bumper	07:31:31	13	E	1.643	13	1	991
+Toyota	Car 33	07:31:25	21	A	2.580	21	1	985
+Hyundai	TVGI	07:31:31	19	E	0.358	114	6	991
+Skoda	TVGI	07:31:31	19	B	0.377	57	3	991
+Toyota	TVGI	07:31:31	20	E	0.429	78	3.900	991
+WRC	TVGI	07:31:50	1	A	43.867	1	1	1010
+Hyundai	Firesuit Driver	07:31:51	2	D	1.202	2	1	1011
+Hyundai	Helmet Driver	07:31:51	2	B	1.102	2	1	1011
+PIRELLI	Firesuit Driver	07:31:51	2	E	0.692	2	1	1011
+Toyota	Car 17	07:32:28	16	E	2.087	16	1	1048
+Toyota	Car Door	07:32:32	12	A	0.778	12	1	1052
+Hyundai	Firesuit Driver	07:32:50	5	E	1.202	5	1	1070
+Hyundai	Helmet Driver	07:32:50	5	B	1.102	5	1	1070
+PIRELLI	Firesuit Driver	07:32:50	5	E	0.692	5	1	1070
+Hyundai	Firesuit Driver	07:33:09	4	A	1.202	4	1	1089
+Hyundai	Helmet Driver	07:33:09	4	B	1.102	8	2	1089
+PIRELLI	Firesuit Driver	07:33:09	4	A	0.692	8	2	1089
+Hyundai	TVGI	07:31:51	156	E	0.827	169	1.083	1011
+Skoda	TVGI	07:31:51	156	B	0.377	468	3	1011
+Toyota	TVGI	07:31:52	155	E	0.639	774	4.994	1012
+Asahi Kasei	Car Front Windscreen	07:34:27	2	A	0.869	2	1	1167
+WRC	Car Door	07:34:27	2	A	0.434	2	1	1167
+Ford	Car 16	07:34:27	7	A	9.226	7	1	1167
+Ford	Car Bonnet	07:34:27	7	A	0.869	7	1	1167
+Ford	TVGI - Text	07:34:27	7	B	1.321	7	1	1167
+Red Bull	Car Bonnet	07:34:27	7	A	0.671	7	1	1167
+Red Bull	Car Door	07:34:27	7	A	0.999	7	1	1167
+Red Bull	Firesuit Driver	07:34:29	5	A	1.318	10	2	1169
+Ford	Firesuit Driver	07:34:29	9	A	1.174	18	2	1169
+Red Bull	Helmet Driver	07:34:34	4	A	0.949	8	2	1174
+Red Bull	Car Door	07:34:44	1	A	7.235	1	1	1184
+Ford	Car 16	07:34:38	9	A	2.269	9	1	1178
+WRC	Car Inside	07:34:49	40	A	1.324	40	1	1189
+Red Bull	Helmet Driver	07:35:29	2	A	0.949	4	2	1229
+Ford	TVGI	07:34:36	106	D	0.533	106	1	1176
+Hyundai	TVGI	07:34:34	108	E	0.358	648	6	1174
+Skoda	TVGI	07:34:34	108	B	0.377	324	3	1174
+Toyota	TVGI	07:35:36	46	E	0.639	138	3	1236
+WRC	TVGI	07:36:22	1	A	44.395	1	1	1282
+Hyundai	Helmet Driver	07:36:23	4	B	1.102	4	1	1283
+PIRELLI	Firesuit Driver	07:36:23	4	A	0.692	4	1	1283
+Hyundai	TVGI	07:36:23	63	E	0.358	316	5.016	1283
+Skoda	TVGI	07:36:23	63	B	0.377	189	3	1283
+Toyota	TVGI	07:36:23	63	E	0.639	252	4	1283
+Hyundai	Car Door	07:37:27	1	A	0.568	1	1	1347
+Hyundai	Car Front Windscreen	07:37:27	1	A	0.999	1	1	1347
+PIRELLI	Car Front Bumper	07:37:27	1	A	0.671	1	1	1347
+WRC	Car Front Windscreen	07:37:27	1	A	0.649	1	1	1347
+Hyundai	Firesuit Driver	07:37:28	3	A	1.024	10	3.333	1348
+Hyundai	TVGI - Text	07:37:27	4	B	1.801	8	2	1347
+PIRELLI	Firesuit Driver	07:37:28	3	D	0.692	3	1	1348
+WRC	Car Door	07:37:27	4	A	0.792	4	1	1347
+Hyundai	Car Rear Bumper	07:37:31	13	A	0.724	13	1	1351
+PIRELLI	Car Rear Bumper	07:37:31	13	A	0.463	26	2	1351
+Hyundai	Car 8	07:37:27	19	A	5.573	19	1	1347
+Hyundai	Car Rear Wing	07:37:31	15	B	1.016	15	1	1351
+Hyundai	TVGI	07:37:32	17	E	0.358	97	5.706	1352
+Skoda	TVGI	07:37:32	17	B	0.377	51	3	1352
+Toyota	TVGI	07:37:32	17	B	0.639	68	4	1352
+WRC	TVGI	07:37:48	2	A	29.535	2	1	1368
+Red Bull	Helmet Driver	07:37:50	2	A	0.949	4	2	1370
+WRC	Car Inside	07:37:52	13	A	1.914	13	1	1372
+Ford	TVGI	07:37:53	74	D	0.797	74	1	1373
+Hyundai	TVGI	07:37:50	77	E	0.358	462	6	1370
+Skoda	TVGI	07:37:50	77	B	0.377	231	3	1370
+Toyota	TVGI	07:37:50	77	B	0.639	308	4	1370
+WRC	TVGI	07:39:07	2	A	37.045	2	1	1447
+Hyundai	Firesuit Driver	07:39:12	1	A	1.202	1	1	1452
+Hyundai	Helmet Driver	07:39:09	4	B	1.102	4	1	1449
+PIRELLI	Firesuit Driver	07:39:09	4	E	0.692	4	1	1449
+Hyundai	Helmet Driver	07:40:45	4	E	1.102	4	1	1545
+Hyundai	Firesuit Driver	07:41:26	22	D	1.202	44	2	1586
+Hyundai	Helmet Driver	07:41:26	22	A	1.102	44	2	1586
+PIRELLI	Firesuit Driver	07:41:26	22	E	0.692	44	2	1586
+Hyundai	Car 11	07:41:50	10	A	36.350	10	1	1610
+Hyundai	Firesuit Driver	07:42:00	2	D	1.202	2	1	1620
+PIRELLI	Firesuit Driver	07:42:00	2	D	0.692	2	1	1620
+Hyundai	Helmet Driver	07:42:05	3	B	1.102	3	1	1625
+Red Bull	Helmet Driver	07:42:02	6	C	7.010	6	1	1622
+PIRELLI	Firesuit Driver	07:42:08	1	D	0.692	1	1	1628
+Hyundai	Firesuit Driver	07:42:09	28	D	1.177	28	1	1629
+WRC	Microphone	07:42:18	26	A	0.815	26	1	1638
+Hyundai	Firesuit Driver	07:42:41	6	D	1.202	6	1	1661
+Hyundai	TVGI	07:39:09	218	D	0.358	1308	6	1449
+Skoda	TVGI	07:39:09	218	B	0.377	654	3	1449
+Toyota	TVGI	07:39:09	218	E	0.639	872	4	1449
+Asahi Kasei	Car Front Windscreen	07:42:47	1	A	0.899	1	1	1667
+PIRELLI	Car Front Bumper	07:42:47	1	A	0.671	1	1	1667
+Toyota	Car 18	07:42:47	5	A	5.206	5	1	1667
+Toyota	Car Bonnet	07:42:47	5	A	1.020	5	1	1667
+Toyota	Car Door	07:42:47	5	A	0.703	5	1	1667
+Toyota	TVGI - Text	07:42:47	5	B	1.611	10	2	1667
+PIRELLI	Firesuit Driver	07:42:52	2	A	0.887	4	2	1672
+Toyota	Firesuit Driver	07:42:52	2	E	1.598	4	2	1672
+Toyota	Helmet Driver	07:42:52	2	B	1.981	2	1	1672
+Hyundai	TVGI	07:42:52	27	E	0.358	162	6	1672
+Skoda	TVGI	07:42:52	27	B	0.377	81	3	1672
+Toyota	TVGI	07:42:52	27	B	0.639	108	4	1672
+Asahi Kasei	Car Front Windscreen	07:43:19	1	A	1.650	1	1	1699
+PIRELLI	Car Front Bumper	07:43:19	1	A	0.671	1	1	1699
+PIRELLI	Firesuit Driver	07:43:21	3	A	0.887	12	4	1701
+Toyota	Car 17	07:43:19	5	A	6.721	5	1	1699
+Toyota	Car Bonnet	07:43:19	5	A	0.772	5	1	1699
+Toyota	Car Door	07:43:19	5	A	0.653	5	1	1699
+Toyota	Firesuit Driver	07:43:20	4	E	1.598	11	2.750	1700
+Toyota	TVGI - Text	07:43:19	5	B	1.534	10	2	1699
+PIRELLI	Firesuit Driver	07:43:25	14	D	0.887	28	2	1705
+Red Bull	Helmet Driver	07:43:24	15	A	3.406	30	2	1704
+Toyota	TVGI	07:43:26	32	D	0.639	128	4	1706
+Hyundai	TVGI	07:43:26	34	E	0.358	204	6	1706
+Skoda	TVGI	07:43:26	34	B	0.377	102	3	1706
+WRC	TVGI	07:44:00	1	A	33.760	1	1	1740
+Red Bull	Helmet Driver	07:44:01	2	A	0.949	2	1	1741
+Red Bull	Helmet Driver	07:44:18	3	A	0.949	6	2	1758
+Ford	TVGI	07:44:03	47	D	0.690	94	2	1743
+Hyundai	TVGI	07:44:03	47	E	0.358	282	6	1743
+Skoda	TVGI	07:44:03	47	B	0.377	141	3	1743
+Toyota	TVGI	07:44:03	47	E	0.639	188	4	1743
+WRC	Car Inside	07:44:21	29	A	1.546	29	1	1761
+WRC	TVGI	07:44:50	2	A	24.640	2	1	1790
+Asahi Kasei	Static Board Any Other	07:44:52	3	B	0.270	6	2	1792
+WOLF	Static Board Any Other	07:44:52	3	B	0.557	12	4	1792
+PIRELLI	Car Front Bumper	07:44:55	1	D	0.671	1	1	1795
+PIRELLI	Static Board Any Other	07:44:53	3	B	0.221	9	3	1793
+Toyota	Car Bonnet	07:44:54	2	A	2.139	2	1	1794
+Toyota	Car 33	07:44:52	13	A	34.418	13	1	1792
+Hyundai	TVGI	07:44:52	14	E	0.358	84	6	1792
+Skoda	TVGI	07:44:52	14	B	0.204	42	3	1792
+Toyota	TVGI	07:44:52	14	E	0.639	56	4	1792
+PIRELLI	Firesuit Driver	07:45:07	2	D	0.512	2	1	1807
+WRC	Microphone	07:45:14	7	D	0.815	7	1	1814
+Toyota	TVGI	07:45:07	17	E	0.639	68	4	1807
+Asahi Kasei	Firesuit Driver	07:45:07	21	A	0.794	21	1	1807
+PIRELLI	Firesuit Driver	07:45:24	4	D	0.512	4	1	1824
+Toyota	Team Sportswear (Non Kit) Cap	07:45:14	14	A	1.090	14	1	1814
+WRC	Microphone	07:45:22	6	A	0.815	6	1	1822
+Red Bull	Team Sportswear (Non Kit) Cap	07:45:14	15	A	0.811	15	1	1814
+Toyota	Firesuit Driver	07:45:15	14	A	0.588	14	1	1815
+Hyundai	TVGI	07:45:07	23	E	0.358	138	6	1807
+Skoda	TVGI	07:45:07	23	B	0.377	69	3	1807
+Toyota	TVGI	07:45:29	1	E	0.639	4	4	1829
+WRC	TVGI	07:45:30	1	A	37.845	1	1	1830
+PIRELLI	Firesuit Driver	07:45:31	2	A	0.887	4	2	1831
+Toyota	Firesuit Driver	07:45:31	2	E	1.598	4	2	1831
+Toyota	Helmet Driver	07:45:31	2	B	1.981	2	1	1831
+Hyundai	TVGI	07:45:31	22	E	0.358	132	6	1831
+Skoda	TVGI	07:45:31	22	B	0.377	66	3	1831
+Toyota	TVGI	07:45:31	22	E	0.639	88	4	1831
+WRC	TVGI	07:45:52	2	A	36.302	2	1	1852
+Red Bull	Helmet Driver	07:45:54	2	B	0.949	4	2	1854
+Toyota	Firesuit Driver	07:45:54	2	E	1.598	4	2	1854
+Red Bull	Helmet Driver	07:46:25	19	E	0.620	38	2	1885
+Hyundai	TVGI	07:45:54	55	E	0.358	330	6	1854
+Skoda	TVGI	07:45:54	55	B	0.377	165	3	1854
+Toyota	TVGI	07:45:54	55	E	0.639	220	4	1854
+WRC	TVGI	07:46:49	2	A	23.013	2	1	1909
+Ford	Firesuit Driver	07:46:51	2	D	1.174	2	1	1911
+Red Bull	Helmet Driver	07:46:51	2	A	2.921	2	1	1911
+WRC	Car Inside	07:46:53	54	A	1.654	54	1	1913
+Ford	TVGI	07:46:53	65	D	1.174	65	1	1913
+Ford	Firesuit Driver	07:47:47	18	D	1.174	36	2	1967
+Hyundai	TVGI	07:46:51	74	E	0.358	444	6	1911
+Red Bull	Helmet Driver	07:47:47	18	A	0.949	36	2	1967
+Skoda	TVGI	07:46:51	74	B	0.377	222	3	1911
+Toyota	TVGI	07:46:51	74	E	0.639	296	4	1911
+WRC	TVGI	07:48:05	1	A	41.820	1	1	1985
+PIRELLI	Firesuit Driver	07:48:06	2	A	0.512	4	2	1986
+Red Bull	Helmet Driver	07:48:06	2	B	0.949	2	1	1986
+Hyundai	TVGI	07:48:06	82	E	0.358	492	6	1986
+Skoda	TVGI	07:48:06	82	B	0.377	246	3	1986
+Toyota	TVGI	07:48:06	82	B	0.639	328	4	1986
+WRC	TVGI	07:49:28	1	A	39.006	1	1	2068
+PIRELLI	Firesuit Driver	07:49:31	1	A	0.512	2	2	2071
+Toyota	Helmet Driver	07:49:29	3	B	1.981	6	2	2069
+Toyota	TVGI	07:49:29	38	E	0.639	152	4	2069
+Hyundai	TVGI	07:49:29	40	E	0.358	240	6	2069
+PIRELLI	Firesuit Driver	07:50:03	6	A	0.512	12	2	2103
+Skoda	TVGI	07:49:29	40	B	0.377	120	3	2069
+Toyota	Firesuit Driver	07:50:03	6	E	1.598	12	2	2103
+Toyota	Helmet Driver	07:50:03	6	B	1.981	12	2	2103
+Hyundai	Car 9	07:50:09	1	A	24.820	1	1	2109
+Hyundai	Car Door	07:50:09	1	A	1.610	1	1	2109
+Hyundai	Car Front Windscreen	07:50:09	1	A	1.784	1	1	2109
+WRC	Car Door	07:50:09	1	A	0.652	1	1	2109
+WRC	Car Front Windscreen	07:50:09	1	A	1.118	1	1	2109
+Hyundai	Car 9	07:50:11	3	E	5.545	3	1	2111
+Hyundai	Car Door	07:50:11	3	E	0.259	3	1	2111
+Hyundai	TVGI - Text	07:50:09	5	B	1.303	10	2	2109
+Hyundai	Firesuit Driver	07:50:11	8	A	1.202	20	2.500	2111
+Hyundai	Helmet Driver	07:50:14	5	B	1.102	5	1	2114
+PIRELLI	Firesuit Driver	07:50:11	8	A	0.692	16	2	2111
+Hyundai	TVGI	07:50:14	49	E	0.358	294	6	2114
+Skoda	TVGI	07:50:14	49	B	0.377	147	3	2114
+Toyota	TVGI	07:50:14	49	E	0.639	196	4	2114
+WRC	TVGI	07:51:02	2	A	45.235	2	1	2162
+Asahi Kasei	Static Board Any Other	07:51:05	2	B	0.310	2	1	2165
+WOLF	Static Board Any Other	07:51:05	2	B	0.526	2	1	2165
+Hyundai	Car Front Windscreen	07:51:07	1	B	1.000	1	1	2167
+PIRELLI	Car Front Bumper	07:51:07	1	A	0.671	1	1	2167
+Hyundai	Car 8	07:51:04	13	A	38.724	13	1	2164
+Hyundai	Firesuit Driver	07:51:18	1	D	1.202	1	1	2178
+PIRELLI	Firesuit Driver	07:51:19	1	D	0.692	1	1	2179
+Hyundai	Firesuit Driver	07:51:20	18	D	1.202	18	1	2180
+WRC	Microphone	07:51:28	10	D	0.815	20	2	2188
+WRC	Microphone	07:51:40	4	D	0.815	4	1	2200
+Hyundai	Firesuit Driver	07:51:42	3	D	1.202	3	1	2202
+Hyundai	TVGI	07:51:04	41	E	0.358	246	6	2164
+Skoda	TVGI	07:51:04	41	B	0.377	123	3	2164
+Toyota	TVGI	07:51:04	41	E	0.639	164	4	2164
+WRC	TVGI	07:51:45	2	A	15.327	2	1	2205
+PIRELLI	Firesuit Driver	07:51:47	3	D	0.512	6	2	2207
+Red Bull	Helmet Driver	07:51:47	3	C	0.949	9	3	2207
+Toyota	Firesuit Driver	07:51:47	3	A	1.037	6	2	2207
+Hyundai	TVGI	07:51:47	52	E	0.358	312	6	2207
+Skoda	TVGI	07:51:47	52	B	0.377	156	3	2207
+Toyota	TVGI	07:51:47	52	E	0.639	208	4	2207
+WRC	TVGI	07:52:38	2	E	38.813	2	1	2258
+PIRELLI	Firesuit Driver	07:52:40	2	A	0.887	4	2	2260
+Toyota	Helmet Driver	07:52:40	2	B	1.981	2	1	2260
+Toyota	Firesuit Driver	07:54:02	8	E	1.598	8	1	2342
+PIRELLI	Firesuit Driver	07:54:02	9	A	0.887	18	2	2342
+PIRELLI	Firesuit Driver	07:54:13	9	A	0.887	18	2	2353
+Red Bull	Helmet Driver	07:54:14	8	C	1.962	8	1	2354
+Toyota	Firesuit Driver	07:54:13	9	E	1.598	9	1	2353
+Toyota	Helmet Driver	07:54:02	20	B	1.981	20	1	2342
+Asahi Kasei	Static Board Any Other	07:54:22	1	B	0.336	1	1	2362
+PIRELLI	Static Board Any Other	07:54:23	1	A	0.336	1	1	2363
+WOLF	Static Board Any Other	07:54:22	2	B	0.315	2	1	2362
+PIRELLI	Car Front Bumper	07:54:24	1	E	0.671	1	1	2364
+Toyota	Car Door	07:54:25	1	A	2.277	1	1	2365
+Toyota	Car 18	07:54:22	6	A	34.680	6	1	2362
+PIRELLI	Firesuit Driver	07:54:28	8	A	0.887	16	2	2368
+Toyota	Helmet Driver	07:54:28	8	B	1.981	8	1	2368
+Asahi Kasei	Firesuit Driver	07:54:36	2	D	0.887	2	1	2376
+Asahi Kasei	Firesuit Driver	07:54:41	1	D	0.959	1	1	2381
+PIRELLI	Firesuit Driver	07:54:41	1	D	0.512	1	1	2381
+Asahi Kasei	Firesuit Driver	07:54:45	2	D	0.959	2	1	2385
+Asahi Kasei	Firesuit Driver	07:54:52	3	D	0.959	3	1	2392
+WRC	Microphone	07:54:41	15	A	0.815	15	1	2381
+Red Bull	Helmet Driver	07:54:28	30	C	6.337	30	1	2368
+PIRELLI	Car Rear Bumper	07:55:00	1	E	0.850	1	1	2400
+Hyundai	TVGI	07:52:40	144	E	0.358	864	6	2260
+Skoda	TVGI	07:52:40	144	B	0.377	432	3	2260
+Toyota	Car 18	07:54:59	5	A	2.682	5	1	2399
+Toyota	TVGI	07:52:40	144	E	0.639	576	4	2260
+WRC	TVGI	07:55:03	2	A	38.260	2	1	2403
+Hyundai	Firesuit Driver	07:55:05	4	A	1.202	4	1	2405
+Hyundai	Helmet Driver	07:55:05	4	C	1.102	4	1	2405
+PIRELLI	Firesuit Driver	07:55:05	4	A	0.692	4	1	2405
+Hyundai	TVGI	07:55:05	15	D	0.358	90	6	2405
+Skoda	TVGI	07:55:05	15	B	0.377	45	3	2405
+Toyota	TVGI	07:55:05	15	E	0.639	60	4	2405
+Hyundai	TVGI	07:55:21	5	D	0.358	30	6	2421
+Skoda	TVGI	07:55:21	5	B	0.377	15	3	2421
+Toyota	TVGI	07:55:21	5	E	0.639	20	4	2421
+Asahi Kasei	Car Front Windscreen	07:55:27	1	A	0.869	1	1	2427
+Red Bull	Firesuit Driver	07:55:28	2	A	1.318	4	2	2428
+Ford	Car 13	07:55:27	5	A	6.913	5	1	2427
+Ford	Car Bonnet	07:55:27	5	A	0.767	5	1	2427
+Ford	Firesuit Driver	07:55:28	4	A	1.174	8	2	2428
+Ford	TVGI - Text	07:55:27	5	B	1.632	5	1	2427
+PIRELLI	Firesuit Driver	07:55:30	2	A	0.512	4	2	2430
+Red Bull	Car Bonnet	07:55:27	5	A	1.678	5	1	2427
+Red Bull	Car Door	07:55:27	5	A	1.240	5	1	2427
+Ford	Firesuit Driver	07:55:33	2	A	1.174	4	2	2433
+Red Bull	Firesuit Driver	07:55:33	2	A	1.318	2	1	2433
+Red Bull	Helmet Driver	07:55:32	3	B	0.949	3	1	2432
+Ford	TVGI	07:55:35	10	D	1.174	10	1	2435
+Hyundai	TVGI	07:55:32	17	E	0.358	102	6	2432
+Skoda	TVGI	07:55:32	17	B	0.377	51	3	2432
+Toyota	TVGI	07:55:32	17	E	0.639	68	4	2432
+WRC	TVGI	07:55:49	2	A	45.136	2	1	2449
+PIRELLI	Firesuit Driver	07:55:51	3	D	0.512	6	2	2451
+Red Bull	Helmet Driver	07:55:51	3	C	0.949	6	2	2451
+PIRELLI	Firesuit Driver	07:56:41	10	A	0.512	10	1	2501
+Toyota	Firesuit Driver	07:56:47	4	E	1.598	8	2	2507
+PIRELLI	Firesuit Driver	07:56:52	7	A	0.887	7	1	2512
+Red Bull	Helmet Driver	07:56:41	18	B	0.949	36	2	2501
+Toyota	Firesuit Driver	07:56:53	6	E	1.598	6	1	2513
+Asahi Kasei	Static Board Any Other	07:57:01	1	B	0.492	1	1	2521
+Toyota	Car 17	07:57:01	1	A	5.239	1	1	2521
+WOLF	Static Board Any Other	07:57:00	2	B	0.407	2	1	2520
+Asahi Kasei	Firesuit Driver	07:57:02	6	D	0.959	12	2	2522
+PIRELLI	Firesuit Driver	07:57:02	6	D	0.512	12	2	2522
+Red Bull	Helmet Driver	07:57:02	6	C	0.949	12	2	2522
+Toyota	Firesuit Driver	07:57:02	6	A	1.011	12	2	2522
+Toyota	Car 17	07:57:08	4	A	35.458	4	1	2528
+Asahi Kasei	Firesuit Driver	07:57:13	2	D	0.913	2	1	2533
+Red Bull	Helmet Driver	07:57:12	6	A	6.469	6	1	2532
+Red Bull	Helmet Driver	07:57:20	2	E	5.425	2	1	2540
+Toyota	Firesuit Driver	07:57:20	3	A	0.773	3	1	2540
+PIRELLI	Firesuit Driver	07:57:18	6	D	1.194	6	1	2538
+		07:57:35	5	A	0.000	0	0	2555
+Asahi Kasei	Firesuit Driver	07:57:16	29	D	0.959	29	1	2536
+PIRELLI	Firesuit Driver	07:57:26	19	D	0.674	19	1	2546
+WRC	Microphone	07:57:25	20	A	1.917	20	1	2545
+Red Bull	Helmet Driver	07:57:35	11	A	2.521	11	1	2555
+Toyota	Firesuit Driver	07:57:45	1	A	0.522	1	1	2565
+PIRELLI	Car Rear Bumper	07:57:49	2	E	0.383	3	1.500	2569
+Hyundai	TVGI	07:55:51	121	D	0.358	726	6	2451
+Skoda	TVGI	07:55:51	121	B	0.377	363	3	2451
+Toyota	Car 17	07:57:47	5	A	4.933	5	1	2567
+Toyota	TVGI	07:55:51	121	E	0.639	484	4	2451
+WRC	TVGI	07:57:51	2	E	45.054	2	1	2571
+Hyundai	Firesuit Driver	07:57:53	4	A	0.463	4	1	2573
+PIRELLI	Firesuit Driver	07:57:53	4	A	0.512	4	1	2573
+PIRELLI	Helmet Driver	07:57:53	4	A	0.671	4	1	2573
+Red Bull	Helmet Driver	07:58:14	1	C	0.949	1	1	2594
+Hyundai	TVGI	07:57:53	27	E	0.358	162	6	2573
+PIRELLI	Firesuit Driver	07:58:13	7	A	0.512	7	1	2593
+PIRELLI	Helmet Driver	07:58:13	7	A	0.512	7	1	2593
+Hyundai	Firesuit Driver	07:58:17	4	A	0.511	4	1	2597
+Skoda	TVGI	07:57:53	28	B	0.377	84	3	2573
+Toyota	TVGI	07:57:53	28	E	0.639	112	4	2573
+WRC	TVGI	07:58:20	2	E	31.076	2	1	2600
+Ford	Firesuit Driver	07:58:22	3	A	0.711	6	2	2602
+Red Bull	Firesuit Driver	07:58:22	3	A	1.318	3	1	2602
+Red Bull	Helmet Driver	07:58:22	3	B	0.949	6	2	2602
+Ford	TVGI	07:58:23	37	D	0.350	37	1	2603
+Hyundai	TVGI	07:58:22	38	E	0.358	228	6	2602
+Skoda	TVGI	07:58:22	38	B	0.377	114	3	2602
+Toyota	TVGI	07:58:22	38	E	0.639	152	4	2602
+WRC	TVGI	07:58:59	2	E	37.465	2	1	2639
+Hyundai	Firesuit Driver	07:59:01	2	A	1.202	2	1	2641
+PIRELLI	Firesuit Driver	07:59:01	2	A	0.692	2	1	2641
+PIRELLI	Helmet Driver	07:59:01	2	A	0.512	2	1	2641
+Hyundai	TVGI	07:59:01	19	E	0.358	96	5.053	2641
+Skoda	TVGI	07:59:01	19	B	0.377	57	3	2641
+Toyota	TVGI	07:59:01	19	E	0.639	76	4	2641
+WRC	TVGI	07:59:20	1	A	10.457	1	1	2660
+Hyundai	TVGI	07:59:21	16	E	0.358	82	5.125	2661
+Skoda	TVGI	07:59:21	16	B	0.377	48	3	2661
+Toyota	TVGI	07:59:21	16	E	0.639	64	4	2661
+WRC	TVGI	07:59:37	2	A	32.592	2	1	2677
+PIRELLI	Firesuit Driver	07:59:39	4	A	0.512	8	2	2679
+Red Bull	Helmet Driver	07:59:39	4	B	0.949	4	1	2679
+Hyundai	Firesuit Driver	08:00:18	20	A	0.568	20	1	2718
+PIRELLI	Firesuit Driver	08:00:18	20	A	0.512	20	1	2718
+PIRELLI	Helmet Driver	08:00:18	20	A	0.512	20	1	2718
+Asahi Kasei	Static Board Any Other	08:00:38	2	B	0.476	2	1	2738
+Hyundai	Car Front Windscreen	08:00:39	1	A	1.784	1	1	2739
+PIRELLI	Static Board Any Other	08:00:38	2	B	0.383	2	1	2738
+WOLF	Static Board Any Other	08:00:38	2	A	0.322	2	1	2738
+Hyundai	Car 9	08:00:38	11	A	35.846	11	1	2738
+Hyundai	Helmet Driver	08:00:53	1	B	1.102	1	1	2753
+Red Bull	Helmet Driver	08:00:50	4	C	4.612	4	1	2750
+PIRELLI	Helmet Driver	08:00:50	6	A	1.155	6	1	2750
+Hyundai	Firesuit Driver	08:00:56	12	D	1.202	24	2	2756
+WRC	Microphone	08:01:03	5	A	0.815	5	1	2763
+WRC	Microphone	08:01:15	7	D	0.815	7	1	2775
+PIRELLI	Firesuit Driver	08:01:15	11	E	0.512	22	2	2775
+WRC	Microphone	08:01:23	4	A	0.815	4	1	2783
+Hyundai	Firesuit Driver	08:01:27	2	D	1.202	2	1	2787
+Hyundai	TVGI	07:59:39	110	E	0.358	660	6	2679
+Skoda	TVGI	07:59:39	110	B	0.377	330	3	2679
+Toyota	TVGI	07:59:39	110	E	0.639	440	4	2679
+WRC	TVGI	08:01:28	2	A	34.305	2	1	2788
+Ford	Firesuit Driver	08:01:32	2	A	0.475	4	2	2792
+Red Bull	Firesuit Driver	08:01:30	4	A	1.318	4	1	2790
+Ford	Firesuit Driver	08:01:46	2	A	0.479	4	2	2806
+Red Bull	Firesuit Driver	08:01:46	2	A	2.966	2	1	2806
+Red Bull	Helmet Driver	08:01:46	2	B	0.949	4	2	2806
+Ford	Car Front Quarter Panel	08:03:10	7	D	1.015	7	1	2890
+Ford	TVGI	08:01:34	119	D	0.475	119	1	2794
+PIRELLI	Firesuit Driver	08:03:31	6	A	0.512	12	2	2911
+Ford	Firesuit Driver	08:03:25	15	A	0.439	27	1.800	2905
+Hyundai	TVGI	08:01:30	130	E	0.358	780	6	2790
+Red Bull	Firesuit Driver	08:03:26	14	A	3.115	14	1	2906
+Red Bull	Helmet Driver	08:03:25	15	B	0.949	15	1	2905
+Skoda	TVGI	08:01:30	130	B	0.377	390	3	2790
+Toyota	TVGI	08:01:30	130	E	0.639	520	4	2790
+PIRELLI	Car Front Bumper	08:03:40	1	A	0.671	1	1	2920
+WRC	Car Door	08:03:40	12	A	0.797	12	1	2920
+PIRELLI	Firesuit Driver	08:03:42	12	A	0.512	24	2	2922
+Hyundai	TVGI	08:03:52	9	E	0.358	54	6	2932
+Skoda	TVGI	08:03:52	9	B	0.377	27	3	2932
+Toyota	TVGI	08:03:52	9	E	0.639	36	4	2932

@@ -1,0 +1,439 @@
+Brand	Location	Time the brand is at screen	Duration	Screen Location	Screen Size %	Total Hits	Average Hits	Sequence Frame Number
+Hyundai	Car Bonnet	10:46:34	1	A	0.502	1	1	94
+Hyundai	Car Door	10:46:34	1	A	0.887	1	1	94
+Hyundai	Car Front Windscreen	10:46:34	1	A	0.350	1	1	94
+PIRELLI	Car Front Bumper	10:46:34	1	A	0.249	1	1	94
+WRC	Car Door	10:46:34	1	A	0.566	1	1	94
+Hyundai	Firesuit Driver	10:46:35	15	A	1.025	30	2	95
+Hyundai	Helmet Driver	10:46:43	7	B	1.584	7	1	103
+PIRELLI	Firesuit Driver	10:46:43	7	A	0.883	7	1	103
+Hyundai	TVGI	10:46:47	6	D	0.391	6	1	107
+Hyundai	Firesuit Driver	10:47:23	23	E	0.985	23	1	143
+Hyundai	TVGI	10:47:25	179	D	0.391	179	1	145
+Asahi Kasei	Car Front Windscreen	10:50:25	1	A	0.410	1	1	325
+WRC	Car Door	10:50:25	1	A	0.554	1	1	325
+Toyota	TVGI	10:50:25	4	B	2.061	4	1	325
+PIRELLI	Firesuit Driver	10:50:33	10	A	0.641	10	1	333
+Red Bull	Helmet Driver	10:50:29	14	C	1.168	14	1	329
+Toyota	TVGI	10:50:32	26	D	0.498	26	1	332
+Hyundai	Firesuit Driver	10:51:01	1	D	1.318	1	1	361
+Hyundai	Helmet Driver	10:50:59	3	A	1.787	3	1	359
+Asahi Kasei	Gallows Race Course	10:52:44	4	C	0.467	4	1	464
+Forum8	Gallows Race Course	10:52:44	4	D	0.487	4	1	464
+P1	Gallows Race Course	10:52:44	4	D	0.436	4	1	464
+PIRELLI	Gallows Race Course	10:52:44	4	C	1.160	4	1	464
+Forum8	Static Board Any Other	10:52:50	2	A	1.392	2	1	470
+Forum8	Static Board Pit Lane	10:52:52	2	A	1.392	2	1	472
+WOLF	Other Stadium Signage Presentation Stage	10:52:52	2	A	0.747	2	1	472
+PIRELLI	Static Board Any Other	10:52:56	2	D	1.810	2	1	476
+Asahi Kasei	Gallows Race Course	10:52:59	2	A	0.467	2	1	479
+Castore	Gallows Race Course	10:52:59	2	A	0.273	2	1	479
+Forum8	Gallows Race Course	10:52:59	2	A	0.487	2	1	479
+Forum8	Static Board Any Other	10:52:58	3	A	1.078	3	1	478
+P1	Gallows Race Course	10:52:59	2	A	0.436	2	1	479
+P1	Static Board Any Other	10:52:58	3	E	2.014	3	1	478
+PIRELLI	Gallows Race Course	10:52:59	2	A	1.160	2	1	479
+WOLF	Gallows Race Course	10:52:59	2	A	0.466	2	1	479
+Forum8	Car Front Windscreen	10:53:01	1	A	0.951	1	1	481
+Hyundai	Car Front Grill	10:53:01	1	A	1.538	1	1	481
+Hyundai	Car Front Windscreen	10:53:01	1	A	0.792	1	1	481
+PIRELLI	Static Board Any Other	10:53:06	2	A	1.810	2	1	486
+Forum8	Car Front Windscreen	10:53:08	1	A	0.951	1	1	488
+Hyundai	Car Front Windscreen	10:53:08	1	A	0.792	1	1	488
+Hyundai	Firesuit Driver	10:53:14	1	A	0.623	1	1	494
+Hyundai	Helmet Driver	10:53:13	2	A	3.452	2	1	493
+Hyundai	TVGI	10:51:00	166	D	0.391	166	1	360
+Ford	Car Bonnet	10:53:49	1	A	0.405	1	1	529
+Ford	Car Front Grill	10:53:49	1	A	0.822	1	1	529
+Red Bull	Car Bonnet	10:53:49	1	A	0.577	1	1	529
+Red Bull	Car Door	10:53:49	1	A	1.037	1	1	529
+WRC	Car Door	10:53:49	1	A	0.447	1	1	529
+Ford	TVGI	10:53:49	4	B	1.151	4	1	529
+Ford	Firesuit Driver	10:53:51	4	A	0.659	6	1.500	531
+Red Bull	Helmet Driver	10:53:53	2	A	1.094	2	1	533
+Ford	TVGI	10:53:55	11	D	0.346	11	1	535
+Red Bull	Helmet Driver	10:54:07	2	B	1.072	2	1	547
+Asahi Kasei	Gallows Race Course	10:55:43	5	D	0.467	5	1	643
+Castore	Gallows Race Course	10:55:43	5	D	0.273	5	1	643
+Forum8	Gallows Race Course	10:55:43	5	D	0.487	5	1	643
+P1	Gallows Race Course	10:55:43	5	D	0.436	5	1	643
+PIRELLI	Gallows Race Course	10:55:43	5	C	1.160	5	1	643
+WOLF	Gallows Race Course	10:55:43	5	C	0.466	5	1	643
+Forum8	Static Board Any Other	10:55:50	2	A	1.078	2	1	650
+WOLF	Other Stadium Signage Presentation Stage	10:55:52	1	A	0.747	1	1	652
+Asahi Kasei	Gallows Race Course	10:55:52	2	A	0.467	2	1	652
+Castore	Gallows Race Course	10:55:52	2	E	0.273	2	1	652
+Forum8	Gallows Race Course	10:55:52	2	E	0.487	2	1	652
+P1	Gallows Race Course	10:55:52	2	E	0.436	2	1	652
+PIRELLI	Gallows Race Course	10:55:52	2	A	1.160	2	1	652
+WOLF	Gallows Race Course	10:55:52	2	A	0.466	2	1	652
+PIRELLI	Static Board Any Other	10:55:56	2	D	1.810	2	1	656
+Asahi Kasei	Gallows Race Course	10:55:58	3	A	0.467	3	1	658
+Castore	Gallows Race Course	10:55:58	3	A	0.273	3	1	658
+Forum8	Gallows Race Course	10:55:58	3	A	0.487	3	1	658
+P1	Gallows Race Course	10:55:58	3	A	0.436	3	1	658
+WOLF	Static Board Any Other	10:55:58	3	A	0.747	3	1	658
+P1	Static Board Any Other	10:55:58	4	E	1.546	4	1	658
+PIRELLI	Gallows Race Course	10:55:58	4	A	1.160	4	1	658
+WOLF	Gallows Race Course	10:55:58	4	A	0.466	4	1	658
+PIRELLI	Static Board Any Other	10:56:07	2	A	1.810	2	1	667
+Forum8	Car Front Windscreen	10:56:09	1	A	0.951	1	1	669
+Toyota	Car Front Windscreen	10:56:09	1	A	0.792	1	1	669
+Toyota	TVGI	10:54:09	123	D	0.391	123	1	549
+Hyundai	Firesuit Driver	10:56:32	12	A	1.831	12	1	692
+Hyundai	Helmet Driver	10:56:32	12	B	1.840	12	1	692
+Hyundai	Car Front Bumper	10:56:44	1	A	1.538	1	1	704
+Hyundai	Car Front Grill	10:56:44	1	E	1.538	1	1	704
+Forum8	Car Front Windscreen	10:56:44	2	A	0.951	2	1	704
+Hyundai	Car Bonnet	10:56:44	2	A	1.670	2	1	704
+Hyundai	Car Front Windscreen	10:56:44	2	C	0.792	2	1	704
+Hyundai	TVGI	10:56:15	31	D	0.391	31	1	675
+Red Bull	Helmet Driver	10:56:59	5	C	3.099	5	1	719
+Hyundai	TVGI	10:57:18	13	E	0.391	13	1	738
+WRC	Microphone	10:57:15	28	E	1.998	28	1	735
+Red Bull	Cap	10:57:13	32	A	1.138	32	1	733
+Hyundai	Car Lower Rear Quarter Panel	10:57:47	2	D	4.838	2	1	767
+Red Bull	Helmet Driver	10:57:51	2	A	1.796	2	1	771
+Ford	TVGI	10:57:52	19	D	0.459	19	1	772
+Red Bull	Helmet Driver	10:58:13	2	C	1.561	2	1	793
+Toyota	TVGI	10:58:15	86	D	0.373	86	1	795
+PIRELLI	Firesuit Driver	10:59:33	11	A	0.601	11	1	873
+Red Bull	Helmet Driver	10:59:33	11	B	1.697	11	1	873
+Hyundai	Car Bonnet	10:59:45	1	A	0.724	1	1	885
+Hyundai	Car Front Windscreen	10:59:45	1	A	0.792	1	1	885
+PIRELLI	Car Front Bumper	10:59:45	1	A	0.258	1	1	885
+WRC	Car Door	10:59:45	1	A	0.354	1	1	885
+WRC	Car Front Windscreen	10:59:45	1	A	0.951	1	1	885
+Hyundai	Car Door	10:59:45	4	A	0.628	4	1	885
+Hyundai	TVGI	10:59:45	4	B	1.363	4	1	885
+Hyundai	Firesuit Driver	10:59:46	5	A	0.571	10	2	886
+Hyundai	Helmet Driver	10:59:49	2	A	1.363	2	1	889
+PIRELLI	Firesuit Driver	10:59:49	2	D	1.113	2	1	889
+Hyundai	TVGI	10:59:51	42	D	0.391	42	1	891
+Red Bull	Helmet Driver	11:00:35	2	A	1.617	2	1	935
+Asahi Kasei	Gallows Race Course	11:00:37	6	C	0.467	6	1	937
+Castore	Gallows Race Course	11:00:37	6	D	0.273	6	1	937
+Forum8	Gallows Race Course	11:00:37	6	D	0.487	6	1	937
+P1	Gallows Race Course	11:00:37	6	D	0.436	6	1	937
+PIRELLI	Gallows Race Course	11:00:37	6	C	1.160	6	1	937
+WOLF	Gallows Race Course	11:00:37	6	C	0.466	6	1	937
+Ford	Car Front Grill	11:00:42	2	A	2.414	2	1	942
+Forum8	Static Board Any Other	11:00:45	2	A	1.078	2	1	945
+Asahi Kasei	Gallows Race Course	11:00:47	2	A	0.467	2	1	947
+Castore	Gallows Race Course	11:00:47	2	A	0.273	2	1	947
+Forum8	Gallows Race Course	11:00:47	2	A	0.487	2	1	947
+P1	Gallows Race Course	11:00:47	2	A	0.436	2	1	947
+PIRELLI	Gallows Race Course	11:00:47	2	A	1.160	2	1	947
+WOLF	Gallows Race Course	11:00:47	2	A	0.466	2	1	947
+WOLF	Static Board Any Other	11:00:47	2	A	0.747	2	1	947
+Ford	Car Front Grill	11:00:49	1	A	2.516	1	1	949
+Red Bull	Car Door	11:00:50	1	A	2.516	1	1	950
+PIRELLI	Static Board Any Other	11:00:51	1	C	1.810	1	1	951
+Forum8	Static Board Any Other	11:00:55	1	A	1.078	1	1	955
+P1	Static Board Any Other	11:00:55	2	E	1.546	2	1	955
+Ford	Car Front Grill	11:00:56	2	A	1.202	2	1	956
+PIRELLI	Static Board Any Other	11:01:02	1	A	1.810	1	1	962
+Ford	TVGI	11:00:35	138	D	0.408	138	1	935
+Red Bull	Helmet Driver	11:02:44	9	A	3.427	9	1	1064
+Hyundai	Firesuit Driver	11:02:56	1	A	1.225	1	1	1076
+Hyundai	Helmet Driver	11:02:55	2	A	2.696	2	1	1075
+PIRELLI	Firesuit Driver	11:02:55	2	D	0.755	2	1	1075
+Asahi Kasei	Gallows Race Course	11:02:58	3	C	0.467	3	1	1078
+Castore	Gallows Race Course	11:02:58	3	D	0.273	3	1	1078
+Forum8	Gallows Race Course	11:02:58	3	D	0.487	3	1	1078
+P1	Gallows Race Course	11:02:58	3	D	0.436	3	1	1078
+PIRELLI	Gallows Race Course	11:02:58	3	C	1.160	3	1	1078
+WOLF	Gallows Race Course	11:02:58	3	C	0.466	3	1	1078
+Hyundai	Car Front Grill	11:03:01	1	A	1.538	1	1	1081
+Forum8	Static Board Any Other	11:03:04	2	A	2.283	2	1	1084
+WOLF	Static Board Any Other	11:03:06	1	A	2.471	1	1	1086
+Forum8	Car Front Windscreen	11:03:07	1	A	0.951	1	1	1087
+Hyundai	Car Front Grill	11:03:07	1	A	1.538	1	1	1087
+Hyundai	Car Front Windscreen	11:03:07	1	A	0.792	1	1	1087
+Hyundai	Car Door	11:03:08	1	A	5.547	1	1	1088
+Hyundai	Car Rear Bumper	11:03:09	1	E	1.050	1	1	1089
+Hyundai	Car Rear Wing	11:03:09	1	A	1.177	1	1	1089
+PIRELLI	Static Board Any Other	11:03:10	1	C	1.810	1	1	1090
+Asahi Kasei	Gallows Race Course	11:03:13	2	A	0.467	2	1	1093
+Castore	Gallows Race Course	11:03:13	2	A	0.273	2	1	1093
+Forum8	Gallows Race Course	11:03:13	2	A	0.487	2	1	1093
+Forum8	Static Board Any Other	11:03:13	2	A	1.078	2	1	1093
+P1	Gallows Race Course	11:03:13	2	A	0.436	2	1	1093
+PIRELLI	Gallows Race Course	11:03:13	2	A	1.160	2	1	1093
+WOLF	Gallows Race Course	11:03:13	2	A	0.466	2	1	1093
+P1	Static Board Any Other	11:03:15	1	E	1.546	1	1	1095
+Forum8	Car Front Windscreen	11:03:15	2	A	0.951	2	1	1095
+Hyundai	Car Front Grill	11:03:15	2	A	1.538	2	1	1095
+Hyundai	Car Front Windscreen	11:03:15	2	A	0.792	2	1	1095
+Hyundai	Car Rear Wing	11:03:17	1	A	0.969	1	1	1097
+PIRELLI	Static Board Any Other	11:03:20	1	E	1.810	1	1	1100
+WOLF	Static Board Any Other	11:03:20	1	A	0.747	1	1	1100
+Hyundai	Car Front Grill	11:03:22	1	E	1.538	1	1	1102
+Hyundai	Helmet Driver	11:03:27	5	A	1.981	5	1	1107
+Hyundai	Firesuit Driver	11:04:05	2	D	0.575	2	1	1145
+Hyundai	Helmet Driver	11:04:05	2	A	1.584	2	1	1145
+Hyundai	Car Cockpit	11:04:07	92	B	1.666	92	1	1147
+WRC	Car Cockpit	11:04:07	92	A	0.772	92	1	1147
+Hyundai	Firesuit Driver	11:05:40	7	D	0.575	7	1	1240
+PIRELLI	Firesuit Driver	11:05:40	7	D	0.641	7	1	1240
+Hyundai	TVGI	11:02:55	174	D	0.391	174	1	1075
+Hyundai	Car Front Grill	11:05:40	10	B	1.538	10	1	1240
+Hyundai	Firesuit Driver	11:05:48	2	D	0.575	2	1	1248
+PIRELLI	Firesuit Driver	11:05:48	2	D	0.641	2	1	1248
+Asahi Kasei	Car Front Windscreen	11:05:50	1	A	0.951	1	1	1250
+WRC	Car Door	11:05:50	1	A	0.617	1	1	1250
+Toyota	TVGI	11:05:50	6	B	1.549	6	1	1250
+Asahi Kasei	Gallows Race Course	11:05:56	5	C	0.467	5	1	1256
+Castore	Gallows Race Course	11:05:56	5	D	0.273	5	1	1256
+Forum8	Gallows Race Course	11:05:56	5	D	0.487	5	1	1256
+P1	Gallows Race Course	11:05:56	5	D	0.436	5	1	1256
+PIRELLI	Gallows Race Course	11:05:56	5	C	1.160	5	1	1256
+WOLF	Gallows Race Course	11:05:56	5	C	0.466	5	1	1256
+Forum8	Static Board Any Other	11:06:04	2	A	3.110	2	1	1264
+WOLF	Static Board Any Other	11:06:06	1	A	0.747	1	1	1266
+Asahi Kasei	Gallows Race Course	11:06:06	2	B	0.467	2	1	1266
+Castore	Gallows Race Course	11:06:06	2	E	0.273	2	1	1266
+Forum8	Gallows Race Course	11:06:06	2	E	0.487	4	2	1266
+P1	Gallows Race Course	11:06:06	2	E	0.436	2	1	1266
+PIRELLI	Gallows Race Course	11:06:06	2	B	1.160	2	1	1266
+WOLF	Gallows Race Course	11:06:06	2	B	0.466	2	1	1266
+PIRELLI	Car Rear Bumper	11:06:10	1	A	0.641	1	1	1270
+PIRELLI	Static Board Any Other	11:06:10	1	D	1.810	1	1	1270
+Forum8	Static Board Any Other	11:06:14	1	A	4.595	1	1	1274
+Asahi Kasei	Gallows Race Course	11:06:15	1	A	0.467	1	1	1275
+Castore	Gallows Race Course	11:06:15	1	A	0.273	1	1	1275
+Forum8	Gallows Race Course	11:06:15	1	A	0.487	1	1	1275
+P1	Gallows Race Course	11:06:15	1	A	0.436	1	1	1275
+PIRELLI	Gallows Race Course	11:06:15	1	A	1.160	1	1	1275
+WOLF	Gallows Race Course	11:06:15	1	A	0.466	1	1	1275
+Forum8	Car Front Windscreen	11:06:15	2	A	0.951	2	1	1275
+Toyota	Car Front Windscreen	11:06:15	2	A	0.792	2	1	1275
+PIRELLI	Firesuit Driver	11:06:27	2	A	0.641	2	1	1287
+Red Bull	Helmet Driver	11:06:27	2	C	1.022	2	1	1287
+Toyota	TVGI	11:05:57	58	D	0.391	58	1	1257
+PIRELLI	Firesuit Driver	11:07:03	9	D	0.641	9	1	1323
+Red Bull	Helmet Driver	11:07:02	10	C	1.659	10	1	1322
+Asahi Kasei	Gallows Race Course	11:07:45	4	A	0.467	4	1	1365
+Castore	Gallows Race Course	11:07:45	4	A	0.273	4	1	1365
+Forum8	Gallows Race Course	11:07:45	4	A	0.487	4	1	1365
+P1	Gallows Race Course	11:07:45	4	A	0.436	4	1	1365
+PIRELLI	Gallows Race Course	11:07:45	4	C	1.160	4	1	1365
+WOLF	Gallows Race Course	11:07:45	4	C	0.466	4	1	1365
+Forum8	Static Board Any Other	11:07:51	2	A	1.078	2	1	1371
+WOLF	Static Board Any Other	11:07:53	1	A	0.747	1	1	1373
+Asahi Kasei	Gallows Race Course	11:07:53	2	A	0.467	2	1	1373
+Castore	Gallows Race Course	11:07:53	2	E	0.273	2	1	1373
+Forum8	Gallows Race Course	11:07:53	2	E	0.487	4	2	1373
+P1	Gallows Race Course	11:07:53	2	A	0.436	2	1	1373
+PIRELLI	Gallows Race Course	11:07:53	2	A	1.160	2	1	1373
+WOLF	Gallows Race Course	11:07:53	2	A	0.466	2	1	1373
+PIRELLI	Static Board Any Other	11:07:57	8	D	2.325	8	1	1377
+Toyota	TVGI	11:07:03	75	D	0.391	75	1	1323
+Red Bull	Helmet Driver	11:08:13	8	C	1.659	8	1	1393
+PIRELLI	Firesuit Driver	11:08:24	1	A	0.641	1	1	1404
+Toyota	Helmet Driver	11:08:23	2	B	1.108	2	1	1403
+PIRELLI	Firesuit Driver	11:08:45	9	A	0.641	9	1	1425
+Toyota	Helmet Driver	11:08:45	9	B	2.870	9	1	1425
+Toyota	TVGI	11:08:23	31	D	0.391	31	1	1403
+PIRELLI	Firesuit Driver	11:08:56	1	D	0.641	1	1	1436
+Red Bull	Helmet Driver	11:08:55	2	C	1.659	2	1	1435
+Red Bull	Helmet Driver	11:10:03	3	B	1.659	6	2	1503
+PIRELLI	Firesuit Driver	11:11:32	10	D	0.641	10	1	1592
+Red Bull	Helmet Driver	11:11:32	10	C	1.659	10	1	1592
+Toyota	TVGI	11:08:55	169	D	0.391	169	1	1435
+Forum8	Car Front Windscreen	11:11:42	4	A	0.951	4	1	1602
+Toyota	Car Bonnet	11:11:42	4	A	4.206	4	1	1602
+Toyota	Car Front Windscreen	11:11:42	4	A	0.792	4	1	1602
+Asahi Kasei	Car A Post	11:11:46	1	C	2.396	1	1	1606
+Red Bull	Helmet Driver	11:11:56	6	A	1.659	6	1	1616
+Toyota	TVGI	11:12:07	6	E	0.391	6	1	1627
+Red Bull	Helmet Driver	11:12:06	10	B	1.659	10	1	1626
+WRC	Microphone	11:12:06	10	D	1.865	10	1	1626
+Red Bull	Helmet Driver	11:12:25	2	A	1.659	2	1	1645
+WRC	Microphone	11:12:22	6	D	1.998	6	1	1642
+Ford	Car Bonnet	11:12:31	1	A	0.405	1	1	1651
+Ford	Car Front Grill	11:12:31	1	A	0.822	1	1	1651
+Red Bull	Car Bonnet	11:12:31	1	A	0.577	1	1	1651
+WRC	Car Door	11:12:31	1	A	0.447	1	1	1651
+Hyundai	Firesuit Driver	11:12:32	8	A	0.575	16	2	1652
+PIRELLI	Firesuit Driver	11:12:32	8	A	0.641	8	1	1652
+Red Bull	Car Door	11:12:31	9	A	1.037	9	1	1651
+Asahi Kasei	Gallows Race Course	11:12:41	5	C	0.467	5	1	1661
+Castore	Gallows Race Course	11:12:41	5	D	0.273	5	1	1661
+Forum8	Gallows Race Course	11:12:41	5	D	0.487	5	1	1661
+P1	Gallows Race Course	11:12:41	5	D	0.436	5	1	1661
+PIRELLI	Gallows Race Course	11:12:41	5	C	1.160	5	1	1661
+WOLF	Gallows Race Course	11:12:41	5	C	0.466	5	1	1661
+Forum8	Static Board Any Other	11:12:49	2	A	1.078	2	1	1669
+WOLF	Static Board Any Other	11:12:51	1	E	1.435	1	1	1671
+Forum8	Car Front Windscreen	11:12:52	2	A	0.951	2	1	1672
+Hyundai	Car Front Grill	11:12:52	2	A	1.538	2	1	1672
+Hyundai	Car Front Windscreen	11:12:52	2	A	0.792	2	1	1672
+Hyundai	Car Rear Bumper	11:12:55	1	A	0.722	1	1	1675
+Hyundai	Car Rear Wing	11:12:55	1	B	1.385	1	1	1675
+Forum8	Static Board Any Other	11:12:58	2	A	5.525	2	1	1678
+Asahi Kasei	Gallows Race Course	11:12:59	2	B	0.467	2	1	1679
+Castore	Gallows Race Course	11:12:59	2	E	0.273	2	1	1679
+Forum8	Gallows Race Course	11:12:59	2	B	0.487	2	1	1679
+P1	Gallows Race Course	11:12:59	2	B	0.436	2	1	1679
+PIRELLI	Gallows Race Course	11:12:59	2	B	1.160	2	1	1679
+WOLF	Gallows Race Course	11:12:59	2	B	0.466	2	1	1679
+Forum8	Car Front Windscreen	11:13:00	2	A	0.951	2	1	1680
+Hyundai	Car Front Grill	11:13:00	2	A	1.538	2	1	1680
+Hyundai	Car Front Windscreen	11:13:00	2	A	0.792	2	1	1680
+Hyundai	Car Rear Wing	11:13:04	2	A	1.933	2	1	1684
+Forum8	Car Front Windscreen	11:13:08	1	A	0.951	1	1	1688
+Hyundai	Car Front Windscreen	11:13:08	1	A	0.792	1	1	1688
+PIRELLI	Firesuit Driver	11:14:48	1	A	0.641	1	1	1788
+Hyundai	TVGI	11:12:42	138	D	0.391	138	1	1662
+PIRELLI	Helmet Driver	11:14:49	14	A	0.641	14	1	1789
+WRC	Car Door	11:15:03	2	A	0.511	2	1	1803
+Ford	Firesuit Driver	11:15:05	3	A	0.892	6	2	1805
+Red Bull	Car Door	11:15:03	5	A	0.911	5	1	1803
+Asahi Kasei	Gallows Race Course	11:15:08	5	C	0.467	5	1	1808
+Castore	Gallows Race Course	11:15:08	5	D	0.273	5	1	1808
+Forum8	Gallows Race Course	11:15:08	5	D	0.487	5	1	1808
+P1	Gallows Race Course	11:15:08	5	D	0.436	5	1	1808
+PIRELLI	Gallows Race Course	11:15:08	5	C	1.160	5	1	1808
+WOLF	Gallows Race Course	11:15:08	5	C	0.466	5	1	1808
+Ford	Car Front Grill	11:15:12	2	A	1.531	2	1	1812
+Forum8	Static Board Any Other	11:15:16	2	A	1.078	2	1	1816
+Asahi Kasei	Gallows Race Course	11:15:18	1	E	0.467	1	1	1818
+Castore	Gallows Race Course	11:15:18	1	E	0.273	1	1	1818
+Forum8	Gallows Race Course	11:15:18	1	E	0.487	1	1	1818
+P1	Gallows Race Course	11:15:18	1	E	0.436	1	1	1818
+PIRELLI	Gallows Race Course	11:15:18	1	B	1.160	1	1	1818
+WOLF	Gallows Race Course	11:15:18	1	E	0.466	1	1	1818
+WOLF	Static Board Any Other	11:15:18	1	D	2.069	1	1	1818
+Ford	Car Front Grill	11:15:19	2	A	2.233	2	1	1819
+Ford	Car Front Windscreen	11:15:20	1	B	1.025	1	1	1820
+Ford	Car Door	11:15:21	1	A	2.233	1	1	1821
+PIRELLI	Static Board Any Other	11:15:22	1	D	1.810	1	1	1822
+PIRELLI	Car Rear Bumper	11:15:23	1	D	0.641	2	2	1823
+Forum8	Static Board Any Other	11:15:25	2	B	2.877	2	1	1825
+Asahi Kasei	Gallows Race Course	11:15:27	1	A	0.467	1	1	1827
+Castore	Gallows Race Course	11:15:27	1	A	0.273	1	1	1827
+Forum8	Gallows Race Course	11:15:27	1	A	0.487	1	1	1827
+P1	Gallows Race Course	11:15:27	1	A	0.436	1	1	1827
+PIRELLI	Gallows Race Course	11:15:27	1	B	1.160	1	1	1827
+WOLF	Gallows Race Course	11:15:27	1	B	0.466	1	1	1827
+Ford	Car Front Bumper	11:15:27	2	A	0.520	2	1	1827
+Ford	Car Front Grill	11:15:27	2	A	1.990	2	1	1827
+Ford	Car Front Windscreen	11:15:27	2	A	1.731	2	1	1827
+Ford	Car Front Grill	11:15:34	2	A	2.485	2	1	1834
+Red Bull	Helmet Driver	11:16:17	2	B	1.659	2	1	1877
+Ford	TVGI	11:15:09	177	D	0.300	177	1	1809
+Red Bull	Helmet Driver	11:17:55	11	B	1.659	11	1	1975
+PIRELLI	Firesuit Driver	11:18:08	4	A	0.641	4	1	1988
+WRC	Car Door	11:18:07	5	A	0.399	5	1	1987
+Asahi Kasei	Gallows Race Course	11:18:15	2	C	0.467	2	1	1995
+Forum8	Gallows Race Course	11:18:16	1	D	0.487	1	1	1996
+PIRELLI	Gallows Race Course	11:18:15	2	C	1.160	2	1	1995
+WOLF	Gallows Race Course	11:18:16	1	C	0.466	1	1	1996
+Forum8	Static Board Any Other	11:18:19	3	A	3.829	3	1	1999
+Asahi Kasei	Gallows Race Course	11:18:22	1	A	0.467	1	1	2002
+Castore	Gallows Race Course	11:18:22	1	E	0.273	1	1	2002
+Forum8	Gallows Race Course	11:18:22	1	E	0.487	1	1	2002
+P1	Gallows Race Course	11:18:22	1	E	0.436	1	1	2002
+PIRELLI	Gallows Race Course	11:18:22	1	A	1.160	1	1	2002
+WOLF	Gallows Race Course	11:18:22	1	A	0.466	1	1	2002
+PIRELLI	Static Board Any Other	11:18:25	3	D	1.810	3	1	2005
+P1	Static Board Any Other	11:18:28	2	A	1.546	2	1	2008
+Forum8	Static Board Any Other	11:18:28	3	A	1.078	3	1	2008
+Asahi Kasei	Gallows Race Course	11:18:28	4	A	0.467	4	1	2008
+Castore	Gallows Race Course	11:18:28	4	A	0.273	4	1	2008
+Forum8	Gallows Race Course	11:18:28	4	A	0.487	4	1	2008
+P1	Gallows Race Course	11:18:28	4	A	0.436	4	1	2008
+P1	Static Board Any Other	11:18:31	1	E	1.546	1	1	2011
+PIRELLI	Gallows Race Course	11:18:28	4	A	1.160	4	1	2008
+WOLF	Gallows Race Course	11:18:28	4	A	0.466	4	1	2008
+WOLF	Gallows Race Course	11:20:22	4	D	0.466	4	1	2122
+PIRELLI	Gallows Race Course	11:20:22	5	C	1.160	5	1	2122
+Forum8	Static Board Any Other	11:20:29	3	A	1.078	3	1	2129
+Forum8	Static Board Any Other	11:20:40	1	A	9.459	1	1	2140
+Asahi Kasei	Gallows Race Course	11:20:41	1	A	0.467	1	1	2141
+Castore	Gallows Race Course	11:20:41	1	A	0.273	1	1	2141
+Forum8	Gallows Race Course	11:20:41	1	A	0.487	1	1	2141
+P1	Gallows Race Course	11:20:41	1	A	0.436	1	1	2141
+PIRELLI	Gallows Race Course	11:20:41	1	A	1.160	1	1	2141
+WOLF	Gallows Race Course	11:20:41	1	A	0.466	1	1	2141
+Asahi Kasei	Gallows Race Course	11:22:27	6	D	0.467	6	1	2247
+PIRELLI	Gallows Race Course	11:22:27	6	C	1.160	6	1	2247
+WOLF	Gallows Race Course	11:22:27	6	C	0.466	6	1	2247
+Forum8	Static Board Any Other	11:22:35	3	A	1.743	3	1	2255
+Asahi Kasei	Gallows Race Course	11:22:38	1	E	0.467	1	1	2258
+Castore	Gallows Race Course	11:22:38	1	E	0.273	1	1	2258
+Forum8	Gallows Race Course	11:22:38	1	E	0.487	1	1	2258
+P1	Gallows Race Course	11:22:38	1	E	0.436	1	1	2258
+PIRELLI	Gallows Race Course	11:22:38	1	B	1.160	1	1	2258
+WOLF	Gallows Race Course	11:22:38	1	B	0.466	1	1	2258
+PIRELLI	Static Board Any Other	11:22:42	3	D	1.810	3	1	2262
+Forum8	Static Board Any Other	11:22:45	2	E	1.078	2	1	2265
+Asahi Kasei	Gallows Race Course	11:22:47	1	A	0.467	1	1	2267
+Castore	Gallows Race Course	11:22:47	1	E	0.273	1	1	2267
+Forum8	Car Front Windscreen	11:22:47	1	C	0.951	1	1	2267
+Forum8	Gallows Race Course	11:22:47	1	A	0.487	1	1	2267
+Hyundai	Car Front Windscreen	11:22:47	1	C	0.792	1	1	2267
+P1	Gallows Race Course	11:22:47	1	A	0.436	1	1	2267
+PIRELLI	Gallows Race Course	11:22:47	1	B	1.160	1	1	2267
+WOLF	Gallows Race Course	11:22:47	1	B	0.466	1	1	2267
+PIRELLI	Car Front Bumper	11:22:48	1	A	0.641	1	1	2268
+PIRELLI	Static Board Any Other	11:22:54	1	D	1.810	1	1	2274
+Forum8	Car Front Windscreen	11:22:55	1	A	0.951	1	1	2275
+Hyundai	Car Front Windscreen	11:22:55	1	A	0.792	1	1	2275
+Hyundai	TVGI	11:22:28	122	D	0.391	122	1	2248
+Castore	Gallows Race Course	11:24:39	2	D	0.273	2	1	2379
+Forum8	Gallows Race Course	11:24:39	2	D	0.487	2	1	2379
+P1	Gallows Race Course	11:24:39	2	D	0.436	2	1	2379
+Asahi Kasei	Gallows Race Course	11:24:39	3	D	0.467	3	1	2379
+PIRELLI	Gallows Race Course	11:24:39	3	C	1.160	3	1	2379
+WOLF	Gallows Race Course	11:24:39	3	C	0.466	3	1	2379
+Forum8	Static Board Any Other	11:24:44	2	A	1.078	2	1	2384
+Asahi Kasei	Gallows Race Course	11:24:46	1	E	0.467	1	1	2386
+Forum8	Gallows Race Course	11:24:46	1	E	0.487	1	1	2386
+P1	Gallows Race Course	11:24:46	1	E	0.436	1	1	2386
+PIRELLI	Gallows Race Course	11:24:46	1	A	1.160	1	1	2386
+WOLF	Gallows Race Course	11:24:46	1	A	0.466	1	1	2386
+WOLF	Static Board Any Other	11:24:46	1	A	1.611	1	1	2386
+Castore	Gallows Race Course	11:24:46	2	E	0.273	2	1	2386
+Forum8	Static Board Any Other	11:24:52	3	E	3.947	3	1	2392
+Asahi Kasei	Gallows Race Course	11:24:54	2	E	0.467	2	1	2394
+Castore	Gallows Race Course	11:24:54	2	E	0.273	2	1	2394
+Forum8	Gallows Race Course	11:24:54	2	E	0.487	2	1	2394
+P1	Gallows Race Course	11:24:54	2	E	0.436	2	1	2394
+PIRELLI	Gallows Race Course	11:24:54	2	B	1.160	2	1	2394
+WOLF	Gallows Race Course	11:24:54	2	B	0.466	2	1	2394
+WOLF	Static Board Any Other	11:25:02	1	D	0.747	1	1	2402
+Asahi Kasei	Gallows Race Course	11:26:33	5	C	0.467	5	1	2493
+Castore	Gallows Race Course	11:26:33	5	D	0.273	5	1	2493
+Forum8	Gallows Race Course	11:26:33	5	D	0.487	5	1	2493
+P1	Gallows Race Course	11:26:33	5	D	0.436	5	1	2493
+PIRELLI	Gallows Race Course	11:26:33	5	C	1.160	5	1	2493
+WOLF	Gallows Race Course	11:26:33	5	C	0.466	5	1	2493
+Forum8	Static Board Any Other	11:26:40	3	A	1.078	3	1	2500
+PIRELLI	Car Front Bumper	11:26:44	1	D	0.641	2	2	2504
+Asahi Kasei	Gallows Race Course	11:26:52	1	B	0.467	1	1	2512
+Castore	Gallows Race Course	11:26:52	1	E	0.273	1	1	2512
+Forum8	Gallows Race Course	11:26:52	1	B	0.487	1	1	2512
+P1	Gallows Race Course	11:26:52	1	E	0.436	1	1	2512
+WOLF	Gallows Race Course	11:26:52	1	B	0.466	1	1	2512
+PIRELLI	Car Front Bumper	11:26:51	3	A	0.641	3	1	2511
+Toyota	TVGI	11:26:35	102	D	0.391	102	1	2495
+WRC	Car Door	11:28:21	1	A	0.669	1	1	2601
+PIRELLI	Firesuit Driver	11:28:22	4	A	0.641	8	2	2602
+Forum8	Static Board Any Other	11:28:34	3	A	2.094	3	1	2614
+Asahi Kasei	Gallows Race Course	11:28:37	2	A	0.467	2	1	2617
+Castore	Gallows Race Course	11:28:37	2	A	0.273	2	1	2617
+Forum8	Gallows Race Course	11:28:37	2	A	0.487	2	1	2617
+P1	Gallows Race Course	11:28:37	2	A	0.436	2	1	2617
+PIRELLI	Gallows Race Course	11:28:37	2	A	1.160	2	1	2617
+WOLF	Gallows Race Course	11:28:37	2	A	0.466	2	1	2617
+PIRELLI	Static Board Any Other	11:28:41	2	D	1.810	2	1	2621
+Forum8	Static Board Any Other	11:28:45	1	A	4.476	1	1	2625
+Asahi Kasei	Gallows Race Course	11:28:46	1	A	0.467	1	1	2626
+Castore	Gallows Race Course	11:28:46	1	A	0.273	1	1	2626
+Forum8	Gallows Race Course	11:28:46	1	A	0.487	1	1	2626
+P1	Gallows Race Course	11:28:46	1	A	0.436	1	1	2626
+PIRELLI	Gallows Race Course	11:28:46	1	A	1.160	1	1	2626
+WOLF	Gallows Race Course	11:28:46	1	A	0.466	1	1	2626
+WRC	TVGI	10:45:34	2663	E	0.444	2690	1.010	34
