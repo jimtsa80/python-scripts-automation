@@ -1,102 +1,86 @@
-import os
-import sys
+import argparse
 import zipfile
-import py7zr
-import math
-import shutil
+import os
+import tempfile
 
-def copy_images_to_folder(images_folder, source_folder):
-    if not os.path.exists(images_folder):
-        os.makedirs(images_folder)
-    for file_name in os.listdir(source_folder):
-        if file_name.endswith('.jpeg'):
-            shutil.copy(os.path.join(source_folder, file_name), images_folder)
 
-def calculate_parts(images_folder, num_parts):
-    num_files = len([f for f in os.listdir(images_folder) if f.endswith('.jpeg')])
-    if num_parts > 10:
-        num_parts = math.ceil(num_files / num_parts)
-    return num_parts
+def split_zip(input_zip, num_parts, output_prefix="part"):
+    """
+    Splits a zip file containing JPEG images into smaller zip files.
 
-def generate_ranges(num_files, num_parts):
-    ranges = []
-    start = 0
-    for i in range(num_parts):
-        end = min(start + num_files // num_parts, num_files)
-        ranges.append((start, end))
-        start = end + 1
-    return ranges
+    Args:
+        input_zip (str): Path to the input zip file.
+        num_parts (int): Number of smaller zip files to create.
+        output_prefix (str, optional): Prefix for the output zip filenames. Defaults to "part".
+    """
 
-def create_zip_archive(source_dir, destination_file):
-    with zipfile.ZipFile(destination_file, 'w') as zip_ref:
-        for root, dirs, files in os.walk(source_dir):
-            for file in files:
-                file_path = os.path.join(root, file)
-                arcname = os.path.relpath(file_path, source_dir)
-                zip_ref.write(file_path, arcname=arcname)
+    with zipfile.ZipFile(input_zip, 'r') as in_zip:
+        total_files = len(in_zip.namelist())
+        print(f"Total files in {input_zip}: {total_files}")
 
-def main(input_file, num_parts=None, num_images_per_part=None):
-    output_dir = os.path.dirname(os.path.abspath(input_file))
+        # Sort filenames by extracting integer part (assuming consistent naming format)
+        namelist = sorted(in_zip.namelist(), key=lambda x: int(x.split(".")[0]))
 
-    images_folder = os.path.join(output_dir, "images")
-    if not os.path.exists(images_folder):
-        os.makedirs(images_folder)
+        files_per_part = total_files // num_parts
+        remainder = total_files % num_parts
 
-    if input_file.endswith('.zip'):
-        with zipfile.ZipFile(input_file, 'r') as zip_ref:
-            zip_ref.extractall(images_folder)
-    elif input_file.endswith('.7z'):
-        with py7zr.SevenZipFile(input_file, mode='r') as archive:
-            archive.extractall(path=images_folder)
+        with tempfile.TemporaryDirectory() as temp_dir:
+            for part_num in range(1, num_parts + 1):
+                base_filename, _ = os.path.splitext(os.path.basename(input_zip))
+                output_zip = os.path.join(temp_dir, f"{output_prefix}_{part_num}_{base_filename}.zip")
+
+                with zipfile.ZipFile(output_zip, 'w') as out_zip:
+                    start_index = (part_num - 1) * files_per_part
+                    end_index = start_index + files_per_part
+                    if part_num == num_parts:
+                        end_index += remainder
+
+                    for i in range(start_index, end_index):
+                        info = in_zip.getinfo(namelist[i])
+                        if info.filename.lower().endswith((".jpg", ".jpeg")):
+                            with in_zip.open(info.filename) as file:
+                                out_zip.writestr(info.filename, file.read())
+
+                final_output_zip = os.path.join(os.path.dirname(input_zip), f"part_{part_num}_{base_filename}.zip")
+                os.replace(output_zip, final_output_zip)
+
+                print_first_and_last_jpeg(final_output_zip)
+
+
+def print_first_and_last_jpeg(zip_file):
+    """
+    Prints the first and last JPEG filenames, along with the total number of JPEGs, from a zip file.
+
+    Args:
+        zip_file (str): Path to the zip file.
+    """
+
+    num_images = 0
+    first_jpeg = None
+    last_jpeg = None
+
+    with zipfile.ZipFile(zip_file, 'r') as zip_ref:
+        namelist = zip_ref.namelist()
+
+        for filename in namelist:
+            if filename.lower().endswith((".jpg", ".jpeg")):
+                num_images += 1
+                if not first_jpeg:
+                    first_jpeg = filename
+                last_jpeg = filename
+
+    if num_images > 0:
+        print(f"Total JPEGs in {zip_file}: {num_images}")
+        print(f"First JPEG: {first_jpeg}")
+        print(f"Last JPEG: {last_jpeg}")
     else:
-        print("Unsupported file format. Please provide a zip or 7z file.")
-        return
+        print(f"No JPEGs found in {zip_file}")
 
-    num_files = len([f for f in os.listdir(images_folder) if f.endswith('.jpeg')])
-
-    if num_parts is None and num_images_per_part is None:
-        print(f"Now the initial file has {num_files} images.")
-        print("Please provide either the number of parts or the number of images per part.")
-        return
-    elif num_parts is None:
-        num_parts = calculate_parts(images_folder, num_images_per_part)
-
-    print(f"Now the initial file has {num_files} images.")
-    print(f"{num_parts} parts will be created.")
-
-    ranges = generate_ranges(num_files, num_parts)
-
-    for idx, (start, end) in enumerate(ranges):
-        part_dir = os.path.join(output_dir, f"part{idx+1}")
-        if not os.path.exists(part_dir):
-            os.makedirs(part_dir)
-
-        for i in range(start, end):
-            shutil.copy(os.path.join(images_folder, f'image_{i}.jpeg'), part_dir)
-
-        part_zip_file = os.path.join(output_dir, f"part{idx+1}_{os.path.basename(input_file)}")
-        create_zip_archive(part_dir, part_zip_file)
-
-        print(f"Part {idx+1} created. It contains {end-start} images.")
-
-    print("The partitions are:")
-    for idx, (start, end) in enumerate(ranges):
-        print(f"{start} \t {end}")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python script.py <path_to_zip_or_7z_file> [num_parts_or_num_images_per_part]")
-        sys.exit(1)
-    
-    input_file = sys.argv[1]
-    num_parts = None
-    num_images_per_part = None
+    parser = argparse.ArgumentParser(description="Split a zip file containing JPEG images.")
+    parser.add_argument("input_zip", help="Path to the input zip file.")
+    parser.add_argument("num_parts", type=int, help="Number of smaller zip files to create.")
+    args = parser.parse_args()
 
-    if len(sys.argv) > 2:
-        num_parts_or_images = sys.argv[2]
-        try:
-            num_parts = int(num_parts_or_images)
-        except ValueError:
-            num_images_per_part = int(num_parts_or_images)
-
-    main(input_file, num_parts, num_images_per_part)
+    split_zip(args.input_zip, args.num_parts)
