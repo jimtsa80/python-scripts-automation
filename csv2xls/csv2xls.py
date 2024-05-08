@@ -23,38 +23,52 @@ def find_misspellings(df, csv_filename):
 
 def csv_to_xlsx(input_folder, output_folder):
     files = os.listdir(input_folder)
-    unique_filenames = set()
+    unique_base_filenames = set()
 
+    # Extract base filenames from all files in the input folder
     for file in files:
         if file.endswith('.csv'):
-            filename_parts = file.split('-')
-            base_filename = filename_parts[0]
-            unique_filenames.add(base_filename)
+            # Determine base filename based on "part" prefix or "-"
+            if file.startswith("part"):
+                base_filename = "_".join(file.split("_")[1:]).split('-')[0]
+            else:
+                base_filename = file.split('-')[0]
 
-    for filename in unique_filenames:
+            unique_base_filenames.add(base_filename)
+
+    # Iterate over unique base filenames to concatenate related CSV files
+    for base_filename in unique_base_filenames:
         dfs = []
-        csv_filename = None  
+        csv_filenames = []  # Maintain a list of CSV filenames for potential misspellings
         for file in files:
-            if file.startswith(filename) and file.endswith('.csv'):
-                csv_filename = file  
+            if file.endswith('.csv') and base_filename in file:
+                csv_filenames.append(file)  # Store the CSV filename
                 file_path = os.path.join(input_folder, file)
                 df = pd.read_csv(file_path, delimiter='\t')
                 dfs.append(df)
 
         if dfs:
+            # Concatenate DataFrames and sort by the last column
             combined_df = pd.concat(dfs, ignore_index=True)
             combined_df.sort_values(by=combined_df.columns[-1], inplace=True)
-            misspellings = find_misspellings(combined_df, csv_filename)
+            
+            # Convert csv_filenames list to tuple for hashability
+            csv_filenames_tuple = tuple(csv_filenames)
+            
+            # Call find_misspellings with the concatenated DataFrame and CSV filenames
+            misspellings = find_misspellings(combined_df, csv_filenames_tuple)
             if misspellings:
-                print("Misspellings found in:", csv_filename)
+                print("Misspellings found in:", base_filename)
                 for misspelling in misspellings:
                     print("Misspelling:", misspelling)
                 print()
 
-            output_file = os.path.join(output_folder, f"{filename}.xlsx")
+            # Output the combined DataFrame to an Excel file
+            output_file = os.path.join(output_folder, f"{base_filename}.xlsx")
             combined_df.to_excel(output_file, index=False)
+
 
 if __name__ == "__main__":
 
-    csv_to_xlsx("csv", ".")
+    csv_to_xlsx(os.path.join(os.getcwd(), os.path.join("csv2xls","csvs")), os.path.join("csv2xls","."))
 
