@@ -20,9 +20,17 @@ def split_zip(input_zip, num_parts, output_prefix="part"):
 
         # Sort filenames by extracting integer part (assuming consistent naming format)
         namelist = sorted(in_zip.namelist(), key=lambda x: int(x.split(".")[0]))
-
+        
+        if(num_parts > 10):
+            num_parts = round(total_files / num_parts)
+        
         files_per_part = total_files // num_parts
         remainder = total_files % num_parts
+
+        print(num_parts)
+        print(files_per_part)
+        print(remainder)
+
 
         with tempfile.TemporaryDirectory() as temp_dir:
             for part_num in range(1, num_parts + 1):
