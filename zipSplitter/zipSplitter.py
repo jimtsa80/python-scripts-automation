@@ -2,6 +2,7 @@ import argparse
 import zipfile
 import os
 import tempfile
+import re
 
 
 def split_zip(input_zip, num_parts, output_prefix="part"):
@@ -18,19 +19,14 @@ def split_zip(input_zip, num_parts, output_prefix="part"):
         total_files = len(in_zip.namelist())
         print(f"Total files in {input_zip}: {total_files}")
 
-        # Sort filenames by extracting integer part (assuming consistent naming format)
-        namelist = sorted(in_zip.namelist(), key=lambda x: int(x.split(".")[0]))
-        
-        if(num_parts > 10):
+        # Sort filenames by extracting numbering using regex
+        namelist = sorted(in_zip.namelist(), key=lambda x: int(re.findall(r'\d+', x)[0]))
+
+        if num_parts > 10:
             num_parts = round(total_files / num_parts)
-        
+
         files_per_part = total_files // num_parts
         remainder = total_files % num_parts
-
-        print(num_parts)
-        print(files_per_part)
-        print(remainder)
-
 
         with tempfile.TemporaryDirectory() as temp_dir:
             for part_num in range(1, num_parts + 1):
@@ -47,12 +43,36 @@ def split_zip(input_zip, num_parts, output_prefix="part"):
                         info = in_zip.getinfo(namelist[i])
                         if info.filename.lower().endswith((".jpg", ".jpeg")):
                             with in_zip.open(info.filename) as file:
-                                out_zip.writestr(info.filename, file.read())
+                                out_zip.writestr(os.path.basename(info.filename), file.read())
+                        elif not has_folders(in_zip, info.filename):  # Not a folder or JPEG
+                            print(f"Found non-JPEG file: {info.filename}. Skipping for this script.")
+                        else:  # It's a folder, extract files within
+                            for nested_file in in_zip.namelist():
+                                if nested_file.startswith(info.filename) and not has_folders(in_zip, nested_file):
+                                    with in_zip.open(nested_file) as nested_file_obj:
+                                        # Extract the file with a relative path within the zip (remove folder structure)
+                                        new_filename = os.path.relpath(nested_file, info.filename)
+                                        out_zip.writestr(new_filename, nested_file_obj.read())
 
                 final_output_zip = os.path.join(os.path.dirname(input_zip), f"part_{part_num}_{base_filename}.zip")
                 os.replace(output_zip, final_output_zip)
 
                 print_first_and_last_jpeg(final_output_zip)
+
+
+def has_folders(zip_file, filename):
+    """
+    Checks if a file within a zip archive is a folder.
+
+    Args:
+        zip_file (zipfile.ZipFile): The opened zip file object.
+        filename (str): The filename to check within the zip.
+
+    Returns:
+        bool: True if the filename points to a folder, False otherwise.
+    """
+    info = zip_file.getinfo(filename)
+    return info.file_size == 0 or "/" in filename
 
 
 def print_first_and_last_jpeg(zip_file):
@@ -83,6 +103,7 @@ def print_first_and_last_jpeg(zip_file):
         print(f"Last JPEG: {last_jpeg}")
     else:
         print(f"No JPEGs found in {zip_file}")
+
 
 
 if __name__ == "__main__":
