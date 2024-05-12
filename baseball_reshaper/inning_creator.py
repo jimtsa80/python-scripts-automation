@@ -1,39 +1,81 @@
-import openpyxl
+import pandas as pd
 import sys
+from collections import Counter
+
+def number_groups(lst):
+    numbered_list = []
+    count = 1
+
+    for i in range(len(lst)):
+        if i == 0 or lst[i] != lst[i - 1]:
+            count = 1
+        numbered_list.append(str(count))
+        count += 1
+
+    return numbered_list
+
+def number_nums(lst):
+    numbered_list = []
+    count = 0
+    top_count = 0
+
+    for i in range(len(lst)):
+        if lst[i] == '1':
+            top_count += 1
+            count = 1
+        elif count > top_count:
+            count = 1
+        numbered_list.append(str(top_count))
+        count += 1
+
+    return numbered_list
+
+def final(lst):
+
+    top_count = 0  # Initialize counter for "top"
+    bottom_count = 0  # Initialize counter for "bottom"
+    last_type = None
+    
+    # Iterate through the input list and modify it accordingly
+    for i, item in enumerate(lst):
+        if int(item) % 2 == 0:
+            if last_type != 'bottom':
+                bottom_count += 1
+            lst[i] = f'bottom {bottom_count}'
+            last_type = 'bottom'
+        else:
+            if last_type != 'top':
+                top_count += 1
+            lst[i] = f'top {top_count}'
+            last_type = 'top'
+
+    return lst
 
 def add_inning_column(input_file):
-    # Load the workbook
-    wb = openpyxl.load_workbook(input_file)
-    
-    # Select the "Batters" worksheet
-    ws = wb["Batters"]
-    
-    # Initialize variables for tracking innings
-    current_brand = None
-    inning = 1
-    inning_half = 'top'
-    
-    # Iterate through rows and populate the "Inning" column
-    for row_num in range(2, ws.max_row + 1):
-        brand = ws.cell(row=row_num, column=1).value  # Assuming brand is in the first column
-        if current_brand is None:
-            current_brand = brand
-        elif brand != current_brand:
-            current_brand = brand
-            inning = 1
-            inning_half = 'top'
-        else:
-            if inning_half == 'top':
-                inning += 1
-                inning_half = 'bottom'
-            else:
-                inning_half = 'top'
-        
-        # Insert the "Inning" value into the row
-        ws.cell(row=row_num, column=10, value=f"{inning_half} {inning}")  # Assuming Inning column is the tenth column
+    # Read the Excel file
+    df = pd.read_excel(input_file, sheet_name='Batters')
 
-    # Save the modified workbook
-    wb.save(input_file)
+    brands = []
+    last_results = []
+
+    for _, row in df.iterrows():
+        brand = row['Brand']
+        brands.append(brand)
+
+    numbers = number_groups(brands)
+
+    results = number_nums(numbers)
+
+    last_results = final(results)
+
+    # Add the "Inning" column to the DataFrame
+    df['Inning'] = last_results
+
+    #Save the modified DataFrame back to the same Excel file and same tab
+    with pd.ExcelWriter(input_file, engine='openpyxl', mode='a') as writer:
+        if 'Batters' in writer.book.sheetnames:
+            writer.book.remove(writer.book['Batters'])
+        df.to_excel(writer, index=False, sheet_name='Batters')
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -41,5 +83,5 @@ if __name__ == "__main__":
         sys.exit(1)
 
     input_file = sys.argv[1]
-    add_inning_column(input_file)
 
+    add_inning_column(input_file)

@@ -54,7 +54,7 @@ def split_zip(input_zip, num_parts, output_prefix="part"):
                                         new_filename = os.path.relpath(nested_file, info.filename)
                                         out_zip.writestr(new_filename, nested_file_obj.read())
 
-                final_output_zip = os.path.join(os.path.dirname(input_zip), f"part_{part_num}_{base_filename}.zip")
+                final_output_zip = os.path.join(os.path.dirname(input_zip), f"part{part_num}_{base_filename}.zip")
                 os.replace(output_zip, final_output_zip)
 
                 print_first_and_last_jpeg(final_output_zip)
