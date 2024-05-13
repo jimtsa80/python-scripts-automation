@@ -1,8 +1,7 @@
 import pandas as pd
 import sys
-from collections import Counter
 
-def number_groups(lst):
+def brands_to_numbers(lst):
     numbered_list = []
     count = 1
 
@@ -14,7 +13,7 @@ def number_groups(lst):
 
     return numbered_list
 
-def number_nums(lst):
+def normalize_numbers(lst):
     numbered_list = []
     count = 0
     top_count = 0
@@ -30,24 +29,24 @@ def number_nums(lst):
 
     return numbered_list
 
-def final(lst):
+def finalize_innings(lst):
 
-    top_count = 0  # Initialize counter for "top"
-    bottom_count = 0  # Initialize counter for "bottom"
+    top_count = 0
+    bottom_count = 0 
     last_type = None
     
     # Iterate through the input list and modify it accordingly
     for i, item in enumerate(lst):
         if int(item) % 2 == 0:
-            if last_type != 'bottom':
+            if last_type != 'Bottom':
                 bottom_count += 1
-            lst[i] = f'bottom {bottom_count}'
-            last_type = 'bottom'
+            lst[i] = f'Bottom {bottom_count}'
+            last_type = 'Bottom'
         else:
-            if last_type != 'top':
+            if last_type != 'Top':
                 top_count += 1
-            lst[i] = f'top {top_count}'
-            last_type = 'top'
+            lst[i] = f'Top {top_count}'
+            last_type = 'Top'
 
     return lst
 
@@ -56,20 +55,19 @@ def add_inning_column(input_file):
     df = pd.read_excel(input_file, sheet_name='Batters')
 
     brands = []
-    last_results = []
 
     for _, row in df.iterrows():
         brand = row['Brand']
         brands.append(brand)
+ 
+    numbers = brands_to_numbers(brands)
 
-    numbers = number_groups(brands)
+    normalized_numbers = normalize_numbers(numbers)
 
-    results = number_nums(numbers)
-
-    last_results = final(results)
+    innings = finalize_innings(normalized_numbers)
 
     # Add the "Inning" column to the DataFrame
-    df['Inning'] = last_results
+    df['Inning'] = innings
 
     #Save the modified DataFrame back to the same Excel file and same tab
     with pd.ExcelWriter(input_file, engine='openpyxl', mode='a') as writer:

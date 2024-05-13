@@ -13,7 +13,7 @@ def process_concat_data(input_file):
     # Create a new DataFrame to store the concatenated data
     concat_df = pd.DataFrame(columns=['Brand', 'Location', 'Time the brand is at screen', 'Duration',
                                       'Screen Location', 'Screen Size %', 'Total Hits', 'Average Hits',
-                                      'Sequence Frame Number', 'Player'])
+                                      'Sequence Frame Number', 'Inning', 'Player'])
 
     # Iterate over each row in the 'new' DataFrame
     for index, row in new_df.iterrows():
@@ -35,20 +35,22 @@ def process_concat_data(input_file):
             screen_size = match_row['Screen Size %'].iloc[0]
             total_hits = match_row['Total Hits'].iloc[0]
             avg_hits = match_row['Average Hits'].iloc[0]
+            inning = match_row['Inning'].iloc[0]
+            
 
             # Create new rows for each sequence frame number based on duration
             for i in range(duration):
                 new_row = {'Brand': brand, 'Location': location, 'Time the brand is at screen': time_at_screen,
                            'Duration': 1, 'Screen Location': screen_location, 'Screen Size %': screen_size,
                            'Total Hits': total_hits, 'Average Hits': avg_hits,
-                           'Sequence Frame Number': seq_frame_number + i, 'Player': location_batters}
+                           'Sequence Frame Number': seq_frame_number + i, 'Inning': inning,'Player': location_batters}
                 concat_df = concat_df.append(new_row, ignore_index=True)
         else:
             # If no match is found, copy the row from the 'new' DataFrame to 'concat_data' DataFrame
             new_row = {'Brand': brand, 'Location': location, 'Time the brand is at screen': row['Time the brand is at screen'],
                        'Duration': row['Duration'], 'Screen Location': row['Screen Location'],
                        'Screen Size %': row['Screen Size %'], 'Total Hits': row['Total Hits'],
-                       'Average Hits': row['Average Hits'], 'Sequence Frame Number': seq_frame_number,
+                       'Average Hits': row['Average Hits'], 'Sequence Frame Number': seq_frame_number
                        }
             concat_df = concat_df.append(new_row, ignore_index=True)
 
