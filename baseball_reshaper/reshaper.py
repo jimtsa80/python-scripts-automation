@@ -6,7 +6,13 @@ def process_excel(input_file):
     warnings.simplefilter(action='ignore', category=FutureWarning)
     # Read the Excel file
     xl = pd.ExcelFile(input_file)
-    df = xl.parse('HomePlate')
+    try:
+        df = xl.parse('HomePlate')
+    except KeyError:
+        try:
+            df = xl.parse('Homeplate')
+        except KeyError:
+            print("Neither 'HomePlate' nor 'Homeplate' sheet found in the Excel file.")
 
     # Create a new DataFrame to store the modified data
     new_df = pd.DataFrame(columns=df.columns)
