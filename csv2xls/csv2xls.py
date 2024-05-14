@@ -45,6 +45,15 @@ def csv_to_xlsx(input_folder, output_folder):
                 csv_filenames.append(file)  # Store the CSV filename
                 file_path = os.path.join(input_folder, file)
                 df = pd.read_csv(file_path, delimiter='\t')
+                
+                # Check for empty values in "Brand" or "Location" columns
+                empty_rows = df[df['Brand'].isnull() | df['Location'].isnull()]
+                if not empty_rows.empty:
+                    print(f"Empty rows found in {file}:")
+                    print(empty_rows)
+                    print("Removing empty rows...")
+                    df = df.drop(empty_rows.index)
+
                 dfs.append(df)
 
         if dfs:
@@ -67,8 +76,8 @@ def csv_to_xlsx(input_folder, output_folder):
             output_file = os.path.join(output_folder, f"{base_filename}.xlsx")
             combined_df.to_excel(output_file, index=False)
 
-
 if __name__ == "__main__":
 
-    csv_to_xlsx(os.path.join(os.getcwd(), os.path.join("csv2xls","csvs")), os.path.join("csv2xls","."))
+    csv_to_xlsx("csvs",".")
+
 
