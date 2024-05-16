@@ -7,6 +7,11 @@ from azure.core.exceptions import ResourceNotFoundError, ResourceExistsError
 from pathlib import Path
 import time
 
+def format_time(seconds):
+    minutes = seconds // 60
+    seconds %= 60
+    return "{:d} minutes {:.2f} seconds".format(int(minutes), seconds)
+
 def bytes_to_gb(size_in_bytes):
     return round(size_in_bytes / (1024 ** 3), 2)
 
@@ -69,9 +74,10 @@ def download_blobs(container_name, credential, target_string):
     except Exception as e:
         print("Error:", e)
         return
-    
+        
     end_time = time.time()
-    print("Total time taken: {:.2f} seconds".format(end_time - start_time))
+    total_time_seconds = end_time - start_time
+    print("Total time taken:", format_time(total_time_seconds))
 
 def main():
     parser = argparse.ArgumentParser(description='Download blobs from Azure Blob Storage container')
