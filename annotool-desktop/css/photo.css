@@ -1,0 +1,7 @@
+/*#zero-opt,*/ #generatePhotoCSV {
+	display: initial;
+}
+
+#generateVideoCSV,#generateNewsCSV,#news_filters,#showannosnews  {
+	display: none;
+}

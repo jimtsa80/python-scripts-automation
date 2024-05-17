@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>i-Sieve Οδηγίες Annotation</title>
+
+	<link rel="stylesheet" href="common.css">
+	<link rel="stylesheet" href="docs.css">
+
+	<script src="modernizr.custom.js"></script>
+</head>
+<body class="docs">
+
+<header>
+	<nav>
+		<h1><a href="#">i-Sieve Annotool v.5</a></h1>
+		<!--ul>
+			<li><a href="../introduction">Getting Started</a></li>
+			<li>Docs</li>
+			<li><a href="http://github.com/imakewebthings/deck.js">GitHub</a></li>
+		</ul-->
+	</nav>
+</header>
+
+<article>
+	<h1>Docs</h1>
+
+	<nav>
+		<div>
+			<ul>
+
+				<li>
+					<a href="#ergaleia">User Interface ( UI )</a>
+					<ul>
+						<li class="expandable">
+							<a href="#ergaleia-methods">Γενικά</a>
+							<ul>
+								<li><a href="#top-panel">Top Panel</a></li>
+								<li><a href="#deck-scale-disable">Μπάρα Πληροφοριών</a></li>
+								<li><a href="#ergaleia-show">Γραμμή Εργαλείων</a></li>
+								<li><a href="#brands">Λίστες</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#vasiko-anno">Χειρισμός</a>
+					<ul>
+						<li class="expandable">
+							<a href="#vasiko-anno-methods">Πληκτρολόγιο</a>
+							<ul>
+								<li><a href="#vasiko-anno-init">Βασικές λειτουργίες</a></li>
+							</ul>
+						</li>
+					</ul>
+						
+				</li>	
+				<li>
+					<a href="#deck-navigation">Έκδοση v5</a>
+					
+				</li>
+				<li>
+					<a href="#odigies-anno">Αnnotation</a>
+					<ul>
+						<li class="expandable">
+							<a href="#odigies-anno-methods">Γενικές Οδηγιες</a>
+							<ul>
+								<li><a href="#odigies-anno-init">Βασικές λειτουργίες</a></li>
+							</ul>
+						</li>
+					</ul>
+						
+				</li>
+				
+				<li>
+					<a href="#grigoro-annotation">Γρήγορο Annotation</a>
+					<ul>
+						<li><a href="#grigoro-annotation-options">Options</a></li>
+						<li><a href="#grigoro-annotation-theming">Theming</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<section align="center" id="ergaleia">
+		<h2>User Interface ( UI )</h2>
+
+		<section align="center" id="ergaleia-methods" class="methods">
+			<h3>Γενικά</h3>
+<p>Μόλις ανοίξετε το φάκελο  που περιέχει το AnnoTool, βρίσκετε το αρχείο που λέει index.html και κάνετε διπλό κλικ για να ανοίξει. Ανοίγει στον Google Chrome και αυτή είναι η αρχική οθόνη που βλέπετε :</p>
+<img class="myImg" src="images/init.jpg" alt="Αρχική Οθόνη">
+			<section align="center" id="top-panel">
+				<header>
+					<h4>Top Panel</h4>
+				</header>
+
+				<img class="myImg" src="images/row1.jpg" alt="Top Panel">
+				<p>Κάθε φορά που ξεκινάτε ένα νέο αρχείο, πατάτε New Project πάνω αριστερά και εμφανίζεται παράθυρο επιβεβαίωσης. πατάμε ΝΑΙ.</p>
+				<p>Μετά φορτώνετε το txt πατώντας το κουμπί 
+				<img class="insection" src="images/inputtxt.jpg"> <strong>αφού έχετε γράψει τον τίτλο του αρχείου που θα κάνετε και το όνομα του Annotator μέσα σε αυτό.</strong> Μετά φορτώνετε τις εικόνες πατώντας το κουμπί 
+				<img class="insection" src="images/inputfiles.jpg">. Αν έχετε το txt στον ίδιο φάκελο που βρίσκεται και ο φάκελος με τις εικόνες, σας πάει κατευθείαν εκεί και πατάτε ΟΚ.</p>
+				
+			
+				<p class="note">
+				<img class="insection" src="images/import.jpg"><br>Με το κουμπί <strong>Annotation</strong> εισάγετε ότι δουλειά έχετε κάνει στο συγκεκριμένο αρχείο ενώ το κουμπί <strong>Presets</strong> εισάγει ΜΟΝΟ τις μνήμες του συγκεκριμένου json<br>Η επιλογή Merge σας επιτρέπει να εισάγετε περισσότερα από ένα json αν είναι στο ON και ΜΟΝΟ ένα αν είναι στο OFF.
+				
+				</p>
+
+				<p class="note">
+				<img class="insection" src="images/export.jpg"><br>
+				Δίπλα από αυτά έχει τις επιλογές εξαγωγής json + csv. Πρώτα επιλέγετε Videos ή Photos αναλόγως με τον τύπο του Project που κάνετε και μετά κατεβάζετε json + csv είτε έχετε ολοκληρώσει αυτό που κάνετε είτε για να συνεχίσετε κάποια άλλη στιγμή.
+				</p>
+		
+				<p class="note">
+				<img class="insection" src="images/bgcolor.jpg"><br>
+				Τέλος, δίπλα έχει την επιλογή του χρώματος του φόντου (προτείνεται ένα πιο σκούρο φόντο αντί του άσπρου που κουράζει πιο εύκολα τα μάτια).
+				</p>
+				
+			</section>
+
+			<section align="center" id="deck-scale-disable">
+				<header>
+					<h4>Μπάρα Πληροφοριών</h4>
+				</header>
+				<p>Από κάτω έχει μία μαύρη μπάρα που έχει τις πληροφορίες που έχετε γράψει στο txt και όταν το φορτώσετε, εμφανίζονται εκεί και δεξιά τον αριθμό του frame ή της εικόνας που βρίσκεστε. 
+				</p>
+				<p class="warning">Επίσης όταν αλλάζετε σε photos θα δείτε ότι εμφανίζεται κι ένα νούμερο που στην ουσία δείχνει πόσα αρχεία περισσεύουν για να τελειώσεις και ανανεώνεται μονο του κάθε 10 δεύτερα.  
+				</p>
+				<p>Ακριβώς από κάτω έχει ένα βελάκι 
+				<img class="insection" src="images/togglearrow.jpg"><br>
+				που δείχνει προς τα πάνω και όταν το πατήσετε, κρύβει ή εμφανίζει όλες τις παραπάνω πληροφορίες και επιλογές.
+				
+				</p>
+				
+				
+
+
+			</section>
+			
+			<section align="center" id="ergaleia-show">
+				<header>
+					<h4>Γραμμή Εργαλείων</h4>
+				</header>
+
+				<p>Αφού έχετε φορτώσει txt και τις εικόνες, βρίσκεστε εδώ :</p>
+				<img class="myImg" src="images/afterload.png"><br>
+				
+				<p>Κάτω από αυτή τη μπάρα έχει τα εξής κουμπιά (αριστερά προς τα δεξιά) :</p>
+				<p class="note"><img class="insection" src="images/copyframebtn.jpg">Αντιγραφή της εικόνας που βρίσκεστε
+					<img class="myImg" src="images/copyframe.png"><br>
+					Αν έχετε επιλέξει από πριν κάποιο annobox τότε στο πλαίσιο κάτω απ την φώτο θα υπάρχει προς αντιγραφή και το αντίστοιχο <b>brand</b> και το <b>tpoint</b>
+				</p>
+				<p class="note"><img class="insection" src="images/saveframebtn.jpg">Αντίστοιχα, με αυτό θα σώσετε την εικόνα στον υπολογιστή και αν έχετε επιλέξει annobox η εικόνα παίρνει αυτόματα σαν όνομα το αντίστοιχο: brand-tpoint. <b>Πολύ χρήσιμο εργαλείο για να βγάζουμε φώτο-παραδείγματα</b>
+				</p>
+				<p class="note"><img class="insection" src="images/viewpresetsbtn.jpg">Ανοίγει ένα παράθυρο και βλέπετε τα presets. <b>Αποθηκεύει και τον αριθμό των hits που έχετε βάλει.</b>
+					<img class="myImg" src="images/viewpresets.png">
+				</p>				
+				<p class="note"><img class="insection" src="images/tpfilterbtn.jpg">Φιλτράρισμα ανά tpoint ή brand ή γκρουπ. <br>Πολύ χρήσιμο αν θέλετε να δείτε πχ: ποια brands υπαρχουν στο shirt front.
+					<img class="myImg" src="images/tpfilter.png">
+				</p>				
+				<p class="note"><img class="insection" src="images/annofiltersbtn.jpg">Φίλτρα annotation. <b>Μπορείτε να πλοηγηθείτε με τα μπρος πισω του φιλτρου στις εικόνες που έχουν annotation</b>. ( εδώ θα υπάρξει και βελτίωση σύντομα )
+					<img class="myImg" src="images/annofilters.jpg">
+				</p>
+				<p class="note"><img class="insection" src="images/previewbtn.jpg">Εμφανίζει ένα πανελ κάτω στο παράθυρο σου που δείχνει τις επόμενες 10 εικόνες. <b>Πολύ χρήσιμο κυρίως για web photos</b>
+					<img class="myImg" src="images/preview.jpg">
+				</p>				
+				<p class="note"><img class="insection" src="images/addtolist.jpg">Η εικόνα προστίθεται στη λίστα που φαίνεται στα Φίλτρα annotation.
+και εμφανίζεται το παρακάτω πανελ όπου μπορείς να μετακινείσαι ΜΟΝΟ στις φώτο της λίστας.
+					<img class="insection" src="images/laterlist.jpg">
+				</p>
+				
+			</section>
+
+			<section align="center" id="brands">
+				<header>
+					<h4>Λίστες</h4>
+				</header>
+
+				<p>Πάνω από τις στήλες brand και tpoint έχει ένα κουτάκι αναζήτησης 
+				<img class="insection" src="images/listsfilters.jpg"><br>
+				που μόλις ξεκινήσεις να γράφεις, σου εμφανίζει μόνο τα σχετικά αποτελέσματα όπως για παράδειγμα. 
+				<img class="insection" src="images/listsfilters2.jpg"><br>
+				Κάτω από αυτό το κουτάκι έχει τα εξής κουμπιά  (αριστερά προς τα δεξιά) :
+				<p class="note"><img class="insection" src="images/listsbtns.jpg"><br>
+				1ο. Ταξινόμηση brands ή ολόκληρη λίστας χειροκίνητα (με το ποντίκι).
+				2ο. Εμφάνιση/απόκρυψη λίστας με τα βελάκια.
+				3ο. Επεξεργασία του επελεγμένου brand.
+				4ο. Πρόσθεση brand.
+				5ο. Αφαίρεση brand.
+					<img class="insection" src="images/laterlist.jpg">
+				</p>
+Τα ίδια κουμπιά εκτός από το 2ο είναι και πάνω από τη λίστα με τα tpoints.
+Τέλος, πάνω από τον αριθμό των hits είναι ένα κουμπί που μπορείς να κάνεις αποθήκευση σε καινούργιο txt.
+
+				</p>				
+
+				
+			</section>
+			
+			
+		</section>
+
+	</section>
+	
+	<section align="center" align="center" id="vasiko-anno">
+		<h2>Χειρισμός</h2>
+		<section align="center" align="center" id="vasiko-anno-methods" class="methods">
+			<h3>Πληκτρολόγιο</h3>
+			<section align="center" id="vasiko-anno-init">
+				<header>
+					<h4>Βασικές λειτουργίες</h4>
+				</header>
+
+				<img src="images/keyboard.jpg">
+
+				<p class="note" align="left">
+				- όλα τα <b>πράσινα</b> κουμπιά είναι <b>presets</b><br>
+- τα <b>πορτοκαλί</b>  :<br>
+  <b>A</b> : 1 πίσω<br>
+  <b>S</b> : 1 μπροστά<br>
+  <b>SHIFT+A</b> : 10 πίσω<br>
+  <b>SHIFT+S</b> : 10 μπροστά<br>
+<br>
+  <b>Z</b> : σβήνει ΜΟΝΟ τα επιλεγμένα "κουτάκια"<br>
+  <b>X</b> : τα σβήνει ΟΛΑ<br>
+  <b>C</b> : κάνει copy τα πρασινισμένα κουτάκια και μετά με το D τα κάνει paste από πάνω τους <br>
+  <b>F</b> : απενεργοποιεί όλα τα πρασινισμένα<br>
+  <b>V</b> : τα κάνει ΟΛΑ πράσινα<br>
+<br>
+σωσιμο σε μνημη : shift+(ενα απ τα πρασινα κουμπια)<br>
+paste απο μνημη : απλα παταμε το ανιστοιχο πληκτρο χωρίς το shift.<br>
+<br>
+<b>!!! επίσης σουπερ χρήσιμο :</b><br>
+το κουμπι <b>ctrl</b> μπορει να χρησιμοποιηθεί όπως στους φακέλους των windows.<br>
+δηλαδη με πατημένο το ctrl να πρασινίζετε μεμονωμένα όποια κουτάκια θέλετε.<br>
+<br>
+και τέλος...στις λίστες με τα brands και τα assets μπορειτε πχ με το πάτημα του W να πάτε κατευθείαν στο Westfield, με το Κ στο KFC κτλ κτλ... </p>
+
+
+		</section>
+
+	</section>
+	</section>
+
+	<section align="center" id="deck-navigation">
+		<h2>Έκδοση v5</h2>
+<br>
+			<p class="warning">οι συντομευσεις του πληκτρολογίου που πατάς ένα γράμμα και σε πάει στο αντιστοιχο brand λειτουργεί όταν είσαι "πάνω" απ τη λιστα ή εχεις πατήσει μέσα.</p>
+<br>
+			<p class="warning"><strong>επιπλέον μνήμες : </strong><br>
+			προσθέθηκαν τα κουμπιά F1-F12 και επιπλέον όλες οι θέσεις που ξέρετε αλλα με το alt μπροστά ( δειτε τη λιστα στο κουμπί με το ματάκι ).
+			<br>όσο για τις μνήμες που αρχίζουν με alt, αποθηκεύονται με τον ίδιο τρόπο με πριν. απλα τωρα αντι πχ για P έχεις alt+P οπότε σώζεις με shift+alt+P και το καλείς με alt+P</p>
+<br>			
+			<p class="warning"><strong>SOS !!!</strong><br>
+				<img src="images/savetotxt.jpg"><br>
+				Όταν γίνονται αλλαγές σε brands, tpoints το txt ΔΕΝ επηρρεάζεται.<br>
+				Πλέον το txt χρησιμοποιείται ΜΟΝΟ ΜΙΑ ΦΟΡΑ στην αρχή.<br>
+				Αν θες οι αλλαγές σου να σώζονται και σε txt πρέπει να χρησιμοποιέις το κουμπί στη φωτο.<br>
+			</p>
+<br>
+
+	</section>
+
+
+	<section align="center" align="center" id="odigies-anno">
+		<h2>Αnnotation</h2>
+		<section align="center" align="center" id="odigies-anno-methods" class="methods">
+			<h3>Γενικές Οδηγίες</h3>
+			
+			<section align="center" id="odigies-anno-init">
+				<header>
+					<h4>τα Βασικά</h4>
+				</header>
+				<p class="warning">UNDER CONSTRUCTION</p>
+			</section>
+
+	</section>
+	</section>
+	
+	
+	<section align="center" id="grigoro-annotation">
+		<h2>Γρήγορο Annotation</h2>
+
+		<p class="warning">UNDER CONSTRUCTION</p>
+
+
+	</section>
+</article>
+
+<div id="sticky-wrapper" class="hidden">
+	<div class="inner">
+		<h2></h2>
+		<h3></h3>
+	</div>
+</div>
+
+<!--footer>
+	<p><span class="version">1.1.0</span> A project of <a href="http://imakewebthings.com">I Make Web Things</a></p>
+</footer-->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- The Close Button -->
+  <span class="close">&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img class="modal-content" id="img01">
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+</div>
+<script src="jquery.min.js"></script>
+<script src="waypoints.min.js"></script>
+<script src="docs.js"></script>
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+$('.myImg').each(function(){
+	var img = this;
+	var modalImg = document.getElementById("img01");
+	var captionText = document.getElementById("caption");
+	img.onclick = function(){
+		modal.style.display = "block";
+		modalImg.src = this.src;
+		captionText.innerHTML = this.alt;
+	}
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() { 
+		modal.style.display = "none";
+	}
+})
+</script>
+</body>
+</html>

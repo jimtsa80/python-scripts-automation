@@ -1,0 +1,1 @@
+$('input#imageName').change( function() {alert("loaded") } );

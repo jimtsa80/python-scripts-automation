@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/libs/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/libs/jsxgraph.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/libs/filtergrid.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/libs/noty.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/libs/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/libs/jquery-ui.css" rel="stylesheet">			
+	<link rel="stylesheet" href="css/libs/dataTables.bootstrap.min.css" />
+	<link rel="stylesheet" href="css/libs/select.dataTables.min.css" />
+	<link rel="stylesheet" href="css/libs/buttons.dataTables.min.css" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic&amp;subset=greek">
+	<link rel="stylesheet" href="css/webannotool.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/video.css" id="workspace-css">
+	
+
+
+</head>
+					
+<body class="color" id="page" align="center">
+
+<div id="toppanel" class="clearfix">
+
+	<div class="topcol1 col-md-5">
+		<button id="newProjButton" type="button" class="btn btn-danger btn-xs shadow"><b>New Project</b><br>( Delete Data )</button>
+		<div class="input-group shadow"> 
+			<span class="input-group-btn"> 
+				<span class="btn btn-primary btn-sm btn-file"> 
+					<span class="glyphicon glyphicon-cog"></span>
+					<input id="projectPrefs" type="file" value="">
+				</span>
+			</span>
+			<input id="projectPrefsBox" type="text" style='width:auto' class="form-control input-sm" title="" placeholder="Click to load a new preferences file" readonly> 
+		</div>
+		<div class="input-group shadow" id="loadfiles"> 
+			<span class="input-group-btn">
+				<span class="btn btn-primary btn-sm btn-file">
+					<span class="glyphicon glyphicon-folder-open"></span>
+					<input id="projectFolder" type="file" value="" webkitdirectory directory multiple>
+				</span>
+			</span>
+			<input id="projectFolderBox" type="text" style='width:auto' class="form-control input-sm" title="" placeholder="Click to select the images folder" readonly> 
+		</div>
+	</div>
+			
+	<div class="topcol2 col-md-5">
+		
+		<div id="import">
+			<h4>Import : </h4>
+			<label for="mergeAnn">Merge?<input id="mergeAnn" type="checkbox" value="mergeAnn" class="ios-switch" checked></label>
+			<span class="btn btn-success btn-sm btn-file shadow">Json<input id="loadAnn" type="file" value="">
+			</span>
+			<span class="btn btn-success btn-sm btn-file shadow">Presets from Json<input id="loadPresets" type="file" value=""></span>
+		</div>
+		
+		<!--span class="btn btn-success btn-sm btn-file">Options<input id="loadOpts" type="file" value=""></span-->
+		<div id="export">
+			<div id="title-prefs">
+				<h4>Export : </h4>
+				<span id="title-workspace"> 
+					<select id="workspace" class="form-control input-sm shadow">
+						<option>Video</option>
+						<option>Photos</option>
+					</select>
+				</span>
+				<label for="scrloc"><input id="scrloc" type="checkbox" value="scrloc"> location ?</label>
+			</div>
+			<div id="generationButtons" class="btn-group" role="group">
+				<button id="downloadAnn" type="button" class="btn btn-success btn-sm shadow" onclick="downloadAnnotations();">json</button>
+				<button id="generatePhotoCSV" type="button" class="btn btn-success btn-sm shadow" onclick="generatePhotoCSV();">photos.csv</button>
+				<button id="generateVideoCSV" type="button" class="btn btn-success btn-sm shadow" onclick="generateVideoCSV();">video.csv</button>
+				<button id="generateNewsCSV" type="button" class="btn btn-success btn-sm shadow" onclick="generateNewsCSV_3();">news.csv</button>	
+				<button id="generateAnnFiles" type="button" class="btn btn-success btn-sm shadow" onclick="generateAnnFilesZip();">.ann</button>
+			</div> 
+		</div>
+	</div>
+
+	<div class="topcol3 col-md-2" align="right">
+		<button id="colorsedit" type="button" class="btn btn-success btn-xs shadow"><b>Change<br>Colors</b></button>
+	</div>
+</div>
+
+<div id="title-wrap">
+	<div id="title-row" class="row">
+		<div id="title" class="col-xs-10">
+			<span id="projectLabel">File&nbsp;:&nbsp;</span>
+			<span id="projectName" class="editable"></span>
+			<span id="AnnotatorLabel">Annotator&nbsp;:&nbsp;</span>
+			<span id="AnnotatorName" class="editable"></span>
+			
+			<span id="resizefname">
+				<button id="nextButton" type="button" class="btn btn-primary btn-xs shadow" onclick="loadNextImg();">Next</button>
+				<button id="prevButton" type="button" class="btn btn-info btn-xs shadow" onclick="loadPrevImg();">Prev</button>
+				<input id="imageName" type="text" size="1" class="form-control input-sm shadow">
+			</span>
+			<span id="howmanyleft"></span>
+		</div>
+	</div>
+</div>
+
+<div id="toptoggle"><i class="fa fa-arrow-circle-o-up fa-lg" ></i></div>
+
+<div id="mainPart" class="container">
+	<div id="col1" class="col">
+		
+		<div id="leftcol" class="col">
+		
+			<div id="imagestools" class="toolbar">
+				<button id="btn_copyjpg" onclick="javascript:$('a#copyjpg').click();" class="btn btn-primary btn-md" data-placement="bottom" title="αντιγραφή εικόνας">
+					<i class="fa fa-picture-o"></i>
+				</button>
+				<a id="copyjpg" rel="leanModal" href="#jpgcopy" style="display:none;"></a>
+				<button id="btn_jpgsave" onclick="javascript:$('a#jpgsave').click();" class="btn btn-primary btn-md" data-placement="bottom" title="κατέβασμα εικόνας">
+					<i class="fa fa-file-image-o"></i>
+				</button>
+				<a id="jpgsave" href="#"></a>
+				<button id="btn_vpresets" onclick="javascript:$('a#vpresets').click();" class="btn btn-primary btn-md" data-placement="bottom" title="η λίστα με τις μνήμες">
+					<i class="fa fa-eye"></i>
+				</button>
+				<a id="vpresets" rel="leanModal" class="toolsleft" href="#viewpresets" style="display:none;"></a>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<button id="btn_tpfltr" class="btn btn-primary btn-md" data-placement="bottom" title="φιλτράρισμα ανά tpoint"><i class="fa fa-bars"></i></button>
+				<button id="annofilters" class="btn btn-primary btn-md" data-placement="bottom" title="φίλτρα annotation"><i class="fa fa-filter"></i></button>	
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<button id="prevthumbs" class="btn btn-primary btn-md" data-placement="bottom" title="δες προηγούμενες και επόμενες εικόνες"><i class="fa fa-exchange"></i></button>	
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				
+				<!--button id="seelater" class="btn btn-primary btn-md" data-placement="bottom">
+					<i class="fa fa-plus-circle"><span>πρόσθεσε τη φώτο στη λίστα αναμονής</span></i>
+				</button-->
+				<button id="seelater" class="btn btn-primary btn-md" data-placement="bottom" title="πρόσθεσε τη φώτο στη λίστα αναμονής"><i class="fa fa-plus-circle"></i></button>
+					<span id="laterdiv">
+						<button id="laterlist" class="btn btn-primary btn-md" title=""><i class="fa fa-list-alt"></i> λίστα αναμονής</button>
+
+						<span id="laterlist">			
+							<button id="later_prev" class="btn btn-primary btn-md" onclick="later_Prev()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+							<button id="later_next" class="btn btn-primary btn-md" onclick="later_Next()"><span class="glyphicon glyphicon-chevron-right"></span></button>
+							<select id="laterlist" class="form-control input-sm"></select>
+						</span>
+					</span>
+					
+			</div>
+		
+			<div id="box" class="jxgbox col-xs-8"></div>
+		</div>
+	
+		<div id="selectColumns" class="col-xs-4">
+			<div id="col2" class="col">
+				<div id="brandstools" class="toolbar">		
+					<button id="sortbrands" class="btn btn-primary btn-md blue" data-placement="bottom">
+						<i class="fa fa-arrows"><span>sort brands or groups</span></i>
+					</button>
+					<button id="togglegroups" class="btn btn-primary btn-md blue" data-placement="bottom">
+						<i class="fa fa-arrows-v"><span>show/hide groups</span></i>
+					</button>
+					<button id="editbrand" class="btn btn-primary btn-md green" data-placement="bottom">
+						<i class="fa fa-pencil-square-o"><span>edit selected brand</span></i>
+					</button>
+					<button id="addbrand" class="btn btn-primary btn-md green" data-placement="bottom">
+						<i class="fa fa-plus-square-o"><span>add brand</span></i>
+					</button>
+					<button id="delbrand" class="btn btn-primary btn-md red" data-placement="bottom">
+						<i class="fa fa-minus-square-o"><span>delete brand</span></i>
+					</button>
+				</div>
+				<div>
+					<input id="brandsearch" type="text" class="form-control input-sm" title="" placeholder="brand search">
+					<span id="brandsearchclear" class="glyphicon glyphicon-remove-circle"></span>	
+				</div>
+				<div id="brands" name="brands" size="25"></div>
+			</div>
+			<div id="col3" class="col">
+				<div id="tpointstools" class="toolbar">
+					<button id="sorttpoints" class="btn btn-primary btn-md blue" data-placement="bottom">
+						<i class="fa fa-arrows"><span>sort tpoints</span></i>
+					</button>
+					<button id="edittpoint" class="btn btn-primary btn-md green" data-toggle="tooltip" data-placement="bottom">
+						<i class="fa fa-pencil-square-o"><span>edit selected tpoint</span></i>
+					</button>
+					<button id="addtpoint" class="btn btn-primary btn-md green" data-toggle="tooltip" data-placement="bottom">
+						<i class="fa fa-plus-square-o"><span>add new tpoint</span></i>
+					</button>
+					<button id="deltpoint" class="btn btn-primary btn-md red" data-toggle="tooltip" data-placement="bottom">
+						<i class="fa fa-minus-square-o"><span>delete tpoint</span></i>
+					</button>
+					<button onclick="tpointsAbc();" class="btn btn-primary btn-md" id="tpointsfreq" data-toggle="tooltip" data-placement="bottom">
+						<i class="fa fa-sort-alpha-asc"><span>sort alphabetically</span></i>
+					</button>
+					<button onclick="tpointsFreq();" class="btn btn-primary btn-md" id="tpointsfreq" data-toggle="tooltip" data-placement="bottom">
+						<i class="fa fa-sort-numeric-asc"><span>sort by usage</span></i>
+					</button>
+				</div>
+				<div>
+					<input id="tpointsearch" type="text" class="form-control input-sm" title="" placeholder="tpoint search"> 
+					<span id="tpointsearchclear" class="glyphicon glyphicon-remove-circle"></span>
+				</div>
+				<div id="tpoints" class="resizable" name="tpoints" size="25"></div>
+			</div>
+			<div id="col4" class="col">
+				<div class="toolbar">
+					<button onclick="newTxt();" class="btn btn-primary btn-md" id="newtxt" data-toggle="tooltip" data-placement="bottom">
+						<i class="fa fa-floppy-o "><span>save to txt</span></i>
+					</button>
+				</div>
+				<select id="hits" name="hits" size="3">
+					<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+				</select>
+			</div>
+		</div>
+		
+		<div id="preview" class="hidden"><div class="row"><div class="col-md-12"><ul class="horizontal-slide"></ul></div></div></div>
+	</div>
+</div>
+
+<div class="help">
+	<a href="helpdocs/index.html" target="_blank"><img src="img/help.png"></a>
+	<div class="tooltip">ANNOTOOL ΟΔΗΓΙΕΣ</div>
+</div>	
+	
+<!-- 						--MODALS--		   				-->
+<div id="loadingDiv"><img class="spinner" src="img/ajax-loader.gif" alt="Loading" /></div>
+	
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Please Wait</h2>
+    </div>
+    <div class="modal-body" id="modal-body">
+    </div>
+  </div>
+</div>
+
+<div id="presets"></div>
+
+<div id="btmtools">
+	<div id="viewpresets"></div>
+	<div id="jpgcopy">
+		<div id="frame"><img></div><br>
+		<div id="framename" type="button" contenteditable="true" onclick="document.execCommand('selectAll',false,null)"></div><br><br>
+		<div class="help"><img src="img/help.png">
+			<div id="guide" class="tooltip">
+			*Για την εικόνα : Δεξί κλικ => copy image => ctrl+V στο hangout<br>
+			*Για τον τιτλο : ένα αριστερό κλικ στο textbox => ctrl+C => ctrl+V στο hangout<br>
+			( Για να εμφανιστεί ο τίτλος πρέπει να έχετε πρασινίσει το τετράγωνο πρώτα )
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--	HIDDEN PANELS	-->
+	<div id="tpfltr" class="selector">
+		<div id="tbl_tpfltr_resizer" class="resizer"></div>
+		<table id="tbl_tpfltr"></table>
+	</div>
+	
+	<div id="annos" class="selector">
+		<div id="annostop">
+			<div id="resizer" class="resizer"></div>
+			<div id="annosheader">
+				<button id="showannos" type="button" onclick="showAnnos(); return false;">Video - Refresh Annotable</button>
+				<button id="fltr_prev" onclick="fltr_Prev()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+				<button id="fltr_next" onclick="fltr_Next()"><span class="glyphicon glyphicon-chevron-right"></span></button>
+				<button id="toTop"><span class="glyphicon glyphicon-arrow-up"></span></button>
+				<button id="toBottom"><span class="glyphicon glyphicon-arrow-down"></span></button>
+			</div>
+		</div>
+		<div id="annocontent"><table id="allAnnos" class="table table-striped"></table></div>
+	</div>
+
+	<div id="colorseditpanel"  class="selector">
+		<div id="colorseditresizer" class="resizer"></div>
+		<div id="col1" class="col"><span>Background Color : </span>
+			<input id="mybg" onfocus="changebg()" class="color form-control">
+		</div>
+		<div id="col2" class="col"><span>Box Border : </span>
+			<input id="boxborder" onfocus="boxBorders()" class="color form-control">
+			<input id="boxborderwidth" onkeyup="boxBorderWidth()" type="text" class="form-control input-sm" value=1> px
+			<canvas id="myCanvas" width="130" height="60" style="border:1px solid #000000;"></canvas>
+		</div>
+		<div id="col3" class="col"><span>Highlighted Box Border : </span>
+			<input id="highlightstrokecolor" onfocus="highlightStrokeColor()" class="color form-control">
+			<input id="highlightstrokecolorwidth" onkeyup="highlightStrokeColorWidth()" type="text" class="form-control input-sm" value=2> px
+			<canvas id="myCanvas" width="200" height="60" style="border:1px solid #000000;"></canvas>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/libs/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="js/libs/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.leanModal.min.js"></script>
+	<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/libs/jsxgraphcore.min.js"></script>
+    <script type="text/javascript" src="js/libs/jszip.min.js"></script>
+    <script type="text/javascript" src="js/libs/FileSaver.min.js"></script>
+    <script type="text/javascript" src="js/libs/alphanum.min.js"></script>
+    <script type="text/javascript" src="js/libs/exif-gxr.js"></script>
+	<script type="text/javascript" src="js/libs/jscolor/jscolor.js"></script>
+	<script type="text/javascript" src="js/libs/cookies.js"></script>
+	<script type="text/javascript" src="js/libs/html2canvas.js"></script>
+	<script type="text/javascript" src="js/libs/modernizr.js"></script>
+	<script type="text/javascript" src="js/libs/noty.js"></script>
+	<script type="text/javascript" src="js/libs/datatables/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/libs/datatables/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/datatables/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="js/libs/datatables/dataTables.select.min.js"></script>
+	<script type="text/javascript" src="js/libs/datatables/buttons.print.min.js"></script>
+	<script type="text/javascript" src="js/libs/mousetrap/mousetrap.min.js"></script>
+	<script type="text/javascript" src="js/libs/mousetrap/mousetrap.js"></script>
+	<script type="text/javascript" src="js/libs/mousetrap/mousetrap-pause.js"></script>
+    <script type="text/javascript" src="js/libs/mousetrap/mousetrap-bind-dictionary.min.js"></script>	
+    <script type="text/javascript" src="js/webannotool.js"></script>
+	<script type="text/javascript" src="js/keyboard.js"></script>
+	<script type="text/javascript" src="js/imports.js"></script>
+	<script type="text/javascript" src="js/exports.js"></script>
+	<script type="text/javascript" src="js/filters.js"></script>
+	<script type="text/javascript" src="js/tools.js"></script>
+	<script type="text/javascript" src="js/mydatatables.js"></script>
+	<script type="text/javascript" src="js/colors.js"></script>
+	<script type="text/javascript" src="js/compare.js"></script>
+</body>
+
+</html>
