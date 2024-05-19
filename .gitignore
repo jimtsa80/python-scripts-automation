@@ -1,7 +1,11 @@
 *.zip
 *.7z
 *.jpeg
+*.jpg
 *.csv
 *.xlsx
 *.xls
 creds*
+*.weights
+*.names
+*.cfg
