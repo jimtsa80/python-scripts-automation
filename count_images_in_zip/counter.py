@@ -4,10 +4,13 @@ import sys
 
 def count_jpeg_in_zip(zip_file_path):
     jpeg_count = 0
-    with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-        for filename in zip_ref.namelist():
-            if filename.lower().endswith('.jpg') or filename.lower().endswith('.jpeg'):
-                jpeg_count += 1
+    try:
+        with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+            for filename in zip_ref.namelist():
+                if filename.lower().endswith('.jpg') or filename.lower().endswith('.jpeg'):
+                    jpeg_count += 1
+    except zipfile.BadZipfile:
+        print("Error: {} is not a valid ZIP file.".format(zip_file_path))
     return jpeg_count
 
 if __name__ == "__main__":
@@ -26,5 +29,12 @@ if __name__ == "__main__":
                 count = count_jpeg_in_zip(zip_file_path)
                 print("{} ==> {}".format(filename, count))
                 total_jpeg_count += count
+        
+        # Calculate the total hours
+        total_hours = total_jpeg_count / 3600.0
+        
         print("Total number of JPEG files in all ZIP files: {}".format(total_jpeg_count))
+        print("Total time in hours: {:.2f}".format(total_hours))
+
+
 

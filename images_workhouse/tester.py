@@ -41,7 +41,7 @@ def find_and_copy_images(template_path, folder_path, output_file, dest_folder, t
                 print(f"Template not found in image: {image_path}")
 
 # Example usage:
-template_path = 't-mobile.jpg'
+template_path = 'geico.jpg'
 folder_path = 'test-images'
 output_file = 'output.txt'
 dest_folder = 'results-images'

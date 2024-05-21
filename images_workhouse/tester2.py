@@ -1,72 +1,57 @@
-import os
-from PIL import Image
-import numpy as np
 import cv2
+import numpy as np
+import os
 
-def find_tmobile_logo(image_folder_path, output_csv_path, result_image_folder_path):
-  """
-  This function finds images containing the T-Mobile logo in a folder and creates a CSV file listing the filenames and saves the images to a new folder.
+# Path to the template image
+template_path = 't-mobile.jpg'
+# Path to the folder containing images to search in
+images_folder_path = 'test-images'
+# Path to save the output images
+output_folder_path = 'results-images'
 
-  Args:
-    image_folder_path: Path to the folder containing the images.
-    output_csv_path: Path to the output CSV file.
-    result_image_folder_path: Path to the folder where the images containing the T-Mobile logo will be saved.
-  """
-  # Create the result folder if it doesn't exist
-  os.makedirs(result_image_folder_path, exist_ok=True)
+# Load the template image
+template = cv2.imread(template_path, 0)
+if template is None:
+    print(f"Failed to load the template image from {template_path}")
+    exit(1)
+w, h = template.shape[::-1]
 
-  # Open the output CSV file in write mode
-  with open(output_csv_path, 'w') as csvfile:
-    # Write the header row
-    csvfile.write('filename\n')
+# Create the output folder if it doesn't exist
+os.makedirs(output_folder_path, exist_ok=True)
 
-    for filename in os.listdir(image_folder_path):
-      # Get the full image path
-      image_path = os.path.join(image_folder_path, filename)
+# Loop through all images in the folder
+for filename in os.listdir(images_folder_path):
+    image_path = os.path.join(images_folder_path, filename)
+    image = cv2.imread(image_path)
+    
+    if image is None:
+        print(f"Failed to load image {image_path}")
+        continue
+    
+    # Convert the image to grayscale
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    
+    # Apply template matching
+    result = cv2.matchTemplate(gray_image, template, cv2.TM_CCOEFF_NORMED)
+    
+    # Define a threshold
+    threshold = 0.42
+    loc = np.where(result >= threshold)
+    
+    # Check if any matches are found
+    if not loc[0].size:
+        print(f"No matches found in image {image_path}")
+        continue
+    
+    # Print matching scores for diagnostic purposes
+    print(f"Matches found in image {image_path} with scores: {result[loc]}")
+    
+    # Draw rectangles around matched regions
+    for pt in zip(*loc[::-1]):
+        cv2.rectangle(image, pt, (pt[0] + w, pt[1] + h), (0, 255, 0), 2)
+    
+    # Save the output image
+    output_path = os.path.join(output_folder_path, filename)
+    cv2.imwrite(output_path, image)
 
-      # Read the image using OpenCV
-      image = cv2.imread(image_path)
-      print(f"Reading image: {filename}")  # Print filename being processed
-
-      # Check if image is read successfully
-      if image is None:
-          print(f"Error: Could not read image {filename}")
-          continue
-
-      # Convert the image to RGB color space (OpenCV uses BGR by default)
-      image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-
-      try:
-        # Template Matching Approach
-        # Replace 'path/to/tmobile_logo_template.jpg' with the actual path to your template image
-        template = cv2.imread('t-mobile.jpg')
-        result = cv2.matchTemplate(image, template, cv2.TM_CCOEFF_NORMED)
-        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
-
-        # If a match is found with a high confidence score, save the image
-        if max_val > 0.5:
-          print(f"T-Mobile logo detected in {filename} with confidence {max_val} at location {max_loc}")
-          os.rename(image_path, os.path.join(result_image_folder_path, filename))
-          csvfile.write(filename + '\n')
-
-        # Color Detection Approach (alternative)
-        # Define HSV color range for T-Mobile magenta (adjust values as needed)
-        lower_magenta = np.array([150, 100, 100], dtype="uint8")
-        upper_magenta = np.array([180, 255, 255], dtype="uint8")
-        # Convert image to HSV color space
-        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-        # Create a mask for magenta pixels
-        mask = cv2.inRange(hsv, lower_magenta, upper_magenta)
-        # Count the number of magenta pixels
-        num_magenta_pixels = cv2.countNonZero(mask)
-        # Check if a significant portion of the image is magenta
-        if num_magenta_pixels > 0.1 * image.size:
-          print(f"Potential T-Mobile logo detected in {filename} (color analysis)")
-          os.rename(image_path, os.path.join(result_image_folder_path, filename))
-          csvfile.write(filename + '\n')
-
-      except Exception as e:
-        print(f"Error processing image {filename}: {e}")
-        pass 
-
-find_tmobile_logo('test-images', 'output.csv', 'result-images')
+print("Template matching completed and images saved in the output folder.")
