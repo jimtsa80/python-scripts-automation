@@ -6,11 +6,14 @@ def parse_xlsx(input_file):
     # Read the Excel file
     with pd.ExcelFile(input_file) as xls:
         df_concat_data = pd.read_excel(xls, sheet_name='concat_data')
-        df_home_plate = pd.read_excel(xls, sheet_name='HomePlate')
+        try:
+            df_home_plate = pd.read_excel(xls, sheet_name='HomePlate')
+        except:
+            df_home_plate = pd.read_excel(xls, sheet_name='Homeplate')
 
     print("Updating 'Inning' and 'Name' columns...")
     # Merge data based on 'Sequence Frame Number' and update 'Inning' and 'Name' columns in 'HomePlate'
-    df_home_plate = pd.merge(df_home_plate, df_concat_data[['Sequence Frame Number', 'Inning', 'Name']], how='left', on='Sequence Frame Number')
+    df_home_plate = pd.merge(df_home_plate, df_concat_data[['Sequence Frame Number', 'Inning', 'Player']], how='left', on='Sequence Frame Number')
 
     print("Writing updated data to 'HomePlate' sheet...")
     # Write the updated data to a new 'HomePlate' sheet

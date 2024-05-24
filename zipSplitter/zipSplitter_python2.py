@@ -106,42 +106,39 @@ def split_zip(input_zip, num_parts):
                         file_paths.append(os.path.join(root, file))
                 file_paths.sort()  # Sort file paths
 
-                # Determine the total size and size of each part
-                total_size = sum(os.path.getsize(f) for f in file_paths)
-                part_size = total_size // num_parts
-                remaining_size = total_size % num_parts
+                # Determine the total number of files and adjust the number of parts
+                total_files = len(file_paths)
+                print("Total number of files in zip: %s" % total_files)
 
-                # Adjust part size for distribution
-                if remaining_size > 0:
-                    part_size += 1
-                    remaining_size -= 1
+                if num_parts > 15:
+                    print("User gave %s parts, recalculating based on total number of files..." % num_parts)
+                    num_parts = max(1, round(total_files / num_parts))
+                    print("Adjusted number of parts: %s" % num_parts)
+                
+                files_per_part = total_files // num_parts
+                remaining_files = total_files % num_parts
 
                 # Create split ZIP files
                 part_num = 1
-                current_size = 0
+                files_in_current_part = 0
                 current_zip_path = 'part%d_%s.zip' % (part_num, base_name)
                 current_zip = zipfile.ZipFile(current_zip_path, 'w')
 
                 for file_path in file_paths:
-                    file_size = os.path.getsize(file_path)
-
-                    if current_size + file_size > part_size:
+                    if files_in_current_part >= files_per_part + (1 if remaining_files > 0 else 0):
                         current_zip.close()
                         print_jpeg_info(current_zip_path)
                         part_num += 1
-                        if part_num > num_parts:
-                            break
-                        if remaining_size > 0:
-                            part_size -= 1
-                            remaining_size -= 1
-                        current_size = 0
+                        if remaining_files > 0:
+                            remaining_files -= 1
+                        files_in_current_part = 0
                         current_zip_path = 'part%d_%s.zip' % (part_num, base_name)
                         current_zip = zipfile.ZipFile(current_zip_path, 'w')
 
                     current_zip.write(file_path, os.path.relpath(file_path, temp_dir))
-                    current_size += file_size
+                    files_in_current_part += 1
 
-                if part_num <= num_parts:
+                if files_in_current_part > 0:
                     current_zip.close()
                     print_jpeg_info(current_zip_path)
     except zipfile.BadZipfile as e:
