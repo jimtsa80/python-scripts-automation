@@ -6,7 +6,7 @@ def populate_pre_gaps(filename):
     wb = openpyxl.load_workbook(filename)
     
     # Select the sheet named 'concat_data'
-    sheet = wb['concat_data']
+    sheet = wb['concat']
     
     # Extract data from columns 'Inning' and 'Player'
     innings = [cell.value for cell in sheet['J'] if cell.value is not None][1:]
