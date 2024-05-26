@@ -7,7 +7,7 @@ def process_excel(input_file):
     # Read the Excel file
     xl = pd.ExcelFile(input_file)
     try:
-        df = xl.parse('HomePlate')
+        df = xl.parse('Homeplate')
     except KeyError:
         try:
             df = xl.parse('Homeplate')
