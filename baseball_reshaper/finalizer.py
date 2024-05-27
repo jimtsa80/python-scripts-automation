@@ -32,7 +32,7 @@ def process_excel(file_path):
     # Rename the sheet to 'HomePlate'
     print("Renaming sheet to 'HomePlate'...")
     grouped_sheet_name = 'Homeplate'
-    grouped.rename(columns={'Sequence Frame Number': 'First Sequence Frame Number'}, inplace=True)
+    # grouped.rename(columns={'Sequence Frame Number': 'First Sequence Frame Number'}, inplace=True)
     
     # Save the output to a new sheet in the same Excel file
     print("Saving to a new sheet...")

@@ -3,6 +3,7 @@
 REM Run Script 1: Copy Batters to Homeplate tab
 echo Running Script 1...
 python batters_mover.py %1
+echo Batters are inside Homeplate
 
 REM Run Script 2: Creates the Inning column
 echo Running Script 2...
@@ -29,6 +30,10 @@ REM Run Script 7: Brings all things together
 echo Running Script 7...
 python finalizer.py %1
 
-REM Run Script 8: Remove Batters
+REM Run Script 8: Checks if something is going wrong with the batters
 echo Running Script 8...
+python checker.py %1
+
+REM Run Script 9: Remove Batters
+echo Running Script 9...
 python batters_remover.py %1

@@ -11,9 +11,9 @@ def check_occasion(file_path):
     
     # Check for the sequence of frame number and different player names
     for i in range(len(df) - 1):
-        if df.at[i, 'First Sequence Frame Number'] == df.at[i + 1, 'First Sequence Frame Number'] and \
+        if df.at[i, 'Sequence Frame Number'] == df.at[i + 1, 'Sequence Frame Number'] and \
            df.at[i, 'Player'] != df.at[i + 1, 'Player']:
-            print("Occasion found at frame number:", df.at[i, 'First Sequence Frame Number'])
+            print("Occasion found at frame number:", df.at[i, 'Sequence Frame Number'])
             print("Players involved:", df.at[i, 'Player'], "and", df.at[i + 1, 'Player'])
             print("--------------")
     
