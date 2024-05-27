@@ -1,0 +1,72 @@
+//Filename:-
+//Annotator:-
+
+
+--  ERC 2024
+
+#Citroen
+Rally Car
+Logo
+
+#ERC
+TVGI
+Arch
+Static Board
+Microphone
+Car Rear Windscreen
+Car Front Windscreen
+
+
+#Hankook
+Arch
+Static Board
+TVGI
+Driver Firesuit
+Car Rear Quarter Panel
+Car Front Windscreen
+
+#Hyundai
+TVGI
+Car Door
+Driver Helmet
+
+#Junior ERC
+
+
+#Michelin
+Arch
+TVGI
+Car Cockpit
+Static Board
+Driver Cap
+Car Boot
+Car Front Quarter Panel
+
+#MRF Tyres
+Arch
+Car Windscreen
+Car Bonnet
+TVGI
+Driver Firesuit
+Car Cockpit
+Car Door
+Car Front Quarter Panel
+Static Board Any Other
+
+#Pirelli
+Arch
+TVGI
+Static Board
+Driver Firesuit
+Car Rear Quarter Panel
+Driver Cap
+
+#Rally.TV
+TVGI
+
+#Skoda
+TVGI
+Car Bonnet
+Driver Helmet
+Car Rear
+
