@@ -34,6 +34,10 @@ REM Run Script 8: Checks if something is going wrong with the batters
 echo Running Script 8...
 python checker.py %1
 
-REM Run Script 9: Remove Batters
+REM Run Script 9: Removes Batters
 echo Running Script 9...
 python batters_remover.py %1
+
+REM Run Script 10: Normalizes everything
+echo Running Script 10...
+python normalizer.py %1
