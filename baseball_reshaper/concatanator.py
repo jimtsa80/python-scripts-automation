@@ -38,6 +38,7 @@ def update_excel_file(file_path):
     print("Selecting and renaming columns from 'Batters'")
     try:
         batters_selected = batters_df[['Location', 'Inning', 'Sequence Frame Number']]
+        batters_selected = batters_selected.copy() 
         batters_selected.rename(columns={'Location': 'Player'}, inplace=True)
     except KeyError as e:
         print(f"Error selecting columns: {e}")

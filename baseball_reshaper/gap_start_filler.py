@@ -35,8 +35,9 @@ def populate_pre_gaps(filename):
         for i, value in enumerate(new_players, start=2):
             sheet.cell(row=i, column=11).value = value
 
-        sheet.cell(row=1, column=10).value = "Inning"
-        sheet.cell(row=1, column=11).value = "Name"
+        sheet.cell(row=1, column=10).value = "Player"
+        sheet.cell(row=1, column=11).value = "Inning"
+
         
         # Save the workbook
         wb.save(filename)
