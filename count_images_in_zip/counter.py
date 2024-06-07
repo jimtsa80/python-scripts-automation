@@ -2,6 +2,7 @@ import zipfile
 import os
 import sys
 import struct
+import subprocess
 
 # Monkey-patch zipfile._EndRecData64
 def _EndRecData64(fpin, offset, endrec):
@@ -54,40 +55,103 @@ zipfile._EndRecData64 = _EndRecData64
 
 def count_jpeg_in_zip(zip_file_path):
     jpeg_count = 0
+    folder_jpeg_count = {}
     try:
         with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
             for filename in zip_ref.namelist():
                 if filename.lower().endswith('.jpg') or filename.lower().endswith('.jpeg'):
                     jpeg_count += 1
+                    folder = os.path.dirname(filename)
+                    if folder not in folder_jpeg_count:
+                        folder_jpeg_count[folder] = 0
+                    folder_jpeg_count[folder] += 1
+            if not folder_jpeg_count:
+                # If there are no folders in the zip, count images at the root level
+                for info in zip_ref.infolist():
+                    if info.filename.lower().endswith('.jpg') or info.filename.lower().endswith('.jpeg'):
+                        jpeg_count += 1
+                        folder_jpeg_count['.'] = folder_jpeg_count.get('.', 0) + 1
     except zipfile.BadZipfile:
         print("Error: {} is not a valid ZIP file.".format(zip_file_path))
-    return jpeg_count
+    return jpeg_count, folder_jpeg_count
+
+
+def count_jpeg_in_7z(archive_path):
+    jpeg_count = 0
+    folder_jpeg_count = {}
+    try:
+        # Use the 7z command-line tool to list the files in the archive
+        output = subprocess.check_output(['7z', 'l', archive_path])
+        for line in output.splitlines():
+            parts = line.split()
+            if len(parts) > 0:
+                filename = parts[-1]
+                if filename.lower().endswith('.jpg') or filename.lower().endswith('.jpeg'):
+                    jpeg_count += 1
+                    folder = os.path.dirname(filename)
+                    if folder not in folder_jpeg_count:
+                        folder_jpeg_count[folder] = 0
+                    folder_jpeg_count[folder] += 1
+    except subprocess.CalledProcessError:
+        print("Error: {} is not a valid 7z file.".format(archive_path))
+    return jpeg_count, folder_jpeg_count
+
+def count_jpeg_in_folder(folder_path):
+    total_jpeg_count = 0
+    folder_jpeg_count = {}
+    for root, dirs, files in os.walk(folder_path):
+        for filename in files:
+            if filename.lower().endswith('.zip'):
+                zip_file_path = os.path.join(root, filename)
+                count, nested_folder_jpeg_count = count_jpeg_in_zip(zip_file_path)
+                
+                total_jpeg_count += count
+                folder_jpeg_count[filename] = count
+                for folder, count in nested_folder_jpeg_count.items():
+                    full_folder_path = os.path.join(os.path.relpath(root, folder_path), folder)
+                    if full_folder_path not in folder_jpeg_count:
+                        folder_jpeg_count[full_folder_path] = 0
+                    folder_jpeg_count[full_folder_path] += count
+    return total_jpeg_count, folder_jpeg_count
+
+
+def process_input_path(input_path):
+    total_jpeg_count = 0
+    folder_jpeg_count = {}
+
+    if os.path.isdir(input_path):
+        total_jpeg_count, folder_jpeg_count = count_jpeg_in_folder(input_path)
+        print("Folder '{}' ==> {} JPEG files".format(input_path, total_jpeg_count))
+        if folder_jpeg_count:
+            for folder, count in folder_jpeg_count.items():
+                if folder and folder != '.':
+                    print("  Folder '{}': {} JPEG files".format(folder, count))
+    elif input_path.lower().endswith('.zip'):
+        total_jpeg_count, folder_jpeg_count = count_jpeg_in_zip(input_path)
+        print("{} ==> {} JPEG files".format(input_path, total_jpeg_count))
+        if folder_jpeg_count:
+            for folder, count in folder_jpeg_count.items():
+                print("  Folder '{}': {} JPEG files".format(folder, count))
+    elif input_path.lower().endswith('.7z'):
+        total_jpeg_count, folder_jpeg_count = count_jpeg_in_7z(input_path)
+        print("{} ==> {} JPEG files".format(input_path, total_jpeg_count))
+        if folder_jpeg_count:
+            for folder, count in folder_jpeg_count.items():
+                print("  Folder '{}': {} JPEG files".format(folder, count))
+
+    total_hours = total_jpeg_count / 3600.0
+
+    print("Total number of JPEG files in all ZIP and 7z files: {}".format(total_jpeg_count))
+    print("Total time in hours: {:.2f}".format(total_hours))
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python script.py <folder_path>")
+        print("Usage: python script.py <folder_or_zip_path>")
         sys.exit(1)
 
-    folder_path = sys.argv[1]
-    if not os.path.exists(folder_path):
-        print("Folder not found!")
-    else:
-        total_jpeg_count = 0
-        for filename in os.listdir(folder_path):
-            if filename.lower().endswith('.zip'):
-                zip_file_path = os.path.join(folder_path, filename)
-                count = count_jpeg_in_zip(zip_file_path)
-                print("{} ==> {}".format(filename, count))
-                total_jpeg_count += count
-        
-        # Calculate the total hours
-        total_hours = total_jpeg_count / 3600.0
-        
-        print("Total number of JPEG files in all ZIP files: {}".format(total_jpeg_count))
-        print("Total time in hours: {:.2f}".format(total_hours))
+    input_path = sys.argv[1]
+    if not os.path.exists(input_path):
+        print("Path not found!")
+        sys.exit(1)
 
-
-
-
-
-
+    process_input_path(input_path)

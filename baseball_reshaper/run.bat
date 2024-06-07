@@ -1,5 +1,17 @@
 @echo off
 
+REM Run Script 0: Check if Batters has less lines than Homeplate
+echo Running Script 0...
+for /f "delims=" %%i in ('python lines_checker.py %1') do set OUTPUT=%%i
+REM Check if the output is "false" and break the execution if true
+if "%OUTPUT%"=="false" (
+    echo Homeplate is incomplete!
+    exit /b 1
+) else (
+    echo Batters/Homeplate are ok. Check is done!
+)
+echo Continue the procedure
+
 REM Run Script 1: Copy Batters to Homeplate tab
 echo Running Script 1...
 python batters_mover.py %1
