@@ -1,68 +1,75 @@
 import cv2
+import numpy as np
 import os
-import sys
-import openpyxl
+import sys  
+from openpyxl import Workbook
+from tqdm import tqdm
 
 def compare_images_histogram(imageA, imageB):
-    histA = cv2.calcHist([imageA], [0, 1, 2], None, [8, 8, 8], [0, 256, 0, 256, 0, 256])
-    histB = cv2.calcHist([imageB], [0, 1, 2], None, [8, 8, 8], [0, 256, 0, 256, 0, 256])
-    cv2.normalize(histA, histA)
-    cv2.normalize(histB, histB)
-    similarity = cv2.compareHist(histA, histB, cv2.HISTCMP_CORREL)
-    return similarity
+    def region_histogram(image, start_col, end_col):
+        region = image[:, start_col:end_col]
+        hist = cv2.calcHist([region], [0, 1, 2], None, [8, 8, 8], [0, 256, 0, 256, 0, 256])
+        cv2.normalize(hist, hist)
+        return hist
 
-def create_excel_with_similarity_and_removal(folder_path):
-    image_files = sorted([os.path.join(folder_path, file) for file in os.listdir(folder_path) if file.endswith(('.png', '.jpg', '.jpeg'))])
-    
-    if len(image_files) < 2:
-        print("Not enough images to compare.")
-        return
+    height, width, _ = imageA.shape
+    col_width = width // 4
 
-    similarities = []
-    similar_images = []
+    columns = [
+        (0, col_width),                # Left column
+        (col_width, 2 * col_width),    # Left-middle column
+        (2 * col_width, 3 * col_width),# Right-middle column
+        (3 * col_width, width)         # Right column
+    ]
 
-    for i in range(1, len(image_files)):
-        imageA = cv2.imread(image_files[i - 1])
-        imageB = cv2.imread(image_files[i])
-        similarity = compare_images_histogram(imageA, imageB)
-        filenameA = os.path.basename(image_files[i - 1])
-        filenameB = os.path.basename(image_files[i])
-        similarities.append((filenameB, similarity))
+    similarity_scores = []
+    for start_col, end_col in columns:
+        histA = region_histogram(imageA, start_col, end_col)
+        histB = region_histogram(imageB, start_col, end_col)
+        similarity = cv2.compareHist(histA, histB, cv2.HISTCMP_CORREL)
+        similarity_scores.append(similarity)
 
-        if similarity >= 0.99:
-            similar_images.append((filenameA, filenameB))
+    overall_similarity = np.mean(similarity_scores)
+    return overall_similarity
 
-    # Create an Excel workbook and add data
-    workbook = openpyxl.Workbook()
-    sheet = workbook.active
-    sheet.title = "Image Similarities"
-    sheet.append(["Filename", "Similarity with Previous Image", "ToRemove"])
+def compare_images_in_folder(folder_path):
+    image_files = sorted([os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith(('.png', '.jpg', '.jpeg'))])
 
-    for filename, similarity in similarities:
-        to_remove = 1 if similarity >= 0.99 else 0
-        sheet.append([filename, similarity, to_remove])
+    all_results = []
+    for i, target_image_path in enumerate(tqdm(image_files, desc="Processing target images")):
+        target_image = cv2.imread(target_image_path)
+        indices_to_compare = list(range(max(0, i - 3), min(len(image_files), i + 4)))
+        indices_to_compare.remove(i)
 
-    # Save the workbook with the same name as the folder
-    folder_name = os.path.basename(os.path.normpath(folder_path))
-    excel_filename = os.path.join(folder_name + ".xlsx")
-    workbook.save(excel_filename)
-    print(f"Excel file '{excel_filename}' created with similarity")
+        for idx in tqdm(indices_to_compare, desc=f"Comparing images for {os.path.basename(target_image_path)}", leave=False):
+            comparison_image_path = image_files[idx]
+            comparison_image = cv2.imread(comparison_image_path)
+            similarity = compare_images_histogram(target_image, comparison_image)
+            all_results.append((target_image_path, comparison_image_path, similarity))
 
-    # Print similar images
-    print("\nSimilar Images (Similarity >= 0.99):")
-    for img_pair in similar_images:
-        print(f"{img_pair[0]} and {img_pair[1]}")
+    return all_results
 
-    print("\nTotal similar images with similarity >= 0.99:", len(similar_images), "out of", len(image_files), "total images")
+def write_results_to_excel(results, folder_name):
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Similarity Results"
+    ws.append(["Target Image", "Compared Image", "Similarity Score"])
+
+    for target_img, compared_img, similarity in results:
+        ws.append([target_img, compared_img, similarity])
+
+    output_filename = f"{folder_name}.xlsx"
+    wb.save(output_filename)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python compare_images.py <folder_path>")
+        print("Usage: python script.py <folder_path>")
         sys.exit(1)
 
     folder_path = sys.argv[1]
-    if not os.path.exists(folder_path):
-        print(f"The folder {folder_path} does not exist.")
-        sys.exit(1)
-    
-    create_excel_with_similarity_and_removal(folder_path)
+    folder_name = os.path.basename(folder_path.rstrip('/\\'))
+
+    all_results = compare_images_in_folder(folder_path)
+    write_results_to_excel(all_results, folder_name)
+
+    print(f"Results written to {folder_name}.xlsx")
