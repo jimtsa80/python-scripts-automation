@@ -23,20 +23,22 @@ def find_misspellings(df, csv_filename):
     for brand1 in brand_names:
         for brand2 in brand_names:
             if brand1 != brand2 and fuzz.partial_token_sort_ratio(brand1, brand2) > 99:
-                pair = (brand1, brand2) if brand1 < brand2 else (brand2, brand1)
+                pair = (f"<b>{brand1}</b>", f"<b>{brand2}</b>") if brand1 < brand2 else (f"<b>{brand2}</b>", f"<b>{brand1}</b>")
                 misspellings.add((csv_filename, pair))
 
     for location1 in location_names:
         for location2 in location_names:
             if location1 != location2 and fuzz.partial_token_sort_ratio(location1, location2) > 99:
-                pair = (location1, location2) if location1 < location2 else (location2, location1)
+                pair = (f"<b>{location1}</b>", f"<b>{location2}</b>") if location1 < location2 else (f"<b>{location2}</b>", f"<b>{location1}</b>")
                 misspellings.add((csv_filename, pair))
 
     return misspellings
 
+
 def csv_to_xlsx(input_folder, output_folder):
     files = os.listdir(input_folder)
     unique_base_filenames = set()
+    messages = []
 
     # Extract base filenames from all files in the input folder
     for file in files:
@@ -62,9 +64,8 @@ def csv_to_xlsx(input_folder, output_folder):
                 # Check for empty values in "Brand" or "Location" columns
                 empty_rows = df[df['Brand'].isnull() | df['Location'].isnull()]
                 if not empty_rows.empty:
-                    print(f"Empty rows found in {file}:")
-                    print(empty_rows)
-                    print("Removing empty rows...")
+                    message = f"Empty rows found in {file}:\n{empty_rows.to_string()}"
+                    messages.append(message)
                     df = df.drop(empty_rows.index)
 
                 dfs.append(df)
@@ -80,28 +81,43 @@ def csv_to_xlsx(input_folder, output_folder):
             # Call find_misspellings with the concatenated DataFrame and CSV filenames
             misspellings = find_misspellings(combined_df, csv_filenames_tuple)
             if misspellings:
-                print("Misspellings found in:", base_filename)
+                messages.append(f"Misspellings found in: {base_filename}")
                 for misspelling in misspellings:
-                    print("Misspelling:", misspelling)
-                print()
+                    messages.append(f"Misspelling: {misspelling}")
 
             # Output the combined DataFrame to an Excel file
             output_file = os.path.join(output_folder, f"{base_filename}.xlsx")
             combined_df.to_excel(output_file, index=False)
+    
+    return messages
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    messages = []
     if request.method == 'POST':
         files = request.files.getlist('files[]')
         for file in files:
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        csv_to_xlsx(app.config['UPLOAD_FOLDER'], app.config['UPLOAD_FOLDER'])
+        messages = csv_to_xlsx(app.config['UPLOAD_FOLDER'], app.config['UPLOAD_FOLDER'])
         flash('Files processed successfully!', 'success')
-        return redirect(url_for('index'))
+        return render_template('index.html', messages=messages)
 
-    return render_template('index.html')
+    return render_template('index.html', messages=messages)
+
+@app.route('/clear', methods=['POST'])
+def clear():
+    for file in os.listdir(app.config['UPLOAD_FOLDER']):
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            print(f"Error: {e}")
+
+    return redirect(url_for('index'))
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
