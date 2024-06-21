@@ -1,14 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}CSV to XLSX Converter{% endblock %}
+{% block title %}Check Brands{% endblock %}
 
 {% block content %}
-<h2>Upload CSV Files</h2>
+<h2>Check Brands</h2>
 <form method="post" enctype="multipart/form-data">
-    <input type="file" name="files[]" multiple>
-    <input type="submit" value="Upload">
+    <label for="txt_file">Upload TXT File:</label>
+    <input type="file" name="txt_file" required>
+    <br>
+    <label for="csv_files">Upload CSV Files:</label>
+    <input type="file" name="csv_files[]" multiple required>
+    <br>
+    <input type="submit" value="Check">
 </form>
-<form method="post" action="{{ url_for('clear') }}">
+<form method="post" action="{{ url_for('clear_check_brands') }}">
     <input type="submit" value="Clear">
 </form>
 <br>

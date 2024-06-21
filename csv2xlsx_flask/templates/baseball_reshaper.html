@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Baseball Reshaper{% endblock %}
+
+{% block content %}
+<h2>Baseball Reshaper</h2>
+<form id="reshaperForm" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+    <label for="xlsx_file">Upload XLSX File:</label>
+    <input type="file" name="xlsx_file" required>
+    <br>
+    <input type="submit" value="Run Scripts">
+</form>
+<form method="post" action="{{ url_for('baseball_reshaper') }}">
+    <input type="submit" value="Clear">
+</form>
+<br>
+<div id="loadingMessage" style="display: none;">
+    <p>Processing... Please wait.</p>
+</div>
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul>
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message|safe }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<script>
+function showLoading() {
+    document.getElementById('loadingMessage').style.display = 'block';
+}
+</script>
+{% endblock %}
+

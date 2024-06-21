@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}i-sieve Data Control App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>i-sieve Data Control App</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">CSV to XLSX Converter</a></li>
+                <li><a href="{{ url_for('check_brands') }}">Check Brands</a></li>
+                <li><a href="{{ url_for('baseball_reshaper') }}">Baseball Reshaper</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        &copy; {{ current_year }} i-sieve. All rights reserved.
+    </footer>
+</body>
+</html>
