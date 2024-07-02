@@ -3,6 +3,7 @@ import os
 import sys
 import struct
 import subprocess
+from pprint import pprint
 
 # Monkey-patch zipfile._EndRecData64
 def _EndRecData64(fpin, offset, endrec):
@@ -121,23 +122,25 @@ def process_input_path(input_path):
 
     if os.path.isdir(input_path):
         total_jpeg_count, folder_jpeg_count = count_jpeg_in_folder(input_path)
-        print("Folder '{}' ==> {} JPEG files".format(input_path, total_jpeg_count))
+        print("Summary of JPEG Files in Directory\n")
+        print("Directory: '{}'\nTotal JPEG files: {}\n".format(input_path, total_jpeg_count))
         if folder_jpeg_count:
-            for folder, count in folder_jpeg_count.items():
-                if folder and folder != '.':
-                    print("  Folder '{}': {} JPEG files".format(folder, count))
+            print("Details by Subfolder:")
+            pprint(folder_jpeg_count)
     elif input_path.lower().endswith('.zip'):
         total_jpeg_count, folder_jpeg_count = count_jpeg_in_zip(input_path)
-        print("{} ==> {} JPEG files".format(input_path, total_jpeg_count))
+        print("Summary of JPEG Files in ZIP Archive\n")
+        print("ZIP Archive: '{}'\nTotal JPEG files: {}\n".format(input_path, total_jpeg_count))
         if folder_jpeg_count:
-            for folder, count in folder_jpeg_count.items():
-                print("  Folder '{}': {} JPEG files".format(folder, count))
+            print("Details by Subfolder:")
+            pprint(folder_jpeg_count)
     elif input_path.lower().endswith('.7z'):
         total_jpeg_count, folder_jpeg_count = count_jpeg_in_7z(input_path)
-        print("{} ==> {} JPEG files".format(input_path, total_jpeg_count))
+        print("Summary of JPEG Files in 7z Archive\n")
+        print("7z Archive: '{}'\nTotal JPEG files: {}\n".format(input_path, total_jpeg_count))
         if folder_jpeg_count:
-            for folder, count in folder_jpeg_count.items():
-                print("  Folder '{}': {} JPEG files".format(folder, count))
+            print("Details by Subfolder:")
+            pprint(folder_jpeg_count)
 
     total_hours = total_jpeg_count / 3600.0
 
