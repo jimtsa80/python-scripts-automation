@@ -4,8 +4,8 @@
 *.jpg
 *.png
 *.csv
-*.xlsx
-*.xls
+# *.xlsx
+# *.xls
 creds*
 *.weights
 *.names
