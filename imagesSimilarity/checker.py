@@ -8,11 +8,8 @@ def main(images_folder, excel_file):
     # Load the data from the Excel file
     df = pd.read_excel(excel_file)
 
-    # Pivot the DataFrame to create a similarity matrix
-    similarity_matrix = df.pivot(index='Target Image', columns='Compared Image', values='Similarity Score')
-
     # Replace NaNs or infinite values with zeros
-    similarity_matrix = similarity_matrix.replace([np.inf, -np.inf], np.nan).fillna(0)
+    df['Similarity Score'] = df['Similarity Score'].replace([np.inf, -np.inf], np.nan).fillna(0)
 
     # Similarity threshold
     similarity_threshold = 0.98
