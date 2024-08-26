@@ -4,6 +4,10 @@ import os
 import sys  
 from openpyxl import Workbook
 from tqdm import tqdm
+import re
+
+def natural_sort_key(s):
+    return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
 
 def compare_images_histogram(imageA, imageB):
     def region_histogram(image, start_col, end_col):
@@ -33,7 +37,7 @@ def compare_images_histogram(imageA, imageB):
     return overall_similarity
 
 def compare_images_in_folder(folder_path):
-    image_files = sorted([os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith(('.png', '.jpg', '.jpeg'))])
+    image_files = sorted([os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith(('.png', '.jpg', '.jpeg'))], key=natural_sort_key)
 
     all_results = []
     for i, target_image_path in enumerate(tqdm(image_files, desc="Processing target images")):

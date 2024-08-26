@@ -3,6 +3,7 @@ import numpy as np
 import os
 import shutil
 import sys
+import zipfile
 
 def main(images_folder, excel_file):
     # Load the data from the Excel file
@@ -46,6 +47,9 @@ def main(images_folder, excel_file):
     total_moved_files = 0
     sequence_folders = []
 
+    # Count the total number of files in the initial folder
+    initial_file_count = len([f for f in os.listdir(images_folder) if os.path.isfile(os.path.join(images_folder, f))])
+
     # Move images in each sequence to the target folder
     for i, sequence in enumerate(sequences):
         sequence_folder = os.path.join(images_folder, f"Sequence_{i + 1}")
@@ -61,7 +65,7 @@ def main(images_folder, excel_file):
     print(f"Number of sequence folders created: {len(sequences)}")
 
     # Create new folder for remaining images and the first image of each sequence
-    new_folder = os.path.join(images_folder, "new_" + os.path.basename(images_folder))
+    new_folder = os.path.join(images_folder, "reduced_" + os.path.basename(images_folder))
     os.makedirs(new_folder, exist_ok=True)
 
     # Copy the first image of each sequence to the new folder
@@ -74,6 +78,9 @@ def main(images_folder, excel_file):
     for image in remaining_images:
         shutil.move(os.path.join(images_folder, image), new_folder)
 
+    # Count the total number of files in the new folder
+    new_folder_file_count = len([f for f in os.listdir(new_folder) if os.path.isfile(os.path.join(new_folder, f))])
+
     # Create Excel file for sequences
     sequence_data = []
     for sequence_folder in sequence_folders:
@@ -83,9 +90,22 @@ def main(images_folder, excel_file):
         sequence_data.append([first_image, num_images])
 
     sequence_df = pd.DataFrame(sequence_data, columns=['First Image', 'Number of Images'])
-    sequence_excel_path = os.path.join(new_folder, "sequences_info.xlsx")
+
+    # Save the Excel file one folder outside the new_folder
+    parent_folder = os.path.dirname(new_folder)
+    sequence_excel_path = os.path.join(parent_folder, "sequences_info.xlsx")
     sequence_df.to_excel(sequence_excel_path, index=False)
     print(f"Created Excel file with sequence information at {sequence_excel_path}")
+
+    # Zip the new_folder
+    shutil.make_archive(new_folder, 'zip', new_folder)
+    print(f"Zipped the new folder into {new_folder}.zip")
+
+    # Calculate and print the percentage reduction
+    reduction_percentage = ((initial_file_count - new_folder_file_count) / initial_file_count) * 100
+    print(f"Initial folder contained {initial_file_count} files.")
+    print(f"New folder contains {new_folder_file_count} files.")
+    print(f"Percentage of files reduced: {reduction_percentage:.2f}%")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:

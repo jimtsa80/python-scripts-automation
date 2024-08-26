@@ -72,12 +72,12 @@ def csv_to_xlsx(input_folder, output_folder):
                     print("Misspelling:", misspelling)
                 print()
 
+            # Generate the output filename
+            cleaned_base_filename = base_filename.replace("reduced_", "")
+            output_file = os.path.join(output_folder, f"{cleaned_base_filename}.xlsx")
+            
             # Output the combined DataFrame to an Excel file
-            output_file = os.path.join(output_folder, f"{base_filename}.xlsx")
             combined_df.to_excel(output_file, index=False)
 
 if __name__ == "__main__":
-
-    csv_to_xlsx("csvs",".")
-
-
+    csv_to_xlsx("csvs", ".")

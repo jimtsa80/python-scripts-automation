@@ -5,8 +5,8 @@ def process_excel(file_path):
     # Load the Excel file
     print("Loading Excel file...")
     df = pd.read_excel(file_path)
-    print("Initial data loaded:")
-    print(df.head())
+    #print("Initial data loaded:")
+    #print(df.head())
 
     # Group by the relevant columns and aggregate Duration and Sequence Frame Number
     print("Grouping and aggregating data...")
@@ -18,8 +18,8 @@ def process_excel(file_path):
         'Sequence Frame Number': 'min'  # Get the minimum Sequence Frame Number
     })
 
-    print("Aggregated data:")
-    print(grouped.head())
+    #print("Aggregated data:")
+    #print(grouped.head())
 
     # Merge with the original dataframe to retain other columns based on the minimum Sequence Frame Number
     result_df = pd.merge(
@@ -29,8 +29,8 @@ def process_excel(file_path):
         how='left'
     ).drop_duplicates()
 
-    print("Merged data:")
-    print(result_df.head())
+    #print("Merged data:")
+    #print(result_df.head())
 
     # Sort by 'Sequence Frame Number'
     print("Sorting data by 'Sequence Frame Number'...")
@@ -42,14 +42,18 @@ def process_excel(file_path):
     columns.insert(3, columns.pop(duration_index))
     result_df = result_df[columns]
 
-    print("Final data to be saved:")
-    print(result_df.head())
+    #print("Final data to be saved:")
+    #print(result_df.head())
 
     # Save the result back to the same Excel file
     print("Saving the result back to the Excel file...")
     with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer:
         result_df.to_excel(writer, index=False)
     print("Process completed successfully.")
+
+    # Calculate and print the total duration
+    total_duration = result_df['Duration'].sum()
+    print(f"Total Duration: {total_duration}")
 
 if __name__ == "__main__":
     # Ensure the correct number of arguments are provided

@@ -4,6 +4,7 @@ import tempfile
 import shutil
 import argparse
 import struct
+import re  # Import re module
 
 # Monkey-patch zipfile._EndRecData64
 def _EndRecData64(fpin, offset, endrec):
@@ -13,8 +14,6 @@ def _EndRecData64(fpin, offset, endrec):
     try:
         fpin.seek(offset - zipfile.sizeEndCentDir64Locator, 2)
     except OSError:
-        # If the seek fails, the file is not large enough to contain a ZIP64
-        # end-of-archive record, so just return the end record we were given.
         return endrec
 
     data = fpin.read(zipfile.sizeEndCentDir64Locator)
@@ -29,7 +28,6 @@ def _EndRecData64(fpin, offset, endrec):
         raise zipfile.BadZipfile(
             "zipfiles that span multiple disks are not supported")
 
-    # Assume no 'zip64 extensible data'
     fpin.seek(
         offset - zipfile.sizeEndCentDir64Locator - zipfile.sizeEndCentDir64, 2)
     data = fpin.read(zipfile.sizeEndCentDir64)
@@ -41,7 +39,6 @@ def _EndRecData64(fpin, offset, endrec):
     if sig != zipfile.stringEndArchive64:
         return endrec
 
-    # Update the original endrec using data from the ZIP64 record
     endrec[zipfile._ECD_SIGNATURE] = sig
     endrec[zipfile._ECD_DISK_NUMBER] = disk_num
     endrec[zipfile._ECD_DISK_START] = disk_dir
@@ -51,8 +48,6 @@ def _EndRecData64(fpin, offset, endrec):
     endrec[zipfile._ECD_OFFSET] = diroffset
     return endrec
 
-
-# Overwrite _EndRecData64 with the fixed version
 zipfile._EndRecData64 = _EndRecData64
 
 class TemporaryDirectory(object):
@@ -63,6 +58,9 @@ class TemporaryDirectory(object):
     def __exit__(self, exc_type, exc_val, exc_tb):
         shutil.rmtree(self.name)
 
+# Define natural_sort_key function
+def natural_sort_key(s):
+    return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
 
 def print_jpeg_info(zip_path):
     num_images = 0
@@ -86,27 +84,23 @@ def print_jpeg_info(zip_path):
     else:
         print("No JPEGs found in %s" % zip_path)
 
-
 def split_zip(input_zip, num_parts):
     base_name = os.path.splitext(os.path.basename(input_zip))[0]
 
     try:
         with zipfile.ZipFile(input_zip, 'r') as zip_ref:
-            # Create a temporary directory
             with TemporaryDirectory() as temp_dir:
-                # Extract all files into the temporary directory
                 print("Extracting files to temporary directory...")
                 zip_ref.extractall(temp_dir)
 
-                # Get a list of all files in the temporary directory and sort them
                 file_paths = []
                 print("Collecting and sorting file paths...")
                 for root, _, files in os.walk(temp_dir):
                     for file in files:
                         file_paths.append(os.path.join(root, file))
-                file_paths.sort()  # Sort file paths
 
-                # Determine the total number of files and adjust the number of parts
+                # Use natural_sort_key for sorting file paths
+                file_paths.sort(key=natural_sort_key)
                 total_files = len(file_paths)
                 print("Total number of files in zip: %s" % total_files)
 
@@ -118,7 +112,6 @@ def split_zip(input_zip, num_parts):
                 files_per_part = total_files // num_parts
                 remaining_files = total_files % num_parts
 
-                # Create split ZIP files
                 part_num = 1
                 files_in_current_part = 0
                 current_zip_path = 'part%d_%s.zip' % (part_num, base_name)
@@ -143,7 +136,6 @@ def split_zip(input_zip, num_parts):
                     print_jpeg_info(current_zip_path)
     except zipfile.BadZipfile as e:
         print("Error: %s" % str(e))
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Split a ZIP file into multiple parts.")

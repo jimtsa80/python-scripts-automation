@@ -7,19 +7,22 @@ def process_excel_file(input_file):
     print(f"Reading input file: {input_file}")
     df = pd.read_excel(input_file)
     
+    # Calculate the total duration
+    total_duration = df['Duration'].sum()
+    print(f"Total Duration: {total_duration}")
+    
     # Create an empty list to store the processed rows
     processed_rows = []
     
     # Iterate over each row in the DataFrame
     for index, row in df.iterrows():
         duration = row['Duration']
-        print(f"Processing row {index + 1} with duration {duration}")
         for i in range(duration):
             new_row = row.copy()
             new_row['Duration'] = 1
             new_row['Sequence Frame Number'] += i
             processed_rows.append(new_row)
-            print(f"Added new row with Sequence Frame Number {new_row['Sequence Frame Number']}")
+            #print(f"Added new row with Sequence Frame Number {new_row['Sequence Frame Number']}")
     
     # Create a new DataFrame from the processed rows
     processed_df = pd.DataFrame(processed_rows)
