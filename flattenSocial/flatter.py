@@ -67,7 +67,6 @@ def extract_and_flatten_zip(zip_path):
     shutil.rmtree(temp_dir)
     print(f"Successfully processed: {new_zip_path}\n")
 
-
 def process_zips_in_folder(folder_path):
     # Get all zip files in the folder
     zip_files = [f for f in os.listdir(folder_path) if f.endswith('.zip')]
