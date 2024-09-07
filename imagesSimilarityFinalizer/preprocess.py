@@ -17,10 +17,32 @@ def process_excel_file(input_file):
     # Iterate over each row in the DataFrame
     for index, row in df.iterrows():
         duration = row['Duration']
+        sequence_frame = str(row['Sequence Frame Number'])
+        
+        if '_' in sequence_frame:
+            # Split the Sequence Frame Number to handle the prefix
+            prefix, frame_number = sequence_frame.rsplit('_', 1)
+        else:
+            # No prefix, treat the whole Sequence Frame Number as a number
+            prefix = ''
+            frame_number = sequence_frame
+        
+        # Determine the length of the numeric part to preserve leading zeros
+        frame_number_length = len(frame_number)
+        frame_number = int(frame_number)  # Convert frame number to an integer
+        
         for i in range(duration):
             new_row = row.copy()
             new_row['Duration'] = 1
-            new_row['Sequence Frame Number'] += i
+            
+            # Format the new sequence frame number with leading zeros
+            new_frame_number = str(frame_number + i).zfill(frame_number_length)
+            
+            if prefix:
+                new_row['Sequence Frame Number'] = f"{prefix}_{new_frame_number}"
+            else:
+                new_row['Sequence Frame Number'] = new_frame_number
+            
             processed_rows.append(new_row)
             #print(f"Added new row with Sequence Frame Number {new_row['Sequence Frame Number']}")
     

@@ -33,7 +33,7 @@ def process_files(pair):
     batters_file = pair.get('Batters')
 
     # Determine if we should skip processing `no_hp_file` based on the filename
-    skip_no_hp = any(keyword in (hp_file or '').upper() for keyword in ['MEXICO', 'CANADA'])
+    skip_no_hp = any(keyword in (hp_file or '').upper() for keyword in ['MEXICO', 'CANADA', 'JAPAN', 'KOREA'])
     
     # Load the final_HP_ file if it exists
     hp_df = pd.read_excel(hp_file) if hp_file else None

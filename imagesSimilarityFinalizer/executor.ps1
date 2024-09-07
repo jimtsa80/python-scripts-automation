@@ -1,4 +1,3 @@
 #powershell -ExecutionPolicy Bypass -File .\executor.ps1
 
-powershell -ExecutionPolicy Bypass -File .\run.ps1 -filePath ".\20240629_MatchID=37_US_Olympic_Team_TrialsTrackFieldDay_9_NBC_2000.xlsx" -sequencesInfoPath "C:\Users\jimtsa80\Desktop\python-scripts-automation\imagesSimilarity\toBeFinalized\20240629_MatchID=37_US_Olympic_Team_TrialsTrackFieldDay_9_NBC_2000\sequences_info.xlsx"
-powershell -ExecutionPolicy Bypass -File .\run.ps1 -filePath ".\20240621_MatchID=29_US Olympic Team Trials - Track & Field - Day 1_NBC_2100.xlsx" -sequencesInfoPath "C:\Users\jimtsa80\Desktop\python-scripts-automation\imagesSimilarity\toBeFinalized\20240621_MatchID=29_US Olympic Team Trials - Track & Field - Day 1_NBC_2100\sequences_info.xlsx"
+powershell -ExecutionPolicy Bypass -File .\run.ps1 -filePath ".\HP_20240716_AllStarGame_KOREA_200000.xlsx" -sequencesInfoPath "C:\Users\jimtsa80\Desktop\python-scripts-automation\imagesSimilarity\toBeFinalized\20240716_AllStarGame_KOREA_200000\sequences_info.xlsx"
