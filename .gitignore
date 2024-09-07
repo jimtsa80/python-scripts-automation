@@ -15,3 +15,5 @@ creds*
 *.txt
 *.mp*
 *secret*
+*.heic
+*.webp
