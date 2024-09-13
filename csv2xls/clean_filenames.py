@@ -11,7 +11,7 @@ for filename in os.listdir(directory):
     # Only process files (not directories)
     if os.path.isfile(old_file_path):
         # Replace '_-_' with '' and '_&_' with '&'
-        new_filename = filename.replace('_-_', '').replace('_&_', '')
+        new_filename = filename.replace('_-_', '').replace('_&_', '').replace('.zip', '')
         
         # Define the new file path
         new_file_path = os.path.join(directory, new_filename)

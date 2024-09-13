@@ -71,13 +71,13 @@ def process_files_prefix(file1, file2):
             # Match Sequence Frame Number in df2 using the full identifier
             full_matches = df2[df2['Sequence Frame Number'].str.contains(f"^{full_identifier}$")]
             if not full_matches.empty:
-                print(f"Match found in df2 for Full Identifier: {full_identifier}")
+                # print(f"Match found in df2 for Full Identifier: {full_identifier}")
                 
                 # Update Duration and Total Hits
                 update_matching_rows(df2, full_matches.index, row['Number of Images'])
                 updated_lines.append(index + 1)
-            else:
-                print(f"No match found in df2 for Full Identifier: {full_identifier}")
+            # else:
+            #     print(f"No match found in df2 for Full Identifier: {full_identifier}")
 
     # Save the updated df2 back to the second Excel file
     df2.to_excel(file2, index=False)

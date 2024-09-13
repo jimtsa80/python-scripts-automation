@@ -8,7 +8,7 @@ import re
 
 def natural_sort_key(s):
     return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
-
+'''
 def compare_images_histogram(imageA, imageB):
     def region_histogram(image, start_col, end_col):
         region = image[:, start_col:end_col]
@@ -35,6 +35,41 @@ def compare_images_histogram(imageA, imageB):
 
     overall_similarity = np.mean(similarity_scores)
     return overall_similarity
+'''
+def compare_images_histogram(imageA, imageB):
+    def region_histogram(image, start_row, end_row, start_col, end_col):
+        region = image[start_row:end_row, start_col:end_col]
+        hist = cv2.calcHist([region], [0, 1, 2], None, [8, 8, 8], [0, 256, 0, 256, 0, 256])
+        cv2.normalize(hist, hist)
+        return hist
+
+    height, width, _ = imageA.shape
+    row_height = height // 3
+    col_width = width // 3
+
+    # Dividing the image into a 3x3 grid
+    regions = [
+        (0, row_height, 0, col_width),                     # Top-left
+        (0, row_height, col_width, 2 * col_width),         # Top-middle
+        (0, row_height, 2 * col_width, width),             # Top-right
+        (row_height, 2 * row_height, 0, col_width),        # Middle-left
+        (row_height, 2 * row_height, col_width, 2 * col_width),  # Center
+        (row_height, 2 * row_height, 2 * col_width, width),# Middle-right
+        (2 * row_height, height, 0, col_width),            # Bottom-left
+        (2 * row_height, height, col_width, 2 * col_width),# Bottom-middle
+        (2 * row_height, height, 2 * col_width, width)     # Bottom-right
+    ]
+
+    similarity_scores = []
+    for start_row, end_row, start_col, end_col in regions:
+        histA = region_histogram(imageA, start_row, end_row, start_col, end_col)
+        histB = region_histogram(imageB, start_row, end_row, start_col, end_col)
+        similarity = cv2.compareHist(histA, histB, cv2.HISTCMP_CORREL)
+        similarity_scores.append(similarity)
+
+    overall_similarity = np.mean(similarity_scores)
+    return overall_similarity
+
 
 def compare_images_in_folder(folder_path):
     image_files = sorted([os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith(('.png', '.jpg', '.jpeg'))], key=natural_sort_key)
