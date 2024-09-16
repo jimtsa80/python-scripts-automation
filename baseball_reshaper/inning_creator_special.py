@@ -30,10 +30,10 @@ def normalize_numbers(lst):
     return numbered_list
 
 def finalize_innings(lst):
-    top_count = 4  # Start Top innings count from 5 (4+1)
-    bottom_count = 4  # Start Bottom innings count from 5 (4+1)
-    last_type = None
-    
+    bottom_count = 7  # Start Bottom innings count from 7
+    top_count = 7  # Start Top innings count from 7
+    last_type = 'Top'  # Set initial last_type to 'Top' so the first item starts from 'Bottom'
+
     # Iterate through the input list and modify it accordingly
     for i, item in enumerate(lst):
         if int(item) % 2 == 0:

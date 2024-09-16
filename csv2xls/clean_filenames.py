@@ -13,6 +13,10 @@ for filename in os.listdir(directory):
         # Replace '_-_' with '' and '_&_' with '&'
         new_filename = filename.replace('_-_', '').replace('_&_', '').replace('.zip', '')
         
+        # Check if the filename starts with 'reduced_' and add 'batters_' at the beginning
+        if new_filename.startswith('reduced_'):
+            new_filename = 'batters_' + new_filename
+        
         # Define the new file path
         new_file_path = os.path.join(directory, new_filename)
         
