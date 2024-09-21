@@ -1,4 +1,8 @@
 #powershell -ExecutionPolicy Bypass -File .\executor.ps1
 
-powershell -ExecutionPolicy Bypass -File .\run.ps1 -filePath ".\20240901_ARIvsLAD_ROKU_161000.xlsx" -sequencesInfoPath "C:\Users\jimtsa80\Desktop\python-scripts-automation\imagesSimilarity\toBeFinalized\20240901_ARIvsLAD_ROKU_161000\sequences_info.xlsx"
-powershell -ExecutionPolicy Bypass -File .\run.ps1 -filePath ".\HP_20240901_ARIvsLAD_ROKU_161000.xlsx" -sequencesInfoPath "C:\Users\jimtsa80\Desktop\python-scripts-automation\imagesSimilarity\toBeFinalized\20240901_ARIvsLAD_ROKU_161000\sequences_info.xlsx"
+powershell -ExecutionPolicy Bypass -File .\run.ps1 -filePath ".\20240713_CELEBRITYSOFTBALL_MLBN_204500.xlsx" -sequencesInfoPath "C:\Users\jimtsa\Desktop\python-scripts-automation\imagesSimilarity\toBeFinalized\20240713_CELEBRITYSOFTBALL_MLBN_204500\sequences_info.xlsx"
+powershell -ExecutionPolicy Bypass -File .\run.ps1 -filePath ".\20240913_ATLvsLAD_AppleTV_192000.xlsx" -sequencesInfoPath "C:\Users\jimtsa\Desktop\python-scripts-automation\imagesSimilarity\toBeFinalized\20240913_ATLvsLAD_AppleTV_192000\sequences_info.xlsx"
+powershell -ExecutionPolicy Bypass -File .\run.ps1 -filePath ".\20240913_NYYvsBOS_AppleTV_190000.xlsx" -sequencesInfoPath "C:\Users\jimtsa\Desktop\python-scripts-automation\imagesSimilarity\toBeFinalized\20240913_NYYvsBOS_AppleTV_190000\sequences_info.xlsx"
+powershell -ExecutionPolicy Bypass -File .\run.ps1 -filePath ".\HP_20240713_CELEBRITYSOFTBALL_MLBN_204500.xlsx" -sequencesInfoPath "C:\Users\jimtsa\Desktop\python-scripts-automation\imagesSimilarity\toBeFinalized\20240713_CELEBRITYSOFTBALL_MLBN_204500\sequences_info.xlsx"
+powershell -ExecutionPolicy Bypass -File .\run.ps1 -filePath ".\HP_20240913_ATLvsLAD_AppleTV_192000.xlsx" -sequencesInfoPath "C:\Users\jimtsa\Desktop\python-scripts-automation\imagesSimilarity\toBeFinalized\20240913_ATLvsLAD_AppleTV_192000\sequences_info.xlsx"
+powershell -ExecutionPolicy Bypass -File .\run.ps1 -filePath ".\HP_20240913_NYYvsBOS_AppleTV_190000.xlsx" -sequencesInfoPath "C:\Users\jimtsa\Desktop\python-scripts-automation\imagesSimilarity\toBeFinalized\20240913_NYYvsBOS_AppleTV_190000\sequences_info.xlsx"

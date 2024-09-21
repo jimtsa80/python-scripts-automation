@@ -47,17 +47,16 @@ def compare_images_histogram(imageA, imageB):
     row_height = height // 3
     col_width = width // 3
 
-    # Dividing the image into a 3x3 grid
     regions = [
-        (0, row_height, 0, col_width),                     # Top-left
-        (0, row_height, col_width, 2 * col_width),         # Top-middle
-        (0, row_height, 2 * col_width, width),             # Top-right
-        (row_height, 2 * row_height, 0, col_width),        # Middle-left
-        (row_height, 2 * row_height, col_width, 2 * col_width),  # Center
-        (row_height, 2 * row_height, 2 * col_width, width),# Middle-right
-        (2 * row_height, height, 0, col_width),            # Bottom-left
-        (2 * row_height, height, col_width, 2 * col_width),# Bottom-middle
-        (2 * row_height, height, 2 * col_width, width)     # Bottom-right
+        (0, row_height, 0, col_width),                     
+        (0, row_height, col_width, 2 * col_width),         
+        (0, row_height, 2 * col_width, width),             
+        (row_height, 2 * row_height, 0, col_width),        
+        (row_height, 2 * row_height, col_width, 2 * col_width),  
+        (row_height, 2 * row_height, 2 * col_width, width),
+        (2 * row_height, height, 0, col_width),            
+        (2 * row_height, height, col_width, 2 * col_width),
+        (2 * row_height, height, 2 * col_width, width)     
     ]
 
     similarity_scores = []
@@ -70,35 +69,46 @@ def compare_images_histogram(imageA, imageB):
     overall_similarity = np.mean(similarity_scores)
     return overall_similarity
 
-
 def compare_images_in_folder(folder_path):
     image_files = sorted([os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith(('.png', '.jpg', '.jpeg'))], key=natural_sort_key)
 
     all_results = []
     for i, target_image_path in enumerate(tqdm(image_files, desc="Processing target images")):
         target_image = cv2.imread(target_image_path)
+        if target_image is None:
+            print(f"Warning: Unable to read image {target_image_path}. Skipping.")
+            continue
+        
         indices_to_compare = list(range(max(0, i - 3), min(len(image_files), i + 4)))
         indices_to_compare.remove(i)
 
         for idx in tqdm(indices_to_compare, desc=f"Comparing images for {os.path.basename(target_image_path)}", leave=False):
             comparison_image_path = image_files[idx]
             comparison_image = cv2.imread(comparison_image_path)
+            if comparison_image is None:
+                print(f"Warning: Unable to read image {comparison_image_path}. Skipping.")
+                continue
+            
             similarity = compare_images_histogram(target_image, comparison_image)
             all_results.append((target_image_path, comparison_image_path, similarity))
 
     return all_results
 
 def write_results_to_excel(results, folder_name):
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "Similarity Results"
-    ws.append(["Target Image", "Compared Image", "Similarity Score"])
+    try:
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Similarity Results"
+        ws.append(["Target Image", "Compared Image", "Similarity Score"])
 
-    for target_img, compared_img, similarity in results:
-        ws.append([target_img, compared_img, similarity])
+        for target_img, compared_img, similarity in results:
+            ws.append([target_img, compared_img, similarity])
 
-    output_filename = f"{folder_name}.xlsx"
-    wb.save(output_filename)
+        output_filename = f"{folder_name}.xlsx"
+        wb.save(output_filename)
+        print(f"Results written to {output_filename}")
+    except Exception as e:
+        print(f"Error writing results to Excel: {e}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -110,5 +120,3 @@ if __name__ == "__main__":
 
     all_results = compare_images_in_folder(folder_path)
     write_results_to_excel(all_results, folder_name)
-
-    print(f"Results written to {folder_name}.xlsx")

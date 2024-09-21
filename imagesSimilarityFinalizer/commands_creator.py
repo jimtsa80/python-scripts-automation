@@ -13,7 +13,7 @@ def generate_powershell_command(filename):
         modified_filename = filename[:-5]   # Remove ".xlsx"
     
     # Create the PowerShell command
-    command = f'powershell -ExecutionPolicy Bypass -File .\\run.ps1 -filePath ".\\{original_filename}" -sequencesInfoPath "C:\\Users\\jimtsa80\\Desktop\\python-scripts-automation\\imagesSimilarity\\toBeFinalized\\{modified_filename}\\sequences_info.xlsx"'
+    command = f'powershell -ExecutionPolicy Bypass -File .\\run.ps1 -filePath ".\\{original_filename}" -sequencesInfoPath "C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\imagesSimilarity\\toBeFinalized\\{modified_filename}\\sequences_info.xlsx"'
     return command
 
 # Get the current directory (where the script is located)

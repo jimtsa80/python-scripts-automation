@@ -1,5 +1,6 @@
 import os
 import zipfile
+import py7zr
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import sys
@@ -7,6 +8,12 @@ import sys
 def count_files_in_zip(zip_path):
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         file_list = zip_ref.namelist()
+        file_count = len(file_list)
+    return file_count
+
+def count_files_in_7z(archive_path):
+    with py7zr.SevenZipFile(archive_path, 'r') as archive_ref:
+        file_list = archive_ref.getnames()
         file_count = len(file_list)
     return file_count
 
@@ -29,12 +36,16 @@ def write_file_count_to_google_sheet(file_name, file_count):
     sheet.update_cell(row_idx, 1, file_name)  # File name or folder name
     sheet.update_cell(row_idx, 2, file_count)  # File count
 
-def process_zip_files_in_directory(directory_path):
+def process_archive_files_in_directory(directory_path):
     for file_name in os.listdir(directory_path):
         file_path = os.path.join(directory_path, file_name)
         if zipfile.is_zipfile(file_path):
             file_count = count_files_in_zip(file_path)
-            print(f"Total number of files in {file_name}: {file_count}")
+            print(f"Total number of files in {file_name} (ZIP): {file_count}")
+            write_file_count_to_google_sheet(file_name, file_count)
+        elif file_name.endswith(".7z"):
+            file_count = count_files_in_7z(file_path)
+            print(f"Total number of files in {file_name} (7z): {file_count}")
             write_file_count_to_google_sheet(file_name, file_count)
 
 if __name__ == "__main__":
@@ -48,6 +59,6 @@ if __name__ == "__main__":
         print(f"The provided path '{directory_path}' is not a valid directory.")
         sys.exit(1)
 
-    process_zip_files_in_directory(directory_path)
+    process_archive_files_in_directory(directory_path)
     
     print("File counts written to Google Sheet")

@@ -1,5 +1,6 @@
 param (
-    [string]$parent_dir = (Get-Location)
+    [string]$parent_dir = (Get-Location),
+    [string]$mode = "simple" # Default mode is 'simple', can be set to 'strict'
 )
 
 # Check if the provided parent directory exists
@@ -12,10 +13,10 @@ if (-Not (Test-Path $parent_dir)) {
 python counterToGS.py "$parent_dir"
 python unzipper.py "$parent_dir"
 
-# Delete all .zip files in the parent directory and print the name of each deleted file
-Get-ChildItem -Path $parent_dir -Filter *.zip | ForEach-Object {
+# Delete all .zip and .7z files in the parent directory and print the name of each deleted file
+Get-ChildItem -Path $parent_dir | Where-Object { $_.Extension -eq ".zip" -or $_.Extension -eq ".7z" } | ForEach-Object {
     Remove-Item $_.FullName
-    Write-Host "Deleted zip file: $($_.Name)"
+    Write-Host "Deleted file: $($_.Name)"
 }
 
 # Loop through each folder in the parent directory
@@ -29,8 +30,15 @@ Get-ChildItem -Path $parent_dir -Directory | ForEach-Object {
         return
     }
 
-    # Run the imagesComparison.py script with the folder as an argument
-    python imagesComparison.py "$folder"
+    # Run the appropriate imagesComparison script based on the mode argument
+    if ($mode -eq "strict") {
+        python imagesComparison_strict.py "$folder"
+    } elseif ($mode -eq "simple") {
+        python imagesComparison.py "$folder"
+    } else {
+        Write-Host "Invalid mode specified. Use 'strict' or 'simple'."
+        exit
+    }
 
     # Wait for a few seconds to ensure the .xlsx file is created
     Start-Sleep -Seconds 5
