@@ -24,35 +24,6 @@ def log_transform(value):
     transformed_value = np.log(abs(value) + 1e-10)  # Apply log to absolute value and add a small constant
     return abs(transformed_value)  # Ensure the final value is positive
 
-def check_differences_new_version(avg_df, total_df):
-    """Check differences between the new file's Avg Total / Duration and Accumulative Avg in Total_ tab."""
-    significant_diffs = []
-    
-    # Loop through each row in avg_df and compare with total_df
-    for index, new_row in avg_df.iterrows():
-        brand, location, avg_duration = new_row['Brand'], new_row['Location'], new_row['Accumulative Avg']
-        
-        # Try to find the corresponding row in total_df
-        matching_row = total_df[(total_df['Brand'] == brand) & (total_df['Location'] == location)]
-        if not matching_row.empty:
-            old_avg = matching_row.iloc[0]['Accumulative Avg']
-            diff_percent = abs((avg_duration - old_avg) / old_avg) * 100
-
-            # If difference is greater than 25%, store it
-            if diff_percent > 25:
-                significant_diffs.append((brand, location, old_avg, avg_duration, diff_percent))
-        else:
-            print(f"New combination found for Brand: {brand}, Location: {location}.")
-
-    # Print significant differences
-    if significant_diffs:
-        print("\nSignificant differences (over 25%):")
-        significant_diffs = sorted(significant_diffs, key=lambda x: x[4], reverse=True)  # Sort by difference percentage
-        for brand, location, old_avg, new_avg, diff_percent in significant_diffs:
-            print(f"Brand: {brand}, Location: {location} - Old Avg: {old_avg:.3f}, New Avg: {new_avg:.3f}, Diff: {diff_percent:.2f}%")
-    else:
-        print("No significant differences found.")
-
 def check_differences_and_print(avg_df, total_df):
     significant_diffs = []
     
@@ -87,66 +58,60 @@ def check_differences_and_print(avg_df, total_df):
     else:
         print("No significant differences found.")
 
-def update_total_avg(main_tab_df, total_sheet, comparison_type):
+
+def update_total_avg(main_tab_df, total_sheet):
+
+    # Get the list of existing brands from the total sheet
     total_data = total_sheet.get_all_records()
+    total_brands = set(row['Brand'] for row in total_data if 'Brand' in row)
 
-    # If the total_data is empty, no need to compare, just update the Total_ tab
-    if not total_data:
-        print("Total_ tab is empty, skipping comparison.")
+    new_brands = set(main_tab_df['Brand'].unique())
 
-        if 'Avg Total / Duration' in main_tab_df.columns:
-            avg_df = main_tab_df.groupby(['Brand', 'Location'], as_index=False)['Avg Total / Duration'].mean()
-            avg_df = avg_df.rename(columns={'Avg Total / Duration': 'Accumulative Avg'})
+    # Check for missing brands in the total sheet
+    missing_brands = new_brands - total_brands
+    if missing_brands:
+        print(f"Warning: The following brands from the new file do not exist in the Total tab: {', '.join(missing_brands)}")
 
-            # Sort by Accumulative Avg in ascending order
-            avg_df = avg_df.sort_values(by='Accumulative Avg').reset_index(drop=True)
+    # Verify if the 'Avg Total / Duration' column exists in main_tab_df
+    if 'Avg Total / Duration' in main_tab_df.columns:
+        avg_df = main_tab_df.groupby(['Brand', 'Location'], as_index=False)['Avg Total / Duration'].mean()
+        avg_df = avg_df.rename(columns={'Avg Total / Duration': 'Accumulative Avg'})
 
-            # Clear the existing entries in the Total_ tab
-            total_sheet.clear()
-            total_sheet.append_row(['Brand', 'Location', 'Accumulative Avg'])
-            time.sleep(1)  # Adding delay to avoid exceeding the API quota
+        # Debugging: Check if the column exists in avg_df
+        print("Columns in avg_df:", avg_df.columns)
 
-            for _, row in avg_df.iterrows():
-                total_sheet.append_row([row['Brand'], row['Location'], round(row['Accumulative Avg'], 3)])
-                time.sleep(1)  # Adding delay after each append_row call
-
-            print("Accumulative Avg updated with sorted values.")
-        else:
-            print("'Avg Total / Duration' column not found in main tab. Ensure the data was processed correctly.")
-    else:
-        print("Total_ tab is not empty, proceeding with comparison.")
+        # Check differences with existing totals before updating
+        total_data = total_sheet.get_all_records()
         total_df = pd.DataFrame(total_data)
 
-        if 'Avg Total / Duration' in main_tab_df.columns:
-            avg_df = main_tab_df.groupby(['Brand', 'Location'], as_index=False)['Avg Total / Duration'].mean()
-            avg_df = avg_df.rename(columns={'Avg Total / Duration': 'Accumulative Avg'})
-
-            if comparison_type == 'new':
-                check_differences_new_version(avg_df, total_df)
-            elif comparison_type == 'old':
-                check_differences_and_print(avg_df, total_df)
-
-            # Sort by Accumulative Avg in ascending order
-            avg_df = avg_df.sort_values(by='Accumulative Avg').reset_index(drop=True)
-
-            # Clear the existing entries in the Total_ tab
-            total_sheet.clear()
-            total_sheet.append_row(['Brand', 'Location', 'Accumulative Avg'])
-            time.sleep(1)  # Adding delay to avoid exceeding the API quota
-
-            for _, row in avg_df.iterrows():
-                total_sheet.append_row([row['Brand'], row['Location'], round(row['Accumulative Avg'], 3)])
-                time.sleep(1)  # Adding delay after each append_row call
-
-            print("Accumulative Avg updated with sorted values.")
+        # Check if 'Accumulative Avg' column exists in total_df
+        if 'Accumulative Avg' in total_df.columns:
+            check_differences_and_print(avg_df, total_df)
         else:
-            print("'Avg Total / Duration' column not found in main tab. Ensure the data was processed correctly.")
+            print("No 'Accumulative Avg' column found in Total_ tab.")
 
+        # Sort by Accumulative Avg in ascending order
+        avg_df = avg_df.sort_values(by='Accumulative Avg').reset_index(drop=True)
 
-def process_xlsx_files(folder_path, sheet_name, comparison_type):
+        # Clear the existing entries in the Total_ tab
+        total_sheet.clear()
+
+        # Write the header
+        total_sheet.append_row(['Brand', 'Location', 'Accumulative Avg'])
+
+        # Write the sorted averages to the Total_ tab
+        for _, row in avg_df.iterrows():
+            total_sheet.append_row([row['Brand'], row['Location'], round(row['Accumulative Avg'], 3)])
+
+        print("Accumulative Avg updated with sorted values.")
+    else:
+        print("'Avg Total / Duration' column not found in main tab. Ensure the data was processed correctly.")
+
+def process_xlsx_files(folder_path, sheet_name):
     sheet, file_sheet = setup_google_sheets(sheet_name)
     total_sheet_name = f"Total_{sheet_name}"
 
+    # Try to get existing data from Total_ tab
     try:
         total_sheet = sheet.spreadsheet.worksheet(total_sheet_name)
         total_data = total_sheet.get_all_records()
@@ -158,12 +123,14 @@ def process_xlsx_files(folder_path, sheet_name, comparison_type):
     print(f"Processing files in folder: {folder_path}")
     all_results = []
     
+    # Processing files and gathering data
     existing_files = [row[0] for row in sheet.get_all_values()[1:]]  # Skip header
 
     for filename in os.listdir(folder_path):
         if filename.endswith('.xlsx'):
             file_without_extension = filename.replace('.xlsx', '')
             if file_without_extension in existing_files:
+                # print(f"File '{filename}' already processed. Skipping...")
                 continue
 
             file_path = os.path.join(folder_path, filename)
@@ -171,6 +138,7 @@ def process_xlsx_files(folder_path, sheet_name, comparison_type):
             df = pd.read_excel(file_path)
 
             total_frames = df['Sequence Frame Number'].iloc[-1] - df['Sequence Frame Number'].iloc[0] + df['Duration'].iloc[-1]
+
             grouped = df.groupby(['Brand', 'Location'])
 
             for (brand, location), group in grouped:
@@ -188,24 +156,24 @@ def process_xlsx_files(folder_path, sheet_name, comparison_type):
                     avg_total_duration_log_rounded
                 ])
 
+    # Check if the results contain "Avg Total / Duration" before inserting
     if all_results and len(all_results[0]) == 6:
         sheet.insert_rows(all_results, 2)
         print("Results appended to the main tab.")
     else:
         print("No valid results found with 'Avg Total / Duration'. Skipping append.")
 
+    # Fetch the updated main tab data after appending
     main_tab_data = sheet.get_all_records()
     main_tab_df = pd.DataFrame(main_tab_data)
 
-    # Update Total_ tab with sorted Accumulative Avg values, based on the selected comparison_type
-    update_total_avg(main_tab_df, total_sheet, comparison_type)
+    # Call the function to update the Total_ tab with sorted Accumulative Avg values
+    update_total_avg(main_tab_df, total_sheet)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process XLSX files and write to Google Sheets.')
     parser.add_argument('folder', type=str, help='Path to the folder containing XLSX files.')
     parser.add_argument('sheet_name', type=str, help='Name of the Google Sheet tab to write data to.')
-    parser.add_argument('comparison_type', type=str, choices=['old', 'new'], help='Comparison type for updating Total_ tab.')
 
     args = parser.parse_args()
-    process_xlsx_files(args.folder, args.sheet_name, args.comparison_type)
-
+    process_xlsx_files(args.folder, args.sheet_name)

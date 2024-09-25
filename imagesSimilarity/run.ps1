@@ -1,3 +1,6 @@
+#example
+#powershell -ExecutionPolicy Bypass -File .\run.ps1 .\batch2\ -mode simple
+
 param (
     [string]$parent_dir = (Get-Location),
     [string]$mode = "simple" # Default mode is 'simple', can be set to 'strict'
