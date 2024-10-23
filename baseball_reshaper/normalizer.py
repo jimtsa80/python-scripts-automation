@@ -53,6 +53,7 @@ for change in inning_changes:
 # Create the new file path with "final_" prefix
 directory, filename = os.path.split(file_path)
 new_filename = f"final_{filename}"
+new_filename = new_filename.replace("final_updated_", "")
 new_file_path = os.path.join(directory, new_filename)
 
 # Save the updated DataFrame to the new file, including the NoHomeplate sheet

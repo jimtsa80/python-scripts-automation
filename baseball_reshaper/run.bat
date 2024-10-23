@@ -76,13 +76,13 @@ for %%f in ("%FOLDER%\*.xlsx") do (
 
     echo Done processing file: %%f
 
-    REM Rename the file by removing 'updated_' prefix if present
-    set "FILENAME=%%~nxf"
-    if "!FILENAME:~0,8!"=="updated_" (
-        set "NEWNAME=!FILENAME:~8!"
-        echo Renaming file to !NEWNAME!
-        ren "%%f" "!NEWNAME!"
-    )
+    @REM REM Rename the file by removing 'updated_' prefix if present
+    @REM set "FILENAME=%%~nxf"
+    @REM if "!FILENAME:~0,8!"=="final_updated_" (
+    @REM     set "NEWNAME=!FILENAME:~8!"
+    @REM     echo Renaming file to !NEWNAME!
+    @REM     ren "%%f" "!NEWNAME!"
+    @REM )
 )
 
 echo All files processed and renamed.

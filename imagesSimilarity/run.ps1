@@ -1,9 +1,9 @@
-#example
-#powershell -ExecutionPolicy Bypass -File .\run.ps1 .\batch2\ -mode simple
+#powershell -ExecutionPolicy Bypass -File .\run.ps1 .\batch2\ -mode simple -h5_type baseball
 
 param (
     [string]$parent_dir = (Get-Location),
-    [string]$mode = "simple" # Default mode is 'simple', can be set to 'strict'
+    [string]$mode = "simple", # Default mode is 'simple', can be set to 'strict'
+    [string]$h5_type = "*"  # The * part of the H5 file
 )
 
 # Check if the provided parent directory exists
@@ -48,4 +48,23 @@ Get-ChildItem -Path $parent_dir -Directory | ForEach-Object {
 
     # Run the checker.py script with the folder and the Excel file as arguments
     python checker.py "$folder" "$folder_name.xlsx"
+
+    Start-Sleep -Seconds 5
+
+    # Find the folder starting with "reduced"
+    $reduced_folder = Get-ChildItem -Path $folder -Directory | Where-Object { $_.Name -like "reduced*" } | Select-Object -First 1
+
+    if ($reduced_folder) {
+        $reduced_folder_fullpath = $reduced_folder.FullName
+
+        # Only run classifier if $h5_type is "baseball" or "cricket"
+        if ($h5_type -eq "baseball" -or $h5_type -eq "cricket") {
+            $h5_file = "C:\Users\jimtsa\Desktop\python-scripts-automation\imagesClassification\advertisement_${h5_type}_classifier.h5"
+            python "C:\Users\jimtsa\Desktop\python-scripts-automation\imagesClassification\classifier.py" $h5_file "$reduced_folder_fullpath"
+        } else {
+            Write-Host "Skipping classifier execution for non-baseball/cricket folder: $folder_name"
+        }
+    } else {
+        Write-Host "No 'reduced' folder found in: $folder_name"
+    }
 }

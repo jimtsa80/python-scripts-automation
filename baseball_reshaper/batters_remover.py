@@ -8,7 +8,7 @@ def remove_rows_with_digits(file_path):
     
     # Function to check if a string contains any digits
     def contains_digit(s):
-        return bool(re.search(r'\d', str(s)))
+        return bool(re.search(r'\d\s*-\s*', str(s)))
     
     # Filter out rows where the 'Location' column contains any digits
     filtered_df = df[~df['Location'].apply(contains_digit)]

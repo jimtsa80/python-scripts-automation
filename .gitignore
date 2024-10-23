@@ -17,3 +17,5 @@ creds*
 *secret*
 *.heic
 *.webp
+*.h5
+*.exe

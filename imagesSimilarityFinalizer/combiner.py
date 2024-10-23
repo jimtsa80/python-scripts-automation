@@ -91,7 +91,7 @@ def determine_and_process(file1, file2):
     first_image = df1.iloc[0]['First Image']
     
     # Determine if the filename is purely numeric or has a prefix
-    if re.match(r"^\d+\.jpg$", first_image):
+    if re.match(r"^\d+\.(jpg|jpeg)$", first_image):
         print("Numeric filenames detected. Using numeric matching.")
         process_files_numeric(file1, file2)
     else:

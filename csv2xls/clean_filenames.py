@@ -12,6 +12,8 @@ for filename in os.listdir(directory):
     if os.path.isfile(old_file_path):
         # Replace '_-_' with '' and '_&_' with '&'
         new_filename = filename.replace('_-_', '').replace('_&_', '').replace('.zip', '')
+        if new_filename.startswith('-') or new_filename.startswith('_'):
+            new_filename = new_filename[1:]
         
         # Check if the filename starts with 'reduced_' and add 'batters_' at the beginning
         if new_filename.startswith('reduced_'):
