@@ -59,8 +59,8 @@ def split_dataset(image_folder, label_folder, output_folder, train_ratio=0.8):
     print(f"Images and labels have been split and copied to '{output_folder}'.")
 
 # Example usage:
-image_folder = r'C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_20240901_ERC_Ceredigion_SS11_0833-NK-240922-1742.json_filtered_output.json\\train\\images'
-label_folder = r'C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_20240901_ERC_Ceredigion_SS11_0833-NK-240922-1742.json_filtered_output.json\\train\\labels'  # Replace with your folder containing the labels
-output_folder = r'C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_20240901_ERC_Ceredigion_SS11_0833-NK-240922-1742.json_filtered_output.json\\dataset'  # Replace with your desired output folder
+image_folder = r'C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_20240826_PacificNationsCup_Group_Canda_vs_Japan_0700_filtered\\train\\images'
+label_folder = r'C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_20240826_PacificNationsCup_Group_Canda_vs_Japan_0700_filtered\\train\\labels'  # Replace with your folder containing the labels
+output_folder = r'C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_20240826_PacificNationsCup_Group_Canda_vs_Japan_0700_filtered\\val'  # Replace with your desired output folder
 
 split_dataset(image_folder, label_folder, output_folder)

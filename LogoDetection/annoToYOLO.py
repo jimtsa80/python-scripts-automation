@@ -57,7 +57,7 @@ with open(json_file_path, 'r') as f:
 
 # Iterate through images in the JSON
 for image_id, image_data in data["images"].items():
-    image_filename = f"{image_data['imageName']}.jpg"
+    image_filename = f"{image_data['imageName']}.jpg" if os.path.exists(f"{image_data['imageName']}.jpg") else f"{image_data['imageName']}.jpeg"
     image_path = os.path.join(images_folder, image_filename)
 
     # Check if the image exists in the provided images folder

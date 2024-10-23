@@ -1,6 +1,6 @@
-train: C:\\Users\\jimtsa\\Desktop\python-scripts-automation\\LogoDetection\\dataset_20240831_ERC_Ceredigion_SS5_1113_filtered\\train\\images  # Path to your training images
-val: C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_20240831_ERC_Ceredigion_SS5_1113_filtered\\val\\images      # Path to your validation images
+train: C:\\Users\\jimtsa\\Desktop\python-scripts-automation\\LogoDetection\\dataset_20240826_PacificNationsCup_Group_Canda_vs_Japan_0700_filtered\\train\\images  # Path to your training images
+val: C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_20240826_PacificNationsCup_Group_Canda_vs_Japan_0700_filtered\\val\\images      # Path to your validation images
 
-nc: 8  # Number of classes (example: 2 logos to detect)
+nc: 1  # Number of classes (example: 2 logos to detect)
 
-names: ['ERC-TVGI','Rally.TV-TVGI', 'Hyundai-TVGI', 'Skoda-TVGI', 'MRF Tyres-TVGI', 'Citroen-TVGI', 'Michelin-TVGI', 'Pirelli-TVGI']  # List of class names (logos)
+names: ['Asahi-Virtual Grass Sign',]  # List of class names (logos)
