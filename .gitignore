@@ -4,9 +4,13 @@
 *.jpg
 *.png
 *.csv
-# *.xlsx
-# *.xls
+*.xlsx
+*.xls
 creds*
+credentials.json
+token.json
+**/credentials.json
+**/token.json
 *.weights
 *.names
 *.cfg
@@ -14,8 +18,29 @@ creds*
 *.docx
 *.txt
 *.mp*
+*.wav
+*.m4a
 *secret*
 *.heic
 *.webp
 *.h5
 *.exe
+*.pt
+*.cache
+*.pyc
+__pycache__/
+
+# Large/local data folders (keep scripts, ignore datasets & outputs)
+csv2xls/csvs/
+csv2xls/json_conc/
+LogoDetection/json_for_filterInitial/
+LogoDetection/dataset_*/
+LogoDetection/datasets/
+audio/chunks/
+**/urc_output/
+template_matching/urc_output/
+template_matching/erc_output/
+template_matching/output/
+template_matching/icc_output/
+template_matching/svns_output/
+*.log

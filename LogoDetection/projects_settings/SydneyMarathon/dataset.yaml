@@ -1,0 +1,6 @@
+train: C:\\Users\\jimtsa\\Desktop\python-scripts-automation\\LogoDetection\\dataset_SydneyMarathon\\train\\images  # Path to your training images
+val: C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_SydneyMarathon\\val\\images      # Path to your validation images
+
+nc: 10  # Number of classes (example: 2 logos to detect)
+
+names: ['AWMM-TVGI_Leaderboard Sydney Combined Logo','AWMM-TVGI_Sydney_Combined_Logo','AWMM-TVGI_Race Timing Sydney Combined Logo','AWMM-TVGI_Leaders Sydney Combined Logo','Asics-TVGI_Sydney_Combined_Logo','Tata-TVGI_Performance', 'TCS-TVGI_Leaders Sydney Combined Logo','TCS-TVGI_Sydney_Combined_Logo','TCS-TVGI_Performance','TCS-TVGI_Race Timing Sydney Combined Logo']  # List of class names (logos)

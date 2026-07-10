@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "annotation-audit": {
+      "command": "uv",
+      "args": [
+      "run",
+      "--project",
+      "f:/cursor/python-scripts-automation/mcp-annotation-audit",
+      "python",
+      "-m",
+      "mcp_annotation_audit"
+      ],
+      "env": {
+        "ANNOTATION_SPREADSHEET_ID": "1MA5KmcDq4ZsxXH5dWlIz7Tp3r0A9ajcI8VyJkBFtyrU",
+        "ANNOTATION_PROJECT": "ICC_IND",
+        "GSPREAD_CREDENTIALS": "F:/cursor/python-scripts-automation/resultsChecker_new/client_secret.json"
+      }
+    }
+  }
+}

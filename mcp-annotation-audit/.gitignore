@@ -1,0 +1,10 @@
+# Service account key – do not commit
+credentials/*.json
+**/service_account*.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.uv/

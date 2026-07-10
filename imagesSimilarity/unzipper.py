@@ -4,39 +4,21 @@ import sys
 import tqdm
 import shutil
 import subprocess
+import tempfile
 
-def has_nested_folders(source_folder):
+def move_files_to_top_level(source_folder, target_folder):
     """
-    Check if the source folder contains any nested folders.
+    Moves all files from nested folders into the target folder, skipping files if they already exist.
     """
     for root, dirs, files in os.walk(source_folder):
-        if root != source_folder and dirs:
-            return True
-    return False
-
-def move_files_to_top_level(source_folder):
-    """
-    Moves all files from nested folders into the top-level folder, skipping files if they already exist.
-    """
-    for root, dirs, files in os.walk(source_folder, topdown=False):
-        # Skip if we are at the top level
-        if root == source_folder:
-            continue
-
         for file in files:
             file_path = os.path.join(root, file)
-            # Destination path in the top-level folder
-            dest_file_path = os.path.join(source_folder, file)
+            # Destination path in the target folder
+            dest_file_path = os.path.join(target_folder, file)
 
-            # Skip the file if it already exists in the top-level folder
+            # Skip the file if it already exists in the target folder
             if not os.path.exists(dest_file_path):
                 shutil.move(file_path, dest_file_path)
-
-        # Remove the now empty directories
-        for dir in dirs:
-            dir_path = os.path.join(root, dir)
-            if not os.listdir(dir_path):  # Check if the directory is empty
-                os.rmdir(dir_path)
 
 def unzip_files_in_directory(target_directory):
     # Check if the provided directory exists
@@ -54,28 +36,37 @@ def unzip_files_in_directory(target_directory):
             # Define the full path to the archive file
             archive_file_path = os.path.join(target_directory, file_name)
             folder_name = os.path.splitext(file_name)[0]
-            folder_path = os.path.join(target_directory, folder_name)
-            os.makedirs(folder_path, exist_ok=True)
+            target_folder_path = os.path.join(target_directory, folder_name)
+            os.makedirs(target_folder_path, exist_ok=True)
 
-            # Extract ZIP files
-            if file_name.endswith('.zip'):
-                with zipfile.ZipFile(archive_file_path, 'r') as zip_ref:
-                    # Use tqdm to create a progress bar
-                    for file in tqdm.tqdm(zip_ref.namelist(), desc=f'Extracting {file_name}', unit='file'):
-                        # Extract files into the folder
-                        zip_ref.extract(file, folder_path)
+            # Temporary directory for extraction
+            with tempfile.TemporaryDirectory() as tmpdirname:
+                try:
+                    # Extract ZIP files
+                    if file_name.endswith('.zip'):
+                        with zipfile.ZipFile(archive_file_path, 'r') as zip_ref:
+                            # Use tqdm to create a progress bar
+                            for file in tqdm.tqdm(zip_ref.namelist(), desc=f'Extracting {file_name}', unit='file'):
+                                try:
+                                    # Extract files into the temporary folder
+                                    zip_ref.extract(file, tmpdirname)
+                                except Exception as file_error:
+                                    print(f"Failed to extract {file} from {file_name}: {file_error}")
 
-            # Extract 7z files using the 7z command-line tool
-            elif file_name.endswith('.7z'):
-                print(f'Extracting {file_name} using 7z...')
-                subprocess.run(['7z', 'x', archive_file_path, f'-o{folder_path}', '-y'], check=True)
+                    # Extract 7z files using the 7z command-line tool
+                    elif file_name.endswith('.7z'):
+                        print(f'Extracting {file_name} using 7z...')
+                        subprocess.run(['7z', 'x', archive_file_path, f'-o{tmpdirname}', '-y'], check=True)
 
-            # Check for nested folders
-            if has_nested_folders(folder_path):
-                print(f'Flattening folder structure for {file_name}...')
-                move_files_to_top_level(folder_path)
+                    # Move files from temporary folder to target folder
+                    move_files_to_top_level(tmpdirname, target_folder_path)
 
-            print(f'Processed {file_name} into {folder_path}\n')
+                    print(f'Processed {file_name} into {target_folder_path}\n')
+
+                except zipfile.BadZipFile:
+                    print(f"Error: {file_name} is not a valid ZIP file and will be skipped.")
+                except Exception as e:
+                    print(f"Unexpected error while processing {file_name}: {e}")
 
     print("All files processed and flattened.")
 

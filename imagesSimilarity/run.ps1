@@ -1,9 +1,9 @@
-#powershell -ExecutionPolicy Bypass -File .\run.ps1 .\batch2\ -mode simple -h5_type baseball
-
 param (
     [string]$parent_dir = (Get-Location),
     [string]$mode = "simple", # Default mode is 'simple', can be set to 'strict'
-    [string]$h5_type = "*"  # The * part of the H5 file
+    [string]$keyword = "*",  # The * part of the H5 file
+    [string]$clusters = "5",  # Default cluster count
+    [string]$threshold = "0.99"  # Default threshold
 )
 
 # Check if the provided parent directory exists
@@ -47,24 +47,90 @@ Get-ChildItem -Path $parent_dir -Directory | ForEach-Object {
     Start-Sleep -Seconds 5
 
     # Run the checker.py script with the folder and the Excel file as arguments
-    python checker.py "$folder" "$folder_name.xlsx"
+    python checker.py "$folder" "$folder_name.xlsx" $threshold
 
     Start-Sleep -Seconds 5
 
-    # Find the folder starting with "reduced"
-    $reduced_folder = Get-ChildItem -Path $folder -Directory | Where-Object { $_.Name -like "reduced*" } | Select-Object -First 1
+    if ($clusters -ne "") {
+        # Find the folder starting with "reduced"
+        $reduced_folder = Get-ChildItem -Path $folder -Directory | Where-Object { $_.Name -like "reduced*" } | Select-Object -First 1
 
-    if ($reduced_folder) {
-        $reduced_folder_fullpath = $reduced_folder.FullName
+        if ($reduced_folder) {
+            $reduced_folder_fullpath = $reduced_folder.FullName
 
-        # Only run classifier if $h5_type is "baseball" or "cricket"
-        if ($h5_type -eq "baseball" -or $h5_type -eq "cricket") {
-            $h5_file = "C:\Users\jimtsa\Desktop\python-scripts-automation\imagesClassification\advertisement_${h5_type}_classifier.h5"
-            python "C:\Users\jimtsa\Desktop\python-scripts-automation\imagesClassification\classifier.py" $h5_file "$reduced_folder_fullpath"
+            # Run classifier only if $keyword is "baseball" or "horse_racing"
+            if ($keyword -eq "baseball" -or $keyword -eq "horse_racing") {
+                $keywords_file = "C:\Users\jimtsa\Desktop\python-scripts-automation\imagesClassification\${keyword}_keywords.txt"
+                python "C:\Users\jimtsa\Desktop\python-scripts-automation\imagesClassification\BLIPclassifier.py" "$reduced_folder_fullpath" $keywords_file 
+            }
+
+            python makeClusters.py $reduced_folder_fullpath $clusters
+
+        # Run sortImagesBySimilarity.py for all clusters in the reduced folder
+        Get-ChildItem -Path $reduced_folder_fullpath -Directory | Where-Object { $_.Name -match "cluster_*" } | ForEach-Object {
+            Write-Host "Running sortImagesBySimilarity.py on $($_.FullName)"
+            python ".\sortImagesBySimilarity.py" "$($_.FullName)"
+        }
+
+        # Second loop: Run imagesComparison.py for all folders in the reduced folder
+        $allFolders = Get-ChildItem -Path $reduced_folder_fullpath -Directory
+        $allFolders | ForEach-Object {
+            Write-Host "Running imagesComparison.py on $($_.Name)"
+            python ".\imagesComparison.py" "$($_.FullName)"
+        }
+
+        # Third loop: Run checkerPlus.py for all folders with incrementing cluster names
+        $allFolders | ForEach-Object -Begin { $index = 0 } -Process {
+            # Here, we correctly reference the .xlsx file in the root directory
+            $clusterName = Join-Path -Path (Get-Location) -ChildPath "reduced_$folder_name-cluster_$index.xlsx"
+            Write-Host "Running checkerPlus.py on $($_.Name) with output file $clusterName"
+            
+            # Ensure the .xlsx file exists before running the script
+            if (Test-Path $clusterName) {
+                python ".\checkerPlus.py" "$($_.FullName)" "$clusterName"
+            } else {
+                Write-Host "Warning: Excel file does not exist at: $clusterName"
+            }
+            
+            $index++
+        }
+
+        # Iterate through all folders in $allFolders and move any .zip files to the parent $folder
+        $allFolders | ForEach-Object {
+            $currentFolder = $_.FullName
+            Write-Host "Checking for .zip files in: $currentFolder"
+
+            Get-ChildItem -Path $currentFolder -File | Where-Object { $_.Extension -eq ".zip" } | ForEach-Object {
+                $zipFile = $_.FullName
+                $destination = Join-Path -Path $folder -ChildPath $_.Name
+                
+                Write-Host "Moving $zipFile to $destination"
+                Move-Item -Path $zipFile -Destination $destination
+            }
+        }
+
+        # Rename all .zip files in $folder starting with "reduced_reduced"
+        $counter = 1
+        Get-ChildItem -Path $folder -File | Where-Object { $_.Extension -eq ".zip" -and $_.BaseName -like "reduced_reduced*" } | ForEach-Object {
+        # Remove 'reduced_reduced_' from the file name
+            $baseNameWithoutPrefix = $_.BaseName -replace '^reduced_', ''
+            
+            # Create the new name with a 'part_' prefix
+            $newName = "part${counter}_$baseNameWithoutPrefix$($_.Extension)"
+            $newPath = Join-Path -Path $folder -ChildPath $newName
+            
+            Write-Host "Renaming $($_.Name) to $newName"
+            Rename-Item -Path $_.FullName -NewName $newPath
+            
+            $counter++
+            }
+        
+        # python counter.py $folder
+
         } else {
-            Write-Host "Skipping classifier execution for non-baseball/cricket folder: $folder_name"
+            Write-Host "No 'reduced' folder found in: $folder"
         }
     } else {
-        Write-Host "No 'reduced' folder found in: $folder_name"
+        Write-Host "Skipping cluster creation due to empty clusters parameter."
     }
 }

@@ -1,4 +1,11 @@
 import os
+import argparse
+
+# Parse optional arguments
+parser = argparse.ArgumentParser(description='Clean filenames in the csvs directory.')
+parser.add_argument('-sport', type=str, default=None, help='Sport key to control sport-specific renames (e.g., MLB)')
+args = parser.parse_args()
+is_mlb = (args.sport == 'MLB')
 
 # Define the directory containing the files
 directory = 'csvs'  # Change this to your folder path
@@ -11,12 +18,12 @@ for filename in os.listdir(directory):
     # Only process files (not directories)
     if os.path.isfile(old_file_path):
         # Replace '_-_' with '' and '_&_' with '&'
-        new_filename = filename.replace('_-_', '').replace('_&_', '').replace('.zip', '')
+        new_filename = filename.replace('_-_', '').replace('_&_', '').replace('.zip', '').replace('--', '-').replace('_-', '-').replace('.com', '_com').replace('_part','')
         if new_filename.startswith('-') or new_filename.startswith('_'):
             new_filename = new_filename[1:]
         
-        # Check if the filename starts with 'reduced_' and add 'batters_' at the beginning
-        if new_filename.startswith('reduced_'):
+        # Only for MLB: if the filename starts with 'reduced_' add 'batters_' at the beginning
+        if is_mlb and new_filename.startswith('reduced_'):
             new_filename = 'batters_' + new_filename
         
         # Define the new file path

@@ -1,0 +1,20 @@
+[project]
+name = "mcp-annotation-audit"
+version = "0.1.0"
+description = "MCP server for auditing annotation data in Google Sheets"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "gspread>=6.0.0",
+    "google-auth>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+mcp-annotation-audit = "mcp_annotation_audit.server:run"
+
+[tool.uv]
+dev-dependencies = []

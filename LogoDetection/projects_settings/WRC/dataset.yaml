@@ -1,0 +1,6 @@
+train: C:\\Users\\jimtsa\\Desktop\python-scripts-automation\\LogoDetection\\dataset_WRC\\train\\images  # Path to your training images
+val: C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_WRC\\val\\images      # Path to your validation images
+
+nc: 11  # Number of classes (example: 2 logos to detect)
+
+names: ['WRC-TVGI','Ford-TVGI','Hyundai-TVGI','Toyota-TVGI','Skoda-TVGI','PIRELLI-TVGI','Ford-TVGI Text','Toyota-TVGI Text','Hyundai-TVGI Text','WRC-TVGI_wrc.com','WRC-TVGI_#WRCLIVE']  # List of class names (logos)

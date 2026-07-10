@@ -4,6 +4,7 @@ import py7zr
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import sys
+from datetime import datetime
 
 def count_files_in_zip(zip_path):
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
@@ -28,13 +29,17 @@ def write_file_count_to_google_sheet(file_name, file_count):
 
     # Open the Google Sheet
     sheet = client.open_by_url(sheet_url).sheet1
-    
-    # Append the file count to the sheet
+
+    # Get current date
+    current_date = datetime.now().strftime("%Y-%m-%d")
+
+    # Append the data to the sheet
     rows = sheet.get_all_values()
     row_idx = len(rows) + 1
 
-    sheet.update_cell(row_idx, 1, file_name)  # File name or folder name
-    sheet.update_cell(row_idx, 2, file_count)  # File count
+    sheet.update_cell(row_idx, 1, file_name)     # Column A: File name
+    sheet.update_cell(row_idx, 2, file_count)    # Column B: File count
+    sheet.update_cell(row_idx, 3, current_date)  # Column C: Current date
 
 def process_archive_files_in_directory(directory_path):
     for file_name in os.listdir(directory_path):
@@ -62,3 +67,4 @@ if __name__ == "__main__":
     process_archive_files_in_directory(directory_path)
     
     print("File counts written to Google Sheet")
+

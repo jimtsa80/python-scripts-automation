@@ -1,40 +1,65 @@
 import pandas as pd
 import sys
+import re
+from datetime import datetime, timedelta
+
+def extract_start_time(file_path):
+    filename = file_path.split("_")[-1].replace(".xlsx", "")  # Extract filename from path
+    match = re.search(r'(\d{4,6})$', filename)  # Find last 4 to 6 digits
+    
+    if match:
+        base_time = match.group(1)
+        # If 5 or 6 digits, use only the first four digits (HHMM)
+        if len(base_time) > 4:
+            base_time = base_time[:4]  # Use only the first four digits
+        start_time = datetime.strptime(base_time, "%H%M")
+    else:
+        start_time = datetime.strptime("0000", "%H%M")
+    
+    return start_time
 
 def process_excel(file_path):
     # Load the Excel file
     print("Loading Excel file...")
     df = pd.read_excel(file_path)
-    #print("Initial data loaded:")
-    #print(df.head())
-
-    # Group by the relevant columns and aggregate Duration and Sequence Frame Number
+    
+    # Sort by 'Sequence Frame Number' before processing
+    df = df.sort_values(by='Sequence Frame Number')
+    
+    # Group by relevant columns, keeping the original values for Total Hits
     print("Grouping and aggregating data...")
     grouped = df.groupby(
-        ['Brand', 'Location', 'Time the brand is at screen', 'Screen Location', 'Screen Size %', 'Total Hits', 'Average Hits'],
+        ['Brand', 'Location', 'Time the brand is at screen','Screen Location', 'Screen Size %'],
         as_index=False
     ).agg({
-        'Duration': 'sum',  # Sum the durations
-        'Sequence Frame Number': 'min'  # Get the minimum Sequence Frame Number
+        'Duration': 'sum',                # Sum the durations
+        'Total Hits': 'first',            # Keep the initial 'Total Hits' for all rows in the group
+        'Sequence Frame Number': 'min'    # Get the minimum Sequence Frame Number for grouping
     })
 
-    #print("Aggregated data:")
-    #print(grouped.head())
+    # Extract start time from filename
+    start_time = extract_start_time(file_path)
+    
+    # Convert 'Sequence Frame Number' to timedelta (assuming 1 frame per second)
+    df['Time the brand is at screen'] = df['Sequence Frame Number'].apply(
+        lambda x: start_time + timedelta(seconds=int(x)) if pd.notnull(x) else pd.NaT
+    )
+    df['Time the brand is at screen'] = df['Time the brand is at screen'].dt.strftime('%H:%M:%S')
 
-    # Merge with the original dataframe to retain other columns based on the minimum Sequence Frame Number
-    result_df = pd.merge(
-        grouped,
-        df[['Brand', 'Location', 'Time the brand is at screen', 'Screen Location', 'Screen Size %', 'Total Hits', 'Average Hits', 'Sequence Frame Number']],
-        on=['Brand', 'Location', 'Time the brand is at screen', 'Screen Location', 'Screen Size %', 'Total Hits', 'Average Hits', 'Sequence Frame Number'],
-        how='left'
-    ).drop_duplicates()
 
-    #print("Merged data:")
-    #print(result_df.head())
+    grouped['Total Hits'] = grouped.apply(lambda row: max(row['Total Hits'], row['Duration']), axis=1)
 
-    # Sort by 'Sequence Frame Number'
+    # Calculate 'Average Hits' as 'Total Hits' / 'Duration' per row
+    grouped['Average Hits'] = grouped['Total Hits'] / grouped['Duration']
+    grouped['Average Hits'] = grouped['Average Hits'].round(2)  # Round to 2 decimal places
+
+    # Format 'Screen Size %' and 'Total Hits'
+    grouped['Screen Size %'] = grouped['Screen Size %'].round(2)
+    #grouped['Total Hits'] = grouped['Total Hits'].round(0)
+
+    # Sort alphabetically by 'Sequence Frame Number'
     print("Sorting data by 'Sequence Frame Number'...")
-    result_df = result_df.sort_values(by='Sequence Frame Number')
+    result_df = grouped.sort_values(by='Sequence Frame Number')
 
     # Ensure 'Duration' is in column D
     columns = result_df.columns.tolist()
@@ -42,8 +67,10 @@ def process_excel(file_path):
     columns.insert(3, columns.pop(duration_index))
     result_df = result_df[columns]
 
-    #print("Final data to be saved:")
-    #print(result_df.head())
+    # Move 'Sequence Frame Number' to the last column
+    columns.remove('Sequence Frame Number')
+    columns.append('Sequence Frame Number')
+    result_df = result_df[columns]
 
     # Save the result back to the same Excel file
     print("Saving the result back to the Excel file...")

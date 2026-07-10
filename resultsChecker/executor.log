@@ -1,0 +1,3002 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250108153630
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File executor.ps1 -sourceFolder temp -targetFolder BI2025
+Process ID: 18712
+PSVersion: 5.1.19041.5247
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5247
+BuildVersion: 10.0.19041.5247
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20240104_BI_Day07_Go_1155_20250104_1155.xlsx to BI2025
+Running Python script on final_20240104_BI_Day07_Go_1155_20250104_1155.xlsx...
+Accumulative Avg updated with sorted values.
+Copied final_20241229_BI_Day01_Go_1500_20241229_1500.xlsx to BI2025
+Running Python script on final_20241229_BI_Day01_Go_1500_20241229_1500.xlsx...
+
+Copied final_20241230_BI_Day01_Go_1800_20241229_1800.xlsx to BI2025
+Running Python script on final_20241230_BI_Day01_Go_1800_20241229_1800.xlsx...
+
+Copied final_20241230_BI_Day02_Go_1155_20241230_1155.xlsx to BI2025
+Running Python script on final_20241230_BI_Day02_Go_1155_20241230_1155.xlsx...
+
+Copied final_20241231_BI_Day02_Go_1800_20241230_1800.xlsx to BI2025
+Running Python script on final_20241231_BI_Day02_Go_1800_20241230_1800.xlsx...
+
+Copied final_20241231_BI_Day03_Go_1155_20241231_1155.xlsx to BI2025
+Running Python script on final_20241231_BI_Day03_Go_1155_20241231_1155.xlsx...
+
+Copied final_20241231_BI_Day03_Go_1700_20241231_1700.xlsx to BI2025
+Running Python script on final_20241231_BI_Day03_Go_1700_20241231_1700.xlsx...
+
+Copied final_20250101_BI_Day04_Go_1155_20250101_1155.xlsx to BI2025
+Running Python script on final_20250101_BI_Day04_Go_1155_20250101_1155.xlsx...
+
+Copied final_20250102_BI_Day04_Go_1810_20250101_1810.xlsx to BI2025
+Running Python script on final_20250102_BI_Day04_Go_1810_20250101_1810.xlsx...
+
+Copied final_20250102_BI_Day04_Go_2015_20250101_2015.xlsx to BI2025
+Running Python script on final_20250102_BI_Day04_Go_2015_20250101_2015.xlsx...
+
+Copied final_20250103_BI_Day05_Go_1155_20250102_1155.xlsx to BI2025
+Running Python script on final_20250103_BI_Day05_Go_1155_20250102_1155.xlsx...
+
+Copied final_20250103_BI_Day05_Go_1700_20250102_1700.xlsx to BI2025
+Running Python script on final_20250103_BI_Day05_Go_1700_20250102_1700.xlsx...
+
+Copied final_20250103_BI_Day06_Go_1125_20250103_1125.xlsx to BI2025
+Running Python script on final_20250103_BI_Day06_Go_1125_20250103_1125.xlsx...
+
+Copied final_20250104_BI_Day06_Go_1700_20250103_1700.xlsx to BI2025
+Running Python script on final_20250104_BI_Day06_Go_1700_20250103_1700.xlsx...
+
+Copied final_20250105_BI_Day07_Go_1925_20250104_1925.xlsx to BI2025
+Running Python script on final_20250105_BI_Day07_Go_1925_20250104_1925.xlsx...
+
+Copied final_20250106_BI_Day08_Go_1525_20250105_1525.xlsx to BI2025
+Running Python script on final_20250106_BI_Day08_Go_1525_20250105_1525.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250108173147
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250130214111
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WRC
+Process ID: 2568
+PSVersion: 5.1.19041.5369
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5369
+BuildVersion: 10.0.19041.5369
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250124_WRC_MonteCarlo_SS4SS5SS6_0830.xlsx to WRC
+Running Python script on final_20250124_WRC_MonteCarlo_SS4SS5SS6_0830.xlsx...
+
+Copied final_20250126_WRC_MonteCarlo_SS16_0530.xlsx to WRC
+Running Python script on final_20250126_WRC_MonteCarlo_SS16_0530.xlsx...
+
+Copied final_20250126_WRC_MonteCarlo_SS17_0730.xlsx to WRC
+Running Python script on final_20250126_WRC_MonteCarlo_SS17_0730.xlsx...
+
+Copied final_20250127_20250125_WRC_MonteCarlo_SS14SS15_1500.xlsx to WRC
+Running Python script on final_20250127_20250125_WRC_MonteCarlo_SS14SS15_1500.xlsx...
+
+Copied final_20250127_20250126_WRC_MonteCarlo_SS18_1100.xlsx to WRC
+Running Python script on final_20250127_20250126_WRC_MonteCarlo_SS18_1100.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250130220503
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250130235520
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WRC
+Process ID: 3628
+PSVersion: 5.1.19041.5369
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5369
+BuildVersion: 10.0.19041.5369
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250124_WRC_MonteCarlo_SS4SS5SS6_0830.xlsx to WRC
+Running Python script on final_20250124_WRC_MonteCarlo_SS4SS5SS6_0830.xlsx...
+
+Copied final_20250126_WRC_MonteCarlo_SS16_0530.xlsx to WRC
+Running Python script on final_20250126_WRC_MonteCarlo_SS16_0530.xlsx...
+
+Copied final_20250126_WRC_MonteCarlo_SS17_0730.xlsx to WRC
+Running Python script on final_20250126_WRC_MonteCarlo_SS17_0730.xlsx...
+
+Copied final_20250127_20250125_WRC_MonteCarlo_SS14SS15_1500.xlsx to WRC
+Running Python script on final_20250127_20250125_WRC_MonteCarlo_SS14SS15_1500.xlsx...
+
+Copied final_20250127_20250126_WRC_MonteCarlo_SS18_1100.xlsx to WRC
+Running Python script on final_20250127_20250126_WRC_MonteCarlo_SS18_1100.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250131002115
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250214235251
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File executor.ps1 -sourceFolder temp -targetFolder ICCU19W
+Process ID: 21116
+PSVersion: 5.1.19041.5369
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5369
+BuildVersion: 10.0.19041.5369
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250121_MatchID=12145_WC_Group_IND_v_MAL.xlsx to ICCU19W
+Running Python script on final_20250121_MatchID=12145_WC_Group_IND_v_MAL.xlsx...
+
+Copied final_20250122_MatchID=12147_WC_Group_ENG_v_USA.xlsx to ICCU19W
+Running Python script on final_20250122_MatchID=12147_WC_Group_ENG_v_USA.xlsx...
+
+Copied final_20250122_MatchID=12148_WC_Group_NZ_v_SAM.xlsx to ICCU19W
+Running Python script on final_20250122_MatchID=12148_WC_Group_NZ_v_SAM.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250214235716
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220125649
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WRC
+Process ID: 3752
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250213_WRC_Sweden_OpeningCeremony_1630.xlsx to WRC
+Running Python script on final_20250213_WRC_Sweden_OpeningCeremony_1630.xlsx...
+New combination found for Brand: PIRELLI, Location: Interview Backdrops (non pitch) Mixed Zone.
+New combination found for Brand: PIRELLI, Location: Team Sportswear (Non Kit) Cap.
+New combination found for Brand: WOLF, Location: Car Front Windscreen.
+New combination found for Brand: WOLF, Location: Team Sportswear (Non Kit).
+New combination found for Brand: WRC, Location: Team Sportswear (Non Kit) Cap.
+
+Significant differences (over 25%):
+Brand: WRC, Location: Other Stadium Signage Presentation Stage - Old Avg: 2.642, New Avg: 5.286, Diff: 100.08%
+Brand: WRC, Location: Interview Backdrops (non pitch) Mixed Zone - Old Avg: 3.874, New Avg: 5.902, Diff: 52.35%
+Accumulative Avg updated with sorted values.
+Copied final_20250213_WRC_Sweden_Shakedown_0800.xlsx to WRC
+Running Python script on final_20250213_WRC_Sweden_Shakedown_0800.xlsx...
+
+Copied final_20250213_WRC_Sweden_SS1_1800.xlsx to WRC
+Running Python script on final_20250213_WRC_Sweden_SS1_1800.xlsx...
+
+Copied final_20250214_WRC_Sweden_SS2SS3SS4_0815.xlsx to WRC
+Running Python script on final_20250214_WRC_Sweden_SS2SS3SS4_0815.xlsx...
+
+Copied final_20250214_WRC_Sweden_SS5SS6SS7_1315.xlsx to WRC
+Running Python script on final_20250214_WRC_Sweden_SS5SS6SS7_1315.xlsx...
+
+Copied final_20250214_WRC_Sweden_SS8_1800.xlsx to WRC
+Running Python script on final_20250214_WRC_Sweden_SS8_1800.xlsx...
+
+Copied final_20250215_WRC_Sweden_SS10SS11_0900.xlsx to WRC
+Running Python script on final_20250215_WRC_Sweden_SS10SS11_0900.xlsx...
+
+Copied final_20250215_WRC_Sweden_SS12_1300.xlsx to WRC
+Running Python script on final_20250215_WRC_Sweden_SS12_1300.xlsx...
+
+Copied final_20250215_WRC_Sweden_SS15_1700.xlsx to WRC
+Running Python script on final_20250215_WRC_Sweden_SS15_1700.xlsx...
+
+Copied final_20250215_WRC_Sweden_SS9_0800.xlsx to WRC
+Running Python script on final_20250215_WRC_Sweden_SS9_0800.xlsx...
+
+Copied final_20250217_20250215_WRC_Sweden_SS13SS14_1400.xlsx to WRC
+Running Python script on final_20250217_20250215_WRC_Sweden_SS13SS14_1400.xlsx...
+
+Copied final_20250217_20250216_WRC_Sweden_SS16_0615.xlsx to WRC
+Running Python script on final_20250217_20250216_WRC_Sweden_SS16_0615.xlsx...
+
+Copied final_20250217_20250216_WRC_Sweden_SS17_0845.xlsx to WRC
+Running Python script on final_20250217_20250216_WRC_Sweden_SS17_0845.xlsx...
+
+Copied final_20250217_20250216_WRC_Sweden_SS18_1100.xlsx to WRC
+Running Python script on final_20250217_20250216_WRC_Sweden_SS18_1100.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250220145445
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220193502
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 18396
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx to WorldRugby
+Running Python script on final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx...
+
+Copied final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx to WorldRugby
+Running Python script on final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20250220193543
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220193624
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 14864
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx to WorldRugby
+Running Python script on final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx...
+Opened sheet: WorldRugby
+Processing files in folder: WorldRugby
+Reading file: final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx
+Reading file: final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx
+Traceback (most recent call last):
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 210, in <module>
+    process_xlsx_files(args.folder, args.sheet_name, args.comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 186, in process_xlsx_files
+    int(total_frames),
+    ^^^^^^^^^^^^^^^^^
+ValueError: cannot convert float NaN to integer
+Copied final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx to WorldRugby
+Running Python script on final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx...
+
+Copied final_20241208_RegularSeason_MatchID_33_CapeTown_Day2.xlsx to WorldRugby
+Running Python script on final_20241208_RegularSeason_MatchID_33_CapeTown_Day2.xlsx...
+
+Copied final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx to WorldRugby
+Running Python script on final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20250220193657
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220193747
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 16480
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx to WorldRugby
+Running Python script on final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx...
+Opened sheet: WorldRugby
+Processing files in folder: WorldRugby
+Reading file: final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx
+Reading file: final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx
+Traceback (most recent call last):
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 210, in <module>
+    process_xlsx_files(args.folder, args.sheet_name, args.comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 186, in process_xlsx_files
+    int(total_frames),
+    ^^^^^^^^^^^^^^^^^
+ValueError: cannot convert float NaN to integer
+Copied final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx to WorldRugby
+Running Python script on final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20250220193801
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220193838
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 15172
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx to WorldRugby
+Running Python script on final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx...
+    avg_df = avg_df.sort_values(by='Accumulative Avg').reset_index(drop=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\frame.py", line 6901, in sort_values
+    k = self._get_label_or_level_values(by, axis=axis)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\generic.py", line 1850, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'Accumulative Avg'
+Copied final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx to WorldRugby
+Running Python script on final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20250220193849
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220194318
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 11976
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx to WorldRugby
+Running Python script on final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx...
+usage: importerResults.py [-h] folder sheet_name
+importerResults.py: error: unrecognized arguments: new
+Copied final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx to WorldRugby
+Running Python script on final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx...
+usage: importerResults.py [-h] folder sheet_name
+importerResults.py: error: unrecognized arguments: new
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+usage: importerResults.py [-h] folder sheet_name
+importerResults.py: error: unrecognized arguments: new
+**********************
+Windows PowerShell transcript end
+End time: 20250220194321
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220194350
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 14500
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx to WorldRugby
+Running Python script on final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx...
+
+Copied final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx to WorldRugby
+Running Python script on final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx...
+
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20250220194406
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220194442
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 18088
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx to WorldRugby
+Running Python script on final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx...
+    avg_df = avg_df.sort_values(by='Accumulative Avg').reset_index(drop=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\frame.py", line 6901, in sort_values
+    k = self._get_label_or_level_values(by, axis=axis)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\generic.py", line 1850, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'Accumulative Avg'
+Copied final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx to WorldRugby
+Running Python script on final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20250220194457
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220194702
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 9360
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx to WorldRugby
+Running Python script on final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx...
+C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py:97: FutureWarning: The default value of numeric_only in DataFrameGroupBy.mean is deprecated
+. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
+  avg_df = main_tab_df.groupby(['Brand', 'Location'], as_index=False)['Avg Total / Duration'].mean()
+Traceback (most recent call last):
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 186, in <module>
+    process_xlsx_files(args.folder, args.sheet_name, args.comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 177, in process_xlsx_files
+    update_total_avg(main_tab_df, total_sheet, comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 102, in update_total_avg
+    raise KeyError("'Avg Total / Duration' column is missing from the grouped dataframe.")
+KeyError: "'Avg Total / Duration' column is missing from the grouped dataframe."
+Copied final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx to WorldRugby
+Running Python script on final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20250220194715
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220195141
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 19008
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+    avg_df = avg_df.sort_values(by='Accumulative Avg').reset_index(drop=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\frame.py", line 6901, in sort_values
+    k = self._get_label_or_level_values(by, axis=axis)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\generic.py", line 1850, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'Accumulative Avg'
+**********************
+Windows PowerShell transcript end
+End time: 20250220195150
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220195236
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 20904
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250220195252
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220203023
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 5932
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+    avg_df = avg_df.sort_values(by='Accumulative Avg').reset_index(drop=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\frame.py", line 6901, in sort_values
+    k = self._get_label_or_level_values(by, axis=axis)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\generic.py", line 1850, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'Accumulative Avg'
+**********************
+Windows PowerShell transcript end
+End time: 20250220203046
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220203627
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 19620
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+3  Asahi Kasei   Arch Top
+4  Asahi Kasei  Arch Tops
+Traceback (most recent call last):
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 201, in <module>
+    process_xlsx_files(args.folder, args.sheet_name, args.comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 192, in process_xlsx_files
+    update_total_avg(main_tab_df, total_sheet, comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 111, in update_total_avg
+    check_differences_new_version(avg_df, total_df)
+                                          ^^^^^^^^
+NameError: name 'total_df' is not defined. Did you mean: 'total_data'?
+**********************
+Windows PowerShell transcript end
+End time: 20250220203635
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220203838
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 13024
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+    brand, location, avg_duration = new_row['Brand'], new_row['Location'], new_row['Accumulative Avg']
+                                                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\series.py", line 981, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\series.py", line 1089, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Accumulative Avg'
+**********************
+Windows PowerShell transcript end
+End time: 20250220203850
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250220203932
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 20404
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+    brand, location, avg_duration = new_row['Brand'], new_row['Location'], new_row['Accumulative Avg']
+                                                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\series.py", line 981, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\series.py", line 1089, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Accumulative Avg'
+**********************
+Windows PowerShell transcript end
+End time: 20250220203943
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221001500
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 22392
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+    brand, location, avg_duration = new_row['Brand'], new_row['Location'], new_row['Accumulative Avg']
+                                                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\series.py", line 981, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\series.py", line 1089, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Accumulative Avg'
+**********************
+Windows PowerShell transcript end
+End time: 20250221001510
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221001736
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 21904
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+    brand, location, avg_duration = new_row['Brand'], new_row['Location'], new_row['Accumulative Avg']
+                                                                           ~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\series.py", line 981, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\series.py", line 1089, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Accumulative Avg'
+**********************
+Windows PowerShell transcript end
+End time: 20250221001745
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221002003
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 10640
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+Traceback (most recent call last):
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 203, in <module>
+    process_xlsx_files(args.folder, args.sheet_name, args.comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 194, in process_xlsx_files
+    update_total_avg(main_tab_df, total_sheet, comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 113, in update_total_avg
+    check_differences_new_version(avg_df, total_data)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 38, in check_differences_new_version
+    matching_row = total_df[(total_df['Brand'] == brand) & (total_df['Location'] == location)]
+                             ~~~~~~~~^^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+**********************
+Windows PowerShell transcript end
+End time: 20250221002013
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221002245
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 22048
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+Traceback (most recent call last):
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 201, in <module>
+    process_xlsx_files(args.folder, args.sheet_name, args.comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 192, in process_xlsx_files
+    update_total_avg(main_tab_df, total_sheet, comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 111, in update_total_avg
+    check_differences_new_version(avg_df, total_data)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 36, in check_differences_new_version
+    matching_row = total_df[(total_df['Brand'] == brand) & (total_df['Location'] == location)]
+                             ~~~~~~~~^^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+**********************
+Windows PowerShell transcript end
+End time: 20250221002252
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221002448
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 1928
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250221002457
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221002702
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 21264
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250221002711
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221002801
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 16356
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 114, in update_total_avg
+    check_differences_new_version(avg_df, total_data)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 38, in check_differences_new_version
+    matching_row = total_df[(total_df['Brand'] == brand) & (total_df['Location'] == location)]
+                             ~~~~~~~~^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\frame.py", line 3804, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Brand'
+**********************
+Windows PowerShell transcript end
+End time: 20250221002811
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221003219
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 1888
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 119, in update_total_avg
+    check_differences_new_version(avg_df, total_data)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 43, in check_differences_new_version
+    matching_row = total_df[(total_df['Brand'] == brand) & (total_df['Location'] == location)]
+                             ~~~~~~~~^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\frame.py", line 3804, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Brand'
+**********************
+Windows PowerShell transcript end
+End time: 20250221003227
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221003355
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 5524
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250221003541
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221003549
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 20696
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx to WorldRugby
+Running Python script on final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx...
+
+Copied final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx to WorldRugby
+Running Python script on final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250221003959
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221104626
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 17568
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx to WorldRugby
+Running Python script on final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx...
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20250221104756
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221104839
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 7984
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx to WorldRugby
+Running Python script on final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx...
+New combination found for Brand: Rugbypass TV, Location: LED - Download the App.
+New combination found for Brand: Rugbypass TV, Location: LED - The New Home of Rugby Video.
+New combination found for Brand: Rugbypass TV, Location: Media Backdrop.
+New combination found for Brand: Samurai, Location: Perimeter Board.
+New combination found for Brand: Saudi Tourism, Location: Perimeter Board.
+New combination found for Brand: Spinneys, Location: Perimeter Board.
+New combination found for Brand: The Sevens Stadium, Location: Corner Flag & Post.
+New combination found for Brand: The Sevens Stadium, Location: Media Backdrop.
+New combination found for Brand: The Sevens Stadium, Location: Players Entrance.
+No significant differences found.
+Accumulative Avg updated with sorted values.
+Copied final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx to WorldRugby
+Running Python script on final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx...
+
+Copied final_20241208_RegularSeason_MatchID_33_CapeTown_Day2.xlsx to WorldRugby
+Running Python script on final_20241208_RegularSeason_MatchID_33_CapeTown_Day2.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250221105142
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221110041
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 21740
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx to WorldRugby
+Running Python script on final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx...
+Setting up Google Sheets...
+Opened sheet: WorldRugby
+Processing files in folder: WorldRugby
+Reading file: final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx
+Traceback (most recent call last):
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 210, in <module>
+    process_xlsx_files(args.folder, args.sheet_name, args.comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 186, in process_xlsx_files
+    int(total_frames),
+    ^^^^^^^^^^^^^^^^^
+ValueError: cannot convert float NaN to integer
+Copied final_20241208_RegularSeason_MatchID_33_CapeTown_Day2.xlsx to WorldRugby
+Running Python script on final_20241208_RegularSeason_MatchID_33_CapeTown_Day2.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250221110146
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221110437
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 5680
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx to WorldRugby
+Running Python script on final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx...
+Brand: HSBC, Location: Perimeter Board - Old Avg: 9.288, New Avg: 16.157, Diff: 73.96%
+Brand: HSBC SVNS, Location: Perimeter Board - @SVNSSERIES - Old Avg: 10.674, New Avg: 16.850, Diff: 57.86%
+Traceback (most recent call last):
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 213, in <module>
+    process_xlsx_files(args.folder, args.sheet_name, args.comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 204, in process_xlsx_files
+    update_total_avg(main_tab_df, total_sheet, comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 139, in update_total_avg
+    time.sleep(1)  # Adding delay after each append_row call
+    ^^^^^^^^^^^^^
+KeyboardInterrupt
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+>> TerminatingError(): "The pipeline has been stopped."
+**********************
+Windows PowerShell transcript end
+End time: 20250221110744
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221110942
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 22224
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx to WorldRugby
+Running Python script on final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx...
+Setting up Google Sheets...
+Opened sheet: WorldRugby
+Processing files in folder: WorldRugby
+Reading file: final_20241201_RegularSeason_MatchID_33_Dubai_Day2.xlsx
+Results appended to the main tab.
+Total_ tab is empty, skipping comparison.
+Accumulative Avg updated with sorted values.
+Copied final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx to WorldRugby
+Running Python script on final_20241207_RegularSeason_MatchID_33_CapeTown_Day1.xlsx...
+Brand: HSBC SVNS, Location: LED - Download the HSBC SVNS App - Old Avg: 4.517, New Avg: 5.835, Diff: 29.18%
+Accumulative Avg updated with sorted values.
+Copied final_20241208_RegularSeason_MatchID_33_CapeTown_Day2.xlsx to WorldRugby
+Running Python script on final_20241208_RegularSeason_MatchID_33_CapeTown_Day2.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250221111955
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250221125920
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 15792
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx to WorldRugby
+Running Python script on final_20250124_RegularSeason_MatchID=34_Perth_Day1.xlsx...
+
+Copied final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx to WorldRugby
+Running Python script on final_20250125_RegularSeason_MatchID=34_Perth_Day2.xlsx...
+
+Copied final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx to WorldRugby
+Running Python script on final_20250126_RegularSeason_MatchID=34_Perth_Day3.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250221131513
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250224142228
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZCricket
+Process ID: 9944
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+**********************
+Windows PowerShell transcript end
+End time: 20250224142228
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250224142259
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZCricket
+Process ID: 16452
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_Game13_AucklandAcesvNorthernBrave_SeddonPark_1625.xlsx to NZCricket
+Running Python script on final_Game13_AucklandAcesvNorthernBrave_SeddonPark_1625.xlsx...
+Setting up Google Sheets...
+Opened sheet: NZCricket
+Processing files in folder: NZCricket
+Reading file: final_Game13_AucklandAcesvNorthernBrave_SeddonPark_1625.xlsx
+Results appended to the main tab.
+Total_ tab is empty, skipping comparison.
+Accumulative Avg updated with sorted values.
+Copied final_Game23_AucklandAcesvOtagoVolts_KennardsHireCommunityOval_1625.xlsx to NZCricket
+Running Python script on final_Game23_AucklandAcesvOtagoVolts_KennardsHireCommunityOval_1625.xlsx...
+
+Copied final_Game26_CanterburyKingsvCentralStags_HagleyOval_1625.xlsx to NZCricket
+Running Python script on final_Game26_CanterburyKingsvCentralStags_HagleyOval_1625.xlsx...
+
+Copied final_Game27_AucklandAcesvWellingtonFirebirds_KHCOval_1240.xlsx to NZCricket
+Running Python script on final_Game27_AucklandAcesvWellingtonFirebirds_KHCOval_1240.xlsx...
+
+Copied final_Game6_AucklandAcesvCanterburyKings_KennardsHireOval_1625.xlsx to NZCricket
+Running Python script on final_Game6_AucklandAcesvCanterburyKings_KennardsHireOval_1625.xlsx...
+
+Copied final_Game9_CanterburyKingsvOtagoVolts_HagleyOval_1410.xlsx to NZCricket
+Running Python script on final_Game9_CanterburyKingsvOtagoVolts_HagleyOval_1410.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250224143817
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250224192248
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZCricket
+Process ID: 3728
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied Game11_CanterburyKingsvAucklandAces_HagleyOval_1755.xlsx to NZCricket
+Running Python script on Game11_CanterburyKingsvAucklandAces_HagleyOval_1755.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250224192531
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250225002054
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZCricket
+Process ID: 18216
+PSVersion: 5.1.19041.5486
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5486
+BuildVersion: 10.0.19041.5486
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_Game15_AucklandAcesvCentralStags_McLeanPark_1650.xlsx to NZCricket
+Running Python script on final_Game15_AucklandAcesvCentralStags_McLeanPark_1650.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250225002408
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250327105238
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WRC
+Process ID: 19676
+PSVersion: 5.1.19041.5607
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5607
+BuildVersion: 10.0.19041.5607
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250319_WRC_Kenya_Shakedown_0700.xlsx to WRC
+Running Python script on final_20250319_WRC_Kenya_Shakedown_0700.xlsx...
+
+Copied final_20250320_WRC_Kenya_OpeningCeremony_0745.xlsx to WRC
+Running Python script on final_20250320_WRC_Kenya_OpeningCeremony_0745.xlsx...
+
+Copied final_20250320__WRC_Kenya_SS1_1000.xlsx to WRC
+Running Python script on final_20250320__WRC_Kenya_SS1_1000.xlsx...
+
+Copied final_20250320__WRC_Kenya_SS2_1330.xlsx to WRC
+Running Python script on final_20250320__WRC_Kenya_SS2_1330.xlsx...
+
+Copied final_20250321_WRC_Kenya_SS3_0415_Part2.xlsx to WRC
+Running Python script on final_20250321_WRC_Kenya_SS3_0415_Part2.xlsx...
+
+Copied final_20250321_WRC_Kenya_SS4_0545_Part2.xlsx to WRC
+Running Python script on final_20250321_WRC_Kenya_SS4_0545_Part2.xlsx...
+
+Copied final_20250321_WRC_Kenya_SS5SS6_0700_Part2.xlsx to WRC
+Running Python script on final_20250321_WRC_Kenya_SS5SS6_0700_Part2.xlsx...
+
+Copied final_20250321__WRC_Kenya_SS3_0415.xlsx to WRC
+Running Python script on final_20250321__WRC_Kenya_SS3_0415.xlsx...
+
+Copied final_20250321__WRC_Kenya_SS4_0545.xlsx to WRC
+Running Python script on final_20250321__WRC_Kenya_SS4_0545.xlsx...
+
+Copied final_20250321__WRC_Kenya_SS5SS6_0700.xlsx to WRC
+Running Python script on final_20250321__WRC_Kenya_SS5SS6_0700.xlsx...
+
+Copied final_20250321__WRC_Kenya_SS7_1030.xlsx to WRC
+Running Python script on final_20250321__WRC_Kenya_SS7_1030.xlsx...
+
+Copied final_20250322_WRC_Kenya_ServiceE_1600.xlsx to WRC
+Running Python script on final_20250322_WRC_Kenya_ServiceE_1600.xlsx...
+
+Copied final_20250322_WRC_Kenya_SS15_1300.xlsx to WRC
+Running Python script on final_20250322_WRC_Kenya_SS15_1300.xlsx...
+
+Copied final_20250322_WRC_Kenya_SS16_1400.xlsx to WRC
+Running Python script on final_20250322_WRC_Kenya_SS16_1400.xlsx...
+
+Copied final_20250323_WRC_Kenya_ServiceF_0715.xlsx to WRC
+Running Python script on final_20250323_WRC_Kenya_ServiceF_0715.xlsx...
+
+Copied final_20250323_WRC_Kenya_SS20_0845_Part2.xlsx to WRC
+Running Python script on final_20250323_WRC_Kenya_SS20_0845_Part2.xlsx...
+
+Copied final_20250323__WRC_Kenya_SS18_0445.xlsx to WRC
+Running Python script on final_20250323__WRC_Kenya_SS18_0445.xlsx...
+
+Copied final_20250323__WRC_Kenya_SS19_0600.xlsx to WRC
+Running Python script on final_20250323__WRC_Kenya_SS19_0600.xlsx...
+
+Copied final_20250323__WRC_Kenya_SS21_1100.xlsx to WRC
+Running Python script on final_20250323__WRC_Kenya_SS21_1100.xlsx...
+
+Copied final_20250324_20250321_WRC_Kenya_SS8_1200.xlsx to WRC
+Running Python script on final_20250324_20250321_WRC_Kenya_SS8_1200.xlsx...
+
+Copied final_20250324_20250321_WRC_Kenya_SS8_1200_Part2.xlsx to WRC
+Running Python script on final_20250324_20250321_WRC_Kenya_SS8_1200_Part2.xlsx...
+
+Copied final_20250324_20250323_WRC_Kenya_SS17_0330.xlsx to WRC
+Running Python script on final_20250324_20250323_WRC_Kenya_SS17_0330.xlsx...
+
+Copied final_20250324_20250323_WRC_Kenya_SS20_0845.xlsx to WRC
+Running Python script on final_20250324_20250323_WRC_Kenya_SS20_0845.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250327140626
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250327235145
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WRC
+Process ID: 2024
+PSVersion: 5.1.19041.5607
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5607
+BuildVersion: 10.0.19041.5607
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250321_WRC_Kenya_SS9SS10_1315v2.xlsx to WRC
+Running Python script on final_20250321_WRC_Kenya_SS9SS10_1315v2.xlsx...
+
+Copied final_20250322__WRC_Kenya_SS11SS12SS13_0530.xlsx to WRC
+Running Python script on final_20250322__WRC_Kenya_SS11SS12SS13_0530.xlsx...
+
+Copied final_20250322__WRC_Kenya_SS14_1130.xlsx to WRC
+Running Python script on final_20250322__WRC_Kenya_SS14_1130.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250328001806
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250620003058
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp ICCChampionsTrophy
+Process ID: 17080
+PSVersion: 5.1.19041.5965
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5965
+BuildVersion: 10.0.19041.5965
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied 20250226_MatchID=12183_WC_Group_AFG_v_ENG_reviewed.xlsx to ICCChampionsTrophy
+Running Python script on 20250226_MatchID=12183_WC_Group_AFG_v_ENG_reviewed.xlsx...
+  File "D:\Python3\Lib\socket.py", line 705, in readinto
+  File "D:\Python3\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20250620003150
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250620003455
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp ICCChampionsTrophy
+Process ID: 5660
+PSVersion: 5.1.19041.5965
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5965
+BuildVersion: 10.0.19041.5965
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied 20250226_MatchID=12183_WC_Group_AFG_v_ENG_reviewed.xlsx to ICCChampionsTrophy
+Running Python script on 20250226_MatchID=12183_WC_Group_AFG_v_ENG_reviewed.xlsx...
+Traceback (most recent call last):
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 213, in <module>
+    process_xlsx_files(args.folder, args.sheet_name, args.comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 204, in process_xlsx_files
+    update_total_avg(main_tab_df, total_sheet, comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 139, in update_total_avg
+    time.sleep(1)  # Adding delay after each append_row call
+    ^^^^^^^^^^^^^
+KeyboardInterrupt
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20250620003629
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250620003722
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp ICCChampionsTrophy
+Process ID: 12636
+PSVersion: 5.1.19041.5965
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5965
+BuildVersion: 10.0.19041.5965
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250226_MatchID=12183_WC_Group_AFG_v_ENG.xlsx to ICCChampionsTrophy
+Running Python script on final_20250226_MatchID=12183_WC_Group_AFG_v_ENG.xlsx...
+New combination found for Brand: Jio Hotstar, Location: LED Sign.
+New combination found for Brand: Jio Hotstar, Location: LED perimeter board.
+New combination found for Brand: Jio Hotstar, Location: Led perimeter board.
+New combination found for Brand: Powerade, Location: LED Perimeter Board.
+New combination found for Brand: Sobha, Location: LED Sign.
+New combination found for Brand: Sobha, Location: LED perimeter board.
+New combination found for Brand: Sobha, Location: Led perimeter board.
+No significant differences found.
+Accumulative Avg updated with sorted values.
+Copied final_20250226_MatchID=12183_WC_Group_AFG_v_ENG_reviewed.xlsx to ICCChampionsTrophy
+Running Python script on final_20250226_MatchID=12183_WC_Group_AFG_v_ENG_reviewed.xlsx...
+
+Copied final_20250309_MatchID=12190_WC_Final_NZ_v_IND.xlsx to ICCChampionsTrophy
+Running Python script on final_20250309_MatchID=12190_WC_Final_NZ_v_IND.xlsx...
+
+Copied final_20250309_MatchID=12190_WC_Final_NZ_v_IND_reviewed.xlsx to ICCChampionsTrophy
+Running Python script on final_20250309_MatchID=12190_WC_Final_NZ_v_IND_reviewed.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250620004836
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20250620144832
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp ICCChampionsTrophy
+Process ID: 10516
+PSVersion: 5.1.19041.5965
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.5965
+BuildVersion: 10.0.19041.5965
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250222_MatchID=12179_WC_Group_AUS_v_ENG.xlsx to ICCChampionsTrophy
+Running Python script on final_20250222_MatchID=12179_WC_Group_AUS_v_ENG.xlsx...
+
+Copied final_20250222_MatchID=12179_WC_Group_AUS_v_ENG_reviewed.xlsx to ICCChampionsTrophy
+Running Python script on final_20250222_MatchID=12179_WC_Group_AUS_v_ENG_reviewed.xlsx...
+
+Copied final_20250224_MatchID=12181_WC_Group_BAN_v_NZ.xlsx to ICCChampionsTrophy
+Running Python script on final_20250224_MatchID=12181_WC_Group_BAN_v_NZ.xlsx...
+
+Copied final_20250224_MatchID=12181_WC_Group_BAN_v_NZ_reviewed.xlsx to ICCChampionsTrophy
+Running Python script on final_20250224_MatchID=12181_WC_Group_BAN_v_NZ_reviewed.xlsx...
+
+Copied final_20250226_MatchID=12183_WC_Group_AFG_v_ENG.xlsx to ICCChampionsTrophy
+Running Python script on final_20250226_MatchID=12183_WC_Group_AFG_v_ENG.xlsx...
+
+Copied final_20250226_MatchID=12183_WC_Group_AFG_v_ENG_reviewed.xlsx to ICCChampionsTrophy
+Running Python script on final_20250226_MatchID=12183_WC_Group_AFG_v_ENG_reviewed.xlsx...
+
+Copied final_20250302_MatchID=12187_WC_Group_NZ_v_IND.xlsx to ICCChampionsTrophy
+Running Python script on final_20250302_MatchID=12187_WC_Group_NZ_v_IND.xlsx...
+
+Copied final_20250302_MatchID=12187_WC_Group_NZ_v_IND_reviewed.xlsx to ICCChampionsTrophy
+Running Python script on final_20250302_MatchID=12187_WC_Group_NZ_v_IND_reviewed.xlsx...
+
+Copied final_20250309_MatchID=12190_WC_Final_NZ_v_IND.xlsx to ICCChampionsTrophy
+Running Python script on final_20250309_MatchID=12190_WC_Final_NZ_v_IND.xlsx...
+
+Copied final_20250309_MatchID=12190_WC_Final_NZ_v_IND_reviewed.xlsx to ICCChampionsTrophy
+Running Python script on final_20250309_MatchID=12190_WC_Final_NZ_v_IND_reviewed.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20250620152353
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20251003113250
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp WorldRugby
+Process ID: 16020
+PSVersion: 5.1.19041.6328
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6328
+BuildVersion: 10.0.19041.6328
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_Women's_Rugby_World_Cup_2025,_Bronze_Final,_New_Zealand_v_France.xlsx to WorldRugby
+Running Python script on final_Women's_Rugby_World_Cup_2025,_Bronze_Final,_New_Zealand_v_France.xlsx...
+    process_xlsx_files(args.folder, args.sheet_name, args.comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 204, in process_xlsx_files
+    update_total_avg(main_tab_df, total_sheet, comparison_type)
+  File "C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\importerResults.py", line 139, in update_total_avg
+    time.sleep(1)  # Adding delay after each append_row call
+    ^^^^^^^^^^^^^
+KeyboardInterrupt
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20251003113430
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20251007003647
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NB
+Process ID: 15128
+PSVersion: 5.1.19041.6328
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6328
+BuildVersion: 10.0.19041.6328
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250827_UO_Gauff_vs_Tomljanovic_Stan_0906.csv.xlsx to NB
+Running Python script on final_20250827_UO_Gauff_vs_Tomljanovic_Stan_0906.csv.xlsx...
+
+Copied final_20250827_UO_Paul_vs_Moller_Stan_1045.csv.xlsx to NB
+Running Python script on final_20250827_UO_Paul_vs_Moller_Stan_1045.csv.xlsx...
+
+Copied final_20250829_UO_Gauff_vs_Vekic_Stan_0906.csv.xlsx to NB
+Running Python script on final_20250829_UO_Gauff_vs_Vekic_Stan_0906.csv.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20251007003943
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260121001612
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 AO2026 AO2026
+Process ID: 28644
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+**********************
+Windows PowerShell transcript end
+End time: 20260121001612
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260121001644
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1
+Process ID: 23576
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+PS>TerminatingError(Test-Path): "Cannot bind argument to parameter 'Path' because it is an empty string."
+Test-Path : Cannot bind argument to parameter 'Path' because it is an empty string.
+At C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\executor.ps1:17 char:23
++ if (!(Test-Path -Path $sourceFolder)) {
++                       ~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidData: (:) [Test-Path], ParameterBindingValidationException
+    + FullyQualifiedErrorId : ParameterArgumentValidationErrorEmptyStringNotAllowed,Microsoft.PowerShell.Commands.TestPa
+thCommand
+Test-Path : Cannot bind argument to parameter 'Path' because it is an empty string.
+At C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\executor.ps1:17 char:23
++ if (!(Test-Path -Path $sourceFolder)) {
++                       ~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidData: (:) [Test-Path], ParameterBindingValidationException
+    + FullyQualifiedErrorId : ParameterArgumentValidationErrorEmptyStringNotAllowed,Microsoft.PowerShell.Commands.TestPathCommand
+
+>> TerminatingError(Test-Path): "Cannot bind argument to parameter 'Path' because it is an empty string."
+Test-Path : Cannot bind argument to parameter 'Path' because it is an empty string.
+At C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\executor.ps1:24 char:23
++ if (!(Test-Path -Path $targetFolder)) {
++                       ~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidData: (:) [Test-Path], ParameterBindingValidationException
+    + FullyQualifiedErrorId : ParameterArgumentValidationErrorEmptyStringNotAllowed,Microsoft.PowerShell.Commands.TestPa
+thCommand
+Test-Path : Cannot bind argument to parameter 'Path' because it is an empty string.
+At C:\Users\jimtsa\Desktop\python-scripts-automation\resultsChecker\executor.ps1:24 char:23
++ if (!(Test-Path -Path $targetFolder)) {
++                       ~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidData: (:) [Test-Path], ParameterBindingValidationException
+    + FullyQualifiedErrorId : ParameterArgumentValidationErrorEmptyStringNotAllowed,Microsoft.PowerShell.Commands.TestPathCommand
+
+**********************
+Windows PowerShell transcript end
+End time: 20260121001644
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260121001659
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp AO2026
+Process ID: 11296
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20260118_AO_WF_1025.xlsx to AO2026
+Running Python script on final_20260118_AO_WF_1025.xlsx...
+
+Copied final_20260118_AO_WF_1400.xlsx to AO2026
+Running Python script on final_20260118_AO_WF_1400.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20260121001738
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260121001954
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp AO2026
+Process ID: 22008
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20260118_AO_WF_1025.xlsx to AO2026
+Running Python script on final_20260118_AO_WF_1025.xlsx...
+  File "D:\Python3\Lib\site-packages\pandas\core\internals\base.py", line 367, in grouped_reduce
+    res = func(arr)
+          ^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\groupby\groupby.py", line 1995, in array_func
+    result = self._agg_py_fallback(how, values, ndim=data.ndim, alt=alt)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python3\Lib\site-packages\pandas\core\groupby\groupby.py", line 1946, in _agg_py_fallback
+    raise type(err)(msg) from err
+TypeError: agg function failed [how->mean,dtype->object]
+Copied final_20260118_AO_WF_1400.xlsx to AO2026
+Running Python script on final_20260118_AO_WF_1400.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20260121002011
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260121002145
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp AO2026
+Process ID: 11744
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20260118_AO_WF_1025.xlsx to AO2026
+Running Python script on final_20260118_AO_WF_1025.xlsx...
+
+Copied final_20260118_AO_WF_1400.xlsx to AO2026
+Running Python script on final_20260118_AO_WF_1400.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20260121002159
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260205205843
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 NZR NZR
+Process ID: 2304
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Source folder does not exist.
+**********************
+Windows PowerShell transcript end
+End time: 20260205205843
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260205205905
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 NZR NZR
+Process ID: 20872
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+**********************
+Windows PowerShell transcript end
+End time: 20260205205905
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260205205932
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 22044
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx...
+
+Copied final_20251102_ABXV25_Barbarians_v_New_Zealand_XV_0000.xlsx to NZR
+Running Python script on final_20251102_ABXV25_Barbarians_v_New_Zealand_XV_0000.xlsx...
+
+Copied final_20251109_ABXV25_England_A_v_New_Zealand_XV_0000.xlsx to NZR
+Running Python script on final_20251109_ABXV25_England_A_v_New_Zealand_XV_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260205210329
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260205212051
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 15460
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx...
+
+Copied final_20251102_ABXV25_Barbarians_v_New_Zealand_XV_0000.xlsx to NZR
+Running Python script on final_20251102_ABXV25_Barbarians_v_New_Zealand_XV_0000.xlsx...
+
+Copied final_20251109_ABXV25_England_A_v_New_Zealand_XV_0000.xlsx to NZR
+Running Python script on final_20251109_ABXV25_England_A_v_New_Zealand_XV_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260205212114
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260205212129
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 25480
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx...
+
+Copied final_20251102_ABXV25_Barbarians_v_New_Zealand_XV_0000.xlsx to NZR
+Running Python script on final_20251102_ABXV25_Barbarians_v_New_Zealand_XV_0000.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20260205212142
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260205212437
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 7396
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx...
+
+Copied final_20251102_ABXV25_Barbarians_v_New_Zealand_XV_0000.xlsx to NZR
+Running Python script on final_20251102_ABXV25_Barbarians_v_New_Zealand_XV_0000.xlsx...
+
+Copied final_20251109_ABXV25_England_A_v_New_Zealand_XV_0000.xlsx to NZR
+Running Python script on final_20251109_ABXV25_England_A_v_New_Zealand_XV_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260205212648
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260206001708
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 17004
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260206001832
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260209004735
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 9588
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20260209004736
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260209004910
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 9220
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx...
+
+Copied final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+**********************
+Windows PowerShell transcript end
+End time: 20260209004925
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260209004952
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 25564
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx...
+
+Copied final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20260209005005
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260209005022
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 18912
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx...
+
+Copied final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx...
+
+Copied final_20251102_ABXV25_Barbarians_v_New_Zealand_XV_0000.xlsx to NZR
+Running Python script on final_20251102_ABXV25_Barbarians_v_New_Zealand_XV_0000.xlsx...
+
+Copied final_20251109_ABXV25_England_A_v_New_Zealand_XV_0000.xlsx to NZR
+Running Python script on final_20251109_ABXV25_England_A_v_New_Zealand_XV_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260209005054
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260209005253
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 27340
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx...
+
+Copied final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx...
+
+Copied final_20251102_ABXV25_Barbarians_v_New_Zealand_XV_0000.xlsx to NZR
+Running Python script on final_20251102_ABXV25_Barbarians_v_New_Zealand_XV_0000.xlsx...
+
+Copied final_20251109_ABXV25_England_A_v_New_Zealand_XV_0000.xlsx to NZR
+Running Python script on final_20251109_ABXV25_England_A_v_New_Zealand_XV_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260209010052
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260209012306
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 4752
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250705_ABINT25G1_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250705_ABINT25G1_New_Zealand_v_France_0000.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20260209012325
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260209012345
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 23496
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250705_ABINT25G1_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250705_ABINT25G1_New_Zealand_v_France_0000.xlsx...
+
+Copied final_20250712_ABINT25G2_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250712_ABINT25G2_New_Zealand_v_France_0000.xlsx...
+
+Copied final_20250719_ABINT25G3_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250719_ABINT25G3_New_Zealand_v_France_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260209013117
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260210122201
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 6668
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250322_RUSRW_Hurricanes_v_Matatu_0000.xlsx to NZR
+Running Python script on final_20250322_RUSRW_Hurricanes_v_Matatu_0000.xlsx...
+
+Copied final_20250412_RUSRW_Blues_v_Matatu_0000.xlsx to NZR
+Running Python script on final_20250412_RUSRW_Blues_v_Matatu_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260210122342
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260210125010
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 25796
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250501_U20TRC25_New_Zealand_v_Australia_0000.xlsx to NZR
+Running Python script on final_20250501_U20TRC25_New_Zealand_v_Australia_0000.xlsx...
+
+Copied final_20250506_U20TRC25_New_Zealand_v_Argentina_0000.xlsx to NZR
+Running Python script on final_20250506_U20TRC25_New_Zealand_v_Argentina_0000.xlsx...
+
+Copied final_20250511_U20TRC25_South_Africa_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20250511_U20TRC25_South_Africa_v_New_Zealand_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260210125253
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260210234327
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp ICC
+Process ID: 17964
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20260207_20260207_MatchID_12581_MenT20WC_IND_v_USA.xlsx to ICC
+Running Python script on final_20260207_20260207_MatchID_12581_MenT20WC_IND_v_USA.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260210234710
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260210235115
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp ICC
+Process ID: 11616
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20260207_20260207_MatchID_12581_MenT20WC_IND_v_USA.xlsx to ICC
+Running Python script on final_20260207_20260207_MatchID_12581_MenT20WC_IND_v_USA.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260210235420
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260211011444
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp ICC
+Process ID: 6908
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20260207_20260207_MatchID_12581_MenT20WC_IND_v_USA.xlsx to ICC
+Running Python script on final_20260207_20260207_MatchID_12581_MenT20WC_IND_v_USA.xlsx...
+
+Copied final_20260209_20260207_MatchID_12581_MenT20WC_IND_v_USA_Part2.xlsx to ICC
+Running Python script on final_20260209_20260207_MatchID_12581_MenT20WC_IND_v_USA_Part2.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260211011852
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260211194021
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 13904
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250705_ABINT25G1_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250705_ABINT25G1_New_Zealand_v_France_0000.xlsx...
+
+Copied final_20250712_ABINT25G2_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250712_ABINT25G2_New_Zealand_v_France_0000.xlsx...
+
+Copied final_20250719_ABINT25G3_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250719_ABINT25G3_New_Zealand_v_France_0000.xlsx...
+
+Copied final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx...
+
+Copied final_20250906_TRC25RD03G2_New_Zealand_v_South_Africa_0000.xlsx to NZR
+Running Python script on final_20250906_TRC25RD03G2_New_Zealand_v_South_Africa_0000.xlsx...
+
+Copied final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260211195847
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260211230434
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 27576
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250705_BFINT25_Black_Ferns_v_Black_Ferns_XV_0000.xlsx to NZR
+Running Python script on final_20250705_BFINT25_Black_Ferns_v_Black_Ferns_XV_0000.xlsx...
+
+Copied final_20250705_MAB25_Maori_All_Blacks_v_Scotland_0000.xlsx to NZR
+Running Python script on final_20250705_MAB25_Maori_All_Blacks_v_Scotland_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260211231336
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260212233530
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR20
+Process ID: 25404
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250501_U20TRC25_New_Zealand_v_Australia_0000.xlsx to NZR20
+Running Python script on final_20250501_U20TRC25_New_Zealand_v_Australia_0000.xlsx...
+
+Copied final_20250506_U20TRC25_New_Zealand_v_Argentina_0000.xlsx to NZR20
+Running Python script on final_20250506_U20TRC25_New_Zealand_v_Argentina_0000.xlsx...
+
+Copied final_20250511_U20TRC25_South_Africa_v_New_Zealand_0000.xlsx to NZR20
+Running Python script on final_20250511_U20TRC25_South_Africa_v_New_Zealand_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260212233553
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260212233625
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZRU20
+Process ID: 11068
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250501_U20TRC25_New_Zealand_v_Australia_0000.xlsx to NZRU20
+Running Python script on final_20250501_U20TRC25_New_Zealand_v_Australia_0000.xlsx...
+
+Copied final_20250506_U20TRC25_New_Zealand_v_Argentina_0000.xlsx to NZRU20
+Running Python script on final_20250506_U20TRC25_New_Zealand_v_Argentina_0000.xlsx...
+
+Copied final_20250511_U20TRC25_South_Africa_v_New_Zealand_0000.xlsx to NZRU20
+Running Python script on final_20250511_U20TRC25_South_Africa_v_New_Zealand_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260212233843
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260214001701
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZRB
+Process ID: 22180
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250830_RUNPC_CountiesvTaranaki_0000.xlsx to NZRB
+Running Python script on final_20250830_RUNPC_CountiesvTaranaki_0000.xlsx...
+
+Copied final_20251025_RUNPC_GrandFinal_CanterburyvOtago_0000.xlsx to NZRB
+Running Python script on final_20251025_RUNPC_GrandFinal_CanterburyvOtago_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260214001836
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260215152020
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 11532
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250705_ABINT25G1_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250705_ABINT25G1_New_Zealand_v_France_0000.xlsx...
+
+Copied final_20250712_ABINT25G2_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250712_ABINT25G2_New_Zealand_v_France_0000.xlsx...
+
+Copied final_20250719_ABINT25G3_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250719_ABINT25G3_New_Zealand_v_France_0000.xlsx...
+
+Copied final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx...
+
+Copied final_20250906_TRC25RD03G2_New_Zealand_v_South_Africa_0000.xlsx to NZR
+Running Python script on final_20250906_TRC25RD03G2_New_Zealand_v_South_Africa_0000.xlsx...
+
+Copied final_20250913_TRC25RD04G2_New_Zealand_v_South_Africa_0000.xlsx to NZR
+Running Python script on final_20250913_TRC25RD04G2_New_Zealand_v_South_Africa_0000.xlsx...
+
+Copied final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260215154824
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260215235108
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 9908
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250705_ABINT25G1_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250705_ABINT25G1_New_Zealand_v_France_0000.xlsx...
+
+Copied final_20250712_ABINT25G2_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250712_ABINT25G2_New_Zealand_v_France_0000.xlsx...
+
+Copied final_20250719_ABINT25G3_New_Zealand_v_France_0000.xlsx to NZR
+Running Python script on final_20250719_ABINT25G3_New_Zealand_v_France_0000.xlsx...
+
+Copied final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20250817_TRC25RD01G2_Argentina_v_New_Zealand_0000.xlsx...
+
+Copied final_20250906_TRC25RD03G2_New_Zealand_v_South_Africa_0000.xlsx to NZR
+Running Python script on final_20250906_TRC25RD03G2_New_Zealand_v_South_Africa_0000.xlsx...
+
+Copied final_20250913_TRC25RD04G2_New_Zealand_v_South_Africa_0000.xlsx to NZR
+Running Python script on final_20250913_TRC25RD04G2_New_Zealand_v_South_Africa_0000.xlsx...
+
+Copied final_20250927_TRC25RD05G1_New_Zealand_v_Australia_0000.xlsx to NZR
+Running Python script on final_20250927_TRC25RD05G1_New_Zealand_v_Australia_0000.xlsx...
+
+Copied final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20251004_TRC25RD06G1_Australia_v_New_Zealand_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260216002631
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260216003735
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZRMAB\
+Process ID: 13152
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250628_MAB25_Maori_All_Blacks_v_Japan_XV_0000.xlsx to NZRMAB\
+Running Python script on final_20250628_MAB25_Maori_All_Blacks_v_Japan_XV_0000.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20260216003736
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260216003738
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZRMAB
+Process ID: 26644
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250628_MAB25_Maori_All_Blacks_v_Japan_XV_0000.xlsx to NZRMAB
+Running Python script on final_20250628_MAB25_Maori_All_Blacks_v_Japan_XV_0000.xlsx...
+
+Copied final_20250705_MAB25_Maori_All_Blacks_v_Scotland_0000.xlsx to NZRMAB
+Running Python script on final_20250705_MAB25_Maori_All_Blacks_v_Scotland_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260216004055
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260216004651
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZRU20
+Process ID: 27840
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250629_U20C25_New_Zealand_v_Italy_0000.xlsx to NZRU20
+Running Python script on final_20250629_U20C25_New_Zealand_v_Italy_0000.xlsx...
+
+Copied final_20250704_U20C25_New_Zealand_v_Georgia_0000.xlsx to NZRU20
+Running Python script on final_20250704_U20C25_New_Zealand_v_Georgia_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260216004924
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260216201921
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZR
+Process ID: 11252
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250824_TRC25RD02G2_Argentina_v_New_Zealand_0000.xlsx to NZR
+Running Python script on final_20250824_TRC25RD02G2_Argentina_v_New_Zealand_0000.xlsx...
+
+**********************
+Windows PowerShell transcript end
+End time: 20260216202601
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20260301231301
+Username: DESKTOP-6VLO8JK\jimtsa
+RunAs User: DESKTOP-6VLO8JK\jimtsa
+Configuration Name: 
+Machine: DESKTOP-6VLO8JK (Microsoft Windows NT 10.0.19045.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\executor.ps1 temp NZC
+Process ID: 22200
+PSVersion: 5.1.19041.6456
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.19041.6456
+BuildVersion: 10.0.19041.6456
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\executor.log
+Copied final_20250824_TRC25RD02G2_Argentina_v_New_Zealand_0000.xlsx to NZC
+Running Python script on final_20250824_TRC25RD02G2_Argentina_v_New_Zealand_0000.xlsx...
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> $global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20260301231305
+**********************

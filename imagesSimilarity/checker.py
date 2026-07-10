@@ -3,17 +3,13 @@ import numpy as np
 import os
 import shutil
 import sys
-import zipfile
 
-def main(images_folder, excel_file):
+def main(images_folder, excel_file, similarity_threshold=0.99):
     # Load the data from the Excel file
     df = pd.read_excel(excel_file)
 
     # Replace NaNs or infinite values with zeros
     df['Similarity Score'] = df['Similarity Score'].replace([np.inf, -np.inf], np.nan).fillna(0)
-
-    # Similarity threshold
-    similarity_threshold = 0.98
 
     # Initialize variables to store sequences
     sequences = []
@@ -59,7 +55,6 @@ def main(images_folder, excel_file):
             shutil.move(os.path.join(images_folder, os.path.basename(image_path)), sequence_folder)
         num_images = len(sequence)
         total_moved_files += num_images
-        print(f"Moved {num_images} images to {sequence_folder}")
 
     print(f"Total number of moved files: {total_moved_files}")
     print(f"Number of sequence folders created: {len(sequences)}")
@@ -97,7 +92,7 @@ def main(images_folder, excel_file):
     sequence_df.to_excel(sequence_excel_path, index=False)
     print(f"Created Excel file with sequence information at {sequence_excel_path}")
 
-    # Zip the new_folder
+    #Zip the new_folder
     shutil.make_archive(new_folder, 'zip', new_folder)
     print(f"Zipped the new folder into {new_folder}.zip")
 
@@ -107,10 +102,16 @@ def main(images_folder, excel_file):
     print(f"New folder contains {new_folder_file_count} files.")
     print(f"Percentage of files reduced: {reduction_percentage:.2f}%")
 
+    # Delete all "Sequence_" folders
+    for folder in sequence_folders:
+        #print("Deleting all sequence folders")
+        shutil.rmtree(folder)
+
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python script.py <images_folder> <excel_file>")
+    if len(sys.argv) < 3 or len(sys.argv) > 4:
+        print("Usage: python script.py <images_folder> <excel_file> [<similarity_threshold>]")
     else:
         images_folder = sys.argv[1]
         excel_file = sys.argv[2]
-        main(images_folder, excel_file)
+        similarity_threshold = float(sys.argv[3]) if len(sys.argv) == 4 else 0.99
+        main(images_folder, excel_file, similarity_threshold)

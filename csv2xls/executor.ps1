@@ -1,0 +1,83 @@
+#powershell -ExecutionPolicy Bypass -File .\executor.ps1
+
+python addXtraLinesFromSort.py D:\downloads\toBeFinalized\20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_9\sequences_info_plus.xlsx csvs\part10_reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_9-Giannis-250518-1330.csv
+python addXtraLinesFromSort.py D:\downloads\toBeFinalized\20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_0\sequences_info_plus.xlsx csvs\part1_reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_0-MP-250517-1955.csv
+python addXtraLinesFromSort.py D:\downloads\toBeFinalized\20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_1\sequences_info_plus.xlsx csvs\part2_reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_1-SM-250520-2055.csv
+python addXtraLinesFromSort.py D:\downloads\toBeFinalized\20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_2\sequences_info_plus.xlsx csvs\part3_reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_2-MP-250517-2254.csv
+python addXtraLinesFromSort.py D:\downloads\toBeFinalized\20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_3\sequences_info_plus.xlsx csvs\part4_reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_3-SB-250519-2250.csv
+python addXtraLinesFromSort.py D:\downloads\toBeFinalized\20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_4\sequences_info_plus.xlsx csvs\part5_reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_4-SB-250520-0055.csv
+python addXtraLinesFromSort.py D:\downloads\toBeFinalized\20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_5\sequences_info_plus.xlsx csvs\part6_reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_5-BG-250519-1927 (1).csv
+python addXtraLinesFromSort.py D:\downloads\toBeFinalized\20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_5\sequences_info_plus.xlsx csvs\part6_reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_5-BG-250519-1927.csv
+python addXtraLinesFromSort.py D:\downloads\toBeFinalized\20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_6\sequences_info_plus.xlsx csvs\part7_reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_6-BG-250519-2351.csv
+python addXtraLinesFromSort.py D:\downloads\toBeFinalized\20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_7\sequences_info_plus.xlsx csvs\part8_reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_7-SM-250519-1858.csv
+python addXtraLinesFromSort.py D:\downloads\toBeFinalized\20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession\reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_8\sequences_info_plus.xlsx csvs\part9_reduced_20250225_ATP_SantiagoOpen_Day01_DaySession-cluster_8-Giannis-250515-1042.csv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

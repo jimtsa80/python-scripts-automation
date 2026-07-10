@@ -5,6 +5,7 @@ import sys
 from openpyxl import Workbook
 from tqdm import tqdm
 import re
+from multiprocessing import Pool, cpu_count
 
 def natural_sort_key(s):
     return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
@@ -69,28 +70,47 @@ def compare_images_histogram(imageA, imageB):
     overall_similarity = np.mean(similarity_scores)
     return overall_similarity
 
+def process_comparison_task(args):
+    """Worker function for multiprocessing that processes a single comparison task."""
+    target_image_path, comparison_image_path = args
+    
+    target_image = cv2.imread(target_image_path)
+    if target_image is None:
+        return None
+    
+    comparison_image = cv2.imread(comparison_image_path)
+    if comparison_image is None:
+        return None
+    
+    similarity = compare_images_histogram(target_image, comparison_image)
+    return (target_image_path, comparison_image_path, similarity)
+
 def compare_images_in_folder(folder_path):
     image_files = sorted([os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith(('.png', '.jpg', '.jpeg'))], key=natural_sort_key)
 
-    all_results = []
-    for i, target_image_path in enumerate(tqdm(image_files, desc="Processing target images")):
-        target_image = cv2.imread(target_image_path)
-        if target_image is None:
-            print(f"Warning: Unable to read image {target_image_path}. Skipping.")
-            continue
-        
+    # Collect all comparison tasks
+    comparison_tasks = []
+    for i, target_image_path in enumerate(image_files):
         indices_to_compare = list(range(max(0, i - 3), min(len(image_files), i + 4)))
         indices_to_compare.remove(i)
-
-        for idx in tqdm(indices_to_compare, desc=f"Comparing images for {os.path.basename(target_image_path)}", leave=False):
+        
+        for idx in indices_to_compare:
             comparison_image_path = image_files[idx]
-            comparison_image = cv2.imread(comparison_image_path)
-            if comparison_image is None:
-                print(f"Warning: Unable to read image {comparison_image_path}. Skipping.")
-                continue
-            
-            similarity = compare_images_histogram(target_image, comparison_image)
-            all_results.append((target_image_path, comparison_image_path, similarity))
+            comparison_tasks.append((target_image_path, comparison_image_path))
+
+    # Process comparisons in parallel using multiprocessing
+    num_workers = max(1, cpu_count() - 1)  # Use all cores except one
+    all_results = []
+    
+    with Pool(processes=num_workers) as pool:
+        results = list(tqdm(
+            pool.imap(process_comparison_task, comparison_tasks),
+            total=len(comparison_tasks),
+            desc="Comparing images"
+        ))
+    
+    # Filter out None results (failed image reads)
+    all_results = [r for r in results if r is not None]
 
     return all_results
 

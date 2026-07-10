@@ -1,6 +1,6 @@
-train: C:\\Users\\jimtsa\\Desktop\python-scripts-automation\\LogoDetection\\dataset_20240826_PacificNationsCup_Group_Canda_vs_Japan_0700_filtered\\train\\images  # Path to your training images
-val: C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_20240826_PacificNationsCup_Group_Canda_vs_Japan_0700_filtered\\val\\images      # Path to your validation images
+train: C:\\Users\\jimtsa\\Desktop\python-scripts-automation\\LogoDetection\\dataset_NZ_T20I\\train\\images  # Path to your training images
+val: C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_NZ_T20I\\val\\images      # Path to your validation images
 
-nc: 1  # Number of classes (example: 2 logos to detect)
+nc: 5  # Number of classes (example: 2 logos to detect)
 
-names: ['Asahi-Virtual Grass Sign',]  # List of class names (logos)
+names: ['KFC-TVGI_Series Logo', 'KFC-TVGI_Series Text', 'TVNZ+-TVGI Logo_LIVE & FREE', 'TVNZ+-TVGI_Logo', 'TVNZ+-TVGI_Text']

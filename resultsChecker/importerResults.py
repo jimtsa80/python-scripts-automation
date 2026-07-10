@@ -179,12 +179,15 @@ def process_xlsx_files(folder_path, sheet_name, comparison_type):
                 avg_total_duration_log = log_transform(avg_total_duration)
                 avg_total_duration_log_rounded = round(avg_total_duration_log, 3)
 
+                safe_total_frames = 0 if pd.isna(total_frames) else int(total_frames)
+                safe_total_duration = 0 if pd.isna(total_duration) else int(total_duration)
+
                 all_results.append([
                     file_without_extension,
                     brand,
                     location,
-                    int(total_frames),
-                    int(total_duration),
+                    safe_total_frames,
+                    safe_total_duration,
                     avg_total_duration_log_rounded
                 ])
 

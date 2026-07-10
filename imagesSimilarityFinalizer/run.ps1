@@ -1,6 +1,7 @@
 param (
     [string]$filePath,
-    [string]$sequencesInfoPath
+    [string]$sequencesInfoPath,
+    [switch]$social
 )
 
 #powershell -ExecutionPolicy Bypass -File
@@ -20,6 +21,11 @@ Write-Output "Everything is combined"
 
 # Run Script 3: Finalizer
 Write-Output "Running Script 3..."
-python finalizer.py $fileName
+if ($social) {
+    python aggregateXlsx.py .
+    python finalizer_social.py $fileName
+} else {
+    python finalizer.py $fileName
+}
 Write-Output "Everything is finalized"
 

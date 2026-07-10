@@ -1,0 +1,193 @@
+{
+    "images": {
+        "00370": {
+            "imageName": "00370",
+            "imageIndex": 0,
+            "width": 730,
+            "height": 410.625,
+            "annotations": [
+                {
+                    "startPoint": [
+                        341.474655,
+                        369.99016593749997
+                    ],
+                    "diagPoint": [
+                        386.38644500000004,
+                        391.3767478125
+                    ],
+                    "brand": "Darley",
+                    "tpoint": "TVGI",
+                    "hits": 1
+                }
+            ]
+        },
+        "00371": {
+            "imageName": "00371",
+            "imageIndex": 0,
+            "width": 730,
+            "height": 410.625,
+            "annotations": [
+                {
+                    "startPoint": [
+                        341.474655,
+                        369.99016593749997
+                    ],
+                    "diagPoint": [
+                        386.38644500000004,
+                        391.3767478125
+                    ],
+                    "brand": "Darley",
+                    "tpoint": "TVGI",
+                    "hits": 1
+                }
+            ]
+        },
+        "00372": {
+            "imageName": "00372",
+            "imageIndex": 0,
+            "width": 730,
+            "height": 410.625,
+            "annotations": [
+                {
+                    "startPoint": [
+                        344.32603500000005,
+                        374.98028625
+                    ],
+                    "diagPoint": [
+                        389.23782500000004,
+                        384.9609375
+                    ],
+                    "brand": "Darley",
+                    "tpoint": "TVGI",
+                    "hits": 1
+                }
+            ]
+        },
+        "00373": {
+            "imageName": "00373",
+            "imageIndex": 0,
+            "width": 730,
+            "height": 410.625,
+            "annotations": [
+                {
+                    "startPoint": [
+                        344.32603500000005,
+                        374.9804915625
+                    ],
+                    "diagPoint": [
+                        389.23782500000004,
+                        384.24788718750006
+                    ],
+                    "brand": "Darley",
+                    "tpoint": "TVGI",
+                    "hits": 1
+                }
+            ]
+        },
+        "00374": {
+            "imageName": "00374",
+            "imageIndex": 0,
+            "width": 730,
+            "height": 410.625,
+            "annotations": [
+                {
+                    "startPoint": [
+                        341.474655,
+                        372.12870093749996
+                    ],
+                    "diagPoint": [
+                        387.81286500000004,
+                        390.6639028125
+                    ],
+                    "brand": "Darley",
+                    "tpoint": "TVGI",
+                    "hits": 1
+                }
+            ]
+        },
+        "00375": {
+            "imageName": "00375",
+            "imageIndex": 0,
+            "width": 730,
+            "height": 410.625,
+            "annotations": [
+                {
+                    "startPoint": [
+                        341.474655,
+                        372.12870093749996
+                    ],
+                    "diagPoint": [
+                        387.81286500000004,
+                        390.6639028125
+                    ],
+                    "brand": "Darley",
+                    "tpoint": "TVGI",
+                    "hits": 1
+                }
+            ]
+        },
+        "00376": {
+            "imageName": "00376",
+            "imageIndex": 0,
+            "width": 730,
+            "height": 410.625,
+            "annotations": [
+                {
+                    "startPoint": [
+                        344.32603500000005,
+                        374.98028625
+                    ],
+                    "diagPoint": [
+                        389.23782500000004,
+                        384.9609375
+                    ],
+                    "brand": "Darley",
+                    "tpoint": "TVGI",
+                    "hits": 1
+                }
+            ]
+        },
+        "00377": {
+            "imageName": "00377",
+            "imageIndex": 0,
+            "width": 730,
+            "height": 410.625,
+            "annotations": [
+                {
+                    "startPoint": [
+                        344.32603500000005,
+                        374.98028625
+                    ],
+                    "diagPoint": [
+                        389.23782500000004,
+                        384.9609375
+                    ],
+                    "brand": "Darley",
+                    "tpoint": "TVGI",
+                    "hits": 1
+                }
+            ]
+        },
+        "00378": {
+            "imageName": "00378",
+            "imageIndex": 0,
+            "width": 730,
+            "height": 410.625,
+            "annotations": [
+                {
+                    "startPoint": [
+                        344.32603500000005,
+                        374.98028625
+                    ],
+                    "diagPoint": [
+                        389.23782500000004,
+                        384.9609375
+                    ],
+                    "brand": "Darley",
+                    "tpoint": "TVGI",
+                    "hits": 1
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,6 @@
+train: C:\\Users\\jimtsa\\Desktop\python-scripts-automation\\LogoDetection\\dataset_RX\\train\\images  # Path to your training images
+val: C:\\Users\\jimtsa\\Desktop\\python-scripts-automation\\LogoDetection\\dataset_RX\\val\\images      # Path to your validation images
+
+nc: 1  # Number of classes (example: 2 logos to detect)
+
+names: ['WorldRX-TVGI']  # List of class names (logos)

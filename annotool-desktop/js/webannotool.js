@@ -665,72 +665,108 @@ function gotoImg_noanno(e) {
 }
 
 function loadImg(a) {
-    if (0 < nullAnnoFlag){ 
-		highlightNull()
-		return new Noty({ type: 'error', theme: 'mint', layout: 'top',  text: 'NULL : κάποιο τετράγωνο δεν έχει πληροφορία',  timeout: 1000,  closeWith: ['click', 'button'],}).show() ,
-		imReadFlag = !1;
-		
-	}
-    ( a !== imIndex || 2 < brd.objectsList ) && prepareChangeImg();
+    if (0 < nullAnnoFlag) { 
+        highlightNull();
+        return new Noty({ 
+            type: 'error', 
+            theme: 'mint', 
+            layout: 'top',  
+            text: 'NULL : κάποιο τετράγωνο δεν έχει πληροφορία',  
+            timeout: 1000,  
+            closeWith: ['click', 'button'],
+        }).show(), imReadFlag = !1;
+    }
+
+    (a !== imIndex || 2 < brd.objectsList) && prepareChangeImg();
     prev_imIndex = imIndex;
     prev_imName = imIndices[imIndex];
     imName = imIndices[a];
- //    if (imName.match(/[a-z]/i)) {
-	// 	if (imName.match(/^\d/)) {
-	// 		confirm('Wrong image name => ' + imName + '. Please rename images.');
-	// 	}
-	// }
+    
     imIndex = a;
+    
     if (0 != imIndices.length) {
-        a = new FileReader;
-        a.onloadend = function(a) {
-            var b = new Image;
-            b.onload = function() {
-                if ( b.width == imWidth && b.height == imHeight && void 0 !== im ){
-					im.url = a.target.result;
-				}else{
-					imWidth = b.width;
-					imHeight = b.height;
-					730 < imWidth && (imAspectRatio =imWidth / imHeight, imWidth = Math.abs(730), imHeight = 1 / imAspectRatio * imWidth);
-					void 0 !== im && brd.removeObject(im);
-					im = brd.create(
-						"image", 
-						[a.target.result, [1, imHeight],[imWidth, imHeight]], 
-						{
-							layer: 0,
-							highlightFillColor: mouseoverfillcolor,
-							hightlighted: "off"
-						}
-					);
-					im.visProp.highlight = !1;
-					im.isDraggable = !1;
-					document.getElementById("box").setAttribute("style", "width:" + imWidth + "px;height:" + imHeight + "px;");
-					brd.resizeContainer(imWidth, imHeight);
-					brd.setBoundingBox([1, 1, imWidth, imHeight], !1)
-				}
+        let fileReader = new FileReader();
+        fileReader.onloadend = function(event) {
+            let img = new Image();
+            img.onload = function() {
+                let maxWidth = 730;  // Slightly smaller max width
+                let maxHeight = 700; // Slightly smaller max height
+                let aspectRatio = img.width / img.height;
+
+                // Resize images moderately
+                if (img.width > maxWidth || img.height > maxHeight) {
+                    if (img.width > img.height) {
+                        imWidth = maxWidth;
+                        imHeight = Math.round(imWidth / aspectRatio);
+                    } else {
+                        imHeight = maxHeight;
+                        imWidth = Math.round(imHeight * aspectRatio);
+                    }
+                } else {
+                    imWidth = img.width;
+                    imHeight = img.height;
+                }
+
+                // Ensure minimum size for annotation tools
+                if (imWidth < 700) imWidth = 700;
+                if (imHeight < 500) imHeight = 500;
+
+                if (typeof im !== "undefined") brd.removeObject(im);
+                
+                im = brd.create("image", 
+                    [event.target.result, [1, imHeight], [imWidth, imHeight]], 
+                    {
+                        layer: 0,
+                        highlightFillColor: mouseoverfillcolor,
+                        hightlighted: "off"
+                    }
+                );
+
+                im.visProp.highlight = !1;
+                im.isDraggable = !1;
+
+                document.getElementById("box").setAttribute("style", "width:" + imWidth + "px;height:" + imHeight + "px;");
+                brd.resizeContainer(imWidth, imHeight);
+                brd.setBoundingBox([1, 1, imWidth, imHeight], !1);
+                
                 brd.update();
                 afterChangeImg();
-				//	prostheto gia ta lock presets
-				if ( lockedpreset !== "" ){
-					if( imIndex<prev_imIndex ){
-						lockedpreset = "";
-						new Noty({ type: 'error', theme: 'mint', layout: 'topRight',  text: 'lock preset disabled',  timeout: 1000,  closeWith: ['click', 'button'],}).show();
-					}else{
-						pasteLastPreset( lockedpreset ) 
-					}
-				}
-				///////
+
+                if (lockedpreset !== "") {
+                    if (imIndex < prev_imIndex) {
+                        lockedpreset = "";
+                        new Noty({
+                            type: 'error',
+                            theme: 'mint',
+                            layout: 'topRight',
+                            text: 'lock preset disabled',
+                            timeout: 1000,
+                            closeWith: ['click', 'button'],
+                        }).show();
+                    } else {
+                        pasteLastPreset(lockedpreset);
+                    }
+                }
                 imReadFlag = !1;
             };
-            b.src = a.target.result
+            img.src = event.target.result;
         };
+
         try {
-            return a.readAsDataURL(imAll[imName]), document.getElementById("imageName").value = imName, !1
-        } catch (b) {
-            return imIndex = prev_imIndex, imName = imIndices[imIndex], document.getElementById("imageName").value = imName, alert("Could not load requested image."), !0
+            return fileReader.readAsDataURL(imAll[imName]), 
+                   document.getElementById("imageName").value = imName, 
+                   !1;
+        } catch (err) {
+            imIndex = prev_imIndex;
+            imName = imIndices[imIndex];
+            document.getElementById("imageName").value = imName;
+            alert("Could not load requested image.");
+            return !0;
         }
     }
 }
+
+
 
 function prepareChangeImg() {
 // if ( 2 < brd.objectsList.length ){ checkDoubleByPos() }

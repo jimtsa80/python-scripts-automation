@@ -14,7 +14,7 @@ def generate_powershell_command(filename):
     
     # Create the PowerShell command //D:\\downloads\\toBeFinalized\\
     #C:\\Users\\jimtsa\Desktop\\python-scripts-automation\\imagesSimilarity\\toBeFinalized\\
-    command = f'powershell -ExecutionPolicy Bypass -File .\\run.ps1 -filePath ".\\{original_filename}" -sequencesInfoPath "C:\\Users\\jimtsa\Desktop\\python-scripts-automation\\imagesSimilarity\\toBeFinalized\\{modified_filename}\\sequences_info.xlsx"'
+    command = f'powershell -ExecutionPolicy Bypass -File .\\run.ps1 -filePath ".\\{original_filename}" -sequencesInfoPath "F:\\downloads\\toBeFinalized\\{modified_filename}\\sequences_info.xlsx"'
     return command
 
 # Get the current directory (where the script is located)

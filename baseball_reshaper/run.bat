@@ -32,6 +32,10 @@ for %%f in ("%FOLDER%\*.xlsx") do (
 
     echo Continue the procedure for file %%f
 
+    REM Run Script 0b: Move Home Plate rows from NoHomeplate to Homeplate, sort Homeplate by last column
+    echo Running Script 0b...
+    python homeplate_from_nohomeplate.py "%%f"
+
     REM Run Script 1: Copy Batters to Homeplate tab
     echo Running Script 1...
     python batters_mover.py "%%f"
