@@ -97,6 +97,31 @@ def box(brand, tpoint, start, diag, hits=1, confidence=None):
     return ann
 
 
+def test_suppress_contained():
+    large = lt.detection_annotation("Nike", "Board", (0, 0), (100, 100), 0.9)
+    inside = lt.detection_annotation("Adidas", "LED", (10, 10), (50, 50), 0.4)
+    kept = lt.suppress_contained([inside, large], 0.6)
+    check(len(kept) == 1 and kept[0]["brand"] == "Nike", [(ann["brand"], ann["confidence"]) for ann in kept])
+    small_sure = lt.detection_annotation("Adidas", "LED", (10, 10), (50, 50), 0.95)
+    large_weak = lt.detection_annotation("Nike", "Board", (0, 0), (100, 100), 0.4)
+    kept = lt.suppress_contained([large_weak, small_sure], 0.6)
+    check(len(kept) == 1 and kept[0]["brand"] == "Adidas", [(ann["brand"], ann["confidence"]) for ann in kept])
+    left = lt.detection_annotation("Nike", "Board", (0, 0), (10, 10), 0.8)
+    right = lt.detection_annotation("Puma", "Sleeve", (6, 0), (16, 10), 0.7)
+    kept = lt.suppress_contained([left, right], 0.6)
+    check(len(kept) == 2, "40 percent of the smaller box stays")
+    overlap = lt.detection_annotation("Puma", "Sleeve", (4, 0), (14, 10), 0.3)
+    kept = lt.suppress_contained([left, overlap], 0.6)
+    check(len(kept) == 1 and kept[0]["confidence"] == 0.8, [(ann["confidence"]) for ann in kept])
+    apart = lt.detection_annotation("Adidas", "LED", (110, 0), (120, 10), 0.2)
+    kept = lt.suppress_contained([large, inside, apart], 0.6)
+    brands = [(ann["brand"], ann["confidence"]) for ann in kept]
+    check(brands == [("Nike", 0.9), ("Adidas", 0.2)], brands)
+    check(lt.suppress_contained([inside, large], 0) == [inside, large], "contain 0 keeps both")
+    args = lt.parse_args(["--sync-folder", "s", "--work-dir", "w", "--base-weights", "b.pt"])
+    check(args.iou == 0.3 and args.contain == 0.6, (args.iou, args.contain))
+
+
 def test_merge_and_shape():
     frames = [lt.Frame(path=Path(f"/frames/{i:05d}.jpg"), rel=f"{i:05d}", stem=f"{i:05d}") for i in range(16)]
     old = {
@@ -637,6 +662,7 @@ def test_cycle(weights: Path):
 def main():
     test_coords()
     test_classes_and_window()
+    test_suppress_contained()
     test_merge_and_shape()
     test_dataset()
     test_init_weights()

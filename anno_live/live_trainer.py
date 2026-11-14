@@ -27,8 +27,9 @@ dumps. The result is cached in the work dir. A new project switches folder and m
 
 ``anno2026/scripts/{convert_to_yolo,predict_to_json,train}.py`` and
 ``anno_video/NEW_PROJECT_RUNBOOK.md`` are not in this checkout. The geometry,
-class names (``brand|tpoint``), confidence 0.25, IoU 0.5, class-agnostic NMS,
-and AMP-off default follow that toolchain and ``LogoDetection/annoToYOLO.py``.
+class names (``brand|tpoint``), confidence 0.25, IoU 0.3, class-agnostic NMS,
+a post-NMS containment pass (``--contain`` 0.6), and AMP-off default follow
+that toolchain and ``LogoDetection/annoToYOLO.py``.
 """
 
 from __future__ import annotations
@@ -633,6 +634,64 @@ def default_prefs(project: str, live_prefs) -> dict:
                 prefs[key] = live_prefs[key]
     prefs["projectName"] = project
     return prefs
+
+
+def annotation_box(ann) -> tuple[float, float, float, float] | None:
+    start = ann.get("startPoint") if isinstance(ann, dict) else None
+    diag = ann.get("diagPoint") if isinstance(ann, dict) else None
+    if not (isinstance(start, (list, tuple)) and isinstance(diag, (list, tuple))):
+        return None
+    if len(start) < 2 or len(diag) < 2:
+        return None
+    try:
+        x1, x2 = sorted((float(start[0]), float(diag[0])))
+        y1, y2 = sorted((float(start[1]), float(diag[1])))
+    except (TypeError, ValueError):
+        return None
+    return x1, y1, x2, y2
+
+
+def box_area(box: tuple[float, float, float, float]) -> float:
+    return max(0.0, box[2] - box[0]) * max(0.0, box[3] - box[1])
+
+
+def intersection_area(a: tuple[float, float, float, float], b: tuple[float, float, float, float]) -> float:
+    width = max(0.0, min(a[2], b[2]) - max(a[0], b[0]))
+    height = max(0.0, min(a[3], b[3]) - max(a[1], b[1]))
+    return width * height
+
+
+def suppress_contained(annotations: list, contain: float) -> list:
+    """Keep the higher-confidence box when two boxes overlap, any class.
+
+    A box is dropped when the intersection covers at least ``contain`` of the
+    smaller box's area. ``contain`` 0.6 means 60 percent. Boxes that only touch
+    at an edge stay. The comparison is class-agnostic.
+    """
+    if contain <= 0 or len(annotations) < 2:
+        return list(annotations)
+    ranked = sorted(annotations, key=lambda ann: float(ann.get("confidence") or 0), reverse=True)
+    kept = []
+    kept_boxes = []
+    for ann in ranked:
+        box = annotation_box(ann)
+        area = box_area(box) if box is not None else 0.0
+        drop = False
+        if box is not None and area > 0:
+            for other in kept_boxes:
+                if other is None:
+                    continue
+                smaller = min(area, box_area(other))
+                if smaller <= 0:
+                    continue
+                overlap = intersection_area(box, other)
+                if overlap > 0 and overlap / smaller >= contain:
+                    drop = True
+                    break
+        if not drop:
+            kept.append(ann)
+            kept_boxes.append(box)
+    return kept
 
 
 def detection_annotation(brand: str, tpoint: str, start, diag, confidence: float) -> dict:
@@ -1764,7 +1823,18 @@ def predict_frames(model, args, live, frames, work: Path):
             index = find_current_index(frames, frame.rel)
             entry = boxes_from_result(result, frame, canvas, key, index if index >= 0 else 0)
             if entry:
-                new_images[key] = entry
+                before = len(entry["annotations"])
+                kept = suppress_contained(entry["annotations"], float(getattr(args, "contain", 0.6)))
+                if len(kept) < before:
+                    LOG.info(
+                        "containment dropped %s of %s boxes on %s",
+                        before - len(kept),
+                        before,
+                        frame.rel,
+                    )
+                if kept:
+                    entry["annotations"] = kept
+                    new_images[key] = entry
         if seen != len(chosen):
             LOG.warning("model returned %s results for %s frames", seen, len(chosen))
     old = {}
@@ -1913,6 +1983,8 @@ def validate_config(args):
         raise ConfigError("--frames-max-depth must be >= 0")
     if not 0 <= args.val_fraction <= 0.5:
         raise ConfigError("--val-fraction must be between 0 and 0.5")
+    if not 0 <= args.contain <= 1:
+        raise ConfigError("--contain must be between 0 and 1")
     args.workers = 0 if args.workers is None and os.name == "nt" else (2 if args.workers is None else args.workers)
     if args.workers < 0:
         raise ConfigError("--workers must be >= 0")
@@ -2220,7 +2292,13 @@ def parse_args(argv=None):
     parser.add_argument("--workers", type=int, default=None, help="dataloader workers (default 0 on Windows, 2 elsewhere)")
     parser.add_argument("--device", default="", help="ultralytics device, e.g. 0 or cpu (default: auto)")
     parser.add_argument("--conf", type=float, default=0.25, help="predict confidence (default 0.25)")
-    parser.add_argument("--iou", type=float, default=0.5, help="predict IoU (default 0.5)")
+    parser.add_argument("--iou", type=float, default=0.3, help="class-agnostic NMS IoU (default 0.3)")
+    parser.add_argument(
+        "--contain",
+        type=float,
+        default=0.6,
+        help="after NMS, drop the lower-confidence box when the overlap covers at least this fraction of the smaller box, any class (default 0.6). 0 disables the pass",
+    )
     parser.add_argument("--amp", action="store_true", help="enable AMP; default is off")
     parser.add_argument("--val-fraction", type=float, default=0.1, help="stable fraction of reviewed frames used as val")
     parser.add_argument("--patience", type=int, default=100, help="early-stop patience (default 100, so short cycles run out)")
