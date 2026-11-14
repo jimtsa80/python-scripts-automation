@@ -223,11 +223,83 @@ def test_frames_lookup():
         found = lt.find_project_folder(CLUSTER, [downloads])
         check(found == direct.resolve(), found)
         only = root / "only"
-        deep = only / "a" / "b" / "solo_project"
-        (deep / "frames").mkdir(parents=True)
-        write_jpeg(deep / "frames" / "00001.jpg")
-        check(lt.find_project_folder("solo_project", [only]) == deep.resolve(), "nested jpg")
+        nested_only = only / "a" / "b" / "nested_only"
+        (nested_only / "frames").mkdir(parents=True)
+        write_jpeg(nested_only / "frames" / "00001.jpg")
+        check(lt.find_project_folder("nested_only", [only]) is None, "jpg must sit in the project folder")
+        solo = only / "a" / "b" / "solo_project"
+        solo.mkdir(parents=True)
+        write_jpeg(solo / "00001.jpg")
+        check(lt.find_project_folder("solo_project", [only]) == solo.resolve(), "direct jpg")
         check(lt.find_project_folder("missing_project", [only]) is None, "missing name")
+
+        hint_root = root / "hint"
+        match_name = "MensEnglandvTonga"
+        hinted = hint_root / "batch07" / match_name / f"reduced_{match_name}" / "hint_project"
+        hinted.mkdir(parents=True)
+        write_jpeg(hinted / "00001.jpg")
+        early = hint_root / "aaa_early" / "hint_project"
+        early.mkdir(parents=True)
+        write_jpeg(early / "00001.jpg")
+        check(lt.find_project_folder("hint_project", [hint_root]) == hinted.resolve(), "batch layout wins")
+
+        depth_root = root / "depth"
+
+        def place(depth, name):
+            path = depth_root
+            for i in range(depth - 1):
+                path = path / f"d{i}"
+            path = path / name
+            path.mkdir(parents=True)
+            write_jpeg(path / "00001.jpg")
+            return path
+
+        at_limit = place(6, "at_limit")
+        too_deep = place(7, "too_deep")
+        check(lt.find_project_folder("at_limit", [depth_root], max_depth=6) == at_limit.resolve(), "depth 6")
+        check(lt.find_project_folder("too_deep", [depth_root], max_depth=6) is None, "depth 7 hidden")
+        check(lt.find_project_folder("too_deep", [depth_root], max_depth=7) == too_deep.resolve(), "depth 7 allowed")
+
+        prune_root = root / "prune"
+        dump = prune_root / "dump"
+        dump.mkdir(parents=True)
+        for i in range(lt.FRAMES_DIR_MIN_JPEGS):
+            write_jpeg(dump / f"{i:05d}.jpg")
+        hidden = dump / "hidden_project"
+        hidden.mkdir()
+        write_jpeg(hidden / "00001.jpg")
+        check(lt.find_project_folder("hidden_project", [prune_root]) is None, "frames dump was entered")
+        visible = prune_root / "keep" / "visible_project"
+        visible.mkdir(parents=True)
+        for i in range(lt.FRAMES_DIR_MIN_JPEGS):
+            write_jpeg(visible / f"{i:05d}.jpg")
+        check(lt.find_project_folder("visible_project", [prune_root]) == visible.resolve(), "named frames folder")
+
+        search_sync = root / "search-sync"
+        search_sync.mkdir()
+        search_status = lt.Status(search_sync / lt.STATUS_NAME, "cpu", 40)
+        calls = []
+
+        def on_search(project):
+            calls.append(project)
+            lt.mark_searching(
+                search_status,
+                {"project": project, "reviewed": ["a", "b"], "currentImage": "00010"},
+                project,
+            )
+            calls.append(json.loads((search_sync / lt.STATUS_NAME).read_text(encoding="utf-8"))["state"])
+
+        cache_path = root / "fresh-cache.json"
+        searching = lt.FrameLocator([hint_root], cache_path, on_search=on_search)
+        check(searching.resolve("hint_project") == hinted.resolve(), "search resolve")
+        check(calls == ["hint_project", "searching"], calls)
+        written = json.loads((search_sync / lt.STATUS_NAME).read_text(encoding="utf-8"))
+        check(written["message"] == lt.searching_message("hint_project"), written["message"])
+        check(written["reviewed"] == 2 and written["current_image"] == "00010", written)
+        check(written["project"] == "hint_project" and written["frames_folder"] is None, written)
+        restarted = lt.FrameLocator([hint_root], cache_path, on_search=lambda project: calls.append("restart"))
+        check(restarted.resolve("hint_project") == hinted.resolve(), "cached restart")
+        check("restart" not in calls, calls)
 
         work = root / "work"
         work.mkdir()
@@ -349,6 +421,7 @@ def test_config_and_status():
             ]
         )
         check(optional.frames_folder is None, optional.frames_folder)
+        check(optional.frames_max_depth == 6, optional.frames_max_depth)
         lt.validate_config(optional)
         check(optional.frames_roots == [Path(r"D:\downloads")], optional.frames_roots)
         bad = lt.parse_args(

@@ -19,8 +19,11 @@ must already be on disk; this process does not download them.
 
 ``--frames-folder`` is optional. Without it, the ``project`` field in the live
 file (the folder name annotool writes) is looked up under each ``--frames-root``
-(default ``D:\\downloads``). The match is a directory with that exact name which
-contains jpg files. The result is cached. A new project switches folder and model.
+(default ``D:\\downloads``). The usual path is
+``<root>/batchNN/<match>/reduced_<match>/<project>``. Otherwise the search
+stops at the first directory with that exact name that directly contains a
+jpg, down to ``--frames-max-depth`` (default 6), and does not walk into frame
+dumps. The result is cached in the work dir. A new project switches folder and model.
 
 ``anno2026/scripts/{convert_to_yolo,predict_to_json,train}.py`` and
 ``anno_video/NEW_PROJECT_RUNBOOK.md`` are not in this checkout. The geometry,
@@ -998,78 +1001,145 @@ def project_dirname(project: str | None) -> str:
     return cleaned
 
 
-def _jpeg_names(filenames) -> bool:
-    return any(Path(filename).suffix.lower() in {".jpg", ".jpeg"} for filename in filenames)
+# A directory with this many jpgs is a frames dump. Do not walk into it.
+FRAMES_DIR_MIN_JPEGS = 8
+DEFAULT_FRAMES_MAX_DEPTH = 6
+_BATCH_DIR = re.compile(r"batch\d+\Z", re.IGNORECASE)
 
 
-def tree_has_jpeg(path: Path) -> bool:
-    """True when ``path`` or a directory under it contains a jpg."""
+def _jpeg_count(filenames) -> int:
+    return sum(1 for filename in filenames if Path(filename).suffix.lower() in {".jpg", ".jpeg"})
+
+
+def searching_message(project: str) -> str:
+    return f"Αναζήτηση φακέλου frames για {project}…"
+
+
+def mark_searching(status: Status, live, project: str):
+    """Publish before the frames walk so the UI does not stay on the startup line."""
+    reviewed = len(reviewed_names(live)) if isinstance(live, dict) else 0
+    status.update(
+        state="searching",
+        project=project,
+        frames_folder=None,
+        reviewed=reviewed,
+        current_image=current_name(live) if isinstance(live, dict) else None,
+        last_error=None,
+        message=searching_message(project),
+    )
+
+
+def _resolved(path: Path) -> Path:
     try:
-        walker = os.walk(path, followlinks=False)
+        return path.resolve()
     except OSError:
-        return False
-    for _dirpath, _dirnames, filenames in walker:
-        if _jpeg_names(filenames):
-            return True
-    return False
+        return path
 
 
-def find_project_folder(name: str, roots: list[Path]) -> Path | None:
-    """First directory whose name is exactly ``name`` and which contains a jpg.
+def _hint_project_folder(name: str, root: Path, max_depth: int) -> Path | None:
+    """``<root>/batchNN/<match>/reduced_<match>/<project>`` when that folder holds a jpg."""
+    try:
+        batches = [entry for entry in root.iterdir() if entry.is_dir() and _BATCH_DIR.fullmatch(entry.name)]
+    except OSError as exc:
+        LOG.warning("cannot list frames root %s: %s", root, exc)
+        return None
+    for batch in batches:
+        try:
+            matches = [entry for entry in batch.iterdir() if entry.is_dir()]
+        except OSError:
+            continue
+        for match in matches:
+            candidate = match / f"reduced_{match.name}" / name
+            if not candidate.is_dir():
+                continue
+            try:
+                depth = len(candidate.relative_to(root).parts)
+            except ValueError:
+                depth = max_depth + 1
+            if depth > max_depth:
+                continue
+            try:
+                names = [entry.name for entry in candidate.iterdir() if entry.is_file()]
+            except OSError:
+                continue
+            if _jpeg_count(names) < 1:
+                continue
+            found = _resolved(candidate)
+            LOG.info("frames folder %s (batch layout)", found)
+            return found
+    return None
 
-    A directory with a jpg directly inside it wins over one that only has jpg
-    files in a subdirectory. Ties break by the shortest path, then by path text.
+
+def _walk_project_folder(name: str, root: Path, max_depth: int) -> Path | None:
+    """Stop at the first exact-name directory that directly contains a jpg.
+
+    Descent into that directory is pruned. Directories that already hold many
+    jpgs are frames dumps and are not entered either.
+    """
+    try:
+        walker = os.walk(root, topdown=True, followlinks=False)
+    except OSError as exc:
+        LOG.warning("cannot read frames root %s: %s", root, exc)
+        return None
+    for dirpath, dirnames, filenames in walker:
+        current = Path(dirpath)
+        try:
+            depth = len(current.relative_to(root).parts)
+        except ValueError:
+            depth = 0
+        jpeg_count = _jpeg_count(filenames)
+        if current.name == name and jpeg_count >= 1:
+            dirnames[:] = []
+            return _resolved(current)
+        if jpeg_count >= FRAMES_DIR_MIN_JPEGS or depth >= max_depth:
+            dirnames[:] = []
+    return None
+
+
+def find_project_folder(name: str, roots: list[Path], max_depth: int = DEFAULT_FRAMES_MAX_DEPTH, on_search=None) -> Path | None:
+    """Find ``name`` under ``roots`` without walking a whole downloads tree.
+
+    Tries ``batchNN/<match>/reduced_<match>/<name>`` first. The bounded walk
+    then stops at the first directory with that exact name and a jpg inside it.
+    ``on_search`` runs once, before either search, so the status file can leave
+    the startup message.
     """
     name = name.strip()
     if not name or "/" in name or "\\" in name or name in {".", ".."}:
         return None
-    matches = []
-    LOG.info("searching for a frames folder named %s", name)
+    if max_depth < 0:
+        raise ConfigError("--frames-max-depth must be >= 0")
+    if on_search is not None:
+        on_search(name)
+    LOG.info("searching for a frames folder named %s (max depth %s)", name, max_depth)
     for root in roots:
         root = Path(root).expanduser()
         if not root.is_dir():
             LOG.warning("frames root is not a directory: %s", root)
             continue
-        try:
-            walker = os.walk(root, followlinks=False)
-        except OSError as exc:
-            LOG.warning("cannot read frames root %s: %s", root, exc)
-            continue
-        for dirpath, _dirnames, filenames in walker:
-            current = Path(dirpath)
-            if current.name != name:
-                continue
-            direct = _jpeg_names(filenames)
-            if not direct and not tree_has_jpeg(current):
-                continue
-            try:
-                resolved = current.resolve()
-            except OSError:
-                resolved = current
-            matches.append((0 if direct else 1, len(resolved.parts), str(resolved).lower(), resolved))
-    if not matches:
-        LOG.error("no frames folder named %s", name)
-        return None
-    matches.sort(key=lambda item: item[:3])
-    chosen = matches[0][3]
-    if len(matches) > 1:
-        LOG.warning("%s folders named %s contain jpg files; using %s", len(matches), name, chosen)
-        for item in matches[1:5]:
-            LOG.warning("also matched %s", item[3])
-    else:
-        LOG.info("frames folder %s", chosen)
-    return chosen
+        hinted = _hint_project_folder(name, root, max_depth)
+        if hinted is not None:
+            return hinted
+        found = _walk_project_folder(name, root, max_depth)
+        if found is not None:
+            LOG.info("frames folder %s", found)
+            return found
+    LOG.error("no frames folder named %s", name)
+    return None
 
 
 class FrameLocator:
     """Remember project name → frames folder. Misses are not retried every poll."""
 
-    def __init__(self, roots: list[Path], cache_path: Path, miss_seconds: float = 60):
+    def __init__(self, roots: list[Path], cache_path: Path, miss_seconds: float = 60, max_depth: int = DEFAULT_FRAMES_MAX_DEPTH, on_search=None):
         self.roots = [Path(root) for root in roots]
         self.cache_path = Path(cache_path)
         self.miss_seconds = miss_seconds
+        self.max_depth = max_depth
+        self.on_search = on_search
         self.cache: dict[str, str] = {}
         self._miss_at: dict[str, float] = {}
+        self._cache_logged: set[str] = set()
         if self.cache_path.is_file():
             try:
                 data = json.loads(self.cache_path.read_text(encoding="utf-8"))
@@ -1087,13 +1157,16 @@ class FrameLocator:
         if cached:
             path = Path(cached)
             if path.is_dir():
+                if project not in self._cache_logged:
+                    LOG.info("frames folder from cache: %s", path)
+                    self._cache_logged.add(project)
                 return path
             LOG.info("cached frames folder is gone, searching again: %s", path)
             self.cache.pop(project, None)
         last = self._miss_at.get(project)
         if last is not None and time.time() - last < self.miss_seconds:
             return None
-        found = find_project_folder(project, self.roots)
+        found = find_project_folder(project, self.roots, max_depth=self.max_depth, on_search=self.on_search)
         if found is None:
             self._miss_at[project] = time.time()
             if project in self.cache:
@@ -1699,6 +1772,8 @@ def validate_config(args):
         raise ConfigError("min-reviewed, every, lookahead, epochs, finetune-epochs, and batch must be >= 1")
     if args.predict_margin < 0:
         raise ConfigError("--predict-margin must be >= 0")
+    if args.frames_max_depth < 0:
+        raise ConfigError("--frames-max-depth must be >= 0")
     if not 0 <= args.val_fraction <= 0.5:
         raise ConfigError("--val-fraction must be between 0 and 0.5")
     args.workers = 0 if args.workers is None and os.name == "nt" else (2 if args.workers is None else args.workers)
@@ -1753,13 +1828,18 @@ def run(args) -> int:
     )
     locator = None
     if args.frames_folder is None:
-        locator = FrameLocator(args.frames_roots, args.work_root / "frames_cache.json")
+        locator = FrameLocator(
+            args.frames_roots,
+            args.work_root / "frames_cache.json",
+            max_depth=args.frames_max_depth,
+        )
     active = {"project": None, "frames": None, "work": None, "state": None, "index": None, "ready": False}
     LOG.info(
-        "live trainer sync=%s frames=%s roots=%s work=%s weights=%s device=%s workers=%s amp=%s",
+        "live trainer sync=%s frames=%s roots=%s depth=%s work=%s weights=%s device=%s workers=%s amp=%s",
         args.sync_folder,
         args.frames_folder or "(from project name)",
         ", ".join(str(root) for root in args.frames_roots),
+        args.frames_max_depth,
         args.work_root,
         args.base_weights,
         args.device or "auto",
@@ -1807,6 +1887,8 @@ def run(args) -> int:
                 continue
 
             ensure_predictions_project(args.sync_folder, live)
+            if locator is not None:
+                locator.on_search = lambda project, live=live: mark_searching(status, live, project)
             try:
                 error = bind_project(live, args.frames_folder, locator, args.work_root, args.min_reviewed, active)
             except ConfigError:
@@ -1968,7 +2050,13 @@ def parse_args(argv=None):
         action="append",
         type=Path,
         default=None,
-        help="directory to search recursively for a folder named exactly like the live project (repeatable, default D:\\downloads)",
+        help="directory to search for a folder named exactly like the live project (repeatable, default D:\\downloads)",
+    )
+    parser.add_argument(
+        "--frames-max-depth",
+        type=int,
+        default=DEFAULT_FRAMES_MAX_DEPTH,
+        help="directory levels under --frames-root to search (default 6). The usual batchNN/match/reduced_match/project path is tried first",
     )
     parser.add_argument("--work-dir", required=True, type=Path, help="datasets and runs; outside the repo and the sync folder. One subfolder per project")
     parser.add_argument("--base-weights", required=True, type=Path, help="local .pt such as yolov8s.pt; never downloaded")

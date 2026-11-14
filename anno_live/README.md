@@ -39,6 +39,8 @@ python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects
 
 `--frames-root` επαναλαμβάνεται αν τα projects είναι σε παραπάνω από έναν δίσκο. `--frames-folder` παραμένει, και αν το δώσεις κερδίζει την αναζήτηση. `--sync-folder` είναι ο φάκελος που διαλέγεις στο **Ζωντανά**. `--work-dir` είναι για datasets και runs, έξω από το repo και έξω από τον φάκελο sync. `--base-weights` είναι αρχείο στο δίσκο. Αν το αρχείο λείπει, το script σταματάει· δεν το κατεβάζει.
 
+Η αναζήτηση δεν διαβάζει όλο το `D:\downloads`. Πρώτα κοιτάει το συνηθισμένο μονοπάτι `<root>\batchNN\<match>\reduced_<match>\<project>` (ο φάκελος του project έχει jpg μέσα του). Αλλιώς περπατάει μέχρι `--frames-max-depth` (default 6), σταματάει στον πρώτο φάκελο με ακριβώς αυτό το όνομα και jpg απευθείας μέσα του, και δεν μπαίνει σε φακέλους που είναι ήδη frames (πολλά jpg). Πριν ξεκινήσει, το status γίνεται `searching` με μήνυμα `Αναζήτηση φακέλου frames για <project>…`. Το αποτέλεσμα γράφεται στο `<work-dir>\frames_cache.json`· η επόμενη εκκίνηση το διαβάζει και δεν ξαναψάχνει.
+
 Στην RTX 5070 Laptop 8GB: `--device 0`, AMP κλειστό (το default), `--batch 4`. Αν η μνήμη το σηκώνει, δοκίμασε `--batch 8`.
 
 ## Τι κάνει κάθε κύκλος
@@ -52,14 +54,14 @@ python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects
 
 Προεπιλογές για κύκλο λίγων λεπτών στην 5070 όταν μαζευτούν μερικές εκατοντάδες ή χιλιάδες καρέ: `--epochs 20` από την αρχή, `--finetune-epochs 8` μετά, `--imgsz 640`, `--batch 4`, `--workers 0` στα Windows (2 αλλού), AMP off, `conf 0.25`, `iou 0.5`, agnostic NMS. Οι πρώτοι κύκλοι με ~40 καρέ τελειώνουν γρηγορότερα. Εκπαίδευση από τα base weights: SGD, `lr0=0.01`. Fine-tune: AdamW, `lr0=0.001`. Το ultralytics αγνοεί το `lr0` όταν ο optimizer είναι `auto`, οπότε ο trainer τον ορίζει ρητά.
 
-Άλλα flags: `--patience` (default 100, οπότε οι σύντομοι κύκλοι δεν κόβονται νωρίς), `--val-fraction` (default 0.1, σταθερό ανά καρέ), `--poll-seconds` (default 5), `--lr0`, `--amp` για να ανάψεις το AMP.
+Άλλα flags: `--frames-max-depth` (default 6), `--patience` (default 100, οπότε οι σύντομοι κύκλοι δεν κόβονται νωρίς), `--val-fraction` (default 0.1, σταθερό ανά καρέ), `--poll-seconds` (default 5), `--lr0`, `--amp` για να ανάψεις το AMP.
 
 Στον φάκελο sync γράφει μόνο:
 
 - `annotool_predictions.json`
 - `live_trainer_status.json`
 
-Για atomic εγγραφή εμφανίζεται για μια στιγμή ένα `.<όνομα>.<pid>.tmp` δίπλα τους και μετά γίνεται replace. Κάθε project έχει δικό του υποφάκελο `<work-dir>\<project>\` με `state.json`, `best.pt`, dataset και runs. Αν το `project` στο live αρχείο αλλάξει, ο trainer βρίσκει τον καινούργιο φάκελο καρέ και φορτώνει το μοντέλο εκείνου του project· δεν ανακατεύει κλάσεις ούτε βάρη. Η αναζήτηση αποθηκεύεται στο `<work-dir>\frames_cache.json` και δεν ξανατρέχει σε κάθε poll. Αν ο φάκελος δεν βρεθεί, το `last_error` λέει το project και τα roots, το `state` μένει `idle`, και δεν ξεκινάει κύκλος. Προβλέψεις που γράφτηκαν για άλλο project σβήνονται, γιατί τα stems (`00001`…) επαναλαμβάνονται από ματς σε ματς. Αν σβήσεις τον υποφάκελο ενός project, η λίστα κλάσεων και ο κύκλος εκείνου του project ξεκινούν από την αρχή.
+Για atomic εγγραφή εμφανίζεται για μια στιγμή ένα `.<όνομα>.<pid>.tmp` δίπλα τους και μετά γίνεται replace. Κάθε project έχει δικό του υποφάκελο `<work-dir>\<project>\` με `state.json`, `best.pt`, dataset και runs. Αν το `project` στο live αρχείο αλλάξει, ο trainer βρίσκει τον καινούργιο φάκελο καρέ και φορτώνει το μοντέλο εκείνου του project· δεν ανακατεύει κλάσεις ούτε βάρη. Η αναζήτηση αποθηκεύεται στο `<work-dir>\frames_cache.json` και η επόμενη εκκίνηση το βρίσκει αμέσως. Αν ο φάκελος δεν βρεθεί, το `last_error` λέει το project και τα roots, το `state` μένει `idle`, και δεν ξεκινάει κύκλος. Προβλέψεις που γράφτηκαν για άλλο project σβήνονται, γιατί τα stems (`00001`…) επαναλαμβάνονται από ματς σε ματς. Αν σβήσεις τον υποφάκελο ενός project, η λίστα κλάσεων και ο κύκλος εκείνου του project ξεκινούν από την αρχή.
 
 ## `live_trainer_status.json`
 
@@ -68,7 +70,7 @@ python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects
 | Πεδίο | Τιμή |
 | --- | --- |
 | `schema` | `1` |
-| `state` | `idle`, `training`, ή `predicting` |
+| `state` | `searching`, `idle`, `training`, ή `predicting`. `searching` είναι η αναζήτηση του φακέλου καρέ |
 | `project` | Το `project` του live αρχείου. `null` πριν διαβαστεί |
 | `frames_folder` | Ο φάκελος jpg που χρησιμοποιείται (από `--frames-folder` ή από την αναζήτηση). `null` αν δεν βρέθηκε |
 | `cycle` | Ολοκληρωμένοι κύκλοι· όσο τρέχει εκπαίδευση είναι ο κύκλος που είναι ανοιχτός |
