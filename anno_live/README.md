@@ -46,15 +46,15 @@ python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects
 ## Τι κάνει κάθε κύκλος
 
 1. Περιμένει reviewed καρέ. Ο πρώτος κύκλος ξεκινάει στα `--min-reviewed` (40). Οι επόμενοι κάθε `--every` (30) καινούργια reviewed από το πλήθος τη στιγμή που άνοιξε ο προηγούμενος κύκλος.
-2. Dataset μόνο από reviewed. Κλάση είναι `brand|tpoint`. Ένα κουτί ανά instance (`hits` δεν πολλαπλασιάζει το κουτί). Reviewed χωρίς κουτί = αρνητικό. Καρέ που δεν είναι ούτε στο `reviewed` ούτε στα `images` δεν μπαίνουν ως αρνητικά.
+2. Dataset μόνο από reviewed. Κλάση είναι `brand|tpoint`. Ένα κουτί ανά instance (`hits` δεν πολλαπλασιάζει το κουτί). Reviewed χωρίς κουτί = αρνητικό. Καρέ που δεν είναι ούτε στο `reviewed` ούτε στα `images` δεν μπαίνουν ως αρνητικά. Το `rejected` του live αρχείου (`imageName` → λίστα `{brand, tpoint, x, y, width, height, confidence}` σε pixels καμβά, ίδια αρχή με το `startPoint`) είναι hard negatives: αν το καρέ είναι και reviewed, μπαίνει στο dataset (άδειο label αν δεν έχει δικά του κουτιά) και επαναλαμβάνεται 3 φορές στο train. Απόρριψη σε καρέ που δεν είναι reviewed αγνοείται. Το πλήθος μοναδικών τέτοιων καρέ γράφεται στο `hard_negative_frames`.
 3. Τα κουτιά είναι σε συντεταγμένες καμβά (`width`/`height` του annotool, π.χ. 1141×642). Πριν τη κανονικοποίηση YOLO μεταφέρονται στο μέγεθος του αρχείου jpg.
-4. Η λίστα κλάσεων μένει σταθερή ανάμεσα σε κύκλους (οι καινούργιες μπαίνουν στο τέλος). Ο πρώτος κύκλος και κάθε κύκλος με καινούργια κλάση ξεκινάει από τα base weights. Αλλιώς γίνεται fine-tune από το προηγούμενο `best.pt`.
+4. Η λίστα κλάσεων μένει σταθερή ανάμεσα σε κύκλους (οι καινούργιες μπαίνουν στο τέλος). Ο πρώτος κύκλος ενός project χωρίς checkpoint χρησιμοποιεί `--init-weights` αν δόθηκε (μοντέλο από συγγενικό project), αλλιώς τα `--base-weights`. Οι επόμενοι κύκλοι κάνουν fine-tune από το `best.pt` αυτού του project. Καινούργια κλάση ξαναρχίζει από τα `--base-weights`, όχι από τα init.
 5. Μετά την εκπαίδευση ξαναδιαβάζει το live αρχείο. Προβλέπει τα επόμενα `--lookahead` (150) καρέ που δεν είναι reviewed και δεν έχουν κουτιά, ξεκινώντας `--predict-margin` (20) καρέ μετά το τρέχον `currentImage`, γιατί αυτά τα προλαβαίνει όσο τρέχει το μοντέλο.
 6. Οι καινούργιες προβλέψεις συγχωνεύονται με τις παλιές. Καρέ πίσω του, reviewed, ή με δικά του κουτιά, φεύγουν. Καρέ μπροστά του που αυτός ο γύρος δεν τα ξαναείδε κρατάνε τις παλιές προτάσεις. Όπου έτρεξε το καινούργιο μοντέλο, κερδίζει εκείνο, ακόμη κι αν δεν βρήκε τίποτα.
 
 Προεπιλογές για κύκλο λίγων λεπτών στην 5070 όταν μαζευτούν μερικές εκατοντάδες ή χιλιάδες καρέ: `--epochs 20` από την αρχή, `--finetune-epochs 8` μετά, `--imgsz 640`, `--batch 4`, `--workers 0` στα Windows (2 αλλού), AMP off, `conf 0.25`, `iou 0.5`, agnostic NMS. Οι πρώτοι κύκλοι με ~40 καρέ τελειώνουν γρηγορότερα. Εκπαίδευση από τα base weights: SGD, `lr0=0.01`. Fine-tune: AdamW, `lr0=0.001`. Το ultralytics αγνοεί το `lr0` όταν ο optimizer είναι `auto`, οπότε ο trainer τον ορίζει ρητά.
 
-Άλλα flags: `--frames-max-depth` (default 6), `--patience` (default 100, οπότε οι σύντομοι κύκλοι δεν κόβονται νωρίς), `--val-fraction` (default 0.1, σταθερό ανά καρέ), `--poll-seconds` (default 5), `--lr0`, `--amp` για να ανάψεις το AMP.
+Άλλα flags: `--init-weights` (τοπικό `.pt` για τον πρώτο κύκλο νέου project), `--frames-max-depth` (default 6), `--patience` (default 100, οπότε οι σύντομοι κύκλοι δεν κόβονται νωρίς), `--val-fraction` (default 0.1, σταθερό ανά καρέ), `--poll-seconds` (default 5), `--lr0`, `--amp` για να ανάψεις το AMP.
 
 Στον φάκελο sync γράφει μόνο:
 
@@ -91,9 +91,10 @@ python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects
 | `message` | Σύντομο ελληνικό κείμενο για την οθόνη |
 | `started_at` | Πότε άνοιξε αυτή η διαδικασία |
 | `device` | Τι δόθηκε στο `--device`, ή `auto` |
-| `from_base` | `true` αν ο τελευταίος κύκλος ξεκίνησε από τα base weights |
-| `train_images` | Καρέ train του τελευταίου dataset |
+| `from_base` | `true` αν ο τελευταίος κύκλος δεν έκανε fine-tune το `best.pt` αυτού του project (base ή `--init-weights`) |
+| `train_images` | Αρχεία train του τελευταίου dataset, μαζί με τις επαναλήψεις των hard negatives |
 | `val_images` | Καρέ val του τελευταίου dataset |
+| `hard_negative_frames` | Μοναδικά reviewed καρέ με απόρριψη στο τελευταίο dataset. `0` αν δεν υπάρχουν |
 
 Παράδειγμα όσο περιμένει τον πρώτο κύκλο:
 
@@ -123,7 +124,8 @@ python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects
   "device": "0",
   "from_base": null,
   "train_images": null,
-  "val_images": null
+  "val_images": null,
+  "hard_negative_frames": 0
 }
 ```
 
@@ -131,7 +133,7 @@ python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects
 
 ## `annotool_predictions.json`
 
-Ίδιο σχήμα με το export του annotool / το `predict_to_json.py`: `project`, `imageNum`, `prefs`, `images`, `currentImage`, `presets`, `Annotator`. Κάθε καρέ έχει `imageName`, `imageIndex`, `width`, `height`, `annotations`, `exifdata`. Κάθε κουτί έχει `startPoint`, `diagPoint`, `group`, `brand`, `tpoint`, `hits` (πάντα 1), `confidence`. Ένα κουτί ανά instance, χωρίς συγχώνευση ίδιου `brand|tpoint`. Οι συντεταγμένες είναι στον καμβά του live αρχείου για αυτό το καρέ, αλλιώς στο πιο συχνό `width`/`height`.
+Ίδιο σχήμα με το export του annotool / το `predict_to_json.py`: `project`, `imageNum`, `prefs`, `images`, `currentImage`, `presets`, `Annotator`. Το `project` είναι το `project` του live αρχείου· το εργαλείο αγνοεί προβλέψεις άλλου project. Κάθε καρέ έχει `imageName`, `imageIndex`, `width`, `height`, `annotations`, `exifdata`. Κάθε κουτί έχει `startPoint`, `diagPoint`, `group`, `brand`, `tpoint`, `hits` (πάντα 1), `confidence`. Ένα κουτί ανά instance, χωρίς συγχώνευση ίδιου `brand|tpoint`. Οι συντεταγμένες είναι στον καμβά του live αρχείου για αυτό το καρέ, αλλιώς στο πιο συχνό `width`/`height`.
 
 ## Δοκιμή
 

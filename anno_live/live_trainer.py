@@ -122,6 +122,7 @@ STATUS_KEYS = (
     "from_base",
     "train_images",
     "val_images",
+    "hard_negative_frames",
 )
 
 
@@ -172,6 +173,7 @@ class Status:
             "from_base": None,
             "train_images": None,
             "val_images": None,
+            "hard_negative_frames": 0,
         }
         self.write()
 
@@ -533,8 +535,14 @@ def safe_stem(rel: str) -> str:
     return cleaned or "frame"
 
 
-def dataset_filename(frame: Frame) -> str:
-    return safe_stem(frame.rel) + frame.path.suffix.lower()
+HARD_NEGATIVE_COPIES = 3
+
+
+def dataset_filename(frame: Frame, copy: int = 0) -> str:
+    stem = safe_stem(frame.rel)
+    if copy > 0:
+        stem = f"{stem}__hn{copy + 1}"
+    return stem + frame.path.suffix.lower()
 
 
 def place_image(src: Path, dest: Path) -> str:
@@ -651,7 +659,11 @@ def prediction_image(key: str, index: int, width: int, height: int, annotations:
 
 
 def build_prediction_document(live, images: dict) -> dict:
-    """Annotool document, the shape ``predict_to_json.py`` writes. No brand|tpoint dedupe."""
+    """Annotool document, the shape ``predict_to_json.py`` writes. No brand|tpoint dedupe.
+
+    ``project`` is the live file's project. The tool ignores a predictions file
+    whose project does not match the open one.
+    """
     project = "auto_export"
     annotator = "-"
     presets = {}
@@ -864,6 +876,7 @@ def blank_state(min_reviewed: int) -> dict:
         "from_base": None,
         "train_images": None,
         "val_images": None,
+        "hard_negative_frames": 0,
         "last_error": None,
     }
 
@@ -884,6 +897,7 @@ def load_state(path: Path, min_reviewed: int) -> dict:
     else:
         state["next_cycle_at"] = int(state["next_cycle_at"])
     state["pending_predict"] = bool(state["pending_predict"])
+    state["hard_negative_frames"] = int(state.get("hard_negative_frames") or 0)
     return state
 
 
@@ -1300,6 +1314,7 @@ def publish_idle(
         from_base=state.get("from_base"),
         train_images=state.get("train_images"),
         val_images=state.get("val_images"),
+        hard_negative_frames=int(state.get("hard_negative_frames") or 0),
         message=idle_message(reviewed, int(state["next_cycle_at"]), unmatched),
     )
 
@@ -1327,6 +1342,92 @@ def annotated_rels(frames: list[Frame], images: dict) -> set[str]:
         if usable_annotations(entry):
             rels.add(frame.rel)
     return rels
+
+
+def rejection_names(live) -> set[str]:
+    """Image names that have at least one rejected prediction box."""
+    raw = live.get("rejected") if isinstance(live, dict) else None
+    if not isinstance(raw, dict):
+        return set()
+    names = set()
+    for key, items in raw.items():
+        if not isinstance(items, list):
+            continue
+        kept = False
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            if item.get("brand") or item.get("tpoint") or item.get("x") is not None or item.get("width") is not None:
+                kept = True
+                break
+        if not kept:
+            continue
+        name = norm_name(key if isinstance(key, str) else "")
+        if name:
+            names.add(name)
+    return names
+
+
+def hard_negative_rels(frames: list[Frame], live) -> set[str]:
+    """Reviewed frames the user rejected a prediction on.
+
+    A rejection on a frame that is not in ``reviewed`` is ignored. The boxes
+    themselves are not labels; the frame is a hard negative.
+    """
+    reviewed = reviewed_names(live) if isinstance(live, dict) else []
+    rejected = rejection_names(live)
+    if not reviewed or not rejected:
+        return set()
+    rels = set()
+    for frame in frames:
+        if any(name_hits_frame(name, frame) for name in reviewed) and any(
+            name_hits_frame(name, frame) for name in rejected
+        ):
+            rels.add(frame.rel)
+    return rels
+
+
+def place_hard_negatives(train: list[Frame], val: list[Frame], hard_rels: set[str]):
+    """Keep hard negatives in train so the extra copies do not also sit in val.
+
+    The one-frame dataset already shares its only image between the splits.
+    """
+    if len(train) == 1 and len(val) == 1 and train[0].rel == val[0].rel:
+        return list(train), list(val)
+    train = list(train)
+    train_rels = {frame.rel for frame in train}
+    moving = [frame for frame in val if frame.rel in hard_rels]
+    staying = [frame for frame in val if frame.rel not in hard_rels]
+    if not moving:
+        return train, list(val)
+    if staying:
+        for frame in moving:
+            if frame.rel not in train_rels:
+                train.append(frame)
+                train_rels.add(frame.rel)
+        return train, staying
+    if len(moving) > 1:
+        for frame in moving[1:]:
+            if frame.rel not in train_rels:
+                train.append(frame)
+                train_rels.add(frame.rel)
+        return train, moving[:1]
+    return train, moving
+
+
+def restore_val_positive(train: list[Frame], val: list[Frame], by_rel: dict, hard_rels: set[str]):
+    """Put one ordinary positive in val after hard negatives have been moved to train."""
+    if any(by_rel.get(frame.rel) for frame in val):
+        return train, val
+    donor = next((frame for frame in train if by_rel.get(frame.rel) and frame.rel not in hard_rels), None)
+    if donor is None:
+        return train, val
+    val = list(val)
+    if donor not in val:
+        val.append(donor)
+    if len(train) > 1:
+        train = [frame for frame in train if frame.rel != donor.rel]
+    return train, val
 
 
 def blocked_rels(frames: list[Frame], names: list[str], images: dict) -> set[str]:
@@ -1378,33 +1479,43 @@ def build_dataset(work: Path, frames: list[Frame], live: dict, saved_classes: li
     if not found:
         raise DatasetError("reviewed frames have no usable logo boxes")
     classes, new_names = extend_classes(saved_classes, found)
-    train_frames, val_frames = split_examples(examples, val_fraction)
+    hard_rels = hard_negative_rels([frame for frame, _boxes in examples], live)
     by_rel = {frame.rel: boxes for frame, boxes in examples}
+    train_frames, val_frames = place_hard_negatives(*split_examples(examples, val_fraction), hard_rels)
+    train_frames, val_frames = restore_val_positive(train_frames, val_frames, by_rel, hard_rels)
     dataset = work / "dataset"
     if dataset.exists():
         shutil.rmtree(dataset)
     counts = Counter()
+    written = {"train": 0, "val": 0}
     for split, split_frames in ("train", train_frames), ("val", val_frames):
         image_dir = dataset / "images" / split
         label_dir = dataset / "labels" / split
         for frame in split_frames:
-            filename = dataset_filename(frame)
-            counts[place_image(frame.path, image_dir / filename)] += 1
+            copies = HARD_NEGATIVE_COPIES if split == "train" and frame.rel in hard_rels else 1
             lines = []
             for name, (xc, yc, bw, bh) in by_rel[frame.rel]:
                 lines.append(f"{classes.index(name)} {xc:.6f} {yc:.6f} {bw:.6f} {bh:.6f}\n")
-            (label_dir / f"{Path(filename).stem}.txt").parent.mkdir(parents=True, exist_ok=True)
-            (label_dir / f"{Path(filename).stem}.txt").write_text("".join(lines), encoding="utf-8")
+            text = "".join(lines)
+            for copy in range(copies):
+                filename = dataset_filename(frame, copy)
+                counts[place_image(frame.path, image_dir / filename)] += 1
+                label_path = label_dir / f"{Path(filename).stem}.txt"
+                label_path.parent.mkdir(parents=True, exist_ok=True)
+                label_path.write_text(text, encoding="utf-8")
+                written[split] += 1
     yaml_path = dataset / "data.yaml"
     write_data_yaml(yaml_path, dataset, classes)
     boxes = sum(len(items) for _frame, items in examples)
     negatives = sum(1 for _frame, items in examples if not items)
+    hard_count = sum(1 for frame, _boxes in examples if frame.rel in hard_rels)
     LOG.info(
-        "dataset train=%s val=%s boxes=%s negatives=%s classes=%s (%s)",
-        len(train_frames),
-        len(val_frames),
+        "dataset train=%s val=%s boxes=%s negatives=%s hard_negatives=%s classes=%s (%s)",
+        written["train"],
+        written["val"],
         boxes,
         negatives,
+        hard_count,
         len(classes),
         ", ".join(classes),
     )
@@ -1414,17 +1525,26 @@ def build_dataset(work: Path, frames: list[Frame], live: dict, saved_classes: li
         "classes": classes,
         "new_names": new_names,
         "unmatched": unmatched,
-        "train_images": len(train_frames),
-        "val_images": len(val_frames),
+        "train_images": written["train"],
+        "val_images": written["val"],
         "boxes": boxes,
         "negatives": negatives,
+        "hard_negative_frames": hard_count,
         "data_yaml": yaml_path,
         "skipped": skipped,
     }
 
 
-def make_epoch_callback(status: Status, cycle: int, total_epochs: int, holder: dict, from_base: bool):
-    kind = "από τα βασικά βάρη" if from_base else "fine-tune"
+def weight_phrase(weight_kind: str) -> str:
+    if weight_kind == "finetune":
+        return "fine-tune"
+    if weight_kind == "init":
+        return "από τα βάρη εκκίνησης"
+    return "από τα βασικά βάρη"
+
+
+def make_epoch_callback(status: Status, cycle: int, total_epochs: int, holder: dict, from_base: bool, weight_kind: str):
+    kind = weight_phrase(weight_kind)
 
     def on_fit_epoch_end(trainer):
         try:
@@ -1461,13 +1581,13 @@ def make_epoch_callback(status: Status, cycle: int, total_epochs: int, holder: d
     return on_fit_epoch_end
 
 
-def train_model(model, args, data_yaml: Path, epochs: int, cycle: int, work: Path, status: Status, from_base: bool):
+def train_model(model, args, data_yaml: Path, epochs: int, cycle: int, work: Path, status: Status, from_base: bool, weight_kind: str):
     holder = {"score": None, "map50": None}
-    model.add_callback("on_fit_epoch_end", make_epoch_callback(status, cycle, epochs, holder, from_base))
+    model.add_callback("on_fit_epoch_end", make_epoch_callback(status, cycle, epochs, holder, from_base, weight_kind))
     run_dir = work / "runs" / f"cycle_{cycle}"
     if run_dir.exists():
         shutil.rmtree(run_dir)
-    kind = "base weights" if from_base else "previous best.pt"
+    kind = {"finetune": "previous best.pt", "init": "init weights", "base": "base weights"}.get(weight_kind, weight_kind)
     LOG.info("training cycle %s from %s for %s epochs imgsz=%s batch=%s", cycle, kind, epochs, args.imgsz, args.batch)
     status.update(
         state="training",
@@ -1475,7 +1595,7 @@ def train_model(model, args, data_yaml: Path, epochs: int, cycle: int, work: Pat
         epoch=0,
         epochs=epochs,
         from_base=from_base,
-        message=f"Εκπαίδευση κύκλου {cycle} · epoch 0/{epochs} · {'από τα βασικά βάρη' if from_base else 'fine-tune'}",
+        message=f"Εκπαίδευση κύκλου {cycle} · epoch 0/{epochs} · {weight_phrase(weight_kind)}",
     )
     train_kwargs = {
         "data": str(data_yaml),
@@ -1522,19 +1642,28 @@ def train_model(model, args, data_yaml: Path, epochs: int, cycle: int, work: Pat
     return stable, measured, save_dir
 
 
-def load_training_model(YOLO, base: Path, previous: Path | None, classes: list[str], new_names: list[str]):
+def load_training_model(YOLO, base: Path, previous: Path | None, classes: list[str], new_names: list[str], init: Path | None = None):
+    """Return (model, from_base, weight_kind).
+
+    ``weight_kind`` is ``finetune``, ``init``, or ``base``. ``--init-weights``
+    seeds only the first cycle of a project that has no checkpoint yet. A later
+    class change still restarts from ``--base-weights``.
+    """
     if wants_finetune(previous, new_names):
         model = YOLO(str(previous))
         names = model_class_names(model)
         if names == list(classes):
             LOG.info("fine-tuning %s", previous)
-            return model, False
+            return model, False, "finetune"
         LOG.warning("checkpoint classes %s differ from %s; retraining from base weights", names, classes)
-    elif new_names and previous:
+    elif new_names and previous and Path(previous).is_file():
         LOG.info("new classes (%s); training from base weights", ", ".join(new_names))
-    else:
-        LOG.info("training from base weights %s", base)
-    return YOLO(str(base)), True
+    fresh = previous is None or not Path(previous).is_file()
+    if fresh and init is not None and Path(init).is_file():
+        LOG.info("training first cycle from init weights %s", init)
+        return YOLO(str(init)), True, "init"
+    LOG.info("training from base weights %s", base)
+    return YOLO(str(base)), True, "base"
 
 
 def canvas_for_frame(images: dict, frame: Frame, dominant, fallback):
@@ -1702,12 +1831,12 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
     built = build_dataset(args.work_dir, frames, live, list(state["classes"]), args.val_fraction)
     previous = resolve_weights(state, args.work_dir)
     YOLO = yolo_class()
-    model, from_base = load_training_model(
-        YOLO, args.base_weights, previous, built["classes"], built["new_names"]
+    model, from_base, weight_kind = load_training_model(
+        YOLO, args.base_weights, previous, built["classes"], built["new_names"], getattr(args, "init_weights", None)
     )
-    epochs = args.epochs if from_base else args.finetune_epochs
+    epochs = args.finetune_epochs if weight_kind == "finetune" else args.epochs
     weights, map50, _save_dir = train_model(
-        model, args, built["data_yaml"], epochs, upcoming, args.work_dir, status, from_base
+        model, args, built["data_yaml"], epochs, upcoming, args.work_dir, status, from_base, weight_kind
     )
     state["cycle"] = upcoming
     state["classes"] = built["classes"]
@@ -1722,6 +1851,7 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
     state["from_base"] = from_base
     state["train_images"] = built["train_images"]
     state["val_images"] = built["val_images"]
+    state["hard_negative_frames"] = built["hard_negative_frames"]
     state["last_error"] = None
     save_state(args.work_dir / STATE_NAME, state)
     status.update(
@@ -1731,6 +1861,7 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
         epochs=epochs,
         train_images=built["train_images"],
         val_images=built["val_images"],
+        hard_negative_frames=built["hard_negative_frames"],
         weights=str(weights),
         from_base=from_base,
         next_cycle_at=state["next_cycle_at"],
@@ -1766,6 +1897,12 @@ def validate_config(args):
         raise ConfigError(
             f"base weights not found: {args.base_weights}. Pass a local .pt file; weights are not downloaded."
         )
+    if args.init_weights is not None:
+        args.init_weights = args.init_weights.expanduser().resolve()
+        if not args.init_weights.is_file() or args.init_weights.stat().st_size < 1024:
+            raise ConfigError(
+                f"init weights not found: {args.init_weights}. Pass a local .pt file; weights are not downloaded."
+            )
     if args.imgsz % 32 != 0:
         raise ConfigError("--imgsz must be a multiple of 32")
     if min(args.min_reviewed, args.every, args.lookahead, args.epochs, args.finetune_epochs, args.batch) < 1:
@@ -1809,6 +1946,7 @@ def report_missing_frames(status: Status, live, error: str, min_reviewed: int):
         from_base=None,
         train_images=None,
         val_images=None,
+        hard_negative_frames=0,
         message="Δεν βρέθηκαν καρέ" if project else "Λείπει το project",
     )
 
@@ -2060,6 +2198,12 @@ def parse_args(argv=None):
     )
     parser.add_argument("--work-dir", required=True, type=Path, help="datasets and runs; outside the repo and the sync folder. One subfolder per project")
     parser.add_argument("--base-weights", required=True, type=Path, help="local .pt such as yolov8s.pt; never downloaded")
+    parser.add_argument(
+        "--init-weights",
+        type=Path,
+        default=None,
+        help="optional local .pt used for the first cycle of a project that has no checkpoint yet (a sibling project's model). Later cycles fine-tune this project's best.pt; a new class still restarts from --base-weights",
+    )
     parser.add_argument("--min-reviewed", type=int, default=40, help="reviewed frames before the first cycle (default 40)")
     parser.add_argument("--every", type=int, default=30, help="new reviewed frames between later cycles (default 30)")
     parser.add_argument("--lookahead", type=int, default=150, help="unreviewed frames to predict after the margin (default 150)")

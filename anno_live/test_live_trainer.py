@@ -122,6 +122,7 @@ def test_merge_and_shape():
     doc = lt.build_prediction_document({"project": "match", "Annotator": "ada", "prefs": {}, "presets": {}}, merged)
     errors = lt.prediction_shape_errors(doc)
     check(errors == [], errors)
+    check(doc["project"] == "match", doc["project"])
     check(doc["imageNum"] == 4, doc["imageNum"])
     check(doc["currentImage"] == "00006", doc["currentImage"])
     check(tuple(doc.keys()) == lt.PREDICTION_KEYS, tuple(doc.keys()))
@@ -167,6 +168,18 @@ def make_live_frames(root: Path, with_window: bool):
         "prefs": {"projectName": "other", "AnnotatorName": "ada"},
         "presets": {},
         "reviewed": ["00000", "00001", "00002", "00003", "00004", "00005"],
+        "rejected": {
+            "00004": [
+                {"brand": "Nike", "tpoint": "Board", "x": 10, "y": 10, "width": 30, "height": 20, "confidence": 0.55}
+            ],
+            "00000": [
+                {"brand": "Puma", "tpoint": "Sleeve", "x": 1, "y": 2, "width": 8, "height": 6, "confidence": 0.2}
+            ],
+            "00999": [
+                {"brand": "Nike", "tpoint": "Board", "x": 0, "y": 0, "width": 10, "height": 10, "confidence": 0.9}
+            ],
+            "00005": [],
+        },
         "syncedAt": "2026-11-14T00:00:00+00:00",
         "currentImageIndex": 6 if with_window else 0,
     }
@@ -199,6 +212,30 @@ def test_dataset():
         check(labels["00002"].strip() == "0 0.250000 0.400000 0.300000 0.400000", labels["00002"])
         check(labels["00001"].strip() == "1 0.500000 0.500000 1.000000 1.000000", labels["00001"])
         check(built["train_images"] >= 1 and built["val_images"] >= 1, built)
+        check(built["hard_negative_frames"] == 2, built["hard_negative_frames"])
+        check(built["classes"] == ["Adidas|LED", "Nike|Board"], built["classes"])
+        train_dir = root / "work" / "dataset" / "labels" / "train"
+        val_dir = root / "work" / "dataset" / "labels" / "val"
+
+        def copy_names(folder, stem):
+            return sorted(
+                path.stem for path in folder.glob("*.txt") if path.stem == stem or path.stem.startswith(stem + "__hn")
+            )
+
+        for stem in ("00000", "00004"):
+            train_names = copy_names(train_dir, stem)
+            val_names = copy_names(val_dir, stem)
+            check(len(train_names) in (0, lt.HARD_NEGATIVE_COPIES), (stem, train_names))
+            check(len(val_names) in (0, 1), (stem, val_names))
+            check(len(train_names) + len(val_names) >= 1, stem)
+            for name in train_names + val_names:
+                folder = train_dir if name in train_names else val_dir
+                text = (folder / f"{name}.txt").read_text(encoding="utf-8")
+                if stem == "00004":
+                    check(text == "", text)
+                else:
+                    check(text.count("\n") == 2 or text.strip().count("\n") == 1, text)
+                    check("0.250000" in text and "0.650000" in text, text)
 
 
 CLUSTER = "part8_reduced_20261017_RLWC_MensEnglandvTonga_Live_Seven_1930-cluster_7"
@@ -386,6 +423,36 @@ def test_frames_lookup():
         check("no-such-cluster" in status["last_error"] and str(downloads) in status["last_error"], status["last_error"])
 
 
+def test_init_weights():
+    class Fake:
+        def __init__(self, path):
+            self.path = str(path)
+            self.names = {0: "Other|X"} if str(path).endswith("previous.pt") else {0: "Adidas|LED"}
+
+    def YOLO(path):
+        return Fake(path)
+
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        base = root / "base.pt"
+        init = root / "init.pt"
+        previous = root / "previous.pt"
+        for path in (base, init, previous):
+            path.write_bytes(b"0" * 2048)
+        model, from_base, kind = lt.load_training_model(YOLO, base, None, ["Adidas|LED"], [], init)
+        check(kind == "init" and from_base and model.path == str(init), (kind, getattr(model, "path", None)))
+        model, from_base, kind = lt.load_training_model(YOLO, base, None, ["Adidas|LED"], [], None)
+        check(kind == "base" and model.path == str(base), (kind, model.path))
+        model, from_base, kind = lt.load_training_model(YOLO, base, previous, ["Other|X"], [], init)
+        check(kind == "finetune" and not from_base and model.path == str(previous), (kind, model.path))
+        model, from_base, kind = lt.load_training_model(YOLO, base, previous, ["Adidas|LED"], [], init)
+        check(kind == "base" and model.path == str(base), (kind, model.path))
+        model, from_base, kind = lt.load_training_model(
+            YOLO, base, previous, ["Adidas|LED", "Nike|Board"], ["Nike|Board"], init
+        )
+        check(kind == "base" and model.path == str(base), (kind, model.path))
+
+
 def test_config_and_status():
     with tempfile.TemporaryDirectory() as tmp:
         root = Path(tmp)
@@ -468,6 +535,7 @@ def test_config_and_status():
         check(data["schema"] == 1 and data["next_cycle_at"] == 40, data)
         check(data["classes"] == ["Adidas|LED"] and data["reviewed"] == 3, data)
         check(data["project"] is None and data["frames_folder"] is None, data)
+        check(data["hard_negative_frames"] == 0, data["hard_negative_frames"])
         check(list(sync.glob(".live_trainer_status.json.*.tmp")) == [], "temp status file left behind")
         check("Αναμονή" in text, "greek message")
 
@@ -550,6 +618,8 @@ def test_cycle(weights: Path):
         check(status["epoch"] == 1 and status["epochs"] == 1, (status["epoch"], status["epochs"]))
         check(status["from_base"] is True, status["from_base"])
         check(status["classes"] == ["Adidas|LED", "Nike|Board"], status["classes"])
+        check(doc["project"] == "match", doc["project"])
+        check(status["hard_negative_frames"] == 2, status.get("hard_negative_frames"))
         check(status["device"] == "cpu", status["device"])
         check(isinstance(status["last_map50"], (int, float)), status["last_map50"])
         check(status["project"] == "match", status["project"])
@@ -569,6 +639,7 @@ def main():
     test_classes_and_window()
     test_merge_and_shape()
     test_dataset()
+    test_init_weights()
     test_frames_lookup()
     test_config_and_status()
     print("pure checks ok")
