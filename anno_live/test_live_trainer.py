@@ -1,0 +1,511 @@
+"""Checks for the live trainer that do not need a GPU.
+
+    python anno_live/test_live_trainer.py
+    python anno_live/test_live_trainer.py --train --weights D:\\models\\yolov8n.pt
+
+The --train path runs one real cycle on a tiny synthetic set. It does not
+download weights; pass a local .pt file.
+"""
+
+from __future__ import annotations
+
+import json
+import sys
+import tempfile
+from pathlib import Path
+
+from PIL import Image, ImageDraw
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from anno_live import live_trainer as lt  # noqa: E402
+
+
+def check(condition, message):
+    if not condition:
+        raise AssertionError(message)
+
+
+def test_coords():
+    box = lt.canvas_box_to_yolo((10, 10), (40, 30), 100, 50, 200, 100)
+    check(box is not None, "box")
+    xc, yc, bw, bh = box
+    check(abs(xc - 0.25) < 1e-6, xc)
+    check(abs(yc - 0.4) < 1e-6, yc)
+    check(abs(bw - 0.3) < 1e-6, bw)
+    check(abs(bh - 0.4) < 1e-6, bh)
+    flipped = lt.canvas_box_to_yolo((40, 30), (10, 10), 100, 50, 200, 100)
+    check(flipped == box, flipped)
+    x1 = (xc - bw / 2) * 200
+    y1 = (yc - bh / 2) * 100
+    x2 = (xc + bw / 2) * 200
+    y2 = (yc + bh / 2) * 100
+    back = lt.xyxy_to_canvas(x1, y1, x2, y2, 200, 100, 100, 50)
+    check(back == ([10, 10], [40, 30]), back)
+    clamped = lt.canvas_box_to_yolo((-10, -5), (10, 10), 100, 50, 200, 100)
+    check(clamped is not None, "clamped")
+    cxc, cyc, cbw, cbh = clamped
+    check(abs(cxc - 0.05) < 1e-6 and abs(cyc - 0.1) < 1e-6, clamped)
+    check(abs(cbw - 0.1) < 1e-6 and abs(cbh - 0.2) < 1e-6, clamped)
+    check(lt.canvas_box_to_yolo((0, 0), (0.2, 0.2), 100, 50, 200, 100) is None, "tiny box")
+
+
+def test_classes_and_window():
+    classes, new_names = lt.extend_classes(["Nike|Board", "Adidas|LED"], {"Adidas|LED", "Puma|Sleeve", "Zeta|A"})
+    check(classes == ["Nike|Board", "Adidas|LED", "Puma|Sleeve", "Zeta|A"], classes)
+    check(new_names == ["Puma|Sleeve", "Zeta|A"], new_names)
+    again, none_new = lt.extend_classes(classes, {"Adidas|LED"})
+    check(again == classes and none_new == [], again)
+    check(lt.wants_finetune(None, []) is False, "no previous")
+    check(lt.wants_finetune(Path("/no/such.pt"), []) is False, "missing file")
+    check(lt.class_name("Adidas", "LED") == "Adidas|LED", "class name")
+    check(lt.split_class("Adidas|LED") == ("Adidas", "LED"), "split")
+
+    frames = [lt.Frame(path=Path(f"/frames/{i:05d}.jpg"), rel=f"{i:05d}", stem=f"{i:05d}") for i in range(16)]
+    blocked = {"00004", "00005"}
+    chosen = lt.select_predict_frames(frames, 6, 2, 3, blocked)
+    check([frame.rel for frame in chosen] == ["00009", "00010", "00011"], [frame.rel for frame in chosen])
+    chosen = lt.select_predict_frames(frames, 6, 2, 3, blocked | {"00010"})
+    check([frame.rel for frame in chosen] == ["00009", "00011", "00012"], [frame.rel for frame in chosen])
+    check(lt.find_current_index(frames, "00006") == 6, "index")
+    check(lt.find_current_index(frames, "missing") == -1, "missing")
+
+
+def image_entry(key, annotations):
+    return {
+        "imageName": key,
+        "imageIndex": 0,
+        "width": 100,
+        "height": 50,
+        "annotations": annotations,
+        "exifdata": {},
+    }
+
+
+def box(brand, tpoint, start, diag, hits=1, confidence=None):
+    ann = {
+        "startPoint": list(start),
+        "diagPoint": list(diag),
+        "group": "",
+        "brand": brand,
+        "tpoint": tpoint,
+        "hits": hits,
+    }
+    if confidence is not None:
+        ann["confidence"] = confidence
+    return ann
+
+
+def test_merge_and_shape():
+    frames = [lt.Frame(path=Path(f"/frames/{i:05d}.jpg"), rel=f"{i:05d}", stem=f"{i:05d}") for i in range(16)]
+    old = {
+        key: image_entry(key, [box("Sentinel", "Old", (1, 2), (8, 9), confidence=0.5)])
+        for key in ("00002", "00004", "00006", "00007", "00009", "00014")
+    }
+    new = {
+        "00010": image_entry(
+            "00010",
+            [
+                lt.detection_annotation("Adidas", "LED", (1, 1), (4, 4), 0.8),
+                lt.detection_annotation("Adidas", "LED", (5, 1), (9, 4), 0.4),
+            ],
+        )
+    }
+    blocked = {f"{i:05d}" for i in range(6)}
+    merged = lt.merge_prediction_images(old, new, {"00009", "00010", "00011"}, frames, 6, blocked)
+    check(list(merged) == ["00006", "00007", "00010", "00014"], list(merged))
+    check(merged["00007"]["annotations"][0]["brand"] == "Sentinel", "kept margin")
+    check(len(merged["00010"]["annotations"]) == 2, "no dedupe")
+    check(merged["00010"]["annotations"][0]["hits"] == 1, "hits")
+    check("00009" not in merged and "00002" not in merged and "00004" not in merged, "dropped")
+    doc = lt.build_prediction_document({"project": "match", "Annotator": "ada", "prefs": {}, "presets": {}}, merged)
+    errors = lt.prediction_shape_errors(doc)
+    check(errors == [], errors)
+    check(doc["imageNum"] == 4, doc["imageNum"])
+    check(doc["currentImage"] == "00006", doc["currentImage"])
+    check(tuple(doc.keys()) == lt.PREDICTION_KEYS, tuple(doc.keys()))
+    start, end = lt.prediction_span(merged, frames)
+    check(start == "00006" and end == "00014", (start, end))
+
+
+def write_jpeg(path: Path, box_xy=None):
+    image = Image.new("RGB", (200, 100), "black")
+    if box_xy:
+        ImageDraw.Draw(image).rectangle(box_xy, fill=(255, 80, 20))
+    image.save(path, "JPEG")
+
+
+def make_live_frames(root: Path, with_window: bool):
+    frames = root / "frames"
+    frames.mkdir()
+    count = 16 if with_window else 8
+    for i in range(count):
+        write_jpeg(frames / f"{i:05d}.jpg", (20, 20, 80, 60) if i < 4 else None)
+    images = {
+        "00000": image_entry(
+            "00000",
+            [
+                box("Adidas", "LED", (10, 10), (40, 30), hits=3),
+                box("Adidas", "LED", (50, 10), (80, 30), hits=1),
+            ],
+        ),
+        "00001": image_entry("00001", [box("Nike", "Board", (0, 0), (100, 50))]),
+        "00002": image_entry("00002", [box("Adidas", "LED", (40, 30), (10, 10))]),
+        "00003": image_entry("00003", [box("Nike", "Board", (10, 10), (40, 30))]),
+        "00005": image_entry("00005", []),
+    }
+    if not with_window:
+        images["00999"] = image_entry("00999", [box("Puma", "Sleeve", (10, 10), (40, 30))])
+        write_jpeg(frames / "00999.jpg", (20, 20, 80, 60))
+        write_jpeg(frames / "unseen.jpg")
+    live = {
+        "project": "match",
+        "images": images,
+        "currentImage": "00006" if with_window else "00000",
+        "Annotator": "ada",
+        "prefs": {"projectName": "other", "AnnotatorName": "ada"},
+        "presets": {},
+        "reviewed": ["00000", "00001", "00002", "00003", "00004", "00005"],
+        "syncedAt": "2026-11-14T00:00:00+00:00",
+        "currentImageIndex": 6 if with_window else 0,
+    }
+    return frames, live
+
+
+def labels_of(dataset: Path):
+    found = {}
+    for path in dataset.rglob("*.txt"):
+        found[path.stem] = path.read_text(encoding="utf-8")
+    return found
+
+
+def test_dataset():
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        frames, live = make_live_frames(root, with_window=False)
+        built = lt.build_dataset(root / "work", lt.list_frames(frames), live, [], 0.1)
+        check(built["classes"] == ["Adidas|LED", "Nike|Board"], built["classes"])
+        check(built["boxes"] == 5, built["boxes"])
+        check(built["negatives"] == 2, built["negatives"])
+        labels = labels_of(root / "work" / "dataset")
+        check("00999" not in labels and "unseen" not in labels, labels.keys())
+        check(labels["00004"] == "" and labels["00005"] == "", "negatives")
+        lines = [line for line in labels["00000"].splitlines() if line]
+        check(len(lines) == 2, labels["00000"])
+        check(all(line.startswith("0 ") for line in lines), lines)
+        check(any(line.startswith("0 0.250000 0.400000 0.300000 0.400000") for line in lines), lines)
+        check(any(line.startswith("0 0.650000 0.400000 0.300000 0.400000") for line in lines), lines)
+        check(labels["00002"].strip() == "0 0.250000 0.400000 0.300000 0.400000", labels["00002"])
+        check(labels["00001"].strip() == "1 0.500000 0.500000 1.000000 1.000000", labels["00001"])
+        check(built["train_images"] >= 1 and built["val_images"] >= 1, built)
+
+
+CLUSTER = "part8_reduced_20261017_RLWC_MensEnglandvTonga_Live_Seven_1930-cluster_7"
+
+
+def test_frames_lookup():
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        downloads = root / "downloads"
+        direct = downloads / "season" / CLUSTER
+        direct.mkdir(parents=True)
+        write_jpeg(direct / "00001.jpg")
+        nested = downloads / "other" / CLUSTER
+        (nested / "sub").mkdir(parents=True)
+        write_jpeg(nested / "sub" / "00002.jpg")
+        decoy = downloads / "decoy" / (CLUSTER + "_extra")
+        decoy.mkdir(parents=True)
+        write_jpeg(decoy / "00003.jpg")
+        empty = downloads / "empty" / CLUSTER
+        empty.mkdir(parents=True)
+        (empty / "notes.txt").write_text("no jpg", encoding="utf-8")
+        found = lt.find_project_folder(CLUSTER, [downloads])
+        check(found == direct.resolve(), found)
+        only = root / "only"
+        deep = only / "a" / "b" / "solo_project"
+        (deep / "frames").mkdir(parents=True)
+        write_jpeg(deep / "frames" / "00001.jpg")
+        check(lt.find_project_folder("solo_project", [only]) == deep.resolve(), "nested jpg")
+        check(lt.find_project_folder("missing_project", [only]) is None, "missing name")
+
+        work = root / "work"
+        work.mkdir()
+        locator = lt.FrameLocator([downloads], work / "frames_cache.json", miss_seconds=0)
+        check(locator.resolve(CLUSTER) == direct.resolve(), "first resolve")
+        elsewhere = root / "elsewhere" / CLUSTER
+        elsewhere.mkdir(parents=True)
+        write_jpeg(elsewhere / "00009.jpg")
+        locator.roots = [elsewhere]
+        check(locator.resolve(CLUSTER) == direct.resolve(), "cache ignores a newer copy")
+        cache = json.loads((work / "frames_cache.json").read_text(encoding="utf-8"))
+        check(cache[CLUSTER] == str(direct.resolve()), cache)
+
+        active = {}
+        live_a = {"project": CLUSTER, "reviewed": [], "images": {}}
+        err = lt.bind_project(live_a, None, locator, work, 40, active)
+        check(err is None, err)
+        check(active["frames"] == direct.resolve(), active["frames"])
+        check(active["work"] == (work / CLUSTER).resolve(), active["work"])
+        active["state"]["cycle"] = 4
+        lt.save_state(active["work"] / "state.json", active["state"])
+
+        beta = "beta_match"
+        beta_dir = downloads / "beta" / beta
+        beta_dir.mkdir(parents=True)
+        write_jpeg(beta_dir / "00001.jpg")
+        locator.roots = [downloads]
+        err = lt.bind_project({"project": beta, "reviewed": [], "images": {}}, None, locator, work, 40, active)
+        check(err is None, err)
+        check(active["state"]["cycle"] == 0, active["state"]["cycle"])
+        check(active["work"] == (work / beta).resolve(), active["work"])
+        check(active["frames"] == beta_dir.resolve(), active["frames"])
+        err = lt.bind_project(live_a, None, locator, work, 40, active)
+        check(err is None and active["state"]["cycle"] == 4, active.get("state"))
+        check(active["frames"] == direct.resolve(), active["frames"])
+
+        fixed = root / "fixed"
+        fixed.mkdir()
+        write_jpeg(fixed / "00001.jpg")
+        explicit = {}
+        err = lt.bind_project({"project": beta}, fixed, locator, work, 40, explicit)
+        check(err is None and explicit["frames"] == fixed, explicit.get("frames"))
+        check(explicit["work"].name == beta, explicit["work"])
+
+        missing = {}
+        err = lt.bind_project({"project": "no-such-cluster"}, None, locator, work, 40, missing)
+        check(err and "no-such-cluster" in err, err)
+        check(missing.get("ready") is False, missing)
+
+        sync = root / "sync"
+        sync.mkdir()
+        old = lt.build_prediction_document({"project": "alpha", "Annotator": "-", "prefs": {}, "presets": {}}, {})
+        (sync / lt.PRED_NAME).write_text(json.dumps(old), encoding="utf-8")
+        lt.ensure_predictions_project(sync, {"project": beta})
+        cleared = json.loads((sync / lt.PRED_NAME).read_text(encoding="utf-8"))
+        check(cleared["project"] == beta and cleared["images"] == {}, cleared)
+        lt.ensure_predictions_project(sync, {"project": beta})
+        check(json.loads((sync / lt.PRED_NAME).read_text(encoding="utf-8")) == cleared, "cleared twice")
+
+        weights = root / "fake.pt"
+        weights.write_bytes(b"0" * 2048)
+        (sync / lt.LIVE_NAME).write_text(
+            json.dumps({"project": "no-such-cluster", "reviewed": [], "images": {}}),
+            encoding="utf-8",
+        )
+        code = lt.main(
+            [
+                "--sync-folder",
+                str(sync),
+                "--frames-root",
+                str(downloads),
+                "--work-dir",
+                str(root / "once-work"),
+                "--base-weights",
+                str(weights),
+                "--once",
+            ]
+        )
+        check(code == 1, code)
+        status = json.loads((sync / lt.STATUS_NAME).read_text(encoding="utf-8"))
+        check(list(status) == list(lt.STATUS_KEYS), list(status))
+        check(status["state"] == "idle" and status["project"] == "no-such-cluster", status)
+        check(status["frames_folder"] is None, status["frames_folder"])
+        check("no-such-cluster" in status["last_error"] and str(downloads) in status["last_error"], status["last_error"])
+
+
+def test_config_and_status():
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        sync = root / "sync"
+        frames = root / "frames"
+        work = root / "work"
+        sync.mkdir()
+        frames.mkdir()
+        weights = root / "fake.pt"
+        weights.write_bytes(b"0" * 2048)
+        args = lt.parse_args(
+            [
+                "--sync-folder",
+                str(sync),
+                "--frames-folder",
+                str(frames),
+                "--work-dir",
+                str(work),
+                "--base-weights",
+                str(weights),
+            ]
+        )
+        lt.validate_config(args)
+        check(args.workers == (0 if __import__("os").name == "nt" else 2), args.workers)
+        optional = lt.parse_args(
+            [
+                "--sync-folder",
+                str(sync),
+                "--work-dir",
+                str(root / "opt-work"),
+                "--base-weights",
+                str(weights),
+            ]
+        )
+        check(optional.frames_folder is None, optional.frames_folder)
+        lt.validate_config(optional)
+        check(optional.frames_roots == [Path(r"D:\downloads")], optional.frames_roots)
+        bad = lt.parse_args(
+            [
+                "--sync-folder",
+                str(sync),
+                "--frames-folder",
+                str(frames),
+                "--work-dir",
+                str(lt.repo_root() / "anno_live"),
+                "--base-weights",
+                str(weights),
+            ]
+        )
+        try:
+            lt.validate_config(bad)
+        except lt.ConfigError:
+            pass
+        else:
+            raise AssertionError("work dir inside the repo was accepted")
+        missing = lt.parse_args(
+            [
+                "--sync-folder",
+                str(sync),
+                "--frames-folder",
+                str(frames),
+                "--work-dir",
+                str(root / "other-work"),
+                "--base-weights",
+                str(root / "missing.pt"),
+            ]
+        )
+        try:
+            lt.validate_config(missing)
+        except lt.ConfigError as exc:
+            check("not found" in str(exc), exc)
+        else:
+            raise AssertionError("missing weights were accepted")
+        status = lt.Status(sync / lt.STATUS_NAME, "cpu", 40)
+        status.update(reviewed=3, message="Αναμονή", classes=["Adidas|LED"])
+        text = (sync / lt.STATUS_NAME).read_text(encoding="utf-8")
+        data = json.loads(text)
+        check(list(data) == list(lt.STATUS_KEYS), list(data))
+        check(data["schema"] == 1 and data["next_cycle_at"] == 40, data)
+        check(data["classes"] == ["Adidas|LED"] and data["reviewed"] == 3, data)
+        check(data["project"] is None and data["frames_folder"] is None, data)
+        check(list(sync.glob(".live_trainer_status.json.*.tmp")) == [], "temp status file left behind")
+        check("Αναμονή" in text, "greek message")
+
+
+def test_cycle(weights: Path):
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        frames, live = make_live_frames(root, with_window=True)
+        sync = root / "sync"
+        work = root / "work"
+        sync.mkdir()
+        (sync / lt.LIVE_NAME).write_text(json.dumps(live), encoding="utf-8")
+        old_keys = ["00002", "00004", "00006", "00007", "00009", "00014"]
+        old_images = {
+            key: image_entry(key, [box("Sentinel", "Old", (1, 2), (8, 9), confidence=0.42)]) for key in old_keys
+        }
+        old_doc = lt.build_prediction_document(live, old_images)
+        (sync / lt.PRED_NAME).write_text(json.dumps(old_doc), encoding="utf-8")
+        code = lt.main(
+            [
+                "--sync-folder",
+                str(sync),
+                "--frames-folder",
+                str(frames),
+                "--work-dir",
+                str(work),
+                "--base-weights",
+                str(weights),
+                "--min-reviewed",
+                "4",
+                "--every",
+                "30",
+                "--lookahead",
+                "3",
+                "--predict-margin",
+                "2",
+                "--epochs",
+                "1",
+                "--finetune-epochs",
+                "1",
+                "--imgsz",
+                "64",
+                "--batch",
+                "2",
+                "--workers",
+                "0",
+                "--device",
+                "cpu",
+                "--val-fraction",
+                "0.1",
+                "--once",
+            ]
+        )
+        check(code == 0, f"exit {code}")
+        names = sorted(path.name for path in sync.iterdir())
+        check(names == [lt.LIVE_NAME, lt.PRED_NAME, lt.STATUS_NAME], names)
+        check(list(sync.glob(".*.tmp")) == [], "temp file left in the sync folder")
+        doc = json.loads((sync / lt.PRED_NAME).read_text(encoding="utf-8"))
+        errors = lt.prediction_shape_errors(doc)
+        check(errors == [], errors)
+        images = doc["images"]
+        check("00002" not in images and "00004" not in images, images.keys())
+        check("00007" in images and images["00007"]["annotations"][0]["brand"] == "Sentinel", "margin kept")
+        check("00014" in images and images["00014"]["annotations"][0]["brand"] == "Sentinel", "far kept")
+        check("00006" in images and images["00006"]["annotations"][0]["brand"] == "Sentinel", "current kept")
+        if "00009" in images:
+            brands = {ann["brand"] for ann in images["00009"]["annotations"]}
+            check("Sentinel" not in brands, brands)
+        status = json.loads((sync / lt.STATUS_NAME).read_text(encoding="utf-8"))
+        check(list(status) == list(lt.STATUS_KEYS), list(status))
+        check(status["state"] == "idle", status["state"])
+        check(status["cycle"] == 1, status["cycle"])
+        check(status["reviewed"] == 6, status["reviewed"])
+        check(status["reviewed_since_last_cycle"] == 0, status["reviewed_since_last_cycle"])
+        check(status["next_cycle_at"] == 36, status["next_cycle_at"])
+        check(status["predicted_frames"] == len(images), status["predicted_frames"])
+        keys = list(images)
+        check(status["predicted_from"] == keys[0] and status["predicted_to"] == keys[-1], status)
+        check(status["last_error"] is None, status["last_error"])
+        check(status["epoch"] == 1 and status["epochs"] == 1, (status["epoch"], status["epochs"]))
+        check(status["from_base"] is True, status["from_base"])
+        check(status["classes"] == ["Adidas|LED", "Nike|Board"], status["classes"])
+        check(status["device"] == "cpu", status["device"])
+        check(isinstance(status["last_map50"], (int, float)), status["last_map50"])
+        check(status["project"] == "match", status["project"])
+        check(Path(status["frames_folder"]).resolve() == frames.resolve(), status["frames_folder"])
+        project_work = work / "match"
+        check((project_work / "best.pt").is_file(), "best.pt missing")
+        check(not (work / "frames_cache.json").exists(), "search cache written for an explicit frames folder")
+        labels = labels_of(project_work / "dataset")
+        check("0 0.250000 0.400000 0.300000 0.400000" in labels["00000"], labels["00000"])
+        state = json.loads((project_work / "state.json").read_text(encoding="utf-8"))
+        check(state["pending_predict"] is False, state)
+        check(state["cycle"] == 1 and state["next_cycle_at"] == 36, state)
+
+
+def main():
+    test_coords()
+    test_classes_and_window()
+    test_merge_and_shape()
+    test_dataset()
+    test_frames_lookup()
+    test_config_and_status()
+    print("pure checks ok")
+    if "--train" in sys.argv:
+        if "--weights" not in sys.argv:
+            raise SystemExit("pass --weights /path/to/yolov8n.pt")
+        weights = Path(sys.argv[sys.argv.index("--weights") + 1])
+        test_cycle(weights)
+        print("training cycle ok")
+
+
+if __name__ == "__main__":
+    main()
