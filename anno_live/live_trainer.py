@@ -1427,7 +1427,134 @@ def remember_project(work_root: Path, family: str, project: str, work_dir: Path,
         projects[project]["work_dir"] = str(work_dir)
     grew = classes != list(index["classes"])
     index["classes"] = classes
+    for key, entry in list(projects.items()):
+        if key == project or not isinstance(entry, dict):
+            continue
+        if str(entry.get("work_dir") or "") == str(work_dir):
+            projects.pop(key, None)
+            changed = True
     if changed or was_new or grew:
+        save_family_index(work_root, family, index)
+    return index
+
+
+def yaml_class_names(path: Path) -> list[str]:
+    """Read the ``names:`` list from a dataset yaml written by this trainer."""
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return []
+    names = []
+    in_names = False
+    for line in lines:
+        if line.startswith("names:"):
+            in_names = True
+            continue
+        if not in_names:
+            continue
+        stripped = line.strip()
+        if stripped.startswith("- "):
+            names.append(stripped[2:].strip().strip("'\""))
+        elif stripped and not line.startswith((" ", "\t")):
+            break
+    return names
+
+
+def frames_from_yolo_dataset(dataset: Path, names: list[str]) -> list[dict]:
+    """Labels already written under a project work dir. Hard-negative copies are skipped."""
+    stored = []
+    order = 0
+    for split in ("train", "val"):
+        label_dir = dataset / "labels" / split
+        image_dir = dataset / "images" / split
+        if not label_dir.is_dir():
+            continue
+        for label in sorted(label_dir.glob("*.txt")):
+            if "__hn" in label.stem:
+                continue
+            image = None
+            for suffix in (".jpg", ".jpeg", ".JPG", ".JPEG"):
+                candidate = image_dir / f"{label.stem}{suffix}"
+                if candidate.is_file():
+                    image = candidate
+                    break
+            if image is None:
+                continue
+            boxes = []
+            try:
+                text = label.read_text(encoding="utf-8")
+            except OSError:
+                continue
+            for line in text.splitlines():
+                parts = line.split()
+                if len(parts) != 5:
+                    continue
+                try:
+                    class_index = int(parts[0])
+                    coords = (float(parts[1]), float(parts[2]), float(parts[3]), float(parts[4]))
+                except ValueError:
+                    continue
+                if not 0 <= class_index < len(names):
+                    continue
+                boxes.append(_stored_box(names[class_index], coords))
+            stored.append(
+                {
+                    "rel": label.stem,
+                    "path": str(image),
+                    "boxes": boxes,
+                    "hard_negative": False,
+                    "order": order,
+                }
+            )
+            order += 1
+    return stored
+
+
+def backfill_family_projects(work_root: Path, family: str, index: dict) -> dict:
+    """Add reviewed labels already saved under other project work dirs of this family.
+
+    A project the live file has already stored is left alone. This is how a
+    family keeps frames from clusters that were trained before the shared index
+    existed.
+    """
+    try:
+        children = [path for path in Path(work_root).iterdir() if path.is_dir() and path.name != "models"]
+    except OSError as exc:
+        LOG.warning("cannot list work dir %s: %s", work_root, exc)
+        return index
+    changed = False
+    for child in children:
+        state_path = child / "state.json"
+        yaml_path = child / "dataset" / "data.yaml"
+        if not state_path.is_file() or not yaml_path.is_file():
+            continue
+        try:
+            state = read_json(state_path, retries=1, pause=0.02)
+        except ValueError:
+            continue
+        if not isinstance(state, dict) or state.get("model_family") != family:
+            continue
+        existing = index["projects"].get(child.name)
+        if isinstance(existing, dict) and existing.get("frames"):
+            continue
+        names = yaml_class_names(yaml_path)
+        frames = frames_from_yolo_dataset(child / "dataset", names) if names else []
+        if not frames:
+            continue
+        index["projects"][child.name] = {
+            "work_dir": str(child),
+            "frames_folder": "",
+            "updated_at": iso_now(),
+            "frames": frames,
+            "source": "dataset",
+        }
+        found = {str(box[0]) for frame in frames for box in frame.get("boxes") or []}
+        classes, _new = extend_classes(list(index.get("classes") or []), found)
+        if classes != list(index.get("classes") or []):
+            index["classes"] = classes
+        changed = True
+        LOG.info("family %s loaded %s stored frames from %s", family, len(frames), child.name)
+    if changed:
         save_family_index(work_root, family, index)
     return index
 
@@ -2123,6 +2250,7 @@ def build_family_dataset(
     reviewed frames stay in the index, but they do not block the other projects.
     """
     index = remember_project(work_root, family, project, work, frames_folder, frames, live)
+    index = backfill_family_projects(work_root, family, index)
     rows = family_example_rows(index)
     if not any(row["boxes"] for row in rows):
         return None

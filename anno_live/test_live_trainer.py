@@ -916,6 +916,33 @@ def test_family_union():
         check(any(text == "" for text in labels.values()), "negative from the current project")
         index = json.loads((family / "dataset.json").read_text(encoding="utf-8"))
         check(set(index["projects"]) == {"cluster_a", "cluster_b"}, set(index["projects"]))
+        old = root / "cluster_old"
+        (old / "dataset" / "images" / "train").mkdir(parents=True)
+        (old / "dataset" / "labels" / "train").mkdir(parents=True)
+        write_jpeg(old / "dataset" / "images" / "train" / "00007.jpg", (20, 20, 80, 60))
+        (old / "dataset" / "labels" / "train" / "00007.txt").write_text(
+            "0 0.500000 0.500000 0.200000 0.200000\n",
+            encoding="utf-8",
+        )
+        (old / "dataset" / "data.yaml").write_text('names:\n  - "Perth|Pitch Mat"\n', encoding="utf-8")
+        (old / "state.json").write_text(
+            json.dumps({"model_family": "2026 RLWC", "classes": ["Perth|Pitch Mat"]}),
+            encoding="utf-8",
+        )
+        again = lt.build_family_dataset(
+            root / "work_b2",
+            root,
+            "2026 RLWC",
+            "cluster_b",
+            frames_b,
+            lt.list_frames(frames_b),
+            live_b,
+            0.0,
+            1500,
+        )
+        check(again is not None and "Perth|Pitch Mat" in again["classes"], again["classes"] if again else None)
+        old_labels = labels_of(root / "work_b2" / "dataset")
+        check(any("00007" in name for name in old_labels), list(old_labels))
         check(index["classes"] == built["classes"], index["classes"])
         empty = {
             "project": "cluster_c",
