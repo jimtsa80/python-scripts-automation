@@ -9,6 +9,7 @@ download weights; pass a local .pt file.
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 import tempfile
@@ -624,7 +625,11 @@ def test_config_and_status():
             ]
         )
         lt.validate_config(args)
-        check(args.workers == (0 if __import__("os").name == "nt" else 2), args.workers)
+        check(args.workers == 2, args.workers)
+        check(args.batch == 4, args.batch)
+        check(args.gpu_mem_fraction == 0.7, args.gpu_mem_fraction)
+        check(args.min_free_vram_mb == 1536, args.min_free_vram_mb)
+        check(args.oom_wait == 45, args.oom_wait)
         optional = lt.parse_args(
             [
                 "--sync-folder",
@@ -675,6 +680,26 @@ def test_config_and_status():
             check("not found" in str(exc), exc)
         else:
             raise AssertionError("missing weights were accepted")
+        heavy = lt.parse_args(
+            [
+                "--sync-folder",
+                str(sync),
+                "--frames-folder",
+                str(frames),
+                "--work-dir",
+                str(root / "gpu-work"),
+                "--base-weights",
+                str(weights),
+                "--gpu-mem-fraction",
+                "1.5",
+            ]
+        )
+        try:
+            lt.validate_config(heavy)
+        except lt.ConfigError as exc:
+            check("gpu-mem-fraction" in str(exc), exc)
+        else:
+            raise AssertionError("gpu fraction above 1 was accepted")
         status = lt.Status(sync / lt.STATUS_NAME, "cpu", 40)
         status.update(reviewed=3, message="Αναμονή", classes=["Adidas|LED"])
         text = (sync / lt.STATUS_NAME).read_text(encoding="utf-8")
@@ -786,6 +811,71 @@ def test_cycle(weights: Path):
         check(state["cycle"] == 1 and state["next_cycle_at"] == 36, state)
 
 
+def test_gpu_backoff():
+    class AcceleratorError(Exception):
+        pass
+
+    class OutOfMemoryError(Exception):
+        pass
+
+    check(lt.is_cuda_oom(OutOfMemoryError("CUDA out of memory")), "oom type")
+    check(lt.is_cuda_oom(AcceleratorError("CUDA error: out of memory")), "accelerator")
+    check(lt.is_cuda_oom(RuntimeError("CUDA out of memory. Tried to allocate 2.00 GiB")), "runtime")
+    wrapped = RuntimeError("train failed")
+    wrapped.__cause__ = AcceleratorError("CUDA error: out of memory")
+    check(lt.is_cuda_oom(wrapped), "cause")
+    check(not lt.is_cuda_oom(RuntimeError("dataloader worker exited")), "plain runtime")
+    check(not lt.is_cuda_oom(ValueError("out of memory")), "other type")
+    check(not lt.is_cuda_oom(AcceleratorError("device busy")), "accelerator without oom")
+
+    args = argparse.Namespace(batch=4, workers=2)
+    check(lt.shrink_after_oom(args) == "batch 2" and args.batch == 2, args.batch)
+    args.batch = 3
+    check(lt.shrink_after_oom(args) == "batch 1" and args.batch == 1, args.batch)
+    check(lt.shrink_after_oom(args) == "workers 0" and args.workers == 0, args.workers)
+    check(lt.shrink_after_oom(args) == "", "nothing left to shrink")
+
+    with tempfile.TemporaryDirectory() as tmp:
+        status = lt.Status(Path(tmp) / "live_trainer_status.json", "cpu", 40)
+        retry_args = argparse.Namespace(batch=4, workers=2, oom_wait=0)
+        calls = {"n": 0}
+
+        def action():
+            calls["n"] += 1
+            if calls["n"] == 1:
+                raise RuntimeError("CUDA out of memory. Tried to allocate 512.00 MiB")
+            status.update(state="training", last_error=None, message="ok")
+            return "done"
+
+        result = lt.call_with_oom_retry(status, retry_args, action, "training")
+        check(result == "done", result)
+        check(retry_args.batch == 2, retry_args.batch)
+        check(status.data["last_error"] is None, status.data["last_error"])
+        check(status.data["state"] == "training", status.data["state"])
+        written = json.loads(status.path.read_text(encoding="utf-8"))
+        check(written["last_error"] is None and written["state"] == "training", written["state"])
+
+        def always():
+            raise RuntimeError("CUDA out of memory")
+
+        stuck = argparse.Namespace(batch=1, workers=0, oom_wait=0)
+        try:
+            lt.call_with_oom_retry(status, stuck, always, "predict")
+        except RuntimeError as exc:
+            check("out of memory" in str(exc).lower(), exc)
+        else:
+            raise AssertionError("oom retry should re-raise when nothing is left to shrink")
+
+    tight = argparse.Namespace(device="0", min_free_vram_mb=1536)
+    waiting = lt.gpu_memory_message(tight, free_mb=100)
+    check(waiting is not None and waiting.startswith("Αναμονή GPU"), waiting)
+    check("1536" in waiting and "100" in waiting, waiting)
+    check(lt.gpu_memory_message(tight, free_mb=4000) is None, "enough vram")
+    check(lt.gpu_memory_message(argparse.Namespace(device="cpu", min_free_vram_mb=1536), free_mb=100) is None, "cpu")
+    check(lt.gpu_memory_message(argparse.Namespace(device="0", min_free_vram_mb=0), free_mb=1) is None, "disabled")
+    lt.lower_process_priority()
+
+
 def main():
     test_coords()
     test_classes_and_window()
@@ -796,6 +886,7 @@ def main():
     test_init_weights()
     test_frames_lookup()
     test_config_and_status()
+    test_gpu_backoff()
     print("pure checks ok")
     if "--train" in sys.argv:
         if "--weights" not in sys.argv:

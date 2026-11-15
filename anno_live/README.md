@@ -28,7 +28,7 @@ anno_live\start_live_trainer.bat D:\models\yolov8s.pt
 Η ίδια εκκίνηση χωρίς το bat. Το `--frames-folder` δεν χρειάζεται: το `project` μέσα στο `annotool_live.json` είναι και το όνομα του φακέλου με τα jpg, π.χ. `part8_reduced_20261017_RLWC_MensEnglandvTonga_Live_Seven_1930-cluster_7`.
 
 ```bat
-python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects\live_sync --frames-root D:\downloads --work-dir C:\Users\jimts\Documents\projects\live_work --base-weights C:\Users\jimts\Documents\projects\yolov8s.pt --device 0
+python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects\live_sync --frames-root D:\downloads --work-dir C:\Users\jimts\Documents\projects\live_work --base-weights C:\Users\jimts\Documents\projects\yolov8s.pt --device 0 --batch 4 --workers 2 --gpu-mem-fraction 0.7 --min-free-vram-mb 1536
 ```
 
 Ένας μόνο κύκλος και έξοδος:
@@ -41,7 +41,7 @@ python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects
 
 Η αναζήτηση δεν διαβάζει όλο το `D:\downloads`. Πρώτα κοιτάει το συνηθισμένο μονοπάτι `<root>\batchNN\<match>\reduced_<match>\<project>` (ο φάκελος του project έχει jpg μέσα του). Αλλιώς περπατάει μέχρι `--frames-max-depth` (default 6), σταματάει στον πρώτο φάκελο με ακριβώς αυτό το όνομα και jpg απευθείας μέσα του, και δεν μπαίνει σε φακέλους που είναι ήδη frames (πολλά jpg). Πριν ξεκινήσει, το status γίνεται `searching` με μήνυμα `Αναζήτηση φακέλου frames για <project>…`. Το αποτέλεσμα γράφεται στο `<work-dir>\frames_cache.json`· η επόμενη εκκίνηση το διαβάζει και δεν ξαναψάχνει.
 
-Στην RTX 5070 Laptop 8GB: `--device 0`, AMP κλειστό (το default), `--batch 4`. Αν η μνήμη το σηκώνει, δοκίμασε `--batch 8`.
+Στην RTX 5070 Laptop 8GB, με τον browser ανοιχτό για annotation: `--device 0`, AMP κλειστό (το default), `--batch 4`, `--workers 2`, `--gpu-mem-fraction 0.7` (το process δεν παίρνει πάνω από ~70% της VRAM), `--min-free-vram-mb 1536` (αν η ελεύθερη VRAM είναι από κάτω, περιμένει πριν από train ή predict). Το `cache` μένει κλειστό, ώστε οι εικόνες να μην φορτώνονται όλες στη RAM. Στα Windows η διεργασία πέφτει σε below-normal priority (psutil, αλλιώς `SetPriorityClass`). Αν η κάρτα γεμίσει (`CUDA out of memory`, και όταν τρέχει άλλο GPU job), αδειάζει την cache, περιμένει `--oom-wait` δευτερόλεπτα (default 45), ξαναδοκιμάζει με το μισό batch (μέχρι 1) και μετά με `--workers 0`. Το `--imgsz` δεν αλλάζει. Το `state` γίνεται `waiting_gpu` και το `last_error` καθαρίζει μόλις ο επόμενος κύκλος ή οι προβλέψεις πετύχουν.
 
 ## Τι κάνει κάθε κύκλος
 
@@ -52,9 +52,9 @@ python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects
 5. Μετά την εκπαίδευση ξαναδιαβάζει το live αρχείο. Προβλέπει τα επόμενα `--lookahead` (150) καρέ που δεν είναι reviewed και δεν έχουν κουτιά, ξεκινώντας `--predict-margin` (20) καρέ μετά το τρέχον `currentImage`, γιατί αυτά τα προλαβαίνει όσο τρέχει το μοντέλο.
 6. Οι καινούργιες προβλέψεις συγχωνεύονται με τις παλιές. Καρέ πίσω του, reviewed, ή με δικά του κουτιά, φεύγουν. Καρέ μπροστά του που αυτός ο γύρος δεν τα ξαναείδε κρατάνε τις παλιές προτάσεις. Όπου έτρεξε το καινούργιο μοντέλο, κερδίζει εκείνο, ακόμη κι αν δεν βρήκε τίποτα.
 
-Προεπιλογές για κύκλο λίγων λεπτών στην 5070 όταν μαζευτούν μερικές εκατοντάδες ή χιλιάδες καρέ: `--epochs 20` από την αρχή, `--finetune-epochs 8` μετά, `--imgsz 640`, `--batch 4`, `--workers 0` στα Windows (2 αλλού), AMP off, `conf 0.25`, `iou 0.3`, agnostic NMS. Μετά το NMS, `--contain` (default 0.6) πετάει το κουτί με το μικρότερο confidence όταν η τομή καλύπτει τουλάχιστον αυτό το ποσοστό της επιφάνειας του μικρότερου κουτιού, ανεξάρτητα από κλάση. Έτσι δύο προβλέψεις που πέφτουν η μία πάνω στην άλλη στο ίδιο καρέ μένουν μία, η πιο σίγουρη. `--contain 0` κλείνει αυτό το πέρασμα. Οι πρώτοι κύκλοι με ~40 καρέ τελειώνουν γρηγορότερα. Εκπαίδευση από τα base weights: SGD, `lr0=0.01`. Fine-tune: AdamW, `lr0=0.001`. Το ultralytics αγνοεί το `lr0` όταν ο optimizer είναι `auto`, οπότε ο trainer τον ορίζει ρητά.
+Προεπιλογές για κύκλο λίγων λεπτών στην 5070 όταν μαζευτούν μερικές εκατοντάδες ή χιλιάδες καρέ, χωρίς να κολλάει ο browser: `--epochs 20` από την αρχή, `--finetune-epochs 8` μετά, `--imgsz 640`, `--batch 4`, `--workers 2`, `--gpu-mem-fraction 0.7`, `--min-free-vram-mb 1536`, `--oom-wait 45`, AMP off, `cache` κλειστό, `conf 0.25`, `iou 0.3`, agnostic NMS. Μετά το NMS, `--contain` (default 0.6) πετάει το κουτί με το μικρότερο confidence όταν η τομή καλύπτει τουλάχιστον αυτό το ποσοστό της επιφάνειας του μικρότερου κουτιού, ανεξάρτητα από κλάση. Έτσι δύο προβλέψεις που πέφτουν η μία πάνω στην άλλη στο ίδιο καρέ μένουν μία, η πιο σίγουρη. `--contain 0` κλείνει αυτό το πέρασμα. Οι πρώτοι κύκλοι με ~40 καρέ τελειώνουν γρηγορότερα. Εκπαίδευση από τα base weights: SGD, `lr0=0.01`. Fine-tune: AdamW, `lr0=0.001`. Το ultralytics αγνοεί το `lr0` όταν ο optimizer είναι `auto`, οπότε ο trainer τον ορίζει ρητά.
 
-Άλλα flags: `--init-weights` (τοπικό `.pt` για τον πρώτο κύκλο νέου project), `--frames-max-depth` (default 6), `--patience` (default 100, οπότε οι σύντομοι κύκλοι δεν κόβονται νωρίς), `--val-fraction` (default 0.1, σταθερό ανά καρέ), `--poll-seconds` (default 5), `--lr0`, `--amp` για να ανάψεις το AMP.
+Άλλα flags: `--init-weights` (τοπικό `.pt` για τον πρώτο κύκλο νέου project), `--frames-max-depth` (default 6), `--patience` (default 100, οπότε οι σύντομοι κύκλοι δεν κόβονται νωρίς), `--val-fraction` (default 0.1, σταθερό ανά καρέ), `--poll-seconds` (default 5), `--lr0`, `--amp` για να ανάψεις το AMP, `--gpu-mem-fraction` (default 0.7, `0` για χωρίς όριο), `--min-free-vram-mb` (default 1536, `0` για να μην περιμένει), `--oom-wait` (default 45 δευτερόλεπτα). `--workers 0` μένει διαθέσιμο αν ο dataloader στα Windows κολλήσει.
 
 Στον φάκελο sync γράφει μόνο:
 
@@ -70,7 +70,7 @@ python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects
 | Πεδίο | Τιμή |
 | --- | --- |
 | `schema` | `1` |
-| `state` | `searching`, `idle`, `training`, ή `predicting`. `searching` είναι η αναζήτηση του φακέλου καρέ |
+| `state` | `searching`, `idle`, `training`, `predicting`, ή `waiting_gpu`. `searching` είναι η αναζήτηση του φακέλου καρέ. `waiting_gpu` είναι αναμονή για ελεύθερη VRAM ή επανάληψη μετά από CUDA out of memory |
 | `project` | Το `project` του live αρχείου. `null` πριν διαβαστεί |
 | `frames_folder` | Ο φάκελος jpg που χρησιμοποιείται (από `--frames-folder` ή από την αναζήτηση). `null` αν δεν βρέθηκε |
 | `cycle` | Ολοκληρωμένοι κύκλοι· όσο τρέχει εκπαίδευση είναι ο κύκλος που είναι ανοιχτός |
@@ -85,7 +85,7 @@ python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects
 | `epoch` | Epoch που μόλις τελείωσε, από 1. `0` πριν τελειώσει το πρώτο. `null` αν δεν έχει τρέξει κύκλος |
 | `epochs` | Πόσα epoch έχει αυτός ο κύκλος |
 | `updated_at` | ISO-8601 UTC, αλλάζει σε κάθε εγγραφή |
-| `last_error` | Σφάλμα του τελευταίου κύκλου, ή ότι ο φάκελος καρέ δεν βρέθηκε (με το όνομα του project και τα roots). Αλλιώς `null` |
+| `last_error` | Σφάλμα του τελευταίου κύκλου, CUDA out of memory όσο περιμένει επανάληψη, ή ότι ο φάκελος καρέ δεν βρέθηκε (με το όνομα του project και τα roots). Γίνεται `null` μόλις ένας επόμενος κύκλος ή οι προβλέψεις πετύχουν. Η απλή αναμονή για ελεύθερη VRAM δεν γράφει εδώ σφάλμα |
 | `current_image` | Το `currentImage` του live αρχείου |
 | `weights` | Το `best.pt` που χρησιμοποιείται για προβλέψεις |
 | `message` | Σύντομο ελληνικό κείμενο για την οθόνη |

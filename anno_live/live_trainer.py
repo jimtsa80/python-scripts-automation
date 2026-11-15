@@ -1851,6 +1851,179 @@ def make_epoch_callback(status: Status, cycle: int, total_epochs: int, holder: d
     return on_fit_epoch_end
 
 
+MIN_TRAIN_BATCH = 1
+
+
+def is_cuda_oom(exc: BaseException) -> bool:
+    """True for torch CUDA OOM, AcceleratorError, or a RuntimeError that says so."""
+    seen = set()
+    current = exc
+    while current is not None and id(current) not in seen:
+        seen.add(id(current))
+        name = type(current).__name__
+        text = str(current).lower()
+        if name in {"OutOfMemoryError", "AcceleratorError"} and ("out of memory" in text or name == "OutOfMemoryError"):
+            return True
+        if isinstance(current, RuntimeError) and "out of memory" in text:
+            return True
+        cause = current.__cause__
+        context = current.__context__
+        current = cause if cause is not None else context
+    return False
+
+
+def release_cuda_cache():
+    try:
+        import torch
+
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+    except Exception:
+        LOG.debug("cuda cache clear failed", exc_info=True)
+
+
+def shrink_after_oom(args) -> str:
+    """Halve the batch, then drop dataloader workers. Image size stays as it is."""
+    if int(args.batch) > MIN_TRAIN_BATCH:
+        args.batch = max(MIN_TRAIN_BATCH, int(args.batch) // 2)
+        return f"batch {args.batch}"
+    if int(args.workers) > 0:
+        args.workers = 0
+        return "workers 0"
+    return ""
+
+
+def call_with_oom_retry(status: Status, args, action, phase: str):
+    """Run ``action``. On CUDA OOM, wait, shrink, and try again.
+
+    A successful attempt clears ``last_error``. ``imgsz`` is not changed.
+    The reduced batch and worker count stay on ``args`` for later cycles.
+    """
+    while True:
+        try:
+            return action()
+        except Exception as exc:
+            if not is_cuda_oom(exc):
+                raise
+            change = shrink_after_oom(args)
+            release_cuda_cache()
+            if not change:
+                raise
+            wait = max(0.0, float(getattr(args, "oom_wait", 45)))
+            note = f"CUDA out of memory; retrying with {change}"
+            LOG.warning("%s during %s (%s). Waiting %.0fs, then %s", type(exc).__name__, phase, exc, wait, change)
+            if status is not None:
+                status.update(
+                    state="waiting_gpu",
+                    last_error=note,
+                    message=f"Αναμονή GPU · εξαντλήθηκε η μνήμη · επανάληψη με {change}",
+                )
+            if wait:
+                time.sleep(wait)
+            release_cuda_cache()
+
+
+def cuda_device_index(device: str) -> int | None:
+    text = str(device or "").strip().lower()
+    if text == "cpu":
+        return None
+    if text in {"", "cuda"}:
+        return 0
+    if text.isdigit():
+        return int(text)
+    if text.startswith("cuda:"):
+        tail = text.split(":", 1)[1]
+        return int(tail) if tail.isdigit() else 0
+    return 0
+
+
+def cuda_free_mb(device: str) -> float | None:
+    if str(device or "").strip().lower() == "cpu":
+        return None
+    index = cuda_device_index(device)
+    try:
+        import torch
+
+        if not torch.cuda.is_available():
+            return None
+        if index is None:
+            index = torch.cuda.current_device()
+        free, _total = torch.cuda.mem_get_info(index)
+        return free / (1024 * 1024)
+    except Exception:
+        LOG.debug("free vram query failed", exc_info=True)
+        return None
+
+
+def gpu_memory_message(args, free_mb: float | None = None) -> str | None:
+    """Greek status line when free VRAM is under ``--min-free-vram-mb``. None when it is fine."""
+    minimum = float(getattr(args, "min_free_vram_mb", 0) or 0)
+    if minimum <= 0 or str(getattr(args, "device", "") or "").strip().lower() == "cpu":
+        return None
+    if free_mb is None:
+        free_mb = cuda_free_mb(getattr(args, "device", ""))
+    if free_mb is None or free_mb >= minimum:
+        return None
+    return f"Αναμονή GPU · ελεύθερα {free_mb:.0f} MB, χρειάζονται {minimum:.0f} MB"
+
+
+def wait_out_gpu(args, status: Status) -> bool:
+    """Publish ``waiting_gpu`` and sleep when another job is holding the card. True means skip this pass."""
+    message = gpu_memory_message(args)
+    if not message:
+        return False
+    status.update(state="waiting_gpu", message=message)
+    LOG.info("%s", message)
+    time.sleep(max(float(args.poll_seconds), float(getattr(args, "oom_wait", 0) or 0)))
+    return True
+
+
+def limit_gpu_memory(fraction: float, device: str):
+    """Cap this process with ``torch.cuda.set_per_process_memory_fraction``. 0 disables it."""
+    if fraction <= 0 or str(device or "").strip().lower() == "cpu":
+        return
+    if fraction > 1:
+        return
+    index = cuda_device_index(device)
+    try:
+        import torch
+
+        if not torch.cuda.is_available():
+            return
+        if index is None:
+            index = torch.cuda.current_device()
+        torch.cuda.set_device(index)
+        torch.cuda.set_per_process_memory_fraction(float(fraction), index)
+        LOG.info("gpu memory fraction %.2f on cuda:%s", fraction, index)
+    except Exception as exc:
+        LOG.warning("could not set gpu memory fraction: %s", exc)
+
+
+def lower_process_priority():
+    """Below-normal priority on Windows so the browser stays responsive. No-op elsewhere."""
+    if os.name != "nt":
+        return
+    try:
+        import psutil
+
+        psutil.Process().nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
+        LOG.info("process priority set to below normal")
+        return
+    except Exception:
+        LOG.debug("psutil priority was not set", exc_info=True)
+    try:
+        import ctypes
+
+        below_normal = 0x00004000
+        handle = ctypes.windll.kernel32.GetCurrentProcess()
+        if not ctypes.windll.kernel32.SetPriorityClass(handle, below_normal):
+            LOG.warning("SetPriorityClass failed")
+        else:
+            LOG.info("process priority set to below normal")
+    except Exception as exc:
+        LOG.warning("could not lower process priority: %s", exc)
+
+
 def train_model(model, args, data_yaml: Path, epochs: int, cycle: int, work: Path, status: Status, from_base: bool, weight_kind: str, classes: list[str]):
     holder = {"score": None, "map50": None, "per_class": {}}
     model.add_callback(
@@ -1861,43 +2034,58 @@ def train_model(model, args, data_yaml: Path, epochs: int, cycle: int, work: Pat
     if run_dir.exists():
         shutil.rmtree(run_dir)
     kind = {"finetune": "previous best.pt", "init": "init weights", "base": "base weights"}.get(weight_kind, weight_kind)
-    LOG.info("training cycle %s from %s for %s epochs imgsz=%s batch=%s", cycle, kind, epochs, args.imgsz, args.batch)
-    status.update(
-        state="training",
-        cycle=cycle,
-        epoch=0,
-        epochs=epochs,
-        from_base=from_base,
-        message=f"Εκπαίδευση κύκλου {cycle} · epoch 0/{epochs} · {weight_phrase(weight_kind)}",
-    )
-    train_kwargs = {
-        "data": str(data_yaml),
-        "epochs": epochs,
-        "imgsz": args.imgsz,
-        "batch": args.batch,
-        "workers": args.workers,
-        "amp": bool(args.amp),
-        "project": str((work / "runs").resolve()),
-        "name": f"cycle_{cycle}",
-        "exist_ok": True,
-        "patience": args.patience,
-        "pretrained": True,
-        "plots": False,
-        "save": True,
-        "val": True,
-        "cache": False,
-        "verbose": True,
-        "seed": 0,
-        "deterministic": False,
-        "resume": False,
-        # ultralytics treats optimizer=auto as "ignore lr0". Set it so the documented rates apply.
-        "optimizer": "SGD" if from_base else "AdamW",
-        "lr0": args.lr0 if args.lr0 is not None else (0.01 if from_base else 0.001),
-        "close_mosaic": 0 if epochs < 5 else max(1, epochs // 5),
-    }
-    if args.device:
-        train_kwargs["device"] = args.device
-    model.train(**train_kwargs)
+
+    def train_once():
+        if run_dir.exists():
+            shutil.rmtree(run_dir)
+        LOG.info(
+            "training cycle %s from %s for %s epochs imgsz=%s batch=%s workers=%s",
+            cycle,
+            kind,
+            epochs,
+            args.imgsz,
+            args.batch,
+            args.workers,
+        )
+        status.update(
+            state="training",
+            cycle=cycle,
+            epoch=0,
+            epochs=epochs,
+            from_base=from_base,
+            last_error=None,
+            message=f"Εκπαίδευση κύκλου {cycle} · epoch 0/{epochs} · {weight_phrase(weight_kind)}",
+        )
+        train_kwargs = {
+            "data": str(data_yaml),
+            "epochs": epochs,
+            "imgsz": args.imgsz,
+            "batch": args.batch,
+            "workers": args.workers,
+            "amp": bool(args.amp),
+            "project": str((work / "runs").resolve()),
+            "name": f"cycle_{cycle}",
+            "exist_ok": True,
+            "patience": args.patience,
+            "pretrained": True,
+            "plots": False,
+            "save": True,
+            "val": True,
+            "cache": False,
+            "verbose": True,
+            "seed": 0,
+            "deterministic": False,
+            "resume": False,
+            # ultralytics treats optimizer=auto as "ignore lr0". Set it so the documented rates apply.
+            "optimizer": "SGD" if from_base else "AdamW",
+            "lr0": args.lr0 if args.lr0 is not None else (0.01 if from_base else 0.001),
+            "close_mosaic": 0 if epochs < 5 else max(1, epochs // 5),
+        }
+        if args.device:
+            train_kwargs["device"] = args.device
+        model.train(**train_kwargs)
+
+    call_with_oom_retry(status, args, train_once, "training")
     trainer = getattr(model, "trainer", None)
     save_dir = Path(getattr(trainer, "save_dir", run_dir))
     best = save_dir / "weights" / "best.pt"
@@ -1990,7 +2178,7 @@ def boxes_from_result(result, frame: Frame, canvas, key: str, index: int):
     return prediction_image(key, index, canvas[0], canvas[1], annotations)
 
 
-def predict_frames(model, args, live, frames, work: Path, coverage: str = "window"):
+def predict_frames(model, args, live, frames, work: Path, coverage: str = "window", status: Status | None = None):
     images = live_images(live)
     names = reviewed_names(live)
     blocked = blocked_rels(frames, names, images)
@@ -2014,56 +2202,68 @@ def predict_frames(model, args, live, frames, work: Path, coverage: str = "windo
     replaced = {prediction_key(frame, stems_unique) for frame in chosen}
     new_images = {}
     if chosen:
-        predict_kwargs = {
-            "source": [str(frame.path) for frame in chosen],
-            "conf": args.conf,
-            "iou": args.iou,
-            "agnostic_nms": True,
-            "imgsz": args.imgsz,
-            "verbose": False,
-            "stream": True,
-            "save": False,
-            "show": False,
-            "save_txt": False,
-            "save_conf": False,
-            "workers": args.workers,
-            "batch": args.batch,
-            "project": str((work / "predict").resolve()),
-            "name": "latest",
-            "exist_ok": True,
-        }
-        if args.device:
-            predict_kwargs["device"] = args.device
-        results = model.predict(**predict_kwargs)
         by_path = {frame.path.resolve(): frame for frame in chosen}
-        seen = 0
         dominant = dominant_canvas(images)
-        for result in results:
-            seen += 1
-            frame = by_path.get(Path(result.path).resolve())
-            if frame is None:
-                LOG.warning("predict result for an unexpected file: %s", result.path)
-                continue
-            orig_h, orig_w = result.orig_shape
-            canvas = canvas_for_frame(images, frame, dominant, (int(orig_w), int(orig_h)))
-            key = prediction_key(frame, stems_unique)
-            index = find_current_index(frames, frame.rel)
-            entry = boxes_from_result(result, frame, canvas, key, index if index >= 0 else 0)
-            if entry:
-                before = len(entry["annotations"])
-                kept = suppress_contained(entry["annotations"], float(getattr(args, "contain", 0.6)))
-                if len(kept) < before:
-                    LOG.info(
-                        "containment dropped %s of %s boxes on %s",
-                        before - len(kept),
-                        before,
-                        frame.rel,
-                    )
-                if kept:
-                    entry["annotations"] = kept
-                    new_images[key] = entry
-        if seen != len(chosen):
-            LOG.warning("model returned %s results for %s frames", seen, len(chosen))
+
+        def predict_once():
+            found = {}
+            predict_kwargs = {
+                "source": [str(frame.path) for frame in chosen],
+                "conf": args.conf,
+                "iou": args.iou,
+                "agnostic_nms": True,
+                "imgsz": args.imgsz,
+                "verbose": False,
+                "stream": True,
+                "save": False,
+                "show": False,
+                "save_txt": False,
+                "save_conf": False,
+                "workers": args.workers,
+                "batch": args.batch,
+                "cache": False,
+                "project": str((work / "predict").resolve()),
+                "name": "latest",
+                "exist_ok": True,
+            }
+            if args.device:
+                predict_kwargs["device"] = args.device
+            if status is not None:
+                message = status.data.get("message") or "Προβλέψεις"
+                if status.data.get("state") == "waiting_gpu":
+                    message = "Προβλέψεις"
+                status.update(state="predicting", last_error=None, message=message)
+            results = model.predict(**predict_kwargs)
+            seen = 0
+            for result in results:
+                seen += 1
+                frame = by_path.get(Path(result.path).resolve())
+                if frame is None:
+                    LOG.warning("predict result for an unexpected file: %s", result.path)
+                    continue
+                orig_h, orig_w = result.orig_shape
+                canvas = canvas_for_frame(images, frame, dominant, (int(orig_w), int(orig_h)))
+                key = prediction_key(frame, stems_unique)
+                index = find_current_index(frames, frame.rel)
+                entry = boxes_from_result(result, frame, canvas, key, index if index >= 0 else 0)
+                if entry:
+                    before = len(entry["annotations"])
+                    kept = suppress_contained(entry["annotations"], float(getattr(args, "contain", 0.6)))
+                    if len(kept) < before:
+                        LOG.info(
+                            "containment dropped %s of %s boxes on %s",
+                            before - len(kept),
+                            before,
+                            frame.rel,
+                        )
+                    if kept:
+                        entry["annotations"] = kept
+                        found[key] = entry
+            if seen != len(chosen):
+                LOG.warning("model returned %s results for %s frames", seen, len(chosen))
+            return found
+
+        new_images = call_with_oom_retry(status, args, predict_once, "predict")
     old = {}
     pred_path = args.sync_folder / PRED_NAME
     if pred_path.is_file():
@@ -2095,7 +2295,7 @@ def finish_predict(args, state: dict, status: Status, frames_index: FrameIndex):
     frames = frames_index.get(force=True)
     YOLO = yolo_class()
     model = YOLO(str(weights))
-    count, start, end = predict_frames(model, args, live, frames, args.work_dir)
+    count, start, end = predict_frames(model, args, live, frames, args.work_dir, status=status)
     state["pending_predict"] = False
     state["last_error"] = None
     save_state(args.work_dir / STATE_NAME, state)
@@ -2146,7 +2346,7 @@ def seed_family_predictions(args, state: dict, status: Status, frames_index: Fra
     frames = frames_index.get(force=True)
     YOLO = yolo_class()
     model = YOLO(str(weights))
-    count, start, end = predict_frames(model, args, live, frames, args.work_dir, coverage="all")
+    count, start, end = predict_frames(model, args, live, frames, args.work_dir, coverage="all", status=status)
     state["seeded_family"] = family
     state["last_error"] = None
     save_state(args.work_dir / STATE_NAME, state)
@@ -2297,7 +2497,12 @@ def validate_config(args):
         raise ConfigError("--val-fraction must be between 0 and 0.5")
     if not 0 <= args.contain <= 1:
         raise ConfigError("--contain must be between 0 and 1")
-    args.workers = 0 if args.workers is None and os.name == "nt" else (2 if args.workers is None else args.workers)
+    if not 0 <= args.gpu_mem_fraction <= 1:
+        raise ConfigError("--gpu-mem-fraction must be between 0 and 1")
+    if args.min_free_vram_mb < 0:
+        raise ConfigError("--min-free-vram-mb must be >= 0")
+    if args.oom_wait < 0:
+        raise ConfigError("--oom-wait must be >= 0")
     if args.workers < 0:
         raise ConfigError("--workers must be >= 0")
     args.poll_seconds = max(1.0, float(args.poll_seconds))
@@ -2346,6 +2551,8 @@ def run(args) -> int:
 
         multiprocessing.freeze_support()
     args = validate_config(args)
+    lower_process_priority()
+    limit_gpu_memory(float(args.gpu_mem_fraction), args.device)
     status = Status(
         args.sync_folder / STATUS_NAME,
         device=args.device or "auto",
@@ -2451,6 +2658,10 @@ def run(args) -> int:
                 gave_retry = False
 
             if state["pending_predict"]:
+                if wait_out_gpu(args, status):
+                    if args.once:
+                        return 0
+                    continue
                 try:
                     finish_predict(args, state, status, frames_index)
                     gave_retry = False
@@ -2468,6 +2679,10 @@ def run(args) -> int:
                 continue
 
             if needs_family_seed(state):
+                if wait_out_gpu(args, status):
+                    if args.once:
+                        return 0
+                    continue
                 try:
                     seed_family_predictions(args, state, status, frames_index)
                     gave_retry = False
@@ -2514,6 +2729,10 @@ def run(args) -> int:
                     LOG.info("not enough reviewed frames for a cycle (%s/%s)", reviewed, state["next_cycle_at"])
                     return 0
                 time.sleep(args.poll_seconds)
+                continue
+            if wait_out_gpu(args, status):
+                if args.once:
+                    return 0
                 continue
             try:
                 run_cycle(args, state, status, frames_index, live)
@@ -2620,8 +2839,26 @@ def parse_args(argv=None):
     parser.add_argument("--epochs", type=int, default=20, help="epochs when training from base weights (default 20)")
     parser.add_argument("--finetune-epochs", type=int, default=8, help="epochs when fine-tuning best.pt (default 8)")
     parser.add_argument("--imgsz", type=int, default=640, help="train and predict image size (default 640)")
-    parser.add_argument("--batch", type=int, default=4, help="batch size; 4 is sized for an 8GB GPU with AMP off (default 4)")
-    parser.add_argument("--workers", type=int, default=None, help="dataloader workers (default 0 on Windows, 2 elsewhere)")
+    parser.add_argument("--batch", type=int, default=4, help="batch size; 4 leaves room on an 8GB GPU with AMP off (default 4). An out-of-memory retry halves it, down to 1")
+    parser.add_argument("--workers", type=int, default=2, help="dataloader workers (default 2). An out-of-memory retry drops this to 0 after the batch is already 1")
+    parser.add_argument(
+        "--gpu-mem-fraction",
+        type=float,
+        default=0.7,
+        help="cap this process to this fraction of GPU memory via torch.cuda.set_per_process_memory_fraction (default 0.7). 0 disables the cap",
+    )
+    parser.add_argument(
+        "--min-free-vram-mb",
+        type=float,
+        default=1536,
+        help="before train or predict, wait while free VRAM is below this many MB (default 1536). 0 disables the check",
+    )
+    parser.add_argument(
+        "--oom-wait",
+        type=float,
+        default=45,
+        help="seconds to wait after CUDA runs out of memory, and between free-VRAM checks (default 45)",
+    )
     parser.add_argument("--device", default="", help="ultralytics device, e.g. 0 or cpu (default: auto)")
     parser.add_argument("--conf", type=float, default=0.25, help="predict confidence (default 0.25)")
     parser.add_argument("--iou", type=float, default=0.3, help="class-agnostic NMS IoU (default 0.3)")
