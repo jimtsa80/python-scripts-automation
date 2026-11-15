@@ -122,6 +122,129 @@ def test_suppress_contained():
     check(args.iou == 0.3 and args.contain == 0.6, (args.iou, args.contain))
 
 
+class _Tensor:
+    def __init__(self, data):
+        self.data = data
+
+    def detach(self):
+        return self
+
+    def cpu(self):
+        return self
+
+    def tolist(self):
+        return self.data
+
+
+def test_model_families():
+    grouped = {"project": "match", "prefs": {"groups": ["2026 RLWC", "other"]}}
+    check(lt.resolve_model_plan(grouped)["family"] == "2026 RLWC", lt.resolve_model_plan(grouped))
+    named = {"modelFamily": " custom ", "prefs": {"groups": ["2026 RLWC"]}, "modelChoice": "continue"}
+    check(lt.resolve_model_plan(named)["family"] == "custom", lt.resolve_model_plan(named))
+    fresh = {"modelChoice": "new", "modelFamily": "2026 RLWC", "prefs": {"groups": ["other"]}}
+    plan = lt.resolve_model_plan(fresh)
+    check(plan["fresh"] is True and plan["family"] == "2026 RLWC" and plan["choice"] == "new", plan)
+    picked = lt.resolve_model_plan({"modelChoice": "from:2025 Finals", "modelFamily": "custom"})
+    check(picked["family"] == "2025 Finals" and picked["fresh"] is False, picked)
+    check(lt.resolve_model_plan({"project": "x"})["family"] == "default", "fallback family")
+
+    class BoxMetric:
+        ap50 = [0.5, 0.25]
+        ap_class_index = [0, 1]
+
+    class Validator:
+        class Metrics:
+            box = BoxMetric()
+
+        metrics = Metrics()
+
+    class Trainer:
+        validator = Validator()
+
+    scores = lt.per_class_ap50(Trainer(), ["Adidas|LED", "Nike|Board"])
+    check(scores == {"Adidas|LED": 0.5, "Nike|Board": 0.25}, scores)
+
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        weights = root / "cycle.pt"
+        weights.write_bytes(b"1" * 2048)
+        check(lt.maybe_update_family(root, "2026 RLWC", weights, 0.4, {"Nike|Board": 0.5}) is True, "first family save")
+        stored = root / "models" / "2026 RLWC" / "best.pt"
+        check(stored.is_file() and stored.read_bytes() == b"1" * 2048, stored)
+        check(lt.maybe_update_family(root, "2026 RLWC", weights, 0.2, {}) is False, "worse map is kept")
+        meta = json.loads((stored.parent / "meta.json").read_text(encoding="utf-8"))
+        check(meta["map50"] == 0.4 and meta["family"] == "2026 RLWC", meta)
+        check(lt.maybe_update_family(root, "2026 RLWC", weights, 0.41, {"Nike|Board": 0.6}) is True, "better map replaces")
+        state = lt.blank_state(40)
+        assigned = lt.assign_model_plan(state, {"modelChoice": "from:2026 RLWC"}, root)
+        check(assigned == stored.resolve() or assigned == stored, assigned)
+        check(state["model_mode"] == "συνέχεια" and state["model_family"] == "2026 RLWC", state)
+        check(lt.needs_family_seed(state) is True, state)
+        state["seeded_family"] = "2026 RLWC"
+        check(lt.needs_family_seed(state) is False, "seeded once")
+        fresh_state = lt.blank_state(40)
+        check(lt.assign_model_plan(fresh_state, {"modelChoice": "new", "modelFamily": "2026 RLWC"}, root) is None, "new ignores library")
+        check(fresh_state["model_mode"] == "νέο", fresh_state["model_mode"])
+
+        frames = [lt.Frame(path=Path(f"/frames/{i:05d}.jpg"), rel=f"{i:05d}", stem=f"{i:05d}") for i in range(6)]
+        chosen = lt.select_predict_frames(frames, 4, 20, 1, {"00001"}, coverage="all")
+        check([frame.rel for frame in chosen] == ["00000", "00002", "00003", "00004", "00005"], [f.rel for f in chosen])
+
+        sync = root / "sync"
+        sync.mkdir()
+
+        class Boxes:
+            def __init__(self):
+                self.xyxy = _Tensor([[0, 0, 50, 50], [2, 2, 40, 40]])
+                self.conf = _Tensor([0.9, 0.3])
+                self.cls = _Tensor([0, 1])
+
+            def __len__(self):
+                return 2
+
+        class Result:
+            def __init__(self, path):
+                self.path = path
+                self.orig_shape = (100, 200)
+                self.names = {0: "Nike|Board", 1: "Adidas|LED"}
+                self.boxes = Boxes()
+
+        class Model:
+            def predict(self, **kwargs):
+                return [Result(path) for path in kwargs["source"]]
+
+        class Args:
+            conf = 0.25
+            iou = 0.3
+            imgsz = 64
+            workers = 0
+            batch = 1
+            device = "cpu"
+            predict_margin = 20
+            lookahead = 1
+            contain = 0.6
+            sync_folder = sync
+
+        live = {
+            "project": "match",
+            "currentImage": "00004",
+            "currentImageIndex": 4,
+            "reviewed": ["00001"],
+            "images": {},
+            "Annotator": "-",
+            "prefs": {},
+            "presets": {},
+        }
+        count, start, end = lt.predict_frames(Model(), Args(), live, frames, root / "work", coverage="all")
+        doc = json.loads((sync / lt.PRED_NAME).read_text(encoding="utf-8"))
+        check(start == "00000" and "00000" in doc["images"], (start, list(doc["images"])))
+        check("00001" not in doc["images"], doc["images"])
+        check(len(doc["images"]["00000"]["annotations"]) == 1, doc["images"]["00000"]["annotations"])
+        check(doc["images"]["00000"]["annotations"][0]["confidence"] == 0.9, doc["images"]["00000"])
+        check(count == 5, count)
+        check(end == "00005", end)
+
+
 def test_merge_and_shape():
     frames = [lt.Frame(path=Path(f"/frames/{i:05d}.jpg"), rel=f"{i:05d}", stem=f"{i:05d}") for i in range(16)]
     old = {
@@ -645,6 +768,10 @@ def test_cycle(weights: Path):
         check(status["classes"] == ["Adidas|LED", "Nike|Board"], status["classes"])
         check(doc["project"] == "match", doc["project"])
         check(status["hard_negative_frames"] == 2, status.get("hard_negative_frames"))
+        check(status["model_family"] == "default", status.get("model_family"))
+        check(status["model_mode"] == "νέο", status.get("model_mode"))
+        check(isinstance(status["per_class_map50"], dict), status.get("per_class_map50"))
+        check((work / "models" / "default" / "best.pt").is_file(), "family best.pt")
         check(status["device"] == "cpu", status["device"])
         check(isinstance(status["last_map50"], (int, float)), status["last_map50"])
         check(status["project"] == "match", status["project"])
@@ -663,6 +790,7 @@ def main():
     test_coords()
     test_classes_and_window()
     test_suppress_contained()
+    test_model_families()
     test_merge_and_shape()
     test_dataset()
     test_init_weights()

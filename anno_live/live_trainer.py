@@ -19,7 +19,8 @@ must already be on disk; this process does not download them.
 
 ``--frames-folder`` is optional. Without it, the ``project`` field in the live
 file (the folder name annotool writes) is looked up under each ``--frames-root``
-(default ``D:\\downloads``). The usual path is
+(default ``D:\\downloads``). A changed ``project`` switches folder and model
+without a restart. The usual path is
 ``<root>/batchNN/<match>/reduced_<match>/<project>``. Otherwise the search
 stops at the first directory with that exact name that directly contains a
 jpg, down to ``--frames-max-depth`` (default 6), and does not walk into frame
@@ -124,6 +125,9 @@ STATUS_KEYS = (
     "train_images",
     "val_images",
     "hard_negative_frames",
+    "model_family",
+    "model_mode",
+    "per_class_map50",
 )
 
 
@@ -175,6 +179,9 @@ class Status:
             "train_images": None,
             "val_images": None,
             "hard_negative_frames": 0,
+            "model_family": None,
+            "model_mode": None,
+            "per_class_map50": {},
         }
         self.write()
 
@@ -596,8 +603,15 @@ def find_current_index(frames: list[Frame], name: str | None) -> int:
     return -1
 
 
-def select_predict_frames(frames, current_index: int, margin: int, lookahead: int, blocked: set[str]):
-    """Frames after ``current + margin``, skipping reviewed and already annotated ones."""
+def select_predict_frames(frames, current_index: int, margin: int, lookahead: int, blocked: set[str], coverage: str = "window"):
+    """Frames to predict, skipping reviewed and already annotated ones.
+
+    ``window`` starts after ``current + margin`` and stops at ``lookahead``.
+    ``all`` is every other frame from the first image, used when a family model
+    should fill the project before any training.
+    """
+    if coverage == "all":
+        return [frame for frame in frames if frame.rel not in blocked and frame.stem not in blocked]
     if lookahead <= 0:
         return []
     start = 0 if current_index < 0 else current_index + 1 + max(0, margin)
@@ -936,6 +950,11 @@ def blank_state(min_reviewed: int) -> dict:
         "train_images": None,
         "val_images": None,
         "hard_negative_frames": 0,
+        "model_family": None,
+        "model_choice": "continue",
+        "model_mode": None,
+        "per_class_map50": {},
+        "seeded_family": None,
         "last_error": None,
     }
 
@@ -957,6 +976,20 @@ def load_state(path: Path, min_reviewed: int) -> dict:
         state["next_cycle_at"] = int(state["next_cycle_at"])
     state["pending_predict"] = bool(state["pending_predict"])
     state["hard_negative_frames"] = int(state.get("hard_negative_frames") or 0)
+    if not isinstance(state.get("per_class_map50"), dict):
+        state["per_class_map50"] = {}
+    else:
+        cleaned = {}
+        for key, value in state["per_class_map50"].items():
+            number = as_float(value)
+            if number is not None:
+                cleaned[str(key)] = round(number, 4)
+        state["per_class_map50"] = cleaned
+    if state.get("model_choice") not in {"continue", "new", "from"}:
+        state["model_choice"] = "continue"
+    if state.get("model_mode") not in {None, "συνέχεια", "νέο"}:
+        state["model_mode"] = None
+    state["seeded_family"] = state.get("seeded_family") or None
     return state
 
 
@@ -1060,6 +1093,121 @@ def project_name(live) -> str | None:
     return None
 
 
+def explicit_family(live) -> str | None:
+    if not isinstance(live, dict):
+        return None
+    name = live.get("modelFamily")
+    if isinstance(name, str) and name.strip():
+        return name.strip()
+    return None
+
+
+def first_group(live) -> str | None:
+    """First group name in ``prefs.groups``, for example ``2026 RLWC``."""
+    if not isinstance(live, dict):
+        return None
+    prefs = live.get("prefs")
+    groups = prefs.get("groups") if isinstance(prefs, dict) else None
+    if isinstance(groups, str) and groups.strip():
+        return groups.strip()
+    if isinstance(groups, list):
+        for item in groups:
+            if isinstance(item, str) and item.strip():
+                return item.strip()
+    return None
+
+
+def derived_family(live) -> str:
+    return explicit_family(live) or first_group(live) or "default"
+
+
+def parse_model_choice(live) -> tuple[str, str | None]:
+    """Return ``(continue|new|from, family name for from:)``."""
+    raw = ""
+    if isinstance(live, dict) and isinstance(live.get("modelChoice"), str):
+        raw = live["modelChoice"].strip()
+    lowered = raw.lower()
+    if not lowered or lowered == "continue":
+        return "continue", None
+    if lowered == "new":
+        return "new", None
+    if lowered.startswith("from:"):
+        name = raw.split(":", 1)[1].strip()
+        if name:
+            return "from", name
+    return "continue", None
+
+
+def resolve_model_plan(live) -> dict:
+    """Family this project belongs to, and whether its library weights must be ignored.
+
+    ``modelFamily`` wins, then the first ``prefs.groups`` entry, then ``default``.
+    ``modelChoice`` ``new`` starts that family from the base weights.
+    ``from:<family>`` uses the named family instead.
+    """
+    choice, named = parse_model_choice(live)
+    if choice == "from" and named:
+        return {"choice": "from", "family": named, "fresh": False}
+    if choice == "new":
+        return {"choice": "new", "family": explicit_family(live) or derived_family(live), "fresh": True}
+    return {"choice": "continue", "family": derived_family(live), "fresh": False}
+
+
+def family_dir(work_root: Path, family: str) -> Path:
+    return Path(work_root) / "models" / project_dirname(family)
+
+
+def family_weights_path(work_root: Path, family: str) -> Path:
+    return family_dir(work_root, family) / "best.pt"
+
+
+def read_family_meta(work_root: Path, family: str) -> dict:
+    path = family_dir(work_root, family) / "meta.json"
+    if not path.is_file():
+        return {}
+    try:
+        data = read_json(path, retries=2, pause=0.05)
+    except ValueError:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def assign_model_plan(state: dict, live, work_root: Path) -> Path | None:
+    """Store the live file's family on ``state``. Return library weights when they seed this project."""
+    plan = resolve_model_plan(live)
+    weights = family_weights_path(work_root, plan["family"])
+    usable = weights.is_file() and not plan["fresh"]
+    state["model_family"] = plan["family"]
+    state["model_choice"] = plan["choice"]
+    state["model_mode"] = "συνέχεια" if usable else "νέο"
+    return weights if usable else None
+
+
+def maybe_update_family(work_root: Path, family: str, weights: Path, map50, per_class: dict) -> bool:
+    """Copy ``weights`` into the family library when this mAP50 is not worse than the stored one."""
+    measured = as_float(map50)
+    if measured is None or not family or not Path(weights).is_file():
+        return False
+    previous = as_float(read_family_meta(work_root, family).get("map50"))
+    if previous is not None and measured < previous:
+        LOG.info("family %s keeps mAP50 %s; this cycle is %s", family, previous, round(measured, 4))
+        return False
+    dest = family_dir(work_root, family)
+    dest.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(weights, dest / "best.pt")
+    atomic_write_json(
+        dest / "meta.json",
+        {
+            "family": family,
+            "map50": round(measured, 4),
+            "per_class_map50": dict(per_class or {}),
+            "updated_at": iso_now(),
+        },
+    )
+    LOG.info("updated family %s best.pt mAP50=%s", family, round(measured, 4))
+    return True
+
+
 def project_dirname(project: str | None) -> str:
     """Work subdirectory for one project. Keeps the folder name when it is safe."""
     if not isinstance(project, str) or not project.strip():
@@ -1091,6 +1239,7 @@ def searching_message(project: str) -> str:
 def mark_searching(status: Status, live, project: str):
     """Publish before the frames walk so the UI does not stay on the startup line."""
     reviewed = len(reviewed_names(live)) if isinstance(live, dict) else 0
+    family = resolve_model_plan(live)["family"] if isinstance(live, dict) else None
     status.update(
         state="searching",
         project=project,
@@ -1098,6 +1247,8 @@ def mark_searching(status: Status, live, project: str):
         reviewed=reviewed,
         current_image=current_name(live) if isinstance(live, dict) else None,
         last_error=None,
+        model_family=family,
+        model_mode=None,
         message=searching_message(project),
     )
 
@@ -1330,8 +1481,12 @@ def ensure_predictions_project(sync_folder: Path, live: dict):
     atomic_write_json(path, build_prediction_document(live, {}))
 
 
-def idle_message(reviewed: int, next_at: int, unmatched: int) -> str:
+def idle_message(reviewed: int, next_at: int, unmatched: int, family: str | None = None, mode: str | None = None) -> str:
     text = f"Αναμονή · {reviewed}/{next_at} reviewed"
+    if family:
+        text += f" · {family}"
+    if mode:
+        text += f" · {mode}"
     if unmatched:
         text += f" · {unmatched} χωρίς jpg"
     return text
@@ -1347,11 +1502,18 @@ def publish_idle(
     unmatched: int = 0,
     project: str | None = None,
     frames_folder: Path | None = None,
+    work_root: Path | None = None,
 ):
     reviewed_list = reviewed_names(live) if isinstance(live, dict) else []
     reviewed = len(reviewed_list)
     count, start, end = summarize_predictions(pred_path, frames)
     weights = resolve_weights(state, work)
+    if (weights is None or not weights.is_file()) and work_root and state.get("model_mode") == "συνέχεια":
+        family = state.get("model_family")
+        if family:
+            shared = family_weights_path(work_root, family)
+            if shared.is_file():
+                weights = shared
     status.update(
         state="idle",
         project=project if project is not None else project_name(live),
@@ -1374,7 +1536,16 @@ def publish_idle(
         train_images=state.get("train_images"),
         val_images=state.get("val_images"),
         hard_negative_frames=int(state.get("hard_negative_frames") or 0),
-        message=idle_message(reviewed, int(state["next_cycle_at"]), unmatched),
+        model_family=state.get("model_family"),
+        model_mode=state.get("model_mode"),
+        per_class_map50=dict(state.get("per_class_map50") or {}),
+        message=idle_message(
+            reviewed,
+            int(state["next_cycle_at"]),
+            unmatched,
+            state.get("model_family"),
+            state.get("model_mode"),
+        ),
     )
 
 
@@ -1596,13 +1767,49 @@ def build_dataset(work: Path, frames: list[Frame], live: dict, saved_classes: li
 
 def weight_phrase(weight_kind: str) -> str:
     if weight_kind == "finetune":
-        return "fine-tune"
+        return "βελτίωση"
     if weight_kind == "init":
         return "από τα βάρη εκκίνησης"
     return "από τα βασικά βάρη"
 
 
-def make_epoch_callback(status: Status, cycle: int, total_epochs: int, holder: dict, from_base: bool, weight_kind: str):
+def per_class_ap50(trainer, class_names: list[str]) -> dict:
+    """AP50 per class from the epoch that just finished. Missing classes are omitted."""
+    validator = getattr(trainer, "validator", None)
+    metrics = getattr(validator, "metrics", None) if validator is not None else None
+    box = getattr(metrics, "box", None) if metrics is not None else None
+    if box is None:
+        return {}
+    ap50 = getattr(box, "ap50", None)
+    if ap50 is None:
+        return {}
+    try:
+        values = list(ap50)
+    except TypeError:
+        return {}
+    indices = getattr(box, "ap_class_index", None)
+    if indices is None or len(list(indices)) == 0:
+        indices = list(range(len(values)))
+    else:
+        indices = list(indices)
+    found = {}
+    for index, value in zip(indices, values):
+        number = as_float(value)
+        if number is None:
+            continue
+        try:
+            class_index = int(index)
+        except (TypeError, ValueError):
+            continue
+        if 0 <= class_index < len(class_names):
+            name = class_names[class_index]
+        else:
+            name = str(class_index)
+        found[name] = round(number, 4)
+    return found
+
+
+def make_epoch_callback(status: Status, cycle: int, total_epochs: int, holder: dict, from_base: bool, weight_kind: str, classes: list[str]):
     kind = weight_phrase(weight_kind)
 
     def on_fit_epoch_end(trainer):
@@ -1617,8 +1824,9 @@ def make_epoch_callback(status: Status, cycle: int, total_epochs: int, holder: d
                 if holder["score"] is None or score >= holder["score"]:
                     holder["score"] = score
                     holder["map50"] = round(map50, 4)
+                    holder["per_class"] = per_class_ap50(trainer, classes)
             message = f"Εκπαίδευση κύκλου {cycle} · epoch {epoch}/{total_epochs} · {kind}"
-            status.update(
+            fields = dict(
                 state="training",
                 cycle=cycle,
                 epoch=epoch,
@@ -1627,6 +1835,9 @@ def make_epoch_callback(status: Status, cycle: int, total_epochs: int, holder: d
                 from_base=from_base,
                 message=message,
             )
+            if holder.get("per_class"):
+                fields["per_class_map50"] = holder["per_class"]
+            status.update(**fields)
             LOG.info(
                 "cycle %s epoch %s/%s mAP50=%s",
                 cycle,
@@ -1640,9 +1851,12 @@ def make_epoch_callback(status: Status, cycle: int, total_epochs: int, holder: d
     return on_fit_epoch_end
 
 
-def train_model(model, args, data_yaml: Path, epochs: int, cycle: int, work: Path, status: Status, from_base: bool, weight_kind: str):
-    holder = {"score": None, "map50": None}
-    model.add_callback("on_fit_epoch_end", make_epoch_callback(status, cycle, epochs, holder, from_base, weight_kind))
+def train_model(model, args, data_yaml: Path, epochs: int, cycle: int, work: Path, status: Status, from_base: bool, weight_kind: str, classes: list[str]):
+    holder = {"score": None, "map50": None, "per_class": {}}
+    model.add_callback(
+        "on_fit_epoch_end",
+        make_epoch_callback(status, cycle, epochs, holder, from_base, weight_kind, classes),
+    )
     run_dir = work / "runs" / f"cycle_{cycle}"
     if run_dir.exists():
         shutil.rmtree(run_dir)
@@ -1698,20 +1912,31 @@ def train_model(model, args, data_yaml: Path, epochs: int, cycle: int, work: Pat
         measured = holder["map50"]
     if measured is None:
         measured = best_map50_from_csv(save_dir / "results.csv")
-    return stable, measured, save_dir
+    if not holder["per_class"] and trainer is not None:
+        holder["per_class"] = per_class_ap50(trainer, classes)
+    return stable, measured, save_dir, holder["per_class"]
 
 
-def load_training_model(YOLO, base: Path, previous: Path | None, classes: list[str], new_names: list[str], init: Path | None = None):
+def load_training_model(
+    YOLO,
+    base: Path,
+    previous: Path | None,
+    classes: list[str],
+    new_names: list[str],
+    init: Path | None = None,
+    prefer_finetune: bool = False,
+):
     """Return (model, from_base, weight_kind).
 
-    ``weight_kind`` is ``finetune``, ``init``, or ``base``. ``--init-weights``
-    seeds only the first cycle of a project that has no checkpoint yet. A later
-    class change still restarts from ``--base-weights``.
+    ``weight_kind`` is ``finetune``, ``init``, or ``base``. A family checkpoint
+    on the first cycle is fine-tuned even when the class list differs.
+    ``--init-weights`` is used only when this project has no checkpoint and no
+    family weights. A later new class still restarts from ``--base-weights``.
     """
-    if wants_finetune(previous, new_names):
+    if previous and Path(previous).is_file() and (prefer_finetune or wants_finetune(previous, new_names)):
         model = YOLO(str(previous))
         names = model_class_names(model)
-        if names == list(classes):
+        if prefer_finetune or names == list(classes):
             LOG.info("fine-tuning %s", previous)
             return model, False, "finetune"
         LOG.warning("checkpoint classes %s differ from %s; retraining from base weights", names, classes)
@@ -1765,7 +1990,7 @@ def boxes_from_result(result, frame: Frame, canvas, key: str, index: int):
     return prediction_image(key, index, canvas[0], canvas[1], annotations)
 
 
-def predict_frames(model, args, live, frames, work: Path):
+def predict_frames(model, args, live, frames, work: Path, coverage: str = "window"):
     images = live_images(live)
     names = reviewed_names(live)
     blocked = blocked_rels(frames, names, images)
@@ -1774,7 +1999,9 @@ def predict_frames(model, args, live, frames, work: Path):
     if current and current_index < 0:
         LOG.warning("currentImage %s is not in the frames folder; predicting from the start", current)
     stems_unique = len({frame.stem for frame in frames}) == len(frames)
-    chosen = select_predict_frames(frames, current_index, args.predict_margin, args.lookahead, blocked)
+    chosen = select_predict_frames(
+        frames, current_index, args.predict_margin, args.lookahead, blocked, coverage=coverage
+    )
     LOG.info(
         "predict window current=%s index=%s margin=%s chosen=%s first=%s last=%s",
         current,
@@ -1881,9 +2108,70 @@ def finish_predict(args, state: dict, status: Status, frames_index: FrameIndex):
         args.work_dir,
         project=getattr(args, "bound_project", None),
         frames_folder=getattr(args, "bound_frames", None),
+        work_root=getattr(args, "work_root", None),
     )
     status.update(predicted_frames=count, predicted_from=start, predicted_to=end)
     return count, start, end
+
+
+def cycle_start_weights(args, state: dict) -> tuple[Path | None, bool]:
+    """Return (checkpoint, prefer_finetune) for this cycle.
+
+    After the first cycle the project's own ``best.pt`` is used. A new project
+    in an existing family fine-tunes that family's ``best.pt``.
+    """
+    own = resolve_weights(state, args.work_dir)
+    if own and own.is_file() and int(state["cycle"]) > 0:
+        return own, False
+    if state.get("model_mode") == "συνέχεια" and int(state["cycle"]) == 0 and state.get("model_family"):
+        family = family_weights_path(args.work_root, state["model_family"])
+        if family.is_file():
+            return family, True
+    return None, False
+
+
+def seed_family_predictions(args, state: dict, status: Status, frames_index: FrameIndex):
+    """Predict every unannotated frame from the family model, before any training."""
+    family = state.get("model_family") or ""
+    weights = family_weights_path(args.work_root, family)
+    status.update(
+        state="predicting",
+        cycle=int(state["cycle"]),
+        weights=str(weights),
+        model_family=family,
+        model_mode="συνέχεια",
+        message=f"Προβλέψεις από την οικογένεια {family}, πριν την εκπαίδευση",
+    )
+    live = read_json(args.sync_folder / LIVE_NAME)
+    frames = frames_index.get(force=True)
+    YOLO = yolo_class()
+    model = YOLO(str(weights))
+    count, start, end = predict_frames(model, args, live, frames, args.work_dir, coverage="all")
+    state["seeded_family"] = family
+    state["last_error"] = None
+    save_state(args.work_dir / STATE_NAME, state)
+    publish_idle(
+        status,
+        state,
+        live,
+        frames,
+        args.sync_folder / PRED_NAME,
+        args.work_dir,
+        project=getattr(args, "bound_project", None),
+        frames_folder=getattr(args, "bound_frames", None),
+        work_root=getattr(args, "work_root", None),
+    )
+    status.update(predicted_frames=count, predicted_from=start, predicted_to=end, weights=str(weights))
+    return count
+
+
+def needs_family_seed(state: dict) -> bool:
+    return (
+        state.get("model_mode") == "συνέχεια"
+        and int(state.get("cycle") or 0) == 0
+        and not state.get("pending_predict")
+        and state.get("seeded_family") != state.get("model_family")
+    )
 
 
 def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live: dict):
@@ -1895,18 +2183,36 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
         cycle=upcoming,
         epoch=0,
         epochs=None,
+        model_family=state.get("model_family"),
+        model_mode=state.get("model_mode"),
         message=f"Φτιάχνω dataset κύκλου {upcoming}",
         last_error=None,
     )
     built = build_dataset(args.work_dir, frames, live, list(state["classes"]), args.val_fraction)
-    previous = resolve_weights(state, args.work_dir)
+    previous, prefer_finetune = cycle_start_weights(args, state)
+    init = None if state.get("model_choice") == "new" else getattr(args, "init_weights", None)
     YOLO = yolo_class()
     model, from_base, weight_kind = load_training_model(
-        YOLO, args.base_weights, previous, built["classes"], built["new_names"], getattr(args, "init_weights", None)
+        YOLO,
+        args.base_weights,
+        previous,
+        built["classes"],
+        built["new_names"],
+        init,
+        prefer_finetune=prefer_finetune,
     )
     epochs = args.finetune_epochs if weight_kind == "finetune" else args.epochs
-    weights, map50, _save_dir = train_model(
-        model, args, built["data_yaml"], epochs, upcoming, args.work_dir, status, from_base, weight_kind
+    weights, map50, _save_dir, per_class = train_model(
+        model,
+        args,
+        built["data_yaml"],
+        epochs,
+        upcoming,
+        args.work_dir,
+        status,
+        from_base,
+        weight_kind,
+        built["classes"],
     )
     state["cycle"] = upcoming
     state["classes"] = built["classes"]
@@ -1922,8 +2228,11 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
     state["train_images"] = built["train_images"]
     state["val_images"] = built["val_images"]
     state["hard_negative_frames"] = built["hard_negative_frames"]
+    state["per_class_map50"] = dict(per_class or {})
     state["last_error"] = None
     save_state(args.work_dir / STATE_NAME, state)
+    if state.get("model_family"):
+        maybe_update_family(args.work_root, state["model_family"], weights, state.get("last_map50"), state["per_class_map50"])
     status.update(
         classes=built["classes"],
         last_map50=state["last_map50"],
@@ -1932,6 +2241,9 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
         train_images=built["train_images"],
         val_images=built["val_images"],
         hard_negative_frames=built["hard_negative_frames"],
+        model_family=state.get("model_family"),
+        model_mode=state.get("model_mode"),
+        per_class_map50=state["per_class_map50"],
         weights=str(weights),
         from_base=from_base,
         next_cycle_at=state["next_cycle_at"],
@@ -2019,6 +2331,9 @@ def report_missing_frames(status: Status, live, error: str, min_reviewed: int):
         train_images=None,
         val_images=None,
         hard_negative_frames=0,
+        model_family=resolve_model_plan(live)["family"] if isinstance(live, dict) else None,
+        model_mode=None,
+        per_class_map50={},
         message="Δεν βρέθηκαν καρέ" if project else "Λείπει το project",
     )
 
@@ -2123,6 +2438,7 @@ def run(args) -> int:
             args.bound_frames = active["frames"]
             state = active["state"]
             frames_index = active["index"]
+            assign_model_plan(state, live, args.work_root)
 
             reviewed_now = len(reviewed_names(live))
             if parked_at is not None and reviewed_now == parked_at:
@@ -2151,6 +2467,20 @@ def run(args) -> int:
                     return 0
                 continue
 
+            if needs_family_seed(state):
+                try:
+                    seed_family_predictions(args, state, status, frames_index)
+                    gave_retry = False
+                    parked_at = None
+                except KeyboardInterrupt:
+                    raise
+                except Exception as exc:
+                    outcome = fail_cycle(args, state, status, frames_index, exc, gave_retry, parked_at)
+                    if isinstance(outcome, int):
+                        return outcome
+                    gave_retry, parked_at = outcome
+                    continue
+
             frames = frames_index.get()
             names = reviewed_names(live)
             _chosen, unmatched = match_reviewed(frames, names)
@@ -2164,6 +2494,7 @@ def run(args) -> int:
                 unmatched,
                 project=active["project"],
                 frames_folder=active["frames"],
+                work_root=args.work_root,
             )
             reviewed = len(names)
             signature = (active["project"], reviewed, state["cycle"], state["next_cycle_at"])
@@ -2225,6 +2556,7 @@ def fail_cycle(args, state, status, frames_index, exc, gave_retry, parked_at):
             args.work_dir,
             project=getattr(args, "bound_project", None),
             frames_folder=getattr(args, "bound_frames", None),
+            work_root=getattr(args, "work_root", None),
         )
     except Exception:
         status.update(state="idle", last_error=message, message="Σφάλμα · δες το log")
