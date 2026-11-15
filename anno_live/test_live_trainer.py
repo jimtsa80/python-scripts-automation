@@ -169,20 +169,48 @@ def test_model_families():
         root = Path(tmp)
         weights = root / "cycle.pt"
         weights.write_bytes(b"1" * 2048)
-        check(lt.maybe_update_family(root, "2026 RLWC", weights, 0.4, {"Nike|Board": 0.5}) is True, "first family save")
+        check(
+            lt.maybe_update_family(root, "2026 RLWC", weights, 0.4, {"Nike|Board": 0.5}, ["Nike|Board"]) is True,
+            "first family save",
+        )
         stored = root / "models" / "2026 RLWC" / "best.pt"
         check(stored.is_file() and stored.read_bytes() == b"1" * 2048, stored)
-        check(lt.maybe_update_family(root, "2026 RLWC", weights, 0.2, {}) is False, "worse map is kept")
+        check(
+            lt.maybe_update_family(root, "2026 RLWC", weights, 0.99, {"Perth|Player Jersey": 0.9}, ["Perth|Player Jersey"])
+            is False,
+            "dropped class is kept",
+        )
+        check(stored.read_bytes() == b"1" * 2048, "library unchanged after a class loss")
+        wider = root / "wider.pt"
+        wider.write_bytes(b"2" * 2048)
+        check(
+            lt.maybe_update_family(
+                root,
+                "2026 RLWC",
+                wider,
+                0.2,
+                {"Nike|Board": 0.4, "WA|LED Sign": 0.3},
+                ["Nike|Board", "WA|LED Sign"],
+            )
+            is True,
+            "superset replaces even with a lower map",
+        )
+        check(stored.read_bytes() == b"2" * 2048, "promoted bytes")
+        check((stored.parent / "best_prev.pt").read_bytes() == b"1" * 2048, "previous library weights")
         meta = json.loads((stored.parent / "meta.json").read_text(encoding="utf-8"))
-        check(meta["map50"] == 0.4 and meta["family"] == "2026 RLWC", meta)
-        check(lt.maybe_update_family(root, "2026 RLWC", weights, 0.41, {"Nike|Board": 0.6}) is True, "better map replaces")
+        check(meta["map50"] == 0.2 and meta["family"] == "2026 RLWC", meta)
+        check(meta["classes"] == ["Nike|Board", "WA|LED Sign"], meta.get("classes"))
+        check(meta["per_class_map50"]["WA|LED Sign"] == 0.3, meta["per_class_map50"])
         state = lt.blank_state(40)
         assigned = lt.assign_model_plan(state, {"modelChoice": "from:2026 RLWC"}, root)
         check(assigned == stored.resolve() or assigned == stored, assigned)
         check(state["model_mode"] == "συνέχεια" and state["model_family"] == "2026 RLWC", state)
-        check(lt.needs_family_seed(state) is True, state)
+        check(lt.needs_family_seed(state, root) is True, "no stamp yet")
         state["seeded_family"] = "2026 RLWC"
-        check(lt.needs_family_seed(state) is False, "seeded once")
+        state["seeded_weights"] = {"family": "2026 RLWC", **lt.weights_stamp(stored)}
+        check(lt.needs_family_seed(state, root) is False, "seeded once")
+        stored.write_bytes(b"3" * 3000)
+        check(lt.needs_family_seed(state, root) is True, "newer family weights")
         fresh_state = lt.blank_state(40)
         check(lt.assign_model_plan(fresh_state, {"modelChoice": "new", "modelFamily": "2026 RLWC"}, root) is None, "new ignores library")
         check(fresh_state["model_mode"] == "νέο", fresh_state["model_mode"])
@@ -811,6 +839,128 @@ def test_cycle(weights: Path):
         check(state["cycle"] == 1 and state["next_cycle_at"] == 36, state)
 
 
+def test_family_union():
+    rows = []
+    for index in range(6):
+        rows.append(
+            {
+                "project": "old" if index < 3 else "new",
+                "rel": f"{index:05d}",
+                "boxes": [("Pitch", (0.1, 0.1, 0.2, 0.2))] if index % 2 == 0 else [("Jersey", (0.2, 0.2, 0.2, 0.2))],
+                "hard_negative": False,
+                "updated_at": f"2026-11-15T00:00:0{index}+00:00",
+                "order": index,
+            }
+        )
+    picked = lt.sample_family_examples(rows, 4)
+    check(len(picked) == 4, len(picked))
+    names = {box[0] for row in picked for box in row["boxes"]}
+    check(names == {"Pitch", "Jersey"}, names)
+    check(any(row["order"] == 5 for row in picked), [row["order"] for row in picked])
+
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        frames_a = root / "frames_a"
+        frames_b = root / "frames_b"
+        frames_a.mkdir()
+        frames_b.mkdir()
+        write_jpeg(frames_a / "00000.jpg", (20, 20, 80, 60))
+        write_jpeg(frames_b / "00000.jpg", (20, 20, 80, 60))
+        write_jpeg(frames_b / "00001.jpg")
+        live_a = {
+            "project": "cluster_a",
+            "images": {"00000": image_entry("00000", [box("Perth", "Pitch Mat", (10, 10), (40, 30))])},
+            "reviewed": ["00000"],
+            "rejected": {},
+            "prefs": {"groups": ["2026 RLWC"]},
+        }
+        live_b = {
+            "project": "cluster_b",
+            "images": {
+                "00000": image_entry("00000", [box("WA", "Media Backdrop", (10, 10), (40, 30))]),
+                "00001": image_entry("00001", []),
+            },
+            "reviewed": ["00000", "00001"],
+            "rejected": {},
+            "prefs": {"groups": ["2026 RLWC"]},
+        }
+        family = root / "models" / "2026 RLWC"
+        family.mkdir(parents=True)
+        (family / "best.pt").write_bytes(b"0" * 2048)
+        (family / "meta.json").write_text(
+            json.dumps({"family": "2026 RLWC", "classes": ["Perth|Pitch Mat", "WA|LED Sign"], "map50": 0.5}),
+            encoding="utf-8",
+        )
+        lt.remember_project(root, "2026 RLWC", "cluster_a", root / "work_a", frames_a, lt.list_frames(frames_a), live_a)
+        built = lt.build_family_dataset(
+            root / "work_b",
+            root,
+            "2026 RLWC",
+            "cluster_b",
+            frames_b,
+            lt.list_frames(frames_b),
+            live_b,
+            0.0,
+            1500,
+        )
+        check(built is not None, "family with boxes")
+        check(built["classes"][:2] == ["Perth|Pitch Mat", "WA|LED Sign"], built["classes"])
+        check(built["classes"][-1] == "WA|Media Backdrop", built["classes"])
+        check("Perth|Pitch Mat" in built["classes"] and "WA|LED Sign" in built["classes"], built["classes"])
+        labels = labels_of(root / "work_b" / "dataset")
+        texts = "\n".join(labels.values())
+        pitch = built["classes"].index("Perth|Pitch Mat")
+        backdrop = built["classes"].index("WA|Media Backdrop")
+        check(any(line.startswith(f"{pitch} ") for line in texts.splitlines()), texts)
+        check(any(line.startswith(f"{backdrop} ") for line in texts.splitlines()), texts)
+        check(any(text == "" for text in labels.values()), "negative from the current project")
+        index = json.loads((family / "dataset.json").read_text(encoding="utf-8"))
+        check(set(index["projects"]) == {"cluster_a", "cluster_b"}, set(index["projects"]))
+        check(index["classes"] == built["classes"], index["classes"])
+        empty = {
+            "project": "cluster_c",
+            "images": {"00000": image_entry("00000", [])},
+            "reviewed": ["00000"],
+            "rejected": {},
+        }
+        frames_c = root / "frames_c"
+        frames_c.mkdir()
+        write_jpeg(frames_c / "00000.jpg")
+        none_built = lt.build_family_dataset(
+            root / "work_c",
+            root,
+            "empty-family",
+            "cluster_c",
+            frames_c,
+            lt.list_frames(frames_c),
+            empty,
+            0.1,
+            1500,
+        )
+        check(none_built is None, "no logo boxes")
+        check(lt.NO_BOXES_MESSAGE.startswith("Αναμονή"), lt.NO_BOXES_MESSAGE)
+
+        state = lt.blank_state(40)
+        state["model_mode"] = "συνέχεια"
+        state["model_family"] = "2026 RLWC"
+        state["cycle"] = 4
+        state["best_weights"] = "best.pt"
+        project = root / "proj"
+        project.mkdir()
+        (project / "best.pt").write_bytes(b"p" * 2048)
+        args = argparse.Namespace(work_root=root, work_dir=project)
+        weights, prefer = lt.cycle_start_weights(args, state)
+        check(prefer is True, prefer)
+        check(weights == (family / "best.pt").resolve() or weights == family / "best.pt", weights)
+        coco = Path("/tmp/anno-live-weights/yolov8n.pt")
+        if coco.is_file():
+            seeded = root / "models" / "frompt"
+            seeded.mkdir()
+            (seeded / "best.pt").write_bytes(coco.read_bytes())
+            names = lt.protected_family_classes(root, "frompt")
+            check(names is not None and names[0] == "person" and "bicycle" in names, names[:3] if names else names)
+
+
 def test_gpu_backoff():
     class AcceleratorError(Exception):
         pass
@@ -886,6 +1036,7 @@ def main():
     test_init_weights()
     test_frames_lookup()
     test_config_and_status()
+    test_family_union()
     test_gpu_backoff()
     print("pure checks ok")
     if "--train" in sys.argv:

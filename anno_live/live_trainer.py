@@ -13,9 +13,11 @@ Writes only two files into the sync folder:
   brand|tpoint merge), with canvas coordinates and ``confidence``
 * ``live_trainer_status.json`` — progress for the annotool UI
 
-Datasets and weight files go to ``--work-dir/<project>/``, outside the repository,
-so each annotool project keeps its own classes and ``best.pt``. Base weights
-must already be on disk; this process does not download them.
+Datasets and weight files go to ``--work-dir/<project>/``, outside the repository.
+Projects in one model family share ``<work-dir>/models/<family>/``: one
+``best.pt``, and a ``dataset.json`` of every project's reviewed labels. Class
+ids are append-only for that family. Base weights must already be on disk;
+this process does not download them.
 
 ``--frames-folder`` is optional. Without it, the ``project`` field in the live
 file (the folder name annotool writes) is looked up under each ``--frames-root``
@@ -955,6 +957,7 @@ def blank_state(min_reviewed: int) -> dict:
         "model_mode": None,
         "per_class_map50": {},
         "seeded_family": None,
+        "seeded_weights": None,
         "last_error": None,
     }
 
@@ -990,6 +993,8 @@ def load_state(path: Path, min_reviewed: int) -> dict:
     if state.get("model_mode") not in {None, "συνέχεια", "νέο"}:
         state["model_mode"] = None
     state["seeded_family"] = state.get("seeded_family") or None
+    if not isinstance(state.get("seeded_weights"), dict):
+        state["seeded_weights"] = None
     return state
 
 
@@ -1183,28 +1188,45 @@ def assign_model_plan(state: dict, live, work_root: Path) -> Path | None:
     return weights if usable else None
 
 
-def maybe_update_family(work_root: Path, family: str, weights: Path, map50, per_class: dict) -> bool:
-    """Copy ``weights`` into the family library when this mAP50 is not worse than the stored one."""
+def maybe_update_family(work_root: Path, family: str, weights: Path, map50, per_class: dict, classes: list[str] | None = None) -> bool:
+    """Copy ``weights`` into the family library when no known class disappeared.
+
+    The previous ``best.pt`` is kept as ``best_prev.pt``. A lower mAP50 still
+    replaces the library: losing a class does not. ``classes`` is the trained
+    name list, in id order.
+    """
+    if not family or not Path(weights).is_file():
+        return False
+    trained = [str(name) for name in (classes or [])]
+    protected = protected_family_classes(work_root, family)
+    if protected is None:
+        LOG.info("family %s keeps best.pt; its class list could not be read", family)
+        return False
+    missing = [name for name in protected if name not in set(trained)]
+    if missing:
+        LOG.info("family %s keeps best.pt; this cycle dropped %s", family, ", ".join(missing))
+        return False
     measured = as_float(map50)
-    if measured is None or not family or not Path(weights).is_file():
-        return False
-    previous = as_float(read_family_meta(work_root, family).get("map50"))
-    if previous is not None and measured < previous:
-        LOG.info("family %s keeps mAP50 %s; this cycle is %s", family, previous, round(measured, 4))
-        return False
+    meta = read_family_meta(work_root, family)
+    if measured is None:
+        measured = as_float(meta.get("map50"))
     dest = family_dir(work_root, family)
     dest.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(weights, dest / "best.pt")
+    current = dest / "best.pt"
+    if current.is_file():
+        shutil.copy2(current, dest / "best_prev.pt")
+    shutil.copy2(weights, current)
     atomic_write_json(
         dest / "meta.json",
         {
             "family": family,
-            "map50": round(measured, 4),
+            "map50": None if measured is None else round(measured, 4),
             "per_class_map50": dict(per_class or {}),
+            "classes": trained,
             "updated_at": iso_now(),
         },
     )
-    LOG.info("updated family %s best.pt mAP50=%s", family, round(measured, 4))
+    LOG.info("updated family %s best.pt classes=%s mAP50=%s", family, len(trained), measured)
     return True
 
 
@@ -1222,6 +1244,299 @@ def project_dirname(project: str | None) -> str:
     return cleaned
 
 
+def weights_stamp(path: Path) -> dict | None:
+    """mtime, size, and sha1 of a checkpoint. ``copy2`` keeps mtime, so the hash is the real change."""
+    path = Path(path)
+    if not path.is_file():
+        return None
+    st = path.stat()
+    digest = hashlib.sha1()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    mtime_ns = getattr(st, "st_mtime_ns", None)
+    if mtime_ns is None:
+        mtime_ns = int(st.st_mtime * 1_000_000_000)
+    return {"mtime_ns": int(mtime_ns), "size": int(st.st_size), "sha1": digest.hexdigest()}
+
+
+def checkpoint_class_names(path: Path) -> list[str]:
+    """Class names stored in a YOLO ``.pt``. Empty when the file is not a checkpoint."""
+    try:
+        import torch
+
+        ckpt = torch.load(path, map_location="cpu", weights_only=False)
+    except Exception:
+        LOG.debug("could not read class names from %s", path, exc_info=True)
+        return []
+    model = ckpt.get("model") if isinstance(ckpt, dict) else None
+    names = getattr(model, "names", None)
+    if isinstance(names, dict):
+        keys = sorted(names, key=lambda key: int(key))
+        return [str(names[key]) for key in keys]
+    if isinstance(names, (list, tuple)):
+        return [str(name) for name in names]
+    return []
+
+
+def family_index_path(work_root: Path, family: str) -> Path:
+    return family_dir(work_root, family) / "dataset.json"
+
+
+def load_family_index(work_root: Path, family: str) -> dict:
+    path = family_index_path(work_root, family)
+    data = {}
+    if path.is_file():
+        try:
+            loaded = read_json(path, retries=2, pause=0.05)
+        except ValueError:
+            loaded = {}
+        if isinstance(loaded, dict):
+            data = loaded
+    classes = [str(name) for name in data.get("classes") or [] if str(name).strip()]
+    projects = data.get("projects") if isinstance(data.get("projects"), dict) else {}
+    return {"classes": classes, "projects": projects}
+
+
+def save_family_index(work_root: Path, family: str, index: dict):
+    dest = family_dir(work_root, family)
+    dest.mkdir(parents=True, exist_ok=True)
+    atomic_write_json(
+        family_index_path(work_root, family),
+        {"classes": list(index.get("classes") or []), "projects": dict(index.get("projects") or {})},
+    )
+
+
+def protected_family_classes(work_root: Path, family: str) -> list[str] | None:
+    """Append-only class ids for this family.
+
+    ``dataset.json`` and ``meta.json`` win. A library ``best.pt`` saved before
+    those lists existed supplies the names once. None means a library file is
+    there but its classes could not be read, so it must not be replaced.
+    """
+    index = load_family_index(work_root, family)
+    saved = [str(name) for name in index.get("classes") or []]
+    meta = read_family_meta(work_root, family)
+    meta_classes = []
+    if isinstance(meta.get("classes"), list):
+        meta_classes = [str(name) for name in meta["classes"] if str(name).strip()]
+    if saved or meta_classes:
+        base = meta_classes or saved
+        extra = set(saved) | set(meta_classes)
+        classes, _new = extend_classes(base, extra)
+        return classes
+    weights = family_weights_path(work_root, family)
+    if not weights.is_file():
+        return []
+    names = checkpoint_class_names(weights)
+    if names:
+        return names
+    per_class = meta.get("per_class_map50")
+    if isinstance(per_class, dict) and per_class:
+        return [str(name) for name in per_class]
+    return None
+
+
+def _stored_box(name: str, yolo) -> list:
+    return [name, round(float(yolo[0]), 6), round(float(yolo[1]), 6), round(float(yolo[2]), 6), round(float(yolo[3]), 6)]
+
+
+def _frame_signature(frames) -> tuple:
+    rows = []
+    for frame in frames or []:
+        if not isinstance(frame, dict):
+            continue
+        boxes = []
+        for box in frame.get("boxes") or []:
+            if not isinstance(box, (list, tuple)) or len(box) != 5:
+                continue
+            boxes.append((str(box[0]), round(float(box[1]), 6), round(float(box[2]), 6), round(float(box[3]), 6), round(float(box[4]), 6)))
+        rows.append((str(frame.get("rel") or ""), bool(frame.get("hard_negative")), int(frame.get("order") or 0), tuple(boxes)))
+    return tuple(rows)
+
+
+def extract_project_frames(frames: list[Frame], live: dict) -> tuple[list[dict], list[str]]:
+    """Reviewed frames as stored labels. Does not raise when there are no boxes."""
+    names = reviewed_names(live)
+    chosen, unmatched = match_reviewed(frames, names)
+    if unmatched:
+        LOG.warning("reviewed names with no jpg (%s): %s", len(unmatched), ", ".join(unmatched[:8]))
+    images = live_images(live)
+    dominant = dominant_canvas(images)
+    hard = hard_negative_rels(frames, live)
+    stored = []
+    for order, frame in enumerate(chosen):
+        entry = live_entry_for(images, frame)
+        try:
+            img_w, img_h = image_size(frame.path)
+        except (OSError, UnidentifiedImageError, ValueError) as exc:
+            LOG.warning("skip unreadable frame %s: %s", frame.rel, exc)
+            continue
+        canvas = None
+        if isinstance(entry, dict):
+            canvas = positive_size(entry.get("width"), entry.get("height"))
+        if canvas is None:
+            canvas = dominant or (img_w, img_h)
+        boxes = []
+        for brand, tpoint, start, diag in usable_annotations(entry):
+            yolo = canvas_box_to_yolo(start, diag, canvas[0], canvas[1], img_w, img_h)
+            if yolo is None:
+                LOG.warning("skip box on %s (empty after scaling onto the image)", frame.rel)
+                continue
+            boxes.append(_stored_box(class_name(brand, tpoint), yolo))
+        stored.append(
+            {
+                "rel": frame.rel,
+                "path": str(frame.path),
+                "boxes": boxes,
+                "hard_negative": frame.rel in hard,
+                "order": order,
+            }
+        )
+    return stored, unmatched
+
+
+def remember_project(work_root: Path, family: str, project: str, work_dir: Path, frames_folder, frames: list[Frame], live: dict) -> dict:
+    """Store this project's reviewed labels in the family index. Class ids only grow."""
+    index = load_family_index(work_root, family)
+    if not index["classes"]:
+        protected = protected_family_classes(work_root, family)
+        if protected:
+            index["classes"] = list(protected)
+    projects = index["projects"]
+    previous = projects.get(project) if isinstance(projects.get(project), dict) else {}
+    previous_frames = previous.get("frames") if isinstance(previous.get("frames"), list) else []
+    was_new = project not in projects
+    stored, _unmatched = extract_project_frames(frames, live)
+    if not stored and previous_frames:
+        LOG.warning("keeping stored labels for %s; this snapshot has no readable reviewed frames", project)
+        stored = previous_frames
+        changed = False
+    else:
+        changed = _frame_signature(previous_frames) != _frame_signature(stored) or str(previous.get("frames_folder") or "") != str(frames_folder or "")
+    found = {str(box[0]) for frame in stored if isinstance(frame, dict) for box in (frame.get("boxes") or []) if box}
+    classes, _new = extend_classes(list(index["classes"]), found)
+    if changed or was_new:
+        projects[project] = {
+            "work_dir": str(work_dir),
+            "frames_folder": str(frames_folder or ""),
+            "updated_at": iso_now(),
+            "frames": stored,
+        }
+    else:
+        projects[project]["work_dir"] = str(work_dir)
+    grew = classes != list(index["classes"])
+    index["classes"] = classes
+    if changed or was_new or grew:
+        save_family_index(work_root, family, index)
+    return index
+
+
+def family_example_rows(index: dict) -> list[dict]:
+    rows = []
+    for project, entry in (index.get("projects") or {}).items():
+        if not isinstance(entry, dict):
+            continue
+        updated = str(entry.get("updated_at") or "")
+        folder = entry.get("frames_folder") or ""
+        for frame in entry.get("frames") or []:
+            if not isinstance(frame, dict):
+                continue
+            path = Path(str(frame.get("path") or ""))
+            if not path.is_file() and folder and frame.get("rel"):
+                alt = Path(folder) / f"{frame['rel']}.jpg"
+                if alt.is_file():
+                    path = alt
+            if not path.is_file():
+                LOG.warning("family dataset is missing %s", frame.get("path"))
+                continue
+            boxes = []
+            for box in frame.get("boxes") or []:
+                if not isinstance(box, (list, tuple)) or len(box) != 5:
+                    continue
+                try:
+                    coords = (float(box[1]), float(box[2]), float(box[3]), float(box[4]))
+                except (TypeError, ValueError):
+                    continue
+                boxes.append((str(box[0]), coords))
+            rows.append(
+                {
+                    "project": str(project),
+                    "rel": str(frame.get("rel") or path.stem),
+                    "path": path,
+                    "boxes": boxes,
+                    "hard_negative": bool(frame.get("hard_negative")),
+                    "updated_at": updated,
+                    "order": int(frame.get("order") or 0),
+                }
+            )
+    return rows
+
+
+def sample_family_examples(examples: list[dict], limit: int) -> list[dict]:
+    """Keep every frame under the cap. Above it, keep the most recent image of each class, then recent frames."""
+    if limit <= 0 or len(examples) <= limit:
+        return list(examples)
+
+    def recency(row):
+        return (row.get("updated_at") or "", int(row.get("order") or 0))
+
+    def ident(row):
+        return (row.get("project"), row.get("rel"))
+
+    positives = [row for row in examples if row.get("boxes")]
+    negatives = [row for row in examples if not row.get("boxes")]
+    by_class = {}
+    for row in positives:
+        for name, _coords in row["boxes"]:
+            by_class.setdefault(name, []).append(row)
+    for rows in by_class.values():
+        rows.sort(key=recency, reverse=True)
+    classes = sorted(by_class)
+    quota = max(1, limit // len(classes)) if classes else 0
+    chosen = []
+    chosen_ids = set()
+    added = {name: 0 for name in classes}
+    cursors = {name: 0 for name in classes}
+    progressed = True
+    while len(chosen) < limit and progressed:
+        progressed = False
+        for name in classes:
+            if added[name] >= quota:
+                continue
+            rows = by_class[name]
+            while cursors[name] < len(rows) and ident(rows[cursors[name]]) in chosen_ids:
+                cursors[name] += 1
+            if cursors[name] >= len(rows):
+                continue
+            row = rows[cursors[name]]
+            cursors[name] += 1
+            chosen.append(row)
+            chosen_ids.add(ident(row))
+            added[name] += 1
+            progressed = True
+            if len(chosen) >= limit:
+                break
+    neg_budget = min(len(negatives), max(0, limit // 10))
+    room = max(0, limit - len(chosen) - neg_budget)
+    for row in sorted(positives, key=recency, reverse=True):
+        if room <= 0:
+            break
+        if ident(row) in chosen_ids:
+            continue
+        chosen.append(row)
+        chosen_ids.add(ident(row))
+        room -= 1
+    for row in sorted(negatives, key=recency, reverse=True):
+        if len(chosen) >= limit:
+            break
+        if ident(row) in chosen_ids:
+            continue
+        chosen.append(row)
+        chosen_ids.add(ident(row))
+    return chosen
+
+
 # A directory with this many jpgs is a frames dump. Do not walk into it.
 FRAMES_DIR_MIN_JPEGS = 8
 DEFAULT_FRAMES_MAX_DEPTH = 6
@@ -1234,6 +1549,10 @@ def _jpeg_count(filenames) -> int:
 
 def searching_message(project: str) -> str:
     return f"Αναζήτηση φακέλου frames για {project}…"
+
+
+NO_BOXES_MESSAGE = "Αναμονή · δεν υπάρχουν κουτιά λογότυπου στην οικογένεια"
+FAMILY_IMAGE_CAP = 1500
 
 
 def mark_searching(status: Status, live, project: str):
@@ -1668,48 +1987,7 @@ def blocked_rels(frames: list[Frame], names: list[str], images: dict) -> set[str
     return rels
 
 
-def build_dataset(work: Path, frames: list[Frame], live: dict, saved_classes: list[str], val_fraction: float) -> dict:
-    names = reviewed_names(live)
-    chosen, unmatched = match_reviewed(frames, names)
-    if unmatched:
-        LOG.warning("reviewed names with no jpg (%s): %s", len(unmatched), ", ".join(unmatched[:8]))
-    if not chosen:
-        raise DatasetError("none of the reviewed names matched a jpg in the frames folder")
-    images = live_images(live)
-    dominant = dominant_canvas(images)
-    examples = []
-    found = set()
-    skipped = 0
-    for frame in chosen:
-        entry = live_entry_for(images, frame)
-        try:
-            img_w, img_h = image_size(frame.path)
-        except (OSError, UnidentifiedImageError, ValueError) as exc:
-            LOG.warning("skip unreadable frame %s: %s", frame.rel, exc)
-            skipped += 1
-            continue
-        canvas = None
-        if isinstance(entry, dict):
-            canvas = positive_size(entry.get("width"), entry.get("height"))
-        if canvas is None:
-            canvas = dominant or (img_w, img_h)
-        boxes = []
-        for brand, tpoint, start, diag in usable_annotations(entry):
-            yolo = canvas_box_to_yolo(start, diag, canvas[0], canvas[1], img_w, img_h)
-            if yolo is None:
-                skipped += 1
-                LOG.warning("skip box on %s (empty after scaling onto the image)", frame.rel)
-                continue
-            name = class_name(brand, tpoint)
-            boxes.append((name, yolo))
-            found.add(name)
-        examples.append((frame, boxes))
-    if not examples:
-        raise DatasetError("reviewed frames could not be read")
-    if not found:
-        raise DatasetError("reviewed frames have no usable logo boxes")
-    classes, new_names = extend_classes(saved_classes, found)
-    hard_rels = hard_negative_rels([frame for frame, _boxes in examples], live)
+def _write_yolo_dataset(work: Path, examples: list, classes: list[str], hard_rels: set[str], val_fraction: float) -> dict:
     by_rel = {frame.rel: boxes for frame, boxes in examples}
     train_frames, val_frames = place_hard_negatives(*split_examples(examples, val_fraction), hard_rels)
     train_frames, val_frames = restore_val_positive(train_frames, val_frames, by_rel, hard_rels)
@@ -1752,17 +2030,134 @@ def build_dataset(work: Path, frames: list[Frame], live: dict, saved_classes: li
     if counts["copy"]:
         LOG.info("copied %s frames into the dataset (hard link unavailable)", counts["copy"])
     return {
-        "classes": classes,
-        "new_names": new_names,
-        "unmatched": unmatched,
         "train_images": written["train"],
         "val_images": written["val"],
         "boxes": boxes,
         "negatives": negatives,
         "hard_negative_frames": hard_count,
         "data_yaml": yaml_path,
-        "skipped": skipped,
     }
+
+
+def build_dataset(work: Path, frames: list[Frame], live: dict, saved_classes: list[str], val_fraction: float) -> dict:
+    names = reviewed_names(live)
+    chosen, unmatched = match_reviewed(frames, names)
+    if unmatched:
+        LOG.warning("reviewed names with no jpg (%s): %s", len(unmatched), ", ".join(unmatched[:8]))
+    if not chosen:
+        raise DatasetError("none of the reviewed names matched a jpg in the frames folder")
+    images = live_images(live)
+    dominant = dominant_canvas(images)
+    examples = []
+    found = set()
+    skipped = 0
+    for frame in chosen:
+        entry = live_entry_for(images, frame)
+        try:
+            img_w, img_h = image_size(frame.path)
+        except (OSError, UnidentifiedImageError, ValueError) as exc:
+            LOG.warning("skip unreadable frame %s: %s", frame.rel, exc)
+            skipped += 1
+            continue
+        canvas = None
+        if isinstance(entry, dict):
+            canvas = positive_size(entry.get("width"), entry.get("height"))
+        if canvas is None:
+            canvas = dominant or (img_w, img_h)
+        boxes = []
+        for brand, tpoint, start, diag in usable_annotations(entry):
+            yolo = canvas_box_to_yolo(start, diag, canvas[0], canvas[1], img_w, img_h)
+            if yolo is None:
+                skipped += 1
+                LOG.warning("skip box on %s (empty after scaling onto the image)", frame.rel)
+                continue
+            name = class_name(brand, tpoint)
+            boxes.append((name, yolo))
+            found.add(name)
+        examples.append((frame, boxes))
+    if not examples:
+        raise DatasetError("reviewed frames could not be read")
+    if not found:
+        raise DatasetError("reviewed frames have no usable logo boxes")
+    classes, new_names = extend_classes(saved_classes, found)
+    hard_rels = hard_negative_rels([frame for frame, _boxes in examples], live)
+    written = _write_yolo_dataset(work, examples, classes, hard_rels, val_fraction)
+    written.update(
+        {
+            "classes": classes,
+            "new_names": new_names,
+            "unmatched": unmatched,
+            "skipped": skipped,
+        }
+    )
+    return written
+
+
+def _unique_family_rel(project: str, rel: str, used: set[str], shared: set[str]) -> str:
+    candidate = f"{project_dirname(project)}__{rel}" if rel in shared else rel
+    if candidate not in used:
+        return candidate
+    stem = f"{project_dirname(project)}__{rel}"
+    candidate = stem
+    suffix = 2
+    while candidate in used:
+        candidate = f"{stem}__{suffix}"
+        suffix += 1
+    return candidate
+
+
+def build_family_dataset(
+    work: Path,
+    work_root: Path,
+    family: str,
+    project: str,
+    frames_folder,
+    frames: list[Frame],
+    live: dict,
+    val_fraction: float,
+    limit: int,
+) -> dict | None:
+    """Train/val from every project stored for ``family``.
+
+    Returns None when the union has no logo boxes. The current project's empty
+    reviewed frames stay in the index, but they do not block the other projects.
+    """
+    index = remember_project(work_root, family, project, work, frames_folder, frames, live)
+    rows = family_example_rows(index)
+    if not any(row["boxes"] for row in rows):
+        return None
+    found = {name for row in rows for name, _coords in row["boxes"]}
+    classes, new_names = extend_classes(list(index.get("classes") or []), found)
+    if classes != list(index.get("classes") or []):
+        index["classes"] = classes
+        save_family_index(work_root, family, index)
+    chosen = sample_family_examples(rows, int(limit))
+    if len(chosen) < len(rows):
+        LOG.info("family %s sampled %s of %s images (cap %s)", family, len(chosen), len(rows), limit)
+    rel_counts = Counter(row["rel"] for row in chosen)
+    shared = {rel for rel, count in rel_counts.items() if count > 1}
+    used = set()
+    examples = []
+    hard_rels = set()
+    for row in chosen:
+        rel = _unique_family_rel(row["project"], row["rel"], used, shared)
+        used.add(rel)
+        frame = Frame(path=row["path"], rel=rel, stem=Path(row["rel"]).stem)
+        examples.append((frame, row["boxes"]))
+        if row["hard_negative"]:
+            hard_rels.add(rel)
+    written = _write_yolo_dataset(work, examples, classes, hard_rels, val_fraction)
+    written.update(
+        {
+            "classes": classes,
+            "new_names": new_names,
+            "unmatched": [],
+            "skipped": len(rows) - len(chosen),
+            "family_images": len(rows),
+            "projects": len(index.get("projects") or {}),
+        }
+    )
+    return written
 
 
 def weight_phrase(weight_kind: str) -> str:
@@ -2116,10 +2511,10 @@ def load_training_model(
 ):
     """Return (model, from_base, weight_kind).
 
-    ``weight_kind`` is ``finetune``, ``init``, or ``base``. A family checkpoint
-    on the first cycle is fine-tuned even when the class list differs.
-    ``--init-weights`` is used only when this project has no checkpoint and no
-    family weights. A later new class still restarts from ``--base-weights``.
+    ``weight_kind`` is ``finetune``, ``init``, or ``base``. ``prefer_finetune``
+    keeps the checkpoint when the family class list grew; new names are appended
+    and old ids stay put. ``--init-weights`` is used only when this project has
+    no checkpoint and no family weights.
     """
     if previous and Path(previous).is_file() and (prefer_finetune or wants_finetune(previous, new_names)):
         model = YOLO(str(previous))
@@ -2317,16 +2712,17 @@ def finish_predict(args, state: dict, status: Status, frames_index: FrameIndex):
 def cycle_start_weights(args, state: dict) -> tuple[Path | None, bool]:
     """Return (checkpoint, prefer_finetune) for this cycle.
 
-    After the first cycle the project's own ``best.pt`` is used. A new project
-    in an existing family fine-tunes that family's ``best.pt``.
+    A family in ``συνέχεια`` fine-tunes that family's ``best.pt`` on every cycle,
+    including after this project already has its own checkpoint. ``νέο`` keeps
+    using this project's ``best.pt`` once the first cycle has written it.
     """
-    own = resolve_weights(state, args.work_dir)
-    if own and own.is_file() and int(state["cycle"]) > 0:
-        return own, False
-    if state.get("model_mode") == "συνέχεια" and int(state["cycle"]) == 0 and state.get("model_family"):
+    if state.get("model_mode") == "συνέχεια" and state.get("model_family"):
         family = family_weights_path(args.work_root, state["model_family"])
         if family.is_file():
             return family, True
+    own = resolve_weights(state, args.work_dir)
+    if own and own.is_file() and int(state["cycle"]) > 0:
+        return own, True
     return None, False
 
 
@@ -2347,7 +2743,9 @@ def seed_family_predictions(args, state: dict, status: Status, frames_index: Fra
     YOLO = yolo_class()
     model = YOLO(str(weights))
     count, start, end = predict_frames(model, args, live, frames, args.work_dir, coverage="all", status=status)
+    stamp = weights_stamp(weights) or {}
     state["seeded_family"] = family
+    state["seeded_weights"] = {"family": family, **stamp}
     state["last_error"] = None
     save_state(args.work_dir / STATE_NAME, state)
     publish_idle(
@@ -2365,13 +2763,33 @@ def seed_family_predictions(args, state: dict, status: Status, frames_index: Fra
     return count
 
 
-def needs_family_seed(state: dict) -> bool:
-    return (
-        state.get("model_mode") == "συνέχεια"
-        and int(state.get("cycle") or 0) == 0
-        and not state.get("pending_predict")
-        and state.get("seeded_family") != state.get("model_family")
-    )
+def needs_family_seed(state: dict, work_root: Path | None = None) -> bool:
+    """True when this project has not been predicted with the current family ``best.pt``.
+
+    The stamp is mtime, size, and sha1. A family name alone is not enough: a
+    newer library file (another project promoted it) is seeded again. Cycle
+    count does not block that. ``pending_predict`` still finishes the window
+    predict from the cycle that just ended.
+    """
+    if state.get("model_mode") != "συνέχεια" or state.get("pending_predict"):
+        return False
+    family = state.get("model_family")
+    if not family or work_root is None:
+        return False
+    weights = family_weights_path(work_root, family)
+    if not weights.is_file():
+        return False
+    stored = state.get("seeded_weights")
+    if not isinstance(stored, dict) or stored.get("family") != family or not stored.get("sha1"):
+        return True
+    st = weights.stat()
+    mtime_ns = getattr(st, "st_mtime_ns", None)
+    if mtime_ns is None:
+        mtime_ns = int(st.st_mtime * 1_000_000_000)
+    if int(stored.get("mtime_ns") or -1) == int(mtime_ns) and int(stored.get("size") or -1) == int(st.st_size):
+        return False
+    current = weights_stamp(weights)
+    return not current or current.get("sha1") != stored.get("sha1")
 
 
 def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live: dict):
@@ -2388,7 +2806,33 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
         message=f"Φτιάχνω dataset κύκλου {upcoming}",
         last_error=None,
     )
-    built = build_dataset(args.work_dir, frames, live, list(state["classes"]), args.val_fraction)
+    family = state.get("model_family") or resolve_model_plan(live)["family"]
+    project = getattr(args, "bound_project", None) or project_name(live) or "_default"
+    limit = int(getattr(args, "max_family_images", FAMILY_IMAGE_CAP) or FAMILY_IMAGE_CAP)
+    built = build_family_dataset(
+        args.work_dir,
+        args.work_root,
+        family,
+        project,
+        getattr(args, "bound_frames", None),
+        frames,
+        live,
+        args.val_fraction,
+        limit,
+    )
+    if built is None:
+        state["last_error"] = None
+        save_state(args.work_dir / STATE_NAME, state)
+        status.update(
+            state="idle",
+            last_error=None,
+            cycle=int(state["cycle"]),
+            model_family=family,
+            model_mode=state.get("model_mode"),
+            message=NO_BOXES_MESSAGE,
+        )
+        LOG.info("%s", NO_BOXES_MESSAGE)
+        return False
     previous, prefer_finetune = cycle_start_weights(args, state)
     init = None if state.get("model_choice") == "new" else getattr(args, "init_weights", None)
     YOLO = yolo_class()
@@ -2430,9 +2874,21 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
     state["hard_negative_frames"] = built["hard_negative_frames"]
     state["per_class_map50"] = dict(per_class or {})
     state["last_error"] = None
-    save_state(args.work_dir / STATE_NAME, state)
     if state.get("model_family"):
-        maybe_update_family(args.work_root, state["model_family"], weights, state.get("last_map50"), state["per_class_map50"])
+        promoted = maybe_update_family(
+            args.work_root,
+            state["model_family"],
+            weights,
+            state.get("last_map50"),
+            state["per_class_map50"],
+            built["classes"],
+        )
+        if promoted:
+            family_path = family_weights_path(args.work_root, state["model_family"])
+            stamp = weights_stamp(family_path) or {}
+            state["seeded_family"] = state["model_family"]
+            state["seeded_weights"] = {"family": state["model_family"], **stamp}
+    save_state(args.work_dir / STATE_NAME, state)
     status.update(
         classes=built["classes"],
         last_map50=state["last_map50"],
@@ -2450,6 +2906,7 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
         reviewed_since_last_cycle=0,
     )
     finish_predict(args, state, status, frames_index)
+    return True
 
 
 def validate_config(args):
@@ -2505,6 +2962,8 @@ def validate_config(args):
         raise ConfigError("--oom-wait must be >= 0")
     if args.workers < 0:
         raise ConfigError("--workers must be >= 0")
+    if args.max_family_images < 1:
+        raise ConfigError("--max-family-images must be >= 1")
     args.poll_seconds = max(1.0, float(args.poll_seconds))
     args.work_dir.mkdir(parents=True, exist_ok=True)
     return args
@@ -2678,7 +3137,7 @@ def run(args) -> int:
                     return 0
                 continue
 
-            if needs_family_seed(state):
+            if needs_family_seed(state, args.work_root):
                 if wait_out_gpu(args, status):
                     if args.once:
                         return 0
@@ -2697,6 +3156,19 @@ def run(args) -> int:
                     continue
 
             frames = frames_index.get()
+            if state.get("model_family"):
+                try:
+                    remember_project(
+                        args.work_root,
+                        state["model_family"],
+                        active["project"],
+                        active["work"],
+                        active["frames"],
+                        frames,
+                        live,
+                    )
+                except Exception:
+                    LOG.exception("could not update the family dataset index")
             names = reviewed_names(live)
             _chosen, unmatched = match_reviewed(frames, names)
             publish_idle(
@@ -2735,8 +3207,13 @@ def run(args) -> int:
                     return 0
                 continue
             try:
-                run_cycle(args, state, status, frames_index, live)
+                trained = run_cycle(args, state, status, frames_index, live)
                 gave_retry = False
+                if trained is False:
+                    parked_at = len(reviewed_names(live))
+                    if args.once:
+                        return 0
+                    continue
                 parked_at = None
             except KeyboardInterrupt:
                 raise
@@ -2870,6 +3347,12 @@ def parse_args(argv=None):
     )
     parser.add_argument("--amp", action="store_true", help="enable AMP; default is off")
     parser.add_argument("--val-fraction", type=float, default=0.1, help="stable fraction of reviewed frames used as val")
+    parser.add_argument(
+        "--max-family-images",
+        type=int,
+        default=FAMILY_IMAGE_CAP,
+        help="cap on images in one family training set; recent frames plus a share of each class (default 1500)",
+    )
     parser.add_argument("--patience", type=int, default=100, help="early-stop patience (default 100, so short cycles run out)")
     parser.add_argument("--lr0", type=float, default=None, help="initial lr; default 0.01 from base, 0.001 when fine-tuning")
     parser.add_argument("--poll-seconds", type=float, default=5, help="seconds between live-file reads while idle (default 5)")
