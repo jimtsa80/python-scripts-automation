@@ -657,6 +657,9 @@ def test_config_and_status():
         check(args.workers == 2, args.workers)
         check(args.batch == 4, args.batch)
         check(args.predict_batch == 4, args.predict_batch)
+        check(args.every is None, args.every)
+        check(args.every_young == 30 and args.every_mature == 80, (args.every_young, args.every_mature))
+        check(args.mature_frames == 300 and args.mature_map == 0.8 and args.weak_class_map == 0.6, "cadence defaults")
         check(args.gpu_mem_fraction == 0.7, args.gpu_mem_fraction)
         check(args.min_free_vram_mb == 1536, args.min_free_vram_mb)
         check(args.oom_wait == 45, args.oom_wait)
@@ -829,6 +832,8 @@ def test_cycle(weights: Path):
         check(status["model_mode"] == "συνέχεια", status.get("model_mode"))
         check(status["ready_for_user"] is True, status.get("ready_for_user"))
         check(isinstance(status["predict_total"], int) and status["predict_total"] >= 1, status.get("predict_total"))
+        check(status["cadence"] == "fixed" and status["every_now"] == 30, (status.get("cadence"), status.get("every_now")))
+        check(status["cadence_reason"] == "σταθερό διάστημα, εκπαίδευση κάθε 30", status.get("cadence_reason"))
         check(isinstance(status["per_class_map50"], dict), status.get("per_class_map50"))
         check((work / "models" / "default" / "best.pt").is_file(), "family best.pt")
         check(status["device"] == "cpu", status["device"])
@@ -1123,7 +1128,7 @@ def test_predict_chunks_and_family_staleness():
             ),
             encoding="utf-8",
         )
-        check(lt.family_is_stale(root, family, index) is True, "new frames")
+        check(lt.family_is_stale(root, family, index) is False, "extra frames wait for the cadence")
         (dest / "meta.json").write_text(
             json.dumps(
                 {
@@ -1172,6 +1177,154 @@ def test_predict_chunks_and_family_staleness():
         check("cluster_overlap" in loaded["projects"], set(loaded["projects"]))
         check("other_family" not in loaded["projects"], set(loaded["projects"]))
         check(lt.family_epoch_message(1, 8) == "Ενιαίο μοντέλο οικογένειας, περίμενε… · epoch 1/8", lt.family_epoch_message(1, 8))
+
+
+def test_cadence():
+    def args(**over):
+        values = dict(
+            every=None,
+            every_young=30,
+            every_mature=80,
+            mature_frames=300,
+            mature_map=0.8,
+            weak_class_map=0.6,
+        )
+        values.update(over)
+        return argparse.Namespace(**values)
+
+    pitch = "a" * 40
+    jersey = "b" * 40
+    young = lt.decide_cadence(
+        args(),
+        frame_count=40,
+        map50=0.95,
+        per_class={"Perth|Pitch Mat": 0.95},
+        label_signatures={"Perth|Pitch Mat": pitch},
+        label_snapshot={"Perth|Pitch Mat": pitch},
+        known_classes={"Perth|Pitch Mat"},
+        cycle=2,
+    )
+    check(young["cadence"] == "young" and young["every_now"] == 30 and young["immediate"] is False, young)
+    check(young["cadence_reason"] == "νέο μοντέλο, εκπαίδευση κάθε 30", young["cadence_reason"])
+
+    mature = lt.decide_cadence(
+        args(),
+        frame_count=300,
+        map50=0.8,
+        per_class={"Perth|Pitch Mat": 0.9},
+        label_signatures={"Perth|Pitch Mat": pitch},
+        label_snapshot={"Perth|Pitch Mat": pitch},
+        known_classes={"Perth|Pitch Mat"},
+        cycle=4,
+    )
+    check(mature["cadence"] == "mature" and mature["every_now"] == 80, mature)
+    check(mature["cadence_reason"] == "ώριμο μοντέλο, εκπαίδευση κάθε 80", mature["cadence_reason"])
+
+    almost = lt.decide_cadence(
+        args(),
+        frame_count=300,
+        map50=0.79,
+        per_class={},
+        label_signatures={},
+        label_snapshot={},
+        known_classes=set(),
+        cycle=4,
+    )
+    check(almost["cadence"] == "young", almost)
+
+    weak = lt.decide_cadence(
+        args(),
+        frame_count=500,
+        map50=0.91,
+        per_class={"Perth|Pitch Mat": 0.4, "Perth|Player Jersey": 0.9},
+        label_signatures={"Perth|Pitch Mat": pitch, "Perth|Player Jersey": jersey},
+        label_snapshot={"Perth|Pitch Mat": "old", "Perth|Player Jersey": jersey},
+        known_classes={"Perth|Pitch Mat", "Perth|Player Jersey"},
+        cycle=4,
+    )
+    check(weak["cadence"] == "weak_class" and weak["every_now"] == 30, weak)
+    check(weak["cadence_reason"] == "αδύναμη κατηγορία Perth|Pitch Mat, κάθε 30", weak["cadence_reason"])
+
+    quiet = lt.decide_cadence(
+        args(),
+        frame_count=500,
+        map50=0.91,
+        per_class={"Perth|Pitch Mat": 0.4},
+        label_signatures={"Perth|Pitch Mat": pitch},
+        label_snapshot={"Perth|Pitch Mat": pitch},
+        known_classes={"Perth|Pitch Mat"},
+        cycle=4,
+    )
+    check(quiet["cadence"] == "mature", quiet)
+
+    fixed = lt.decide_cadence(
+        args(every=25),
+        frame_count=500,
+        map50=0.95,
+        per_class={"Perth|Pitch Mat": 0.2},
+        label_signatures={"Perth|Pitch Mat": pitch},
+        label_snapshot={"Perth|Pitch Mat": "old"},
+        known_classes={"Perth|Pitch Mat"},
+        cycle=4,
+    )
+    check(fixed["cadence"] == "fixed" and fixed["every_now"] == 25 and fixed["immediate"] is False, fixed)
+
+    appeared = lt.decide_cadence(
+        args(),
+        frame_count=500,
+        map50=0.95,
+        per_class={"Perth|Pitch Mat": 0.95},
+        label_signatures={"Perth|Pitch Mat": pitch, "WA|LED Sign": jersey},
+        label_snapshot={"Perth|Pitch Mat": pitch},
+        known_classes={"Perth|Pitch Mat"},
+        cycle=3,
+    )
+    check(appeared["immediate"] is True and appeared["cadence"] == "mature", appeared)
+    check(appeared["cadence_reason"] == "νέα κατηγορία WA|LED Sign, εκπαίδευση τώρα", appeared["cadence_reason"])
+    first = lt.decide_cadence(
+        args(),
+        frame_count=10,
+        map50=None,
+        per_class={},
+        label_signatures={"WA|LED Sign": jersey},
+        label_snapshot=None,
+        known_classes=set(),
+        cycle=0,
+    )
+    check(first["immediate"] is False and first["cadence"] == "young", first)
+
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        work = root / "proj"
+        work.mkdir()
+        state = lt.blank_state(40)
+        state["cycle"] = 0
+        state["model_family"] = "2026 RLWC"
+        options = args()
+        options.work_root = root
+        options.work_dir = work
+        options.min_reviewed = 40
+        index = {"classes": ["Perth|Pitch Mat"], "projects": {"cluster_2": {"frames": [{"rel": "00001", "boxes": [["Perth|Pitch Mat", 0.1, 0.1, 0.2, 0.2]]}]}}}
+        lt.apply_cadence(options, state, index, 12)
+        check(state["next_cycle_at"] == 40, state["next_cycle_at"])
+        check(state["cadence"] == "young" and state["every_now"] == 30, state)
+        state["cycle"] = 2
+        state["reviewed_at_cycle"] = 20
+        state["last_map50"] = 0.91
+        state["classes"] = ["Perth|Pitch Mat"]
+        state["class_labels_at_cycle"] = {"Perth|Pitch Mat": lt.class_label_signatures(index)["Perth|Pitch Mat"]}
+        many = {"classes": ["Perth|Pitch Mat"], "projects": {"cluster_2": {"frames": [{}] * 300}}}
+        for frame in many["projects"]["cluster_2"]["frames"]:
+            frame["rel"] = "00001"
+            frame["boxes"] = [["Perth|Pitch Mat", 0.1, 0.1, 0.2, 0.2]]
+        lt.apply_cadence(options, state, many, 25)
+        check(state["cadence"] == "mature" and state["next_cycle_at"] == 100, (state["cadence"], state["next_cycle_at"]))
+        many["projects"]["cluster_2"]["frames"].append(
+            {"rel": "00002", "boxes": [["WA|LED Sign", 0.2, 0.2, 0.2, 0.2]]}
+        )
+        lt.apply_cadence(options, state, many, 25)
+        check(state["next_cycle_at"] == 25, state["next_cycle_at"])
+        check("νέα κατηγορία WA|LED Sign" in state["cadence_reason"], state["cadence_reason"])
 
 
 def test_gpu_backoff():
@@ -1251,6 +1404,7 @@ def main():
     test_config_and_status()
     test_family_union()
     test_predict_chunks_and_family_staleness()
+    test_cadence()
     test_gpu_backoff()
     print("pure checks ok")
     if "--train" in sys.argv:

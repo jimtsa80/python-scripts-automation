@@ -134,6 +134,9 @@ STATUS_KEYS = (
     "per_class_map50",
     "predict_total",
     "ready_for_user",
+    "cadence",
+    "every_now",
+    "cadence_reason",
 )
 
 
@@ -190,6 +193,9 @@ class Status:
             "per_class_map50": {},
             "predict_total": None,
             "ready_for_user": False,
+            "cadence": None,
+            "every_now": None,
+            "cadence_reason": None,
         }
         self.write()
 
@@ -965,6 +971,10 @@ def blank_state(min_reviewed: int) -> dict:
         "seeded_family": None,
         "seeded_weights": None,
         "last_error": None,
+        "cadence": None,
+        "every_now": None,
+        "cadence_reason": None,
+        "class_labels_at_cycle": None,
     }
 
 
@@ -1001,6 +1011,13 @@ def load_state(path: Path, min_reviewed: int) -> dict:
     state["seeded_family"] = state.get("seeded_family") or None
     if not isinstance(state.get("seeded_weights"), dict):
         state["seeded_weights"] = None
+    if state.get("cadence") not in {None, "young", "mature", "weak_class", "fixed"}:
+        state["cadence"] = None
+    if state.get("every_now") is not None:
+        state["every_now"] = int(state["every_now"])
+    state["cadence_reason"] = state.get("cadence_reason") or None
+    if not isinstance(state.get("class_labels_at_cycle"), dict):
+        state["class_labels_at_cycle"] = None
     return state
 
 
@@ -1646,7 +1663,12 @@ def family_dataset_signature(index: dict) -> str:
 
 
 def family_is_stale(work_root: Path, family: str, index: dict) -> bool:
-    """True when the library model is missing a class or reviewed frame from the index."""
+    """True when the library model is missing, or is missing a family class.
+
+    Extra reviewed frames of classes the model already has wait for the
+    training cadence. A new ``brand|tpoint`` still makes this true, so the
+    union trains before the next prediction.
+    """
     classes = [str(name) for name in index.get("classes") or [] if str(name).strip()]
     has_boxes = False
     for entry in (index.get("projects") or {}).values():
@@ -1665,11 +1687,151 @@ def family_is_stale(work_root: Path, family: str, index: dict) -> bool:
     known = [str(name) for name in meta.get("classes") or [] if str(name).strip()]
     if not known:
         known = [name for name in checkpoint_class_names(weights) if "|" in name] or checkpoint_class_names(weights)
-    if set(classes) - set(known):
-        return True
-    if not has_boxes:
-        return False
-    return meta.get("dataset_signature") != family_dataset_signature(index)
+    return bool(set(classes) - set(known))
+
+
+def family_reviewed_count(index: dict) -> int:
+    total = 0
+    projects = index.get("projects") or {}
+    for entry in projects.values():
+        if isinstance(entry, dict):
+            total += len(entry.get("frames") or [])
+    return total
+
+
+def class_label_signatures(index: dict) -> dict[str, str]:
+    """Hash of each class's boxes. A new label of that class changes the hash."""
+    buckets: dict[str, list[str]] = {}
+    projects = index.get("projects") or {}
+    for project in sorted(projects):
+        entry = projects[project]
+        if not isinstance(entry, dict):
+            continue
+        for frame in entry.get("frames") or []:
+            if not isinstance(frame, dict):
+                continue
+            rel = str(frame.get("rel") or "")
+            for box in frame.get("boxes") or []:
+                if not isinstance(box, (list, tuple)) or not box:
+                    continue
+                name = str(box[0])
+                buckets.setdefault(name, []).append(f"{project}|{rel}|{','.join(str(item) for item in box)}")
+    signatures = {}
+    for name, lines in buckets.items():
+        signatures[name] = hashlib.sha1("\n".join(sorted(lines)).encode("utf-8")).hexdigest()
+    return signatures
+
+
+def decide_cadence(
+    args,
+    *,
+    frame_count: int,
+    map50,
+    per_class: dict,
+    label_signatures: dict,
+    label_snapshot,
+    known_classes: set[str],
+    cycle: int,
+) -> dict:
+    """Pick young, mature, weak_class, or fixed. A new class after the first cycle is immediate.
+
+    ``--every`` disables the adaptive choice and keeps that fixed gap. The first
+    cycle still waits for ``--min-reviewed``; the caller enforces that.
+    """
+    new_classes = sorted(set(label_signatures) - set(known_classes))
+    immediate = bool(new_classes) and int(cycle) > 0
+    if getattr(args, "every", None) is not None:
+        every = int(args.every)
+        name = "fixed"
+        reason = f"σταθερό διάστημα, εκπαίδευση κάθε {every}"
+    else:
+        weak = []
+        snapshot = label_snapshot if isinstance(label_snapshot, dict) else None
+        if snapshot is not None:
+            for class_name in sorted(per_class or {}):
+                score = as_float(per_class.get(class_name))
+                if score is None or score >= float(args.weak_class_map):
+                    continue
+                current = label_signatures.get(str(class_name))
+                if current and current != snapshot.get(str(class_name)):
+                    weak.append(str(class_name))
+        if weak:
+            every = int(args.every_young)
+            name = "weak_class"
+            reason = f"αδύναμη κατηγορία {', '.join(weak)}, κάθε {every}"
+        elif int(frame_count) >= int(args.mature_frames) and map50 is not None and float(map50) >= float(args.mature_map):
+            every = int(args.every_mature)
+            name = "mature"
+            reason = f"ώριμο μοντέλο, εκπαίδευση κάθε {every}"
+        else:
+            every = int(args.every_young)
+            name = "young"
+            reason = f"νέο μοντέλο, εκπαίδευση κάθε {every}"
+    if immediate:
+        reason = f"νέα κατηγορία {', '.join(new_classes)}, εκπαίδευση τώρα"
+    return {
+        "cadence": name,
+        "every_now": every,
+        "cadence_reason": reason,
+        "immediate": immediate,
+        "new_classes": new_classes,
+    }
+
+
+def apply_cadence(args, state: dict, index: dict | None, reviewed: int) -> None:
+    """Store the cadence and set ``next_cycle_at`` from it. The first cycle stays at ``--min-reviewed``."""
+    index = index or {"classes": [], "projects": {}}
+    signatures = class_label_signatures(index)
+    before = (
+        state.get("cadence"),
+        state.get("every_now"),
+        state.get("cadence_reason"),
+        int(state.get("next_cycle_at") or 0),
+        state.get("class_labels_at_cycle"),
+    )
+    if not isinstance(state.get("class_labels_at_cycle"), dict):
+        state["class_labels_at_cycle"] = signatures
+    family = state.get("model_family")
+    meta = read_family_meta(args.work_root, family) if family else {}
+    map50 = as_float(meta.get("map50"))
+    if map50 is None:
+        map50 = as_float(state.get("last_map50"))
+    per_class = meta.get("per_class_map50") if isinstance(meta.get("per_class_map50"), dict) and meta.get("per_class_map50") else {}
+    if not per_class:
+        per_class = state.get("per_class_map50") or {}
+    known = set()
+    for name in list(meta.get("classes") or []) + list(state.get("classes") or []):
+        text = str(name).strip()
+        if text:
+            known.add(text)
+    decision = decide_cadence(
+        args,
+        frame_count=family_reviewed_count(index),
+        map50=map50,
+        per_class=per_class,
+        label_signatures=signatures,
+        label_snapshot=state.get("class_labels_at_cycle"),
+        known_classes=known,
+        cycle=int(state["cycle"]),
+    )
+    every = int(decision["every_now"])
+    if int(state["cycle"]) == 0:
+        target = int(args.min_reviewed)
+    else:
+        target = int(state["reviewed_at_cycle"]) + every
+        if decision["immediate"]:
+            target = min(target, int(reviewed))
+    state["cadence"] = decision["cadence"]
+    state["every_now"] = every
+    state["cadence_reason"] = decision["cadence_reason"]
+    state["next_cycle_at"] = int(target)
+    token = (decision["cadence"], every, decision["cadence_reason"])
+    if token != getattr(args, "_cadence_logged", None):
+        LOG.info("cadence %s every %s: %s", decision["cadence"], every, decision["cadence_reason"])
+        args._cadence_logged = token
+    after = (state["cadence"], state["every_now"], state["cadence_reason"], int(state["next_cycle_at"]), state.get("class_labels_at_cycle"))
+    if after != before:
+        save_state(args.work_dir / STATE_NAME, state)
 
 
 def family_finetune_ok(weights: Path, classes: list[str]) -> bool:
@@ -2114,6 +2276,9 @@ def publish_idle(
         model_family=state.get("model_family"),
         model_mode=state.get("model_mode"),
         per_class_map50=dict(state.get("per_class_map50") or {}),
+        cadence=state.get("cadence"),
+        every_now=state.get("every_now"),
+        cadence_reason=state.get("cadence_reason"),
         message=idle_message(
             reviewed,
             int(state["next_cycle_at"]),
@@ -3353,7 +3518,6 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
     if map50 is not None:
         state["last_map50"] = map50
     state["reviewed_at_cycle"] = snapshot
-    state["next_cycle_at"] = snapshot + args.every
     state["pending_predict"] = True
     state["epoch"] = epochs
     state["epochs"] = epochs
@@ -3379,7 +3543,9 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
             stamp = weights_stamp(family_path) or {}
             state["seeded_family"] = state["model_family"]
             state["seeded_weights"] = {"family": state["model_family"], **stamp}
-    save_state(args.work_dir / STATE_NAME, state)
+    fresh_index = load_family_index(args.work_root, family) if state.get("model_family") else {"classes": [], "projects": {}}
+    state["class_labels_at_cycle"] = class_label_signatures(fresh_index)
+    apply_cadence(args, state, fresh_index, snapshot)
     status.update(
         classes=built["classes"],
         last_map50=state["last_map50"],
@@ -3395,6 +3561,9 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
         from_base=from_base,
         next_cycle_at=state["next_cycle_at"],
         reviewed_since_last_cycle=0,
+        cadence=state.get("cadence"),
+        every_now=state.get("every_now"),
+        cadence_reason=state.get("cadence_reason"),
     )
     finish_predict(args, state, status, frames_index)
     return True
@@ -3435,8 +3604,14 @@ def validate_config(args):
             )
     if args.imgsz % 32 != 0:
         raise ConfigError("--imgsz must be a multiple of 32")
-    if min(args.min_reviewed, args.every, args.lookahead, args.epochs, args.finetune_epochs, args.batch) < 1:
-        raise ConfigError("min-reviewed, every, lookahead, epochs, finetune-epochs, and batch must be >= 1")
+    if args.every is not None and int(args.every) < 1:
+        raise ConfigError("--every must be >= 1")
+    if min(args.min_reviewed, args.every_young, args.every_mature, args.mature_frames, args.lookahead, args.epochs, args.finetune_epochs, args.batch) < 1:
+        raise ConfigError("min-reviewed, every-young, every-mature, mature-frames, lookahead, epochs, finetune-epochs, and batch must be >= 1")
+    if not 0 <= float(args.mature_map) <= 1:
+        raise ConfigError("--mature-map must be between 0 and 1")
+    if not 0 <= float(args.weak_class_map) <= 1:
+        raise ConfigError("--weak-class-map must be between 0 and 1")
     if args.predict_margin < 0:
         raise ConfigError("--predict-margin must be >= 0")
     if args.frames_max_depth < 0:
@@ -3532,9 +3707,11 @@ def run(args) -> int:
         args.amp,
     )
     LOG.info(
-        "thresholds first=%s every=%s lookahead=%s margin=%s epochs=%s finetune_epochs=%s imgsz=%s",
+        "thresholds first=%s every=%s young=%s mature=%s lookahead=%s margin=%s epochs=%s finetune_epochs=%s imgsz=%s",
         args.min_reviewed,
-        args.every,
+        args.every if args.every is not None else "adaptive",
+        args.every_young,
+        args.every_mature,
         args.lookahead,
         args.predict_margin,
         args.epochs,
@@ -3612,6 +3789,7 @@ def run(args) -> int:
 
             frames = frames_index.get()
             had_pending = bool(state.get("pending_predict"))
+            index = None
             if state.get("model_family"):
                 try:
                     index = remember_project(
@@ -3693,6 +3871,12 @@ def run(args) -> int:
                 continue
 
             names = reviewed_names(live)
+            if index is None and state.get("model_family"):
+                index = load_family_index(args.work_root, state["model_family"])
+            try:
+                apply_cadence(args, state, index, len(names))
+            except Exception:
+                LOG.exception("could not update the training cadence")
             _chosen, unmatched = match_reviewed(frames, names)
             publish_idle(
                 status,
@@ -3828,7 +4012,17 @@ def parse_args(argv=None):
         help="optional local .pt used for the first cycle of a project that has no checkpoint yet (a sibling project's model). Later cycles fine-tune this project's best.pt; a new class still restarts from --base-weights",
     )
     parser.add_argument("--min-reviewed", type=int, default=40, help="reviewed frames before the first cycle (default 40)")
-    parser.add_argument("--every", type=int, default=30, help="new reviewed frames between later cycles (default 30)")
+    parser.add_argument(
+        "--every",
+        type=int,
+        default=None,
+        help="fixed count of new reviewed frames between cycles. If set, adaptive cadence is off",
+    )
+    parser.add_argument("--every-young", type=int, default=30, help="new reviewed frames between cycles while the family is young or a weak class has new labels (default 30)")
+    parser.add_argument("--every-mature", type=int, default=80, help="new reviewed frames between cycles for a mature family (default 80)")
+    parser.add_argument("--mature-frames", type=int, default=300, help="family reviewed frames required, with --mature-map, before the mature cadence (default 300)")
+    parser.add_argument("--mature-map", type=float, default=0.8, help="overall mAP50 required, with --mature-frames, before the mature cadence (default 0.8)")
+    parser.add_argument("--weak-class-map", type=float, default=0.6, help="per-class mAP50 below this, with new labels of that class, uses the young cadence (default 0.6)")
     parser.add_argument("--lookahead", type=int, default=150, help="unreviewed frames to predict after the margin (default 150)")
     parser.add_argument(
         "--predict-margin",
