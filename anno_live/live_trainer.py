@@ -16,8 +16,10 @@ Writes only two files into the sync folder:
 Datasets and weight files go to ``--work-dir/<project>/``, outside the repository.
 Projects in one model family share ``<work-dir>/models/<family>/``: one
 ``best.pt``, and a ``dataset.json`` of every project's reviewed labels. Class
-ids are append-only for that family. Base weights must already be on disk;
-this process does not download them.
+ids are append-only for that family. Before any prediction, a stale family
+model is trained on that union so the checkpoint contains every family class.
+Predictions run a few images at a time (``--predict-batch``). Base weights
+must already be on disk; this process does not download them.
 
 ``--frames-folder`` is optional. Without it, the ``project`` field in the live
 file (the folder name annotool writes) is looked up under each ``--frames-root``
@@ -130,6 +132,8 @@ STATUS_KEYS = (
     "model_family",
     "model_mode",
     "per_class_map50",
+    "predict_total",
+    "ready_for_user",
 )
 
 
@@ -184,6 +188,8 @@ class Status:
             "model_family": None,
             "model_mode": None,
             "per_class_map50": {},
+            "predict_total": None,
+            "ready_for_user": False,
         }
         self.write()
 
@@ -1188,7 +1194,15 @@ def assign_model_plan(state: dict, live, work_root: Path) -> Path | None:
     return weights if usable else None
 
 
-def maybe_update_family(work_root: Path, family: str, weights: Path, map50, per_class: dict, classes: list[str] | None = None) -> bool:
+def maybe_update_family(
+    work_root: Path,
+    family: str,
+    weights: Path,
+    map50,
+    per_class: dict,
+    classes: list[str] | None = None,
+    dataset_signature: str | None = None,
+) -> bool:
     """Copy ``weights`` into the family library when no known class disappeared.
 
     The previous ``best.pt`` is kept as ``best_prev.pt``. A lower mAP50 still
@@ -1216,6 +1230,7 @@ def maybe_update_family(work_root: Path, family: str, weights: Path, map50, per_
     if current.is_file():
         shutil.copy2(current, dest / "best_prev.pt")
     shutil.copy2(weights, current)
+    signature = dataset_signature if dataset_signature else meta.get("dataset_signature")
     atomic_write_json(
         dest / "meta.json",
         {
@@ -1223,6 +1238,7 @@ def maybe_update_family(work_root: Path, family: str, weights: Path, map50, per_
             "map50": None if measured is None else round(measured, 4),
             "per_class_map50": dict(per_class or {}),
             "classes": trained,
+            "dataset_signature": signature,
             "updated_at": iso_now(),
         },
     )
@@ -1260,8 +1276,29 @@ def weights_stamp(path: Path) -> dict | None:
     return {"mtime_ns": int(mtime_ns), "size": int(st.st_size), "sha1": digest.hexdigest()}
 
 
+_CHECKPOINT_NAMES: dict[tuple, list[str]] = {}
+
+
 def checkpoint_class_names(path: Path) -> list[str]:
     """Class names stored in a YOLO ``.pt``. Empty when the file is not a checkpoint."""
+    path = Path(path)
+    try:
+        st = path.stat()
+    except OSError:
+        return []
+    mtime_ns = getattr(st, "st_mtime_ns", None)
+    if mtime_ns is None:
+        mtime_ns = int(st.st_mtime * 1_000_000_000)
+    key = (str(path.resolve()), int(mtime_ns), int(st.st_size))
+    cached = _CHECKPOINT_NAMES.get(key)
+    if cached is not None:
+        return list(cached)
+    names = _read_checkpoint_names(path)
+    _CHECKPOINT_NAMES[key] = list(names)
+    return names
+
+
+def _read_checkpoint_names(path: Path) -> list[str]:
     try:
         import torch
 
@@ -1310,9 +1347,10 @@ def save_family_index(work_root: Path, family: str, index: dict):
 def protected_family_classes(work_root: Path, family: str) -> list[str] | None:
     """Append-only class ids for this family.
 
-    ``dataset.json`` and ``meta.json`` win. A library ``best.pt`` saved before
-    those lists existed supplies the names once. None means a library file is
-    there but its classes could not be read, so it must not be replaced.
+    ``dataset.json`` and ``meta.json`` win for order. Logo names (``brand|tpoint``)
+    stored in the library ``best.pt`` are added even when a later project saved a
+    shorter list. None means a library file is there but its classes could not
+    be read, so it must not be replaced.
     """
     index = load_family_index(work_root, family)
     saved = [str(name) for name in index.get("classes") or []]
@@ -1320,17 +1358,18 @@ def protected_family_classes(work_root: Path, family: str) -> list[str] | None:
     meta_classes = []
     if isinstance(meta.get("classes"), list):
         meta_classes = [str(name) for name in meta["classes"] if str(name).strip()]
-    if saved or meta_classes:
-        base = meta_classes or saved
-        extra = set(saved) | set(meta_classes)
+    weights = family_weights_path(work_root, family)
+    checkpoint = checkpoint_class_names(weights) if weights.is_file() else []
+    logos = [name for name in checkpoint if "|" in name]
+    if saved or meta_classes or logos:
+        base = meta_classes or saved or logos
+        extra = set(saved) | set(meta_classes) | set(logos)
         classes, _new = extend_classes(base, extra)
         return classes
-    weights = family_weights_path(work_root, family)
     if not weights.is_file():
         return []
-    names = checkpoint_class_names(weights)
-    if names:
-        return names
+    if checkpoint:
+        return checkpoint
     per_class = meta.get("per_class_map50")
     if isinstance(per_class, dict) and per_class:
         return [str(name) for name in per_class]
@@ -1399,10 +1438,13 @@ def extract_project_frames(frames: list[Frame], live: dict) -> tuple[list[dict],
 def remember_project(work_root: Path, family: str, project: str, work_dir: Path, frames_folder, frames: list[Frame], live: dict) -> dict:
     """Store this project's reviewed labels in the family index. Class ids only grow."""
     index = load_family_index(work_root, family)
-    if not index["classes"]:
-        protected = protected_family_classes(work_root, family)
-        if protected:
-            index["classes"] = list(protected)
+    protected = protected_family_classes(work_root, family)
+    protected_grew = False
+    if protected:
+        seeded, _added = extend_classes(list(index["classes"]), set(protected))
+        if seeded != list(index["classes"]):
+            index["classes"] = seeded
+            protected_grew = True
     projects = index["projects"]
     previous = projects.get(project) if isinstance(projects.get(project), dict) else {}
     previous_frames = previous.get("frames") if isinstance(previous.get("frames"), list) else []
@@ -1433,7 +1475,7 @@ def remember_project(work_root: Path, family: str, project: str, work_dir: Path,
         if str(entry.get("work_dir") or "") == str(work_dir):
             projects.pop(key, None)
             changed = True
-    if changed or was_new or grew:
+    if changed or was_new or grew or protected_grew:
         save_family_index(work_root, family, index)
     return index
 
@@ -1532,12 +1574,31 @@ def backfill_family_projects(work_root: Path, family: str, index: dict) -> dict:
             state = read_json(state_path, retries=1, pause=0.02)
         except ValueError:
             continue
-        if not isinstance(state, dict) or state.get("model_family") != family:
+        if not isinstance(state, dict):
+            continue
+        stored_family = state.get("model_family")
+        if stored_family and stored_family != family:
             continue
         existing = index["projects"].get(child.name)
         if isinstance(existing, dict) and existing.get("frames"):
             continue
+        known_dirs = {
+            str(entry.get("work_dir") or "")
+            for entry in index["projects"].values()
+            if isinstance(entry, dict) and entry.get("frames")
+        }
+        if str(child) in known_dirs:
+            continue
         names = yaml_class_names(yaml_path)
+        if not stored_family:
+            known = {str(name) for name in index.get("classes") or []}
+            if not known or not (set(names) & known):
+                continue
+            LOG.info(
+                "family %s loading %s by shared classes; state.json has no model_family",
+                family,
+                child.name,
+            )
         frames = frames_from_yolo_dataset(child / "dataset", names) if names else []
         if not frames:
             continue
@@ -1555,8 +1616,75 @@ def backfill_family_projects(work_root: Path, family: str, index: dict) -> dict:
         changed = True
         LOG.info("family %s loaded %s stored frames from %s", family, len(frames), child.name)
     if changed:
+        loaded = ", ".join(sorted(str(name) for name in index["projects"]))
+        LOG.info("family %s dataset projects: %s", family, loaded)
         save_family_index(work_root, family, index)
     return index
+
+
+def family_dataset_signature(index: dict) -> str:
+    """Stable hash of reviewed frames and boxes. Class order is not part of it."""
+    lines = []
+    projects = index.get("projects") or {}
+    for project in sorted(projects):
+        entry = projects[project]
+        if not isinstance(entry, dict):
+            continue
+        parts = []
+        for frame in entry.get("frames") or []:
+            if not isinstance(frame, dict):
+                continue
+            boxes = []
+            for box in frame.get("boxes") or []:
+                if isinstance(box, (list, tuple)) and box:
+                    boxes.append(",".join(str(item) for item in box))
+            boxes.sort()
+            parts.append(f"{frame.get('rel')}|{int(bool(frame.get('hard_negative')))}|{' ; '.join(boxes)}")
+        parts.sort()
+        lines.append(str(project) + "\n" + "\n".join(parts))
+    return hashlib.sha1("\n\n".join(lines).encode("utf-8")).hexdigest()
+
+
+def family_is_stale(work_root: Path, family: str, index: dict) -> bool:
+    """True when the library model is missing a class or reviewed frame from the index."""
+    classes = [str(name) for name in index.get("classes") or [] if str(name).strip()]
+    has_boxes = False
+    for entry in (index.get("projects") or {}).values():
+        if not isinstance(entry, dict):
+            continue
+        for frame in entry.get("frames") or []:
+            if isinstance(frame, dict) and frame.get("boxes"):
+                has_boxes = True
+                break
+        if has_boxes:
+            break
+    weights = family_weights_path(work_root, family)
+    if not weights.is_file():
+        return has_boxes
+    meta = read_family_meta(work_root, family)
+    known = [str(name) for name in meta.get("classes") or [] if str(name).strip()]
+    if not known:
+        known = [name for name in checkpoint_class_names(weights) if "|" in name] or checkpoint_class_names(weights)
+    if set(classes) - set(known):
+        return True
+    if not has_boxes:
+        return False
+    return meta.get("dataset_signature") != family_dataset_signature(index)
+
+
+def family_finetune_ok(weights: Path, classes: list[str]) -> bool:
+    """Fine-tune when every logo class in the checkpoint is still in the training list."""
+    if not Path(weights).is_file():
+        return False
+    names = checkpoint_class_names(weights)
+    logos = [name for name in names if "|" in name]
+    if not logos:
+        return False
+    return set(logos).issubset(set(classes))
+
+
+def family_epoch_message(epoch: int, total: int) -> str:
+    return f"{FAMILY_UNIFY_MESSAGE} · epoch {epoch}/{total}"
 
 
 def family_example_rows(index: dict) -> list[dict]:
@@ -1679,6 +1807,7 @@ def searching_message(project: str) -> str:
 
 
 NO_BOXES_MESSAGE = "Αναμονή · δεν υπάρχουν κουτιά λογότυπου στην οικογένεια"
+FAMILY_UNIFY_MESSAGE = "Ενιαίο μοντέλο οικογένειας, περίμενε…"
 FAMILY_IMAGE_CAP = 1500
 
 
@@ -2243,6 +2372,7 @@ def build_family_dataset(
     live: dict,
     val_fraction: float,
     limit: int,
+    dataset_dir: Path | None = None,
 ) -> dict | None:
     """Train/val from every project stored for ``family``.
 
@@ -2274,7 +2404,7 @@ def build_family_dataset(
         examples.append((frame, row["boxes"]))
         if row["hard_negative"]:
             hard_rels.add(rel)
-    written = _write_yolo_dataset(work, examples, classes, hard_rels, val_fraction)
+    written = _write_yolo_dataset(dataset_dir or work, examples, classes, hard_rels, val_fraction)
     written.update(
         {
             "classes": classes,
@@ -2332,7 +2462,17 @@ def per_class_ap50(trainer, class_names: list[str]) -> dict:
     return found
 
 
-def make_epoch_callback(status: Status, cycle: int, total_epochs: int, holder: dict, from_base: bool, weight_kind: str, classes: list[str]):
+def make_epoch_callback(
+    status: Status,
+    cycle: int,
+    total_epochs: int,
+    holder: dict,
+    from_base: bool,
+    weight_kind: str,
+    classes: list[str],
+    status_state: str = "training",
+    message_fn=None,
+):
     kind = weight_phrase(weight_kind)
 
     def on_fit_epoch_end(trainer):
@@ -2348,9 +2488,12 @@ def make_epoch_callback(status: Status, cycle: int, total_epochs: int, holder: d
                     holder["score"] = score
                     holder["map50"] = round(map50, 4)
                     holder["per_class"] = per_class_ap50(trainer, classes)
-            message = f"Εκπαίδευση κύκλου {cycle} · epoch {epoch}/{total_epochs} · {kind}"
+            if message_fn is not None:
+                message = message_fn(epoch, total_epochs)
+            else:
+                message = f"Εκπαίδευση κύκλου {cycle} · epoch {epoch}/{total_epochs} · {kind}"
             fields = dict(
-                state="training",
+                state=status_state,
                 cycle=cycle,
                 epoch=epoch,
                 epochs=total_epochs,
@@ -2406,7 +2549,7 @@ def release_cuda_cache():
 
 
 def shrink_after_oom(args) -> str:
-    """Halve the batch, then drop dataloader workers. Image size stays as it is."""
+    """Halve the train batch, then drop dataloader workers. Image size stays as it is."""
     if int(args.batch) > MIN_TRAIN_BATCH:
         args.batch = max(MIN_TRAIN_BATCH, int(args.batch) // 2)
         return f"batch {args.batch}"
@@ -2414,6 +2557,46 @@ def shrink_after_oom(args) -> str:
         args.workers = 0
         return "workers 0"
     return ""
+
+
+def chunk_items(items, size: int) -> list[list]:
+    step = max(1, int(size))
+    return [list(items[i : i + step]) for i in range(0, len(items), step)]
+
+
+def shrink_predict_batch(args) -> str:
+    """Halve how many images one ``model.predict`` call sees. Does not change the train batch."""
+    current = int(getattr(args, "predict_batch", 4) or 4)
+    if current <= 1:
+        return ""
+    args.predict_batch = max(1, current // 2)
+    return f"predict-batch {args.predict_batch}"
+
+
+def predict_uses_half(device: str) -> bool:
+    """FP16 activations on CUDA only. CPU, including the tests, stays FP32."""
+    text = str(device or "").strip().lower()
+    if text == "cpu":
+        return False
+    if text in {"", "auto"}:
+        try:
+            import torch
+
+            return bool(torch.cuda.is_available())
+        except Exception:
+            return False
+    return True
+
+
+def enable_cuda_allocator():
+    """Ask PyTorch to grow the caching allocator in expandable segments, before it is imported."""
+    key = "PYTORCH_CUDA_ALLOC_CONF"
+    current = os.environ.get(key, "")
+    if "expandable_segments" in current:
+        return
+    token = "expandable_segments:True"
+    os.environ[key] = f"{current},{token}" if current.strip() else token
+    LOG.info("%s=%s", key, os.environ[key])
 
 
 def call_with_oom_retry(status: Status, args, action, phase: str):
@@ -2547,11 +2730,34 @@ def lower_process_priority():
         LOG.warning("could not lower process priority: %s", exc)
 
 
-def train_model(model, args, data_yaml: Path, epochs: int, cycle: int, work: Path, status: Status, from_base: bool, weight_kind: str, classes: list[str]):
+def train_model(
+    model,
+    args,
+    data_yaml: Path,
+    epochs: int,
+    cycle: int,
+    work: Path,
+    status: Status,
+    from_base: bool,
+    weight_kind: str,
+    classes: list[str],
+    status_state: str = "training",
+    message_fn=None,
+):
     holder = {"score": None, "map50": None, "per_class": {}}
     model.add_callback(
         "on_fit_epoch_end",
-        make_epoch_callback(status, cycle, epochs, holder, from_base, weight_kind, classes),
+        make_epoch_callback(
+            status,
+            cycle,
+            epochs,
+            holder,
+            from_base,
+            weight_kind,
+            classes,
+            status_state=status_state,
+            message_fn=message_fn,
+        ),
     )
     run_dir = work / "runs" / f"cycle_{cycle}"
     if run_dir.exists():
@@ -2570,14 +2776,18 @@ def train_model(model, args, data_yaml: Path, epochs: int, cycle: int, work: Pat
             args.batch,
             args.workers,
         )
+        if message_fn is not None:
+            opening = message_fn(0, epochs)
+        else:
+            opening = f"Εκπαίδευση κύκλου {cycle} · epoch 0/{epochs} · {weight_phrase(weight_kind)}"
         status.update(
-            state="training",
+            state=status_state,
             cycle=cycle,
             epoch=0,
             epochs=epochs,
             from_base=from_base,
             last_error=None,
-            message=f"Εκπαίδευση κύκλου {cycle} · epoch 0/{epochs} · {weight_phrase(weight_kind)}",
+            message=opening,
         )
         train_kwargs = {
             "data": str(data_yaml),
@@ -2714,98 +2924,159 @@ def predict_frames(model, args, live, frames, work: Path, coverage: str = "windo
         frames, current_index, args.predict_margin, args.lookahead, blocked, coverage=coverage
     )
     LOG.info(
-        "predict window current=%s index=%s margin=%s chosen=%s first=%s last=%s",
+        "predict window current=%s index=%s margin=%s chosen=%s first=%s last=%s batch=%s",
         current,
         current_index,
         args.predict_margin,
         len(chosen),
         chosen[0].rel if chosen else None,
         chosen[-1].rel if chosen else None,
+        int(getattr(args, "predict_batch", 4) or 4),
     )
-    replaced = {prediction_key(frame, stems_unique) for frame in chosen}
-    new_images = {}
-    if chosen:
-        by_path = {frame.path.resolve(): frame for frame in chosen}
-        dominant = dominant_canvas(images)
-
-        def predict_once():
-            found = {}
-            predict_kwargs = {
-                "source": [str(frame.path) for frame in chosen],
-                "conf": args.conf,
-                "iou": args.iou,
-                "agnostic_nms": True,
-                "imgsz": args.imgsz,
-                "verbose": False,
-                "stream": True,
-                "save": False,
-                "show": False,
-                "save_txt": False,
-                "save_conf": False,
-                "workers": args.workers,
-                "batch": args.batch,
-                "cache": False,
-                "project": str((work / "predict").resolve()),
-                "name": "latest",
-                "exist_ok": True,
-            }
-            if args.device:
-                predict_kwargs["device"] = args.device
-            if status is not None:
-                message = status.data.get("message") or "Προβλέψεις"
-                if status.data.get("state") == "waiting_gpu":
-                    message = "Προβλέψεις"
-                status.update(state="predicting", last_error=None, message=message)
-            results = model.predict(**predict_kwargs)
-            seen = 0
-            for result in results:
-                seen += 1
-                frame = by_path.get(Path(result.path).resolve())
-                if frame is None:
-                    LOG.warning("predict result for an unexpected file: %s", result.path)
-                    continue
-                orig_h, orig_w = result.orig_shape
-                canvas = canvas_for_frame(images, frame, dominant, (int(orig_w), int(orig_h)))
-                key = prediction_key(frame, stems_unique)
-                index = find_current_index(frames, frame.rel)
-                entry = boxes_from_result(result, frame, canvas, key, index if index >= 0 else 0)
-                if entry:
-                    before = len(entry["annotations"])
-                    kept = suppress_contained(entry["annotations"], float(getattr(args, "contain", 0.6)))
-                    if len(kept) < before:
-                        LOG.info(
-                            "containment dropped %s of %s boxes on %s",
-                            before - len(kept),
-                            before,
-                            frame.rel,
-                        )
-                    if kept:
-                        entry["annotations"] = kept
-                        found[key] = entry
-            if seen != len(chosen):
-                LOG.warning("model returned %s results for %s frames", seen, len(chosen))
-            return found
-
-        new_images = call_with_oom_retry(status, args, predict_once, "predict")
-    old = {}
     pred_path = args.sync_folder / PRED_NAME
-    if pred_path.is_file():
-        old_doc = read_json(pred_path)
-        if isinstance(old_doc.get("images"), dict):
-            old = old_doc["images"]
-    merged = merge_prediction_images(old, new_images, replaced, frames, current_index, blocked)
-    document = build_prediction_document(live, merged)
-    errors = prediction_shape_errors(document)
-    if errors:
-        raise ConfigError("prediction document failed its shape check: " + "; ".join(errors))
-    atomic_write_json(pred_path, document)
+    dominant = dominant_canvas(images)
+    by_path = {frame.path.resolve(): frame for frame in chosen}
+
+    def persist(replaced_keys: set[str], images_out: dict):
+        old = {}
+        if pred_path.is_file():
+            old_doc = read_json(pred_path)
+            if isinstance(old_doc.get("images"), dict):
+                old = old_doc["images"]
+        merged = merge_prediction_images(old, images_out, replaced_keys, frames, current_index, blocked)
+        document = build_prediction_document(live, merged)
+        errors = prediction_shape_errors(document)
+        if errors:
+            raise ConfigError("prediction document failed its shape check: " + "; ".join(errors))
+        atomic_write_json(pred_path, document)
+        return merged
+
+    def predict_chunk(chunk: list[Frame]):
+        """One ``model.predict`` call. The result stream is consumed here so an OOM retries this chunk."""
+        found = {}
+        predict_kwargs = {
+            "source": [str(frame.path) for frame in chunk],
+            "conf": args.conf,
+            "iou": args.iou,
+            "agnostic_nms": True,
+            "imgsz": args.imgsz,
+            "verbose": False,
+            "stream": True,
+            "save": False,
+            "show": False,
+            "save_txt": False,
+            "save_conf": False,
+            "workers": args.workers,
+            "batch": max(1, len(chunk)),
+            "cache": False,
+            "project": str((work / "predict").resolve()),
+            "name": "latest",
+            "exist_ok": True,
+        }
+        if args.device:
+            predict_kwargs["device"] = args.device
+        if predict_uses_half(getattr(args, "device", "")):
+            predict_kwargs["half"] = True
+        results = model.predict(**predict_kwargs)
+        seen = 0
+        for result in results:
+            seen += 1
+            frame = by_path.get(Path(result.path).resolve())
+            if frame is None:
+                LOG.warning("predict result for an unexpected file: %s", result.path)
+                continue
+            orig_h, orig_w = result.orig_shape
+            canvas = canvas_for_frame(images, frame, dominant, (int(orig_w), int(orig_h)))
+            key = prediction_key(frame, stems_unique)
+            index = find_current_index(frames, frame.rel)
+            entry = boxes_from_result(result, frame, canvas, key, index if index >= 0 else 0)
+            if entry:
+                before = len(entry["annotations"])
+                kept = suppress_contained(entry["annotations"], float(getattr(args, "contain", 0.6)))
+                if len(kept) < before:
+                    LOG.info(
+                        "containment dropped %s of %s boxes on %s",
+                        before - len(kept),
+                        before,
+                        frame.rel,
+                    )
+                if kept:
+                    entry["annotations"] = kept
+                    found[key] = entry
+        if seen != len(chunk):
+            LOG.warning("model returned %s results for %s frames", seen, len(chunk))
+        return found
+
+    new_images = {}
+    done_keys: set[str] = set()
+    total = len(chosen)
+    cursor = 0
+    if chosen and status is not None:
+        status.update(
+            state="predicting",
+            predicted_frames=0,
+            predict_total=total,
+            last_error=None,
+            message=f"Προβλέψεις σε εξέλιξη, περίμενε… (0/{total})",
+        )
+    while cursor < total:
+        batch = max(1, int(getattr(args, "predict_batch", 4) or 4))
+        chunk = chosen[cursor : cursor + batch]
+        try:
+            found = predict_chunk(chunk)
+        except Exception as exc:
+            if not is_cuda_oom(exc):
+                raise
+            change = shrink_predict_batch(args)
+            release_cuda_cache()
+            if not change:
+                raise
+            wait = max(0.0, float(getattr(args, "oom_wait", 45)))
+            note = f"CUDA out of memory; retrying with {change}"
+            LOG.warning("%s during predict (%s). Waiting %.0fs, then %s", type(exc).__name__, exc, wait, change)
+            if status is not None:
+                status.update(
+                    state="waiting_gpu",
+                    last_error=note,
+                    predict_total=total,
+                    message=f"Αναμονή GPU · εξαντλήθηκε η μνήμη · επανάληψη με {change}",
+                )
+            if wait:
+                time.sleep(wait)
+            release_cuda_cache()
+            continue
+        for frame in chunk:
+            done_keys.add(prediction_key(frame, stems_unique))
+        new_images.update(found)
+        cursor += len(chunk)
+        merged = persist(done_keys, new_images)
+        if status is not None:
+            status.update(
+                state="predicting",
+                predicted_frames=cursor,
+                predict_total=total,
+                last_error=None,
+                message=f"Προβλέψεις σε εξέλιξη, περίμενε… ({cursor}/{total})",
+            )
+        LOG.info("predict chunk %s/%s", cursor, total)
+    if not chosen:
+        merged = persist(set(), {})
     start, end = prediction_span(merged, frames)
     LOG.info("wrote %s frames=%s from=%s to=%s", pred_path, len(merged), start, end)
     return len(merged), start, end
 
 
+def weights_for_predict(args, state: dict) -> Path | None:
+    """Family library weights when this project continues that model, else the project file."""
+    if state.get("model_mode") == "συνέχεια" and state.get("model_family") and getattr(args, "work_root", None):
+        family = family_weights_path(args.work_root, state["model_family"])
+        if family.is_file():
+            return family
+    return resolve_weights(state, args.work_dir)
+
+
 def finish_predict(args, state: dict, status: Status, frames_index: FrameIndex):
-    weights = resolve_weights(state, args.work_dir)
+    weights = weights_for_predict(args, state)
     if weights is None or not weights.is_file():
         raise ConfigError("no trained weights to predict with")
     status.update(
@@ -2864,6 +3135,8 @@ def seed_family_predictions(args, state: dict, status: Status, frames_index: Fra
         weights=str(weights),
         model_family=family,
         model_mode="συνέχεια",
+        ready_for_user=False,
+        predict_total=None,
         message=f"Προβλέψεις από την οικογένεια {family}, πριν την εκπαίδευση",
     )
     live = read_json(args.sync_folder / LIVE_NAME)
@@ -2874,6 +3147,7 @@ def seed_family_predictions(args, state: dict, status: Status, frames_index: Fra
     stamp = weights_stamp(weights) or {}
     state["seeded_family"] = family
     state["seeded_weights"] = {"family": family, **stamp}
+    state["pending_predict"] = False
     state["last_error"] = None
     save_state(args.work_dir / STATE_NAME, state)
     publish_idle(
@@ -2887,7 +3161,13 @@ def seed_family_predictions(args, state: dict, status: Status, frames_index: Fra
         frames_folder=getattr(args, "bound_frames", None),
         work_root=getattr(args, "work_root", None),
     )
-    status.update(predicted_frames=count, predicted_from=start, predicted_to=end, weights=str(weights))
+    status.update(
+        predicted_frames=count,
+        predicted_from=start,
+        predicted_to=end,
+        weights=str(weights),
+        ready_for_user=True,
+    )
     return count
 
 
@@ -2895,11 +3175,10 @@ def needs_family_seed(state: dict, work_root: Path | None = None) -> bool:
     """True when this project has not been predicted with the current family ``best.pt``.
 
     The stamp is mtime, size, and sha1. A family name alone is not enough: a
-    newer library file (another project promoted it) is seeded again. Cycle
-    count does not block that. ``pending_predict`` still finishes the window
-    predict from the cycle that just ended.
+    newer library file (another project promoted it, or this process just
+    unified the family) is seeded again. Cycle count does not block that.
     """
-    if state.get("model_mode") != "συνέχεια" or state.get("pending_predict"):
+    if state.get("model_mode") != "συνέχεια":
         return False
     family = state.get("model_family")
     if not family or work_root is None:
@@ -2918,6 +3197,88 @@ def needs_family_seed(state: dict, work_root: Path | None = None) -> bool:
         return False
     current = weights_stamp(weights)
     return not current or current.get("sha1") != stored.get("sha1")
+
+
+def train_family_union(args, state: dict, status: Status, live: dict, frames: list[Frame]) -> bool:
+    """Train one family checkpoint that contains every class, before any prediction.
+
+    The project's cycle counter is not advanced. The dataset is written under
+    ``models/<family>/unify/`` so the open project's ``dataset/`` stays put.
+    Fine-tune the library ``best.pt`` when its logo classes are a subset of the
+    union; otherwise start from ``--base-weights``.
+    """
+    family = state.get("model_family") or ""
+    if not family:
+        return False
+    project = getattr(args, "bound_project", None) or project_name(live) or "_default"
+    limit = int(getattr(args, "max_family_images", FAMILY_IMAGE_CAP) or FAMILY_IMAGE_CAP)
+    unify_dir = family_dir(args.work_root, family) / "unify"
+    status.update(
+        state="training_family",
+        ready_for_user=False,
+        model_family=family,
+        model_mode=state.get("model_mode"),
+        predict_total=None,
+        last_error=None,
+        message=FAMILY_UNIFY_MESSAGE,
+    )
+    built = build_family_dataset(
+        args.work_dir,
+        args.work_root,
+        family,
+        project,
+        getattr(args, "bound_frames", None),
+        frames,
+        live,
+        args.val_fraction,
+        limit,
+        dataset_dir=unify_dir,
+    )
+    if built is None:
+        LOG.info("family %s has no logo boxes to unify", family)
+        return False
+    weights_path = family_weights_path(args.work_root, family)
+    prefer = state.get("model_choice") != "new" and family_finetune_ok(weights_path, built["classes"])
+    previous = weights_path if prefer else None
+    YOLO = yolo_class()
+    model, from_base, weight_kind = load_training_model(
+        YOLO,
+        args.base_weights,
+        previous,
+        built["classes"],
+        built["new_names"],
+        None,
+        prefer_finetune=prefer,
+    )
+    epochs = args.finetune_epochs if weight_kind == "finetune" else args.epochs
+    weights, map50, _save_dir, per_class = train_model(
+        model,
+        args,
+        built["data_yaml"],
+        epochs,
+        int(state["cycle"]),
+        unify_dir,
+        status,
+        from_base,
+        weight_kind,
+        built["classes"],
+        status_state="training_family",
+        message_fn=family_epoch_message,
+    )
+    index = load_family_index(args.work_root, family)
+    promoted = maybe_update_family(
+        args.work_root,
+        family,
+        weights,
+        map50,
+        per_class,
+        built["classes"],
+        dataset_signature=family_dataset_signature(index),
+    )
+    if not promoted:
+        raise ConfigError(f"family {family} model was not promoted; it does not contain every family class")
+    LOG.info("family %s unified classes=%s", family, ", ".join(built["classes"]))
+    return True
 
 
 def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live: dict):
@@ -3003,6 +3364,7 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
     state["per_class_map50"] = dict(per_class or {})
     state["last_error"] = None
     if state.get("model_family"):
+        signature = family_dataset_signature(load_family_index(args.work_root, state["model_family"]))
         promoted = maybe_update_family(
             args.work_root,
             state["model_family"],
@@ -3010,6 +3372,7 @@ def run_cycle(args, state: dict, status: Status, frames_index: FrameIndex, live:
             state.get("last_map50"),
             state["per_class_map50"],
             built["classes"],
+            dataset_signature=signature,
         )
         if promoted:
             family_path = family_weights_path(args.work_root, state["model_family"])
@@ -3092,6 +3455,8 @@ def validate_config(args):
         raise ConfigError("--workers must be >= 0")
     if args.max_family_images < 1:
         raise ConfigError("--max-family-images must be >= 1")
+    if int(getattr(args, "predict_batch", 4)) < 1:
+        raise ConfigError("--predict-batch must be >= 1")
     args.poll_seconds = max(1.0, float(args.poll_seconds))
     args.work_dir.mkdir(parents=True, exist_ok=True)
     return args
@@ -3137,6 +3502,7 @@ def run(args) -> int:
         import multiprocessing
 
         multiprocessing.freeze_support()
+    enable_cuda_allocator()
     args = validate_config(args)
     lower_process_priority()
     limit_gpu_memory(float(args.gpu_mem_fraction), args.device)
@@ -3244,6 +3610,67 @@ def run(args) -> int:
                 parked_at = None
                 gave_retry = False
 
+            frames = frames_index.get()
+            had_pending = bool(state.get("pending_predict"))
+            if state.get("model_family"):
+                try:
+                    index = remember_project(
+                        args.work_root,
+                        state["model_family"],
+                        active["project"],
+                        active["work"],
+                        active["frames"],
+                        frames,
+                        live,
+                    )
+                    index = backfill_family_projects(args.work_root, state["model_family"], index)
+                except Exception:
+                    LOG.exception("could not update the family dataset index")
+                    index = None
+                if index is not None and family_is_stale(args.work_root, state["model_family"], index):
+                    if wait_out_gpu(args, status):
+                        if args.once:
+                            return 0
+                        continue
+                    try:
+                        train_family_union(args, state, status, live, frames)
+                        assign_model_plan(state, live, args.work_root)
+                        save_state(args.work_dir / STATE_NAME, state)
+                        gave_retry = False
+                        parked_at = None
+                    except KeyboardInterrupt:
+                        raise
+                    except Exception as exc:
+                        outcome = fail_cycle(args, state, status, frames_index, exc, gave_retry, parked_at)
+                        if isinstance(outcome, int):
+                            return outcome
+                        gave_retry, parked_at = outcome
+                        continue
+
+            if needs_family_seed(state, args.work_root):
+                if wait_out_gpu(args, status):
+                    if args.once:
+                        return 0
+                    continue
+                try:
+                    seed_family_predictions(args, state, status, frames_index)
+                    gave_retry = False
+                    parked_at = None
+                except KeyboardInterrupt:
+                    raise
+                except Exception as exc:
+                    outcome = fail_cycle(args, state, status, frames_index, exc, gave_retry, parked_at)
+                    if isinstance(outcome, int):
+                        return outcome
+                    gave_retry, parked_at = outcome
+                    continue
+                if had_pending:
+                    if args.once:
+                        return 0
+                    continue
+            elif status.data.get("ready_for_user") is not True:
+                status.update(ready_for_user=True)
+
             if state["pending_predict"]:
                 if wait_out_gpu(args, status):
                     if args.once:
@@ -3265,38 +3692,6 @@ def run(args) -> int:
                     return 0
                 continue
 
-            if needs_family_seed(state, args.work_root):
-                if wait_out_gpu(args, status):
-                    if args.once:
-                        return 0
-                    continue
-                try:
-                    seed_family_predictions(args, state, status, frames_index)
-                    gave_retry = False
-                    parked_at = None
-                except KeyboardInterrupt:
-                    raise
-                except Exception as exc:
-                    outcome = fail_cycle(args, state, status, frames_index, exc, gave_retry, parked_at)
-                    if isinstance(outcome, int):
-                        return outcome
-                    gave_retry, parked_at = outcome
-                    continue
-
-            frames = frames_index.get()
-            if state.get("model_family"):
-                try:
-                    remember_project(
-                        args.work_root,
-                        state["model_family"],
-                        active["project"],
-                        active["work"],
-                        active["frames"],
-                        frames,
-                        live,
-                    )
-                except Exception:
-                    LOG.exception("could not update the family dataset index")
             names = reviewed_names(live)
             _chosen, unmatched = match_reviewed(frames, names)
             publish_idle(
@@ -3444,7 +3839,13 @@ def parse_args(argv=None):
     parser.add_argument("--epochs", type=int, default=20, help="epochs when training from base weights (default 20)")
     parser.add_argument("--finetune-epochs", type=int, default=8, help="epochs when fine-tuning best.pt (default 8)")
     parser.add_argument("--imgsz", type=int, default=640, help="train and predict image size (default 640)")
-    parser.add_argument("--batch", type=int, default=4, help="batch size; 4 leaves room on an 8GB GPU with AMP off (default 4). An out-of-memory retry halves it, down to 1")
+    parser.add_argument("--batch", type=int, default=4, help="train batch size; 4 leaves room on an 8GB GPU with AMP off (default 4). An out-of-memory retry halves it, down to 1")
+    parser.add_argument(
+        "--predict-batch",
+        type=int,
+        default=4,
+        help="images per model.predict call (default 4). The frame list is never passed in one call. An out-of-memory retry halves this, down to 1, and retries the same chunk",
+    )
     parser.add_argument("--workers", type=int, default=2, help="dataloader workers (default 2). An out-of-memory retry drops this to 0 after the batch is already 1")
     parser.add_argument(
         "--gpu-mem-fraction",

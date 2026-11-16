@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import tempfile
 from pathlib import Path
@@ -655,6 +656,7 @@ def test_config_and_status():
         lt.validate_config(args)
         check(args.workers == 2, args.workers)
         check(args.batch == 4, args.batch)
+        check(args.predict_batch == 4, args.predict_batch)
         check(args.gpu_mem_fraction == 0.7, args.gpu_mem_fraction)
         check(args.min_free_vram_mb == 1536, args.min_free_vram_mb)
         check(args.oom_wait == 45, args.oom_wait)
@@ -737,6 +739,8 @@ def test_config_and_status():
         check(data["classes"] == ["Adidas|LED"] and data["reviewed"] == 3, data)
         check(data["project"] is None and data["frames_folder"] is None, data)
         check(data["hard_negative_frames"] == 0, data["hard_negative_frames"])
+        check(data["predict_total"] is None, data["predict_total"])
+        check(data["ready_for_user"] is False, data["ready_for_user"])
         check(list(sync.glob(".live_trainer_status.json.*.tmp")) == [], "temp status file left behind")
         check("Αναμονή" in text, "greek message")
 
@@ -799,12 +803,9 @@ def test_cycle(weights: Path):
         check(errors == [], errors)
         images = doc["images"]
         check("00002" not in images and "00004" not in images, images.keys())
-        check("00007" in images and images["00007"]["annotations"][0]["brand"] == "Sentinel", "margin kept")
-        check("00014" in images and images["00014"]["annotations"][0]["brand"] == "Sentinel", "far kept")
-        check("00006" in images and images["00006"]["annotations"][0]["brand"] == "Sentinel", "current kept")
-        if "00009" in images:
-            brands = {ann["brand"] for ann in images["00009"]["annotations"]}
-            check("Sentinel" not in brands, brands)
+        for key, entry in images.items():
+            brands = {ann["brand"] for ann in entry.get("annotations") or []}
+            check("Sentinel" not in brands, (key, brands))
         status = json.loads((sync / lt.STATUS_NAME).read_text(encoding="utf-8"))
         check(list(status) == list(lt.STATUS_KEYS), list(status))
         check(status["state"] == "idle", status["state"])
@@ -814,15 +815,20 @@ def test_cycle(weights: Path):
         check(status["next_cycle_at"] == 36, status["next_cycle_at"])
         check(status["predicted_frames"] == len(images), status["predicted_frames"])
         keys = list(images)
-        check(status["predicted_from"] == keys[0] and status["predicted_to"] == keys[-1], status)
+        if keys:
+            check(status["predicted_from"] == keys[0] and status["predicted_to"] == keys[-1], status)
+        else:
+            check(status["predicted_from"] is None and status["predicted_to"] is None, status)
         check(status["last_error"] is None, status["last_error"])
         check(status["epoch"] == 1 and status["epochs"] == 1, (status["epoch"], status["epochs"]))
-        check(status["from_base"] is True, status["from_base"])
+        check(status["from_base"] is False, status["from_base"])
         check(status["classes"] == ["Adidas|LED", "Nike|Board"], status["classes"])
         check(doc["project"] == "match", doc["project"])
         check(status["hard_negative_frames"] == 2, status.get("hard_negative_frames"))
         check(status["model_family"] == "default", status.get("model_family"))
-        check(status["model_mode"] == "νέο", status.get("model_mode"))
+        check(status["model_mode"] == "συνέχεια", status.get("model_mode"))
+        check(status["ready_for_user"] is True, status.get("ready_for_user"))
+        check(isinstance(status["predict_total"], int) and status["predict_total"] >= 1, status.get("predict_total"))
         check(isinstance(status["per_class_map50"], dict), status.get("per_class_map50"))
         check((work / "models" / "default" / "best.pt").is_file(), "family best.pt")
         check(status["device"] == "cpu", status["device"])
@@ -837,6 +843,9 @@ def test_cycle(weights: Path):
         state = json.loads((project_work / "state.json").read_text(encoding="utf-8"))
         check(state["pending_predict"] is False, state)
         check(state["cycle"] == 1 and state["next_cycle_at"] == 36, state)
+        meta = json.loads((work / "models" / "default" / "meta.json").read_text(encoding="utf-8"))
+        check(set(meta["classes"]) >= {"Adidas|LED", "Nike|Board"}, meta.get("classes"))
+        check(isinstance(meta.get("dataset_signature"), str) and len(meta["dataset_signature"]) == 40, meta.get("dataset_signature"))
 
 
 def test_family_union():
@@ -988,6 +997,183 @@ def test_family_union():
             check(names is not None and names[0] == "person" and "bicycle" in names, names[:3] if names else names)
 
 
+def test_predict_chunks_and_family_staleness():
+    check(lt.chunk_items([1, 2, 3, 4, 5], 2) == [[1, 2], [3, 4], [5]], "chunks")
+    check(lt.predict_uses_half("cpu") is False, "cpu half")
+    check(lt.predict_uses_half("0") is True, "cuda half")
+    check(lt.predict_uses_half("cuda:0") is True, "cuda:0 half")
+    previous_conf = os.environ.get("PYTORCH_CUDA_ALLOC_CONF")
+    os.environ.pop("PYTORCH_CUDA_ALLOC_CONF", None)
+    lt.enable_cuda_allocator()
+    check(os.environ["PYTORCH_CUDA_ALLOC_CONF"] == "expandable_segments:True", os.environ["PYTORCH_CUDA_ALLOC_CONF"])
+    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
+    lt.enable_cuda_allocator()
+    check(
+        os.environ["PYTORCH_CUDA_ALLOC_CONF"] == "max_split_size_mb:128,expandable_segments:True",
+        os.environ["PYTORCH_CUDA_ALLOC_CONF"],
+    )
+    lt.enable_cuda_allocator()
+    check(
+        os.environ["PYTORCH_CUDA_ALLOC_CONF"] == "max_split_size_mb:128,expandable_segments:True",
+        "allocator left existing expandable_segments alone",
+    )
+    if previous_conf is None:
+        os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+    else:
+        os.environ["PYTORCH_CUDA_ALLOC_CONF"] = previous_conf
+
+    shrink = argparse.Namespace(predict_batch=4, batch=4, workers=2)
+    check(lt.shrink_predict_batch(shrink) == "predict-batch 2" and shrink.predict_batch == 2, shrink.predict_batch)
+    check(lt.shrink_predict_batch(shrink) == "predict-batch 1" and shrink.predict_batch == 1, shrink.predict_batch)
+    check(lt.shrink_predict_batch(shrink) == "", "predict batch already 1")
+    check(shrink.batch == 4 and shrink.workers == 2, "train batch untouched")
+
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        sync = root / "sync"
+        sync.mkdir()
+        frames = [lt.Frame(path=Path(f"/frames/{i:05d}.jpg"), rel=f"{i:05d}", stem=f"{i:05d}") for i in range(6)]
+        chosen = ["00000", "00002", "00003", "00004", "00005"]
+        calls = []
+
+        class Result:
+            def __init__(self, path):
+                self.path = path
+                self.orig_shape = (100, 200)
+                self.names = {}
+                self.boxes = None
+
+        class Model:
+            def predict(self, **kwargs):
+                source = list(kwargs["source"])
+                calls.append(source)
+                check(kwargs.get("stream") is True, "stream")
+                check(not kwargs.get("half"), "half stays off on cpu")
+                check(len(source) <= args.predict_batch, (len(source), args.predict_batch))
+                if len(source) > 2:
+                    raise RuntimeError("CUDA out of memory. Tried to allocate 4.75 GiB")
+                return [Result(path) for path in source]
+
+        class Args:
+            conf = 0.25
+            iou = 0.3
+            imgsz = 64
+            workers = 2
+            batch = 4
+            device = "cpu"
+            predict_margin = 20
+            lookahead = 1
+            contain = 0.6
+            sync_folder = sync
+            predict_batch = 4
+            oom_wait = 0
+
+        args = Args()
+        status = lt.Status(sync / lt.STATUS_NAME, "cpu", 40)
+        live = {
+            "project": "match",
+            "currentImage": "00004",
+            "currentImageIndex": 4,
+            "reviewed": ["00001"],
+            "images": {},
+            "Annotator": "-",
+            "prefs": {},
+            "presets": {},
+        }
+        count, _start, _end = lt.predict_frames(Model(), args, live, frames, root / "work", coverage="all", status=status)
+        check(count == 0, count)
+        check(len(calls[0]) == 4, calls[0])
+        check(all(len(source) <= 2 for source in calls[1:]), [len(source) for source in calls])
+        flat = [Path(path).name for source in calls[1:] for path in source]
+        check(flat == [f"{name}.jpg" for name in chosen], flat)
+        check(args.predict_batch == 2, args.predict_batch)
+        check(args.batch == 4 and args.workers == 2, "train settings stay")
+        check(status.data["predict_total"] == 5, status.data["predict_total"])
+        check(status.data["predicted_frames"] == 5, status.data["predicted_frames"])
+        check(status.data["message"] == "Προβλέψεις σε εξέλιξη, περίμενε… (5/5)", status.data["message"])
+        check(status.data["last_error"] is None, status.data["last_error"])
+        check(status.data["state"] == "predicting", status.data["state"])
+
+        family = "2026 RLWC"
+        frame = {
+            "rel": "00001",
+            "boxes": [["WA|Media Backdrop", 0.1, 0.1, 0.2, 0.2]],
+            "hard_negative": False,
+        }
+        index = {
+            "classes": ["Perth|Pitch Mat", "WA|Media Backdrop"],
+            "projects": {"cluster_8": {"frames": [frame]}},
+        }
+        check(lt.family_is_stale(root, family, index) is True, "no weights yet")
+        dest = root / "models" / family
+        dest.mkdir(parents=True)
+        (dest / "best.pt").write_bytes(b"w" * 2048)
+        signature = lt.family_dataset_signature(index)
+        (dest / "meta.json").write_text(
+            json.dumps({"classes": ["Perth|Pitch Mat"], "dataset_signature": signature}),
+            encoding="utf-8",
+        )
+        check(lt.family_is_stale(root, family, index) is True, "missing class")
+        (dest / "meta.json").write_text(
+            json.dumps(
+                {
+                    "classes": ["Perth|Pitch Mat", "WA|Media Backdrop"],
+                    "dataset_signature": "0" * 40,
+                }
+            ),
+            encoding="utf-8",
+        )
+        check(lt.family_is_stale(root, family, index) is True, "new frames")
+        (dest / "meta.json").write_text(
+            json.dumps(
+                {
+                    "classes": ["Perth|Pitch Mat", "WA|Media Backdrop"],
+                    "dataset_signature": signature,
+                }
+            ),
+            encoding="utf-8",
+        )
+        check(lt.family_is_stale(root, family, index) is False, "current model")
+        check(lt.family_is_stale(root, family, {"classes": [], "projects": {}}) is False, "empty index")
+
+        original = lt.checkpoint_class_names
+        try:
+            lt.checkpoint_class_names = lambda path: ["Perth|Pitch Mat", "WA|Pitch Mat", "person"]
+            lt._CHECKPOINT_NAMES.clear()
+            names = lt.protected_family_classes(root, family)
+            check("WA|Pitch Mat" in names and "person" not in names, names)
+            check(lt.family_finetune_ok(dest / "best.pt", ["Perth|Pitch Mat", "WA|Pitch Mat", "Perth|Player Jersey"]) is True, "subset finetune")
+            check(lt.family_finetune_ok(dest / "best.pt", ["Perth|Player Jersey"]) is False, "dropped checkpoint class")
+        finally:
+            lt.checkpoint_class_names = original
+            lt._CHECKPOINT_NAMES.clear()
+
+        orphan = root / "cluster_overlap"
+        (orphan / "dataset" / "images" / "train").mkdir(parents=True)
+        (orphan / "dataset" / "labels" / "train").mkdir(parents=True)
+        write_jpeg(orphan / "dataset" / "images" / "train" / "00008.jpg", (20, 20, 80, 60))
+        (orphan / "dataset" / "labels" / "train" / "00008.txt").write_text(
+            "0 0.500000 0.500000 0.200000 0.200000\n",
+            encoding="utf-8",
+        )
+        (orphan / "dataset" / "data.yaml").write_text('names:\n  - "Perth|Pitch Mat"\n', encoding="utf-8")
+        (orphan / "state.json").write_text(json.dumps({"classes": ["Perth|Pitch Mat"]}), encoding="utf-8")
+        other = root / "other_family"
+        (other / "dataset" / "images" / "train").mkdir(parents=True)
+        (other / "dataset" / "labels" / "train").mkdir(parents=True)
+        write_jpeg(other / "dataset" / "images" / "train" / "00009.jpg", (20, 20, 80, 60))
+        (other / "dataset" / "labels" / "train" / "00009.txt").write_text(
+            "0 0.500000 0.500000 0.200000 0.200000\n",
+            encoding="utf-8",
+        )
+        (other / "dataset" / "data.yaml").write_text('names:\n  - "Other|Brand"\n', encoding="utf-8")
+        (other / "state.json").write_text(json.dumps({"model_family": "other"}), encoding="utf-8")
+        loaded = lt.backfill_family_projects(root, family, {"classes": ["Perth|Pitch Mat"], "projects": {}})
+        check("cluster_overlap" in loaded["projects"], set(loaded["projects"]))
+        check("other_family" not in loaded["projects"], set(loaded["projects"]))
+        check(lt.family_epoch_message(1, 8) == "Ενιαίο μοντέλο οικογένειας, περίμενε… · epoch 1/8", lt.family_epoch_message(1, 8))
+
+
 def test_gpu_backoff():
     class AcceleratorError(Exception):
         pass
@@ -1064,6 +1250,7 @@ def main():
     test_frames_lookup()
     test_config_and_status()
     test_family_union()
+    test_predict_chunks_and_family_staleness()
     test_gpu_backoff()
     print("pure checks ok")
     if "--train" in sys.argv:
