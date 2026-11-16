@@ -148,6 +148,10 @@ class DatasetError(Exception):
     """Reviewed frames are not ready to train (no match, or no boxes)."""
 
 
+class PredictionDiscarded(Exception):
+    """The live project changed while a prediction file was being built."""
+
+
 @dataclass(frozen=True)
 class Frame:
     path: Path
@@ -745,19 +749,22 @@ def prediction_image(key: str, index: int, width: int, height: int, annotations:
     }
 
 
-def build_prediction_document(live, images: dict) -> dict:
+def build_prediction_document(live, images: dict, project: str | None = None) -> dict:
     """Annotool document, the shape ``predict_to_json.py`` writes. No brand|tpoint dedupe.
 
-    ``project`` is the live file's project. The tool ignores a predictions file
-    whose project does not match the open one.
+    ``project`` is the project captured when prediction started. A live file read
+    later must not replace that tag: the tool keeps boxes whose project matches
+    the folder it has open.
     """
-    project = "auto_export"
+    tag = "auto_export"
+    if isinstance(project, str) and project.strip():
+        tag = project.strip()
+    elif isinstance(live, dict) and isinstance(live.get("project"), str) and live["project"].strip():
+        tag = live["project"].strip()
     annotator = "-"
     presets = {}
     live_prefs = None
     if isinstance(live, dict):
-        if isinstance(live.get("project"), str) and live["project"].strip():
-            project = live["project"]
         if isinstance(live.get("Annotator"), str) and live["Annotator"].strip():
             annotator = live["Annotator"]
         if isinstance(live.get("presets"), dict):
@@ -765,14 +772,78 @@ def build_prediction_document(live, images: dict) -> dict:
         live_prefs = live.get("prefs")
     first = next(iter(images), "")
     return {
-        "project": project,
+        "project": tag,
         "imageNum": len(images),
-        "prefs": default_prefs(project, live_prefs),
+        "prefs": default_prefs(tag, live_prefs),
         "images": images,
         "currentImage": first,
         "presets": presets,
         "Annotator": annotator,
     }
+
+
+def listed_image_names(live) -> set[str] | None:
+    """Image keys in the live file, or None when it does not list any."""
+    images = live.get("images") if isinstance(live, dict) else None
+    if not isinstance(images, dict) or not images:
+        return None
+    names = set()
+    for key, entry in images.items():
+        if isinstance(key, str) and key.strip():
+            names.add(key)
+            names.add(norm_name(key))
+        if isinstance(entry, dict) and isinstance(entry.get("imageName"), str):
+            names.add(entry["imageName"])
+            names.add(norm_name(entry["imageName"]))
+    return names or None
+
+
+def retain_listed_images(images: dict, live) -> dict:
+    """Drop prediction keys the current live file does not list."""
+    allowed = listed_image_names(live)
+    if not allowed:
+        return images
+    return {key: entry for key, entry in images.items() if key in allowed or norm_name(str(key)) in allowed}
+
+
+def read_live_file(sync_folder: Path):
+    path = Path(sync_folder) / LIVE_NAME
+    if not path.is_file():
+        return None
+    try:
+        data = read_json(path, retries=2, pause=0.05)
+    except ValueError:
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def reject_if_project_changed(sync_folder: Path, captured_project: str | None):
+    """Re-read the live file. A different project means these boxes must not be written."""
+    live_now = read_live_file(sync_folder)
+    if not isinstance(live_now, dict):
+        return None
+    current = project_name(live_now)
+    if captured_project and current and current != captured_project:
+        LOG.info("project changed during predict, discarding")
+        raise PredictionDiscarded()
+    return live_now
+
+
+def commit_predictions(sync_folder: Path, captured_project: str | None, live, images: dict) -> dict:
+    """Write ``annotool_predictions.json`` for the project prediction started with.
+
+    Re-reads the live file first. A different project discards the results so a
+    folder opened during predict cannot inherit the previous folder's boxes.
+    """
+    live_now = reject_if_project_changed(sync_folder, captured_project)
+    if isinstance(live_now, dict):
+        images = retain_listed_images(images, live_now)
+    document = build_prediction_document(live, images, project=captured_project)
+    errors = prediction_shape_errors(document)
+    if errors:
+        raise ConfigError("prediction document failed its shape check: " + "; ".join(errors))
+    atomic_write_json(Path(sync_folder) / PRED_NAME, document)
+    return images
 
 
 def prediction_shape_errors(doc) -> list[str]:
@@ -3077,6 +3148,11 @@ def boxes_from_result(result, frame: Frame, canvas, key: str, index: int):
 
 
 def predict_frames(model, args, live, frames, work: Path, coverage: str = "window", status: Status | None = None):
+    frames = list(frames)
+    captured_project = getattr(args, "bound_project", None) or project_name(live)
+    if isinstance(captured_project, str):
+        captured_project = captured_project.strip() or None
+    reject_if_project_changed(args.sync_folder, captured_project)
     images = live_images(live)
     names = reviewed_names(live)
     blocked = blocked_rels(frames, names, images)
@@ -3109,12 +3185,7 @@ def predict_frames(model, args, live, frames, work: Path, coverage: str = "windo
             if isinstance(old_doc.get("images"), dict):
                 old = old_doc["images"]
         merged = merge_prediction_images(old, images_out, replaced_keys, frames, current_index, blocked)
-        document = build_prediction_document(live, merged)
-        errors = prediction_shape_errors(document)
-        if errors:
-            raise ConfigError("prediction document failed its shape check: " + "; ".join(errors))
-        atomic_write_json(pred_path, document)
-        return merged
+        return commit_predictions(args.sync_folder, captured_project, live, merged)
 
     def predict_chunk(chunk: list[Frame]):
         """One ``model.predict`` call. The result stream is consumed here so an OOM retries this chunk."""
@@ -3251,10 +3322,13 @@ def finish_predict(args, state: dict, status: Status, frames_index: FrameIndex):
         message=f"Προβλέψεις κύκλου {state['cycle']}",
     )
     live = read_json(args.sync_folder / LIVE_NAME)
-    frames = frames_index.get(force=True)
+    frames = list(frames_index.get(force=True))
     YOLO = yolo_class()
     model = YOLO(str(weights))
-    count, start, end = predict_frames(model, args, live, frames, args.work_dir, status=status)
+    try:
+        count, start, end = predict_frames(model, args, live, frames, args.work_dir, status=status)
+    except PredictionDiscarded:
+        return 0, None, None
     state["pending_predict"] = False
     state["last_error"] = None
     save_state(args.work_dir / STATE_NAME, state)
@@ -3305,10 +3379,13 @@ def seed_family_predictions(args, state: dict, status: Status, frames_index: Fra
         message=f"Προβλέψεις από την οικογένεια {family}, πριν την εκπαίδευση",
     )
     live = read_json(args.sync_folder / LIVE_NAME)
-    frames = frames_index.get(force=True)
+    frames = list(frames_index.get(force=True))
     YOLO = yolo_class()
     model = YOLO(str(weights))
-    count, start, end = predict_frames(model, args, live, frames, args.work_dir, coverage="all", status=status)
+    try:
+        count, start, end = predict_frames(model, args, live, frames, args.work_dir, coverage="all", status=status)
+    except PredictionDiscarded:
+        return 0, None, None
     stamp = weights_stamp(weights) or {}
     state["seeded_family"] = family
     state["seeded_weights"] = {"family": family, **stamp}

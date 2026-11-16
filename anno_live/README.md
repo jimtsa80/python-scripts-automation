@@ -149,7 +149,7 @@ python anno_live\live_trainer.py --sync-folder C:\Users\jimts\Documents\projects
 
 ## `annotool_predictions.json`
 
-Ίδιο σχήμα με το export του annotool / το `predict_to_json.py`: `project`, `imageNum`, `prefs`, `images`, `currentImage`, `presets`, `Annotator`. Το `project` είναι το `project` του live αρχείου· το εργαλείο αγνοεί προβλέψεις άλλου project. Κάθε καρέ έχει `imageName`, `imageIndex`, `width`, `height`, `annotations`, `exifdata`. Κάθε κουτί έχει `startPoint`, `diagPoint`, `group`, `brand`, `tpoint`, `hits` (πάντα 1), `confidence`. Ένα κουτί ανά instance, χωρίς συγχώνευση ίδιου `brand|tpoint`. Οι συντεταγμένες είναι στον καμβά του live αρχείου για αυτό το καρέ, αλλιώς στο πιο συχνό `width`/`height`.
+Ίδιο σχήμα με το export του annotool / το `predict_to_json.py`: `project`, `imageNum`, `prefs`, `images`, `currentImage`, `presets`, `Annotator`. Το `project` είναι το project που ήταν ανοιχτό όταν άρχισε η πρόβλεψη, όχι ό,τι γράφει το live αρχείο τη στιγμή της αποθήκευσης. Αν το `project` του live αρχείου αλλάξει πριν γραφτεί το αρχείο, η πρόβλεψη πετιέται (`project changed during predict, discarding`) και το `ensure_predictions_project` αδειάζει το αρχείο για το καινούργιο project. Κλειδιά εικόνας που δεν υπάρχουν στο `images` του τρέχοντος live αρχείου δεν γράφονται. Το εργαλείο αγνοεί προβλέψεις άλλου project. Κάθε καρέ έχει `imageName`, `imageIndex`, `width`, `height`, `annotations`, `exifdata`. Κάθε κουτί έχει `startPoint`, `diagPoint`, `group`, `brand`, `tpoint`, `hits` (πάντα 1), `confidence`. Ένα κουτί ανά instance, χωρίς συγχώνευση ίδιου `brand|tpoint`. Οι συντεταγμένες είναι στον καμβά του live αρχείου για αυτό το καρέ, αλλιώς στο πιο συχνό `width`/`height`.
 
 ## Δοκιμή
 

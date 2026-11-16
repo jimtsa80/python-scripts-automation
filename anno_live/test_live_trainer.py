@@ -1327,6 +1327,121 @@ def test_cadence():
         check("νέα κατηγορία WA|LED Sign" in state["cadence_reason"], state["cadence_reason"])
 
 
+def test_predict_project_race():
+    part2 = "part2_reduced_20261017_RLWC_MensEnglandvTonga_Live_Seven_1930-cluster_1"
+    part3 = "part3_reduced_20261017_RLWC_MensEnglandvTonga_Live_Seven_1930-cluster_2"
+    kept = lt.retain_listed_images(
+        {
+            "02751": {"imageName": "02751"},
+            "10624": {"imageName": "10624"},
+        },
+        {"project": part3, "images": {"00001": {"imageName": "00001"}}},
+    )
+    check(kept == {}, kept)
+    check(
+        lt.retain_listed_images({"02751": {"imageName": "02751"}}, {"project": part2, "images": {}})
+        == {"02751": {"imageName": "02751"}},
+        "no image list keeps the boxes",
+    )
+
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        sync = root / "sync"
+        sync.mkdir()
+        frames = [
+            lt.Frame(path=Path(f"/frames/{name}.jpg"), rel=name, stem=name) for name in ("02751", "10624")
+        ]
+
+        class Boxes:
+            def __init__(self):
+                self.xyxy = _Tensor([[0, 0, 50, 50]])
+                self.conf = _Tensor([0.9])
+                self.cls = _Tensor([0])
+
+            def __len__(self):
+                return 1
+
+        class Result:
+            def __init__(self, path):
+                self.path = path
+                self.orig_shape = (100, 200)
+                self.names = {0: "Nike|Board"}
+                self.boxes = Boxes()
+
+        def live_for(project, names):
+            return {
+                "project": project,
+                "currentImage": names[0],
+                "reviewed": [],
+                "images": {name: {"imageName": name} for name in names},
+                "Annotator": "-",
+                "prefs": {},
+                "presets": {},
+            }
+
+        class Args:
+            conf = 0.25
+            iou = 0.3
+            imgsz = 64
+            workers = 0
+            batch = 1
+            device = "cpu"
+            predict_margin = 0
+            lookahead = 10
+            contain = 0.6
+            sync_folder = sync
+            predict_batch = 4
+            bound_project = part2
+
+        start = live_for(part2, ["02751", "10624"])
+        (sync / lt.LIVE_NAME).write_text(json.dumps(start), encoding="utf-8")
+        marker = lt.build_prediction_document(start, {}, project=part2)
+        (sync / lt.PRED_NAME).write_text(json.dumps(marker), encoding="utf-8")
+
+        class SwitchingModel:
+            def predict(self, **kwargs):
+                switched = live_for(part3, ["00001"])
+                (sync / lt.LIVE_NAME).write_text(json.dumps(switched), encoding="utf-8")
+                return [Result(path) for path in kwargs["source"]]
+
+        try:
+            lt.predict_frames(SwitchingModel(), Args(), start, frames, root / "work", coverage="all")
+        except lt.PredictionDiscarded:
+            pass
+        else:
+            raise AssertionError("a project switch during predict should discard the write")
+        stayed = json.loads((sync / lt.PRED_NAME).read_text(encoding="utf-8"))
+        check(stayed["project"] == part2, stayed["project"])
+        check(stayed["images"] == {}, stayed["images"])
+        check("02751" not in stayed["images"] and "10624" not in stayed["images"], stayed["images"])
+
+        (sync / lt.LIVE_NAME).write_text(json.dumps(start), encoding="utf-8")
+
+        class MutatingModel:
+            def predict(self, **kwargs):
+                start["project"] = part3
+                return [Result(path) for path in kwargs["source"]]
+
+        lt.predict_frames(MutatingModel(), Args(), start, frames, root / "work", coverage="all")
+        written = json.loads((sync / lt.PRED_NAME).read_text(encoding="utf-8"))
+        check(written["project"] == part2, written["project"])
+        check(written["prefs"]["projectName"] == part2, written["prefs"])
+        check(set(written["images"]) == {"02751", "10624"}, list(written["images"]))
+        check(lt.prediction_shape_errors(written) == [], lt.prediction_shape_errors(written))
+
+        listed = live_for(part2, ["02751"])
+        (sync / lt.LIVE_NAME).write_text(json.dumps(listed), encoding="utf-8")
+
+        class StableModel:
+            def predict(self, **kwargs):
+                return [Result(path) for path in kwargs["source"]]
+
+        lt.predict_frames(StableModel(), Args(), listed, frames, root / "work", coverage="all")
+        filtered = json.loads((sync / lt.PRED_NAME).read_text(encoding="utf-8"))
+        check(filtered["project"] == part2, filtered["project"])
+        check(list(filtered["images"]) == ["02751"], list(filtered["images"]))
+
+
 def test_gpu_backoff():
     class AcceleratorError(Exception):
         pass
@@ -1405,6 +1520,7 @@ def main():
     test_family_union()
     test_predict_chunks_and_family_staleness()
     test_cadence()
+    test_predict_project_race()
     test_gpu_backoff()
     print("pure checks ok")
     if "--train" in sys.argv:
